@@ -17,21 +17,21 @@
 
 
     <dependencies>
-        
+
         <!-- JPA persistence provider -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>3.6.10.Final</version>
         </dependency>
-        
+
         <!-- dependency injection provider -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${org.springframework.version}</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -42,14 +42,14 @@
             <artifactId>spring-beans</artifactId>
             <version>${org.springframework.version}</version>
         </dependency>
-        
+
         <!-- web service provider -->
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-frontend-jaxws</artifactId>
             <version>2.4.2</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http</artifactId>
@@ -57,5 +57,5 @@
         </dependency>
 
     </dependencies>
-    
+
 </project>

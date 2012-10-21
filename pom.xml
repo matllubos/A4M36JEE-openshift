@@ -20,7 +20,7 @@
     </properties>
 
     <dependencies>
-        
+
         <!-- JEE api -->
         <dependency>
             <groupId>javax</groupId>
@@ -28,7 +28,7 @@
             <version>6.0</version>
             <scope>provided</scope>
         </dependency>
-        
+
         <!-- lombok static code generation -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -36,8 +36,8 @@
             <version>0.11.4</version>
             <scope>provided</scope>
         </dependency>
-        
-        
+
+
         <!-- test framework -->
         <dependency>
             <groupId>org.testng</groupId>
@@ -51,17 +51,17 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        
+
     </dependencies>
 
     <profiles>
-        
+
         <profile>
             <!-- make a build in development mode -->
             <!-- include rebel.xml to simplify hot redeploys -->
             <id>development</id>
             <build>
-                <plugins>                     
+                <plugins>
                     <plugin>
                         <groupId>org.zeroturnaround</groupId>
                         <artifactId>jrebel-maven-plugin</artifactId>
@@ -79,13 +79,13 @@
                 </plugins>
             </build>
         </profile>
-        
+
     </profiles>
-    
+
     <build>
-        
+
         <plugins>
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -98,7 +98,7 @@
                     </compilerArguments>
                 </configuration>
             </plugin>
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -107,7 +107,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -133,9 +133,9 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
         </plugins>
-        
+
     </build>
 
 </project>

@@ -1,10 +1,11 @@
 package cz.cvut.fel.aos.bookingserver.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Oblast ze které či do které se uskutečňují lety.
@@ -16,7 +17,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @NamedQueries( {
-    @NamedQuery( name = "Destination.findAll", query = "SELECT d FROM Destination d" )
+        @NamedQuery( name = "Destination.findAll", query = "SELECT d FROM Destination d" )
 } )
 public class Destination implements Serializable {
 

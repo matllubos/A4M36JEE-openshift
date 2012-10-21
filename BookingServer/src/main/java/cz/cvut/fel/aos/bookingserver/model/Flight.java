@@ -1,11 +1,12 @@
 package cz.cvut.fel.aos.bookingserver.model;
 
-import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Model zachycuje všechny lety, které je v systému možné najít a rezervovat.
@@ -17,11 +18,11 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @NamedQueries( {
-    @NamedQuery( name = "Flight.findByNumber", query = "SELECT f FROM Flight f WHERE f.number = :number" ),
-    @NamedQuery( name = "Flight.findAll", query = "SELECT f FROM Flight f" ),
-    @NamedQuery( name = "Flight.findByFrom", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.to = :codeTo" ),
-    @NamedQuery( name = "Flight.findByTo", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.from = :codeFrom" ),
-    @NamedQuery( name = "Flight.findByFromTo", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.from = :codeFrom AND f.to = :codeTo" )
+        @NamedQuery( name = "Flight.findByNumber", query = "SELECT f FROM Flight f WHERE f.number = :number" ),
+        @NamedQuery( name = "Flight.findAll", query = "SELECT f FROM Flight f" ),
+        @NamedQuery( name = "Flight.findByFrom", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.to = :codeTo" ),
+        @NamedQuery( name = "Flight.findByTo", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.from = :codeFrom" ),
+        @NamedQuery( name = "Flight.findByFromTo", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.from = :codeFrom AND f.to = :codeTo" )
 } )
 public class Flight implements Serializable {
 
