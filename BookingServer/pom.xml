@@ -17,6 +17,13 @@
 
 
     <dependencies>
+        
+        <!-- JPA persistence provider -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>3.6.10.Final</version>
+        </dependency>
 
     </dependencies>
 
