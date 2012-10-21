@@ -31,4 +31,8 @@ public class Destination implements Serializable {
     /** název destinace */
     private String name;
 
+    /** optimistický zámek */
+    @Version
+    private long version;
+
 }

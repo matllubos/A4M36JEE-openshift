@@ -24,7 +24,7 @@ public class Reservation implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private long id;
-    
+
     /** heslo pro přístup */
     private String password;
 
@@ -44,5 +44,9 @@ public class Reservation implements Serializable {
 
     /** rezervace byla zrušena */
     private boolean canceled;
+
+    /** optimistický zámek */
+    @Version
+    private long version;
 
 }
