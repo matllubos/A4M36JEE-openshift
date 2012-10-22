@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.bookingserver.service;
+package cz.cvut.fel.aos.bookingserver.service.destination;
 
 import cz.cvut.fel.aos.bookingserver.model.Destination;
 import java.util.Collection;

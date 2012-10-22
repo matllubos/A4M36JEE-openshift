@@ -1,21 +1,18 @@
-package cz.cvut.fel.aos.bookingserver.service.impl;
+package cz.cvut.fel.aos.bookingserver.service.flight;
 
 import cz.cvut.fel.aos.bookingserver.model.Flight;
-import cz.cvut.fel.aos.bookingserver.service.FlightService;
-import java.util.Collection;
-import java.util.Date;
+
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collection;
+import java.util.Date;
 
-/**
- *
- * @author Karel Cemus
- */
-@WebService( endpointInterface = "cz.cvut.fel.aos.bookingserver.service.FlightService" )
+/** @author Karel Cemus */
+@WebService( endpointInterface = "cz.cvut.fel.aos.bookingserver.service.flight.FlightService" )
 public class FlightServiceImpl implements FlightService {
 
-    @PersistenceContext
+    @PersistenceContext( unitName = "flightSystemPersistence" )
     private EntityManager em;
 
     @Override

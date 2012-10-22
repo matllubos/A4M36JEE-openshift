@@ -6,10 +6,11 @@
             http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
             http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
         ">
- 
-    <import resource="classpath:META-INF/cxf/cxf.xml" />
- 
-    <jaxws:endpoint id="destinationService" implementor="cz.cvut.fel.aos.bookingserver.service.impl.DestinationServiceImpl" address="/DestinationService" />
-    
- 
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+
+    <jaxws:endpoint id="destinationService" implementor="cz.cvut.fel.aos.bookingserver.service.destination.DestinationServiceImpl" address="/DestinationService"/>
+    <jaxws:endpoint id="flightService" implementor="cz.cvut.fel.aos.bookingserver.service.flight.FlightServiceImpl" address="/FlightService"/>
+    <jaxws:endpoint id="reservationService" implementor="cz.cvut.fel.aos.bookingserver.service.reservation.ReservationServiceImpl" address="/ReservationService"/>
+
 </beans>

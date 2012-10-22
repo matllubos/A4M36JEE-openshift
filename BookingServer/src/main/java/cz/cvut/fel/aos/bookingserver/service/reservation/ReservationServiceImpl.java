@@ -1,20 +1,17 @@
-package cz.cvut.fel.aos.bookingserver.service.impl;
+package cz.cvut.fel.aos.bookingserver.service.reservation;
 
 import cz.cvut.fel.aos.bookingserver.model.Flight;
 import cz.cvut.fel.aos.bookingserver.model.Reservation;
-import cz.cvut.fel.aos.bookingserver.service.ReservationService;
+
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author Karel Cemus
- */
-@WebService( endpointInterface = "cz.cvut.fel.aos.bookingserver.service.ReservationService" )
+/** @author Karel Cemus */
+@WebService( endpointInterface = "cz.cvut.fel.aos.bookingserver.service.reservation.ReservationService" )
 public class ReservationServiceImpl implements ReservationService {
 
-    @PersistenceContext
+    @PersistenceContext( unitName = "flightSystemPersistence" )
     private EntityManager em;
 
     @Override
@@ -34,10 +31,14 @@ public class ReservationServiceImpl implements ReservationService {
         Flight flight = em.find( Flight.class, flightNumber );
 
         if ( flight == null ) // chyba vstupu
+        {
             throw new IllegalStateException( String.format( "Flight with number '%s' doesn't exists.", flightNumber ) );
+        }
 
         if ( flight.getCapacityLeft() < count ) // nezbývá dostatek volných míst
+        {
             throw new IllegalArgumentException( String.format( "Flight '%s' doesn't have enought capacity left.", flight ) );
+        }
 
         // aktualizuj informace o letu
         flight.setCapacityLeft( flight.getCapacityLeft() - count );
@@ -55,12 +56,14 @@ public class ReservationServiceImpl implements ReservationService {
         return entity;
     }
 
-    @Override
+    //    @Override
     public boolean cancel( long reservation, String password ) throws SecurityException {
         Reservation entity = em.find( Reservation.class, reservation );
 
         if ( entity == null ) // rezervace neexistuje
+        {
             throw new IllegalArgumentException( "Reservation doesn't exists." );
+        }
 
         // zkontroluj přístup k rezervaci
         checkSecurity( entity, password );
@@ -71,12 +74,14 @@ public class ReservationServiceImpl implements ReservationService {
         return true;
     }
 
-    @Override
+    //    @Override
     public Reservation pay( long reservation, String password, int amount ) {
         Reservation entity = em.find( Reservation.class, reservation );
 
         if ( entity == null ) // rezervace neexistuje
+        {
             throw new IllegalArgumentException( "Reservation doesn't exists." );
+        }
 
         // zkontroluj přístup k rezervaci
         checkSecurity( entity, password );
@@ -87,12 +92,14 @@ public class ReservationServiceImpl implements ReservationService {
         return entity;
     }
 
-    @Override
+    //    @Override
     public int withdrawCredit( long reservation, String password, int amount ) {
         Reservation entity = em.find( Reservation.class, reservation );
 
         if ( entity == null ) // rezervace neexistuje
+        {
             throw new IllegalArgumentException( "Reservation doesn't exists." );
+        }
 
         // zkontroluj přístup k rezervaci
         checkSecurity( entity, password );
@@ -105,7 +112,8 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     private void checkSecurity( Reservation reservation, String password ) throws SecurityException {
-        if ( reservation != null && !reservation.getPassword().equalsIgnoreCase( password ) )
+        if ( reservation != null && !reservation.getPassword().equalsIgnoreCase( password ) ) {
             throw new SecurityException( String.format( "Access to reservation with id '%d' is forbidden. Password is incorrect.", reservation.getId() ) );
+        }
     }
 }
