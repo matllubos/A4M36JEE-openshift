@@ -1,20 +1,18 @@
-
 package cz.cvut.fel.aos.service.flight;
 
-import cz.cvut.fel.aos.bookingserver.service.destination.Destination;
+import cz.cvut.fel.aos.service.destination.Destination;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.Serializable;
+import java.util.Date;
 
 
 /**
  * <p>Java class for flight complex type.
- * 
+ * <p/>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p/>
  * <pre>
  * &lt;complexType name="flight">
  *   &lt;complexContent>
@@ -35,140 +33,121 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "flight", propOrder = {
-    "arrival",
-    "capacity",
-    "capacityLeft",
-    "cost",
-    "departure",
-    "from",
-    "id",
-    "number",
-    "to",
-    "version"
-})
-public class Flight {
+@XmlAccessorType( XmlAccessType.FIELD )
+@XmlType( name = "flight", propOrder = {
+        "arrival",
+        "capacity",
+        "capacityLeft",
+        "cost",
+        "departure",
+        "from",
+        "id",
+        "number",
+        "to",
+        "version"
+} )
+public class Flight
+        implements Serializable {
 
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar arrival;
+    private final static long serialVersionUID = 2L;
+
+    @XmlElement( type = String.class )
+    @XmlJavaTypeAdapter( Adapter1.class )
+    @XmlSchemaType( name = "dateTime" )
+    protected Date arrival;
+
     protected int capacity;
+
     protected int capacityLeft;
+
     protected int cost;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar departure;
+
+    @XmlElement( type = String.class )
+    @XmlJavaTypeAdapter( Adapter1.class )
+    @XmlSchemaType( name = "dateTime" )
+    protected Date departure;
+
     protected Destination from;
+
     protected long id;
+
     protected String number;
+
     protected Destination to;
+
     protected long version;
 
     /**
      * Gets the value of the arrival property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is {@link String }
      */
-    public XMLGregorianCalendar getArrival() {
+    public Date getArrival() {
         return arrival;
     }
 
     /**
      * Sets the value of the arrival property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is {@link String }
      */
-    public void setArrival(XMLGregorianCalendar value) {
+    public void setArrival( Date value ) {
         this.arrival = value;
     }
 
-    /**
-     * Gets the value of the capacity property.
-     * 
-     */
+    /** Gets the value of the capacity property. */
     public int getCapacity() {
         return capacity;
     }
 
-    /**
-     * Sets the value of the capacity property.
-     * 
-     */
-    public void setCapacity(int value) {
+    /** Sets the value of the capacity property. */
+    public void setCapacity( int value ) {
         this.capacity = value;
     }
 
-    /**
-     * Gets the value of the capacityLeft property.
-     * 
-     */
+    /** Gets the value of the capacityLeft property. */
     public int getCapacityLeft() {
         return capacityLeft;
     }
 
-    /**
-     * Sets the value of the capacityLeft property.
-     * 
-     */
-    public void setCapacityLeft(int value) {
+    /** Sets the value of the capacityLeft property. */
+    public void setCapacityLeft( int value ) {
         this.capacityLeft = value;
     }
 
-    /**
-     * Gets the value of the cost property.
-     * 
-     */
+    /** Gets the value of the cost property. */
     public int getCost() {
         return cost;
     }
 
-    /**
-     * Sets the value of the cost property.
-     * 
-     */
-    public void setCost(int value) {
+    /** Sets the value of the cost property. */
+    public void setCost( int value ) {
         this.cost = value;
     }
 
     /**
      * Gets the value of the departure property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is {@link String }
      */
-    public XMLGregorianCalendar getDeparture() {
+    public Date getDeparture() {
         return departure;
     }
 
     /**
      * Sets the value of the departure property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is {@link String }
      */
-    public void setDeparture(XMLGregorianCalendar value) {
+    public void setDeparture( Date value ) {
         this.departure = value;
     }
 
     /**
      * Gets the value of the from property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Destination }
-     *     
+     *
+     * @return possible object is {@link Destination }
      */
     public Destination getFrom() {
         return from;
@@ -176,39 +155,27 @@ public class Flight {
 
     /**
      * Sets the value of the from property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Destination }
-     *     
+     *
+     * @param value allowed object is {@link Destination }
      */
-    public void setFrom(Destination value) {
+    public void setFrom( Destination value ) {
         this.from = value;
     }
 
-    /**
-     * Gets the value of the id property.
-     * 
-     */
+    /** Gets the value of the id property. */
     public long getId() {
         return id;
     }
 
-    /**
-     * Sets the value of the id property.
-     * 
-     */
-    public void setId(long value) {
+    /** Sets the value of the id property. */
+    public void setId( long value ) {
         this.id = value;
     }
 
     /**
      * Gets the value of the number property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
      */
     public String getNumber() {
         return number;
@@ -216,23 +183,17 @@ public class Flight {
 
     /**
      * Sets the value of the number property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
      */
-    public void setNumber(String value) {
+    public void setNumber( String value ) {
         this.number = value;
     }
 
     /**
      * Gets the value of the to property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Destination }
-     *     
+     *
+     * @return possible object is {@link Destination }
      */
     public Destination getTo() {
         return to;
@@ -240,29 +201,20 @@ public class Flight {
 
     /**
      * Sets the value of the to property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Destination }
-     *     
+     *
+     * @param value allowed object is {@link Destination }
      */
-    public void setTo(Destination value) {
+    public void setTo( Destination value ) {
         this.to = value;
     }
 
-    /**
-     * Gets the value of the version property.
-     * 
-     */
+    /** Gets the value of the version property. */
     public long getVersion() {
         return version;
     }
 
-    /**
-     * Sets the value of the version property.
-     * 
-     */
-    public void setVersion(long value) {
+    /** Sets the value of the version property. */
+    public void setVersion( long value ) {
         this.version = value;
     }
 

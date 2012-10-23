@@ -30,7 +30,7 @@ public class FlightTest {
 
     @Test
     public void findFlightsFrom( Date from, Date to, String destination, String... expected ) {
-        Collection<Flight> flights =null;// service.findFlightsFrom( from, to, destination );
+        Collection<Flight> flights = service.findFlightsFrom( from, to, destination );
         assertEquals( flights.size(), 10 );
 
         assertFlights( flights, expected );

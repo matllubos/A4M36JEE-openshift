@@ -1,17 +1,17 @@
-
 package cz.cvut.fel.aos.service.flight;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.io.Serializable;
 
 
 /**
  * <p>Java class for findResponse complex type.
- * 
+ * <p/>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p/>
  * <pre>
  * &lt;complexType name="findResponse">
  *   &lt;complexContent>
@@ -23,25 +23,23 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "findResponse", propOrder = {
-    "_return"
-})
-public class FindResponse {
+@XmlAccessorType( XmlAccessType.FIELD )
+@XmlType( name = "findResponse", propOrder = {
+        "_return"
+} )
+public class FindResponse
+        implements Serializable {
 
-    @XmlElement(name = "return")
+    private final static long serialVersionUID = 2L;
+
+    @XmlElement( name = "return" )
     protected Flight _return;
 
     /**
      * Gets the value of the return property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Flight }
-     *     
+     *
+     * @return possible object is {@link Flight }
      */
     public Flight getReturn() {
         return _return;
@@ -49,13 +47,10 @@ public class FindResponse {
 
     /**
      * Sets the value of the return property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Flight }
-     *     
+     *
+     * @param value allowed object is {@link Flight }
      */
-    public void setReturn(Flight value) {
+    public void setReturn( Flight value ) {
         this._return = value;
     }
 

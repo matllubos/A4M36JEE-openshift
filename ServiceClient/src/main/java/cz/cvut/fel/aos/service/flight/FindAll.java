@@ -1,16 +1,16 @@
-
 package cz.cvut.fel.aos.service.flight;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+import java.io.Serializable;
 
 
 /**
  * <p>Java class for findAll complex type.
- * 
+ * <p/>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p/>
  * <pre>
  * &lt;complexType name="findAll">
  *   &lt;complexContent>
@@ -21,12 +21,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "findAll")
-public class FindAll {
+@XmlAccessorType( XmlAccessType.FIELD )
+@XmlType( name = "findAll" )
+public class FindAll
+        implements Serializable {
 
+    private final static long serialVersionUID = 2L;
 
 }
