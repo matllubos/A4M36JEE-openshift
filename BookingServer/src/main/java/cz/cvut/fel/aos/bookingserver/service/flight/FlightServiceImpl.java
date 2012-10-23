@@ -12,7 +12,7 @@ import java.util.Date;
 @WebService( endpointInterface = "cz.cvut.fel.aos.bookingserver.service.flight.FlightService" )
 public class FlightServiceImpl implements FlightService {
 
-    @PersistenceContext( unitName = "flightSystemPersistence" )
+    @PersistenceContext
     private EntityManager em;
 
     @Override

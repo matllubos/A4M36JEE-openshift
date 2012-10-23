@@ -14,16 +14,4 @@
         </properties>
     </persistence-unit>
 
-    <persistence-unit name="flightSystemPersistenceTest" transaction-type="RESOURCE_LOCAL">
-        <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <jta-data-source>jdbc/FlightSystem</jta-data-source>
-        <properties>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
-            <property name="hibernate.use_sql_comments" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.query.factory_class" value="org.hibernate.hql.classic.ClassicQueryTranslatorFactory"/>
-        </properties>
-    </persistence-unit>
-
 </persistence>

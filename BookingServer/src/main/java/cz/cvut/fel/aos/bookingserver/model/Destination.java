@@ -17,7 +17,8 @@ import java.io.Serializable;
 @ToString
 @NoArgsConstructor
 @NamedQueries( {
-        @NamedQuery( name = "Destination.findAll", query = "SELECT d FROM Destination d" )
+        @NamedQuery( name = "Destination.findAll", query = "SELECT d FROM Destination d" ),
+        @NamedQuery( name = "Destination.findByCode", query = "SELECT d FROM Destination d WHERE d.code = :code" )
 } )
 public class Destination implements Serializable {
 

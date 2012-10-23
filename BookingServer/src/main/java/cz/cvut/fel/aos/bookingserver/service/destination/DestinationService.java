@@ -1,8 +1,9 @@
 package cz.cvut.fel.aos.bookingserver.service.destination;
 
 import cz.cvut.fel.aos.bookingserver.model.Destination;
-import java.util.Collection;
+
 import javax.jws.WebService;
+import java.util.Collection;
 
 /**
  * API poskytující přístup k možným destinacím letů

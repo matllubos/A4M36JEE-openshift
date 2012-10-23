@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 @WebService( endpointInterface = "cz.cvut.fel.aos.bookingserver.service.reservation.ReservationService" )
 public class ReservationServiceImpl implements ReservationService {
 
-    @PersistenceContext( unitName = "flightSystemPersistence" )
+    @PersistenceContext
     private EntityManager em;
 
     @Override
@@ -56,7 +56,7 @@ public class ReservationServiceImpl implements ReservationService {
         return entity;
     }
 
-    //    @Override
+    @Override
     public boolean cancel( long reservation, String password ) throws SecurityException {
         Reservation entity = em.find( Reservation.class, reservation );
 
@@ -74,7 +74,7 @@ public class ReservationServiceImpl implements ReservationService {
         return true;
     }
 
-    //    @Override
+    @Override
     public Reservation pay( long reservation, String password, int amount ) {
         Reservation entity = em.find( Reservation.class, reservation );
 
@@ -92,7 +92,7 @@ public class ReservationServiceImpl implements ReservationService {
         return entity;
     }
 
-    //    @Override
+    @Override
     public int withdrawCredit( long reservation, String password, int amount ) {
         Reservation entity = em.find( Reservation.class, reservation );
 

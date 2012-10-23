@@ -25,22 +25,22 @@ public class DatabaseTest {
     @BeforeClass
     public void setUp() {
         emf = Persistence.createEntityManagerFactory( "flightSystemPersistenceTest" );
+        em = emf.createEntityManager();
     }
 
     @AfterClass
     public void tearDown() {
+        em.close();
         emf.close();
     }
 
     @BeforeMethod
     public void setUpMethod() {
-        em = emf.createEntityManager();
         em.getTransaction().begin();
     }
 
     @AfterMethod
     public void tearDownMethod() {
         em.getTransaction().commit();
-        em.close();
     }
 }
