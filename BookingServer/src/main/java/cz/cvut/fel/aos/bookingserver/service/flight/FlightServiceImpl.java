@@ -18,7 +18,7 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public Flight find( String flightNumber ) {
         return em.createNamedQuery( "Flight.findByNumber", Flight.class ).
-                setParameter( ":number", flightNumber ).
+                setParameter( "number", flightNumber ).
                 getSingleResult();
     }
 
@@ -31,28 +31,28 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public Collection<Flight> findFlightsFrom( Date intervalFrom, Date intervalTo, String codeFrom ) {
         return em.createNamedQuery( "Flight.findByFrom", Flight.class ).
-                setParameter( ":from", intervalFrom ).
-                setParameter( ":to", intervalTo ).
-                setParameter( ":codeFrom", codeFrom ).
+                setParameter( "intervalFrom", intervalFrom ).
+                setParameter( "intervalTo", intervalTo ).
+                setParameter( "codeFrom", codeFrom ).
                 getResultList();
     }
 
     @Override
     public Collection<Flight> findFlightsTo( Date intervalFrom, Date intervalTo, String codeTo ) {
         return em.createNamedQuery( "Flight.findByTo", Flight.class ).
-                setParameter( ":from", intervalFrom ).
-                setParameter( ":to", intervalTo ).
-                setParameter( ":codeTo", codeTo ).
+                setParameter( "intervalFrom", intervalFrom ).
+                setParameter( "intervalTo", intervalTo ).
+                setParameter( "codeTo", codeTo ).
                 getResultList();
     }
 
     @Override
     public Collection<Flight> findFlights( Date intervalFrom, Date intervalTo, String codeFrom, String codeTo ) {
         return em.createNamedQuery( "Flight.findByFromTo", Flight.class ).
-                setParameter( ":from", intervalFrom ).
-                setParameter( ":to", intervalTo ).
-                setParameter( ":codeFrom", codeFrom ).
-                setParameter( ":codeTo", codeTo ).
+                setParameter( "intervalFrom", intervalFrom ).
+                setParameter( "intervalTo", intervalTo ).
+                setParameter( "codeFrom", codeFrom ).
+                setParameter( "codeTo", codeTo ).
                 getResultList();
     }
 }

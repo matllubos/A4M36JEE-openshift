@@ -20,9 +20,9 @@ import java.util.Date;
 @NamedQueries( {
         @NamedQuery( name = "Flight.findByNumber", query = "SELECT f FROM Flight f WHERE f.number = :number" ),
         @NamedQuery( name = "Flight.findAll", query = "SELECT f FROM Flight f" ),
-        @NamedQuery( name = "Flight.findByFrom", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.to = :codeTo" ),
-        @NamedQuery( name = "Flight.findByTo", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.from = :codeFrom" ),
-        @NamedQuery( name = "Flight.findByFromTo", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.from = :codeFrom AND f.to = :codeTo" )
+        @NamedQuery( name = "Flight.findByFrom", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.from.code = :codeFrom" ),
+        @NamedQuery( name = "Flight.findByTo", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.to.code = :codeTo" ),
+        @NamedQuery( name = "Flight.findByFromTo", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.from.code = :codeFrom AND f.to.code = :codeTo" )
 } )
 public class Flight implements Serializable {
 

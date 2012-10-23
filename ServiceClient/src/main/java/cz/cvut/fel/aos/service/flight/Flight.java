@@ -1,6 +1,7 @@
 package cz.cvut.fel.aos.service.flight;
 
 import cz.cvut.fel.aos.service.destination.Destination;
+import lombok.ToString;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -47,6 +48,7 @@ import java.util.Date;
         "to",
         "version"
 } )
+@ToString
 public class Flight
         implements Serializable {
 
