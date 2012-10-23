@@ -14,8 +14,8 @@ public class CodeGenerator {
                     "-d",
                     "src/main/java",
                     "-p",
-                    "cz.cvut.fel.aos.service.destination",
-                    "http://localhost:8080/BookingServer/DestinationService?wsdl"
+                    "cz.cvut.fel.aos.bookingserver.service.flight",
+                    "http://localhost:8080/BookingServer/FlightService?wsdl"
                 } );
         System.out.println( "Done!" );
     }

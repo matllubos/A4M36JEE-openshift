@@ -47,15 +47,15 @@ public class InsertFlight extends DatabaseTest {
     public Object[][] flightProvider() {
         return new Object[][]{
                 new Object[]{ "F987545", date( 1, 1, 2012, 10, 20 ), date( 1, 1, 2012, 14, 20 ), getDestination( "PRG" ), getDestination( "MAD" ), 100, 5000 },
-                new Object[]{ "F987545", date( 1, 1, 2012, 8, 30 ), date( 1, 1, 2012, 10, 10 ), getDestination( "VIE" ), getDestination( "PRG" ), 80, 3000 },
-                new Object[]{ "F987545", date( 1, 1, 2012, 14, 40 ), date( 1, 1, 2012, 17, 15 ), getDestination( "PRG" ), getDestination( "LHR" ), 130, 7000 },
-                new Object[]{ "F987545", date( 2, 1, 2012, 9, 10 ), date( 2, 1, 2012, 13, 20 ), getDestination( "PRG" ), getDestination( "MAD" ), 110, 5000 },
-                new Object[]{ "F987545", date( 2, 1, 2012, 10, 30 ), date( 2, 1, 2012, 12, 30 ), getDestination( "VIE" ), getDestination( "PRG" ), 90, 3000 },
-                new Object[]{ "F987545", date( 2, 1, 2012, 12, 50 ), date( 2, 1, 2012, 15, 40 ), getDestination( "LHR" ), getDestination( "PRG" ), 100, 7000 },
-                new Object[]{ "F987545", date( 2, 1, 2012, 23, 0 ), date( 3, 1, 2012, 4, 10 ), getDestination( "PRG" ), getDestination( "MAD" ), 110, 5000 },
-                new Object[]{ "F987545", date( 3, 1, 2012, 7, 10 ), date( 3, 1, 2012, 9, 20 ), getDestination( "INN" ), getDestination( "PRG" ), 120, 4000 },
-                new Object[]{ "F987545", date( 3, 1, 2012, 16, 20 ), date( 3, 1, 2012, 18, 20 ), getDestination( "PRG" ), getDestination( "VIE" ), 130, 3000 },
-                new Object[]{ "F987545", date( 3, 1, 2012, 17, 40 ), date( 3, 1, 2012, 20, 50 ), getDestination( "PRG" ), getDestination( "LHR" ), 80, 7000 }
+                new Object[]{ "F987687", date( 1, 1, 2012, 8, 30 ), date( 1, 1, 2012, 10, 10 ), getDestination( "VIE" ), getDestination( "PRG" ), 80, 3000 },
+                new Object[]{ "F987987", date( 1, 1, 2012, 14, 40 ), date( 1, 1, 2012, 17, 15 ), getDestination( "PRG" ), getDestination( "LHR" ), 130, 7000 },
+                new Object[]{ "F987126", date( 2, 1, 2012, 9, 10 ), date( 2, 1, 2012, 13, 20 ), getDestination( "PRG" ), getDestination( "MAD" ), 110, 5000 },
+                new Object[]{ "F987981", date( 2, 1, 2012, 10, 30 ), date( 2, 1, 2012, 12, 30 ), getDestination( "VIE" ), getDestination( "PRG" ), 90, 3000 },
+                new Object[]{ "F987136", date( 2, 1, 2012, 12, 50 ), date( 2, 1, 2012, 15, 40 ), getDestination( "LHR" ), getDestination( "PRG" ), 100, 7000 },
+                new Object[]{ "F987358", date( 2, 1, 2012, 23, 0 ), date( 3, 1, 2012, 4, 10 ), getDestination( "PRG" ), getDestination( "MAD" ), 110, 5000 },
+                new Object[]{ "F987972", date( 3, 1, 2012, 7, 10 ), date( 3, 1, 2012, 9, 20 ), getDestination( "INN" ), getDestination( "PRG" ), 120, 4000 },
+                new Object[]{ "F987321", date( 3, 1, 2012, 16, 20 ), date( 3, 1, 2012, 18, 20 ), getDestination( "PRG" ), getDestination( "VIE" ), 130, 3000 },
+                new Object[]{ "F987963", date( 3, 1, 2012, 17, 40 ), date( 3, 1, 2012, 20, 50 ), getDestination( "PRG" ), getDestination( "LHR" ), 80, 7000 }
         };
     }
 

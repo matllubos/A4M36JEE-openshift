@@ -1,8 +1,5 @@
-package cz.cvut.fel.aos.bookingserver.service.destination;
+package cz.cvut.fel.aos.service.destination;
 
-import cz.cvut.fel.aos.service.destination.Destination;
-import cz.cvut.fel.aos.service.destination.DestinationService;
-import cz.cvut.fel.aos.service.destination.DestinationServiceImplService;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
