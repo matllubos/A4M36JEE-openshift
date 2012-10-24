@@ -13,8 +13,8 @@ public class CodeGenerator {
                 "-b",
                 "src/main/resources/jaxws-bindings.xml",
                 "-p",
-                "cz.cvut.fel.aos.service.flight",
-                "http://localhost:8080/BookingServer/FlightService?wsdl"
+                "cz.cvut.fel.aos.service.reservation",
+                "http://localhost:8080/BookingServer/ReservationService?wsdl"
         } );
         System.out.println( "Done!" );
     }

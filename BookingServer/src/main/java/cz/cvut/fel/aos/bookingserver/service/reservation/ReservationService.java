@@ -26,7 +26,7 @@ public interface ReservationService {
             @WebParam( name = "flightNumber" ) String flightNumber,
             @WebParam( name = "password" ) String password,
             @WebParam( name = "count" ) int count
-    ) throws IllegalArgumentException;
+    ) throws FullFlightException;
 
 
     /** zruší rezervaci, pokud má klient oprávnění. Heslo v podobně SHA-1 */

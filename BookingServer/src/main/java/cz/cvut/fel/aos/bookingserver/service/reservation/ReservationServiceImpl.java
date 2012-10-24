@@ -28,17 +28,17 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     @Transactional( isolation = Isolation.READ_COMMITTED )
-    public Reservation create( String flightNumber, String password, int count ) throws IllegalArgumentException {
+    public Reservation create( String flightNumber, String password, int count ) throws FullFlightException {
 
         // získej let
-        Flight flight = em.find( Flight.class, flightNumber );
+        Flight flight = em.createNamedQuery( "Flight.findByNumber", Flight.class ).setParameter( "number", flightNumber ).getSingleResult();
 
         if ( flight == null ) { // chyba vstupu
             throw new IllegalStateException( String.format( "Flight with number '%s' doesn't exists.", flightNumber ) );
         }
 
         if ( flight.getCapacityLeft() < count ) { // nezbývá dostatek volných míst
-            throw new IllegalArgumentException( String.format( "Flight '%s' doesn't have enought capacity left.", flight ) );
+            throw new FullFlightException( String.format( "Flight '%s' doesn't have enought capacity left.", flight ) );
         }
 
         // aktualizuj informace o letu
@@ -72,6 +72,10 @@ public class ReservationServiceImpl implements ReservationService {
 
         // zruš rezervaci
         entity.setCanceled( true );
+
+        // uvolni zabraná místa v letadle
+        Flight flight = entity.getFlight();
+        //flight.setCapacityLeft( flight.getCapacityLeft() + entity.getCount() );
 
         return true;
     }

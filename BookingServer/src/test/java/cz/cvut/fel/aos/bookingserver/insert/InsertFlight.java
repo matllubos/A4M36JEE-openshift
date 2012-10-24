@@ -35,6 +35,7 @@ public class InsertFlight extends DatabaseTest {
         flight.setFrom( from );
         flight.setTo( to );
         flight.setCapacity( capacity );
+        flight.setCapacityLeft( capacity );
         flight.setCost( cost );
 
         em.persist( flight );
