@@ -14,7 +14,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>ServiceClient</name>
+    <name>BookingServiceClient</name>
 
     <dependencies>
 

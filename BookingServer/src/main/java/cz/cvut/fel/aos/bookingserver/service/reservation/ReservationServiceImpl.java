@@ -2,6 +2,8 @@ package cz.cvut.fel.aos.bookingserver.service.reservation;
 
 import cz.cvut.fel.aos.bookingserver.model.Flight;
 import cz.cvut.fel.aos.bookingserver.model.Reservation;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
@@ -25,18 +27,17 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    @Transactional( isolation = Isolation.READ_COMMITTED )
     public Reservation create( String flightNumber, String password, int count ) throws IllegalArgumentException {
 
         // získej let
         Flight flight = em.find( Flight.class, flightNumber );
 
-        if ( flight == null ) // chyba vstupu
-        {
+        if ( flight == null ) { // chyba vstupu
             throw new IllegalStateException( String.format( "Flight with number '%s' doesn't exists.", flightNumber ) );
         }
 
-        if ( flight.getCapacityLeft() < count ) // nezbývá dostatek volných míst
-        {
+        if ( flight.getCapacityLeft() < count ) { // nezbývá dostatek volných míst
             throw new IllegalArgumentException( String.format( "Flight '%s' doesn't have enought capacity left.", flight ) );
         }
 
@@ -57,6 +58,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    @Transactional( isolation = Isolation.READ_COMMITTED )
     public boolean cancel( long reservation, String password ) throws SecurityException {
         Reservation entity = em.find( Reservation.class, reservation );
 
@@ -75,6 +77,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    @Transactional( isolation = Isolation.READ_COMMITTED )
     public Reservation pay( long reservation, String password, int amount ) {
         Reservation entity = em.find( Reservation.class, reservation );
 
@@ -93,6 +96,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    @Transactional( isolation = Isolation.READ_COMMITTED )
     public int withdrawCredit( long reservation, String password, int amount ) {
         Reservation entity = em.find( Reservation.class, reservation );
 
