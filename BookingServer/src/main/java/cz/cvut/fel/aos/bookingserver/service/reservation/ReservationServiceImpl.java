@@ -2,7 +2,6 @@ package cz.cvut.fel.aos.bookingserver.service.reservation;
 
 import cz.cvut.fel.aos.bookingserver.model.Flight;
 import cz.cvut.fel.aos.bookingserver.model.Reservation;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.jws.WebService;
@@ -27,7 +26,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    @Transactional( isolation = Isolation.READ_COMMITTED )
+    @Transactional
     public Reservation create( String flightNumber, String password, int count ) throws FullFlightException {
 
         // získej let
@@ -58,7 +57,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    @Transactional( isolation = Isolation.READ_COMMITTED )
+    @Transactional
     public boolean cancel( long reservation, String password ) throws SecurityException {
         Reservation entity = em.find( Reservation.class, reservation );
 
@@ -74,14 +73,14 @@ public class ReservationServiceImpl implements ReservationService {
         entity.setCanceled( true );
 
         // uvolni zabraná místa v letadle
-        Flight flight = entity.getFlight();
-        //flight.setCapacityLeft( flight.getCapacityLeft() + entity.getCount() );
+//        Flight flight = entity.getFlight();
+//        flight.setCapacityLeft( flight.getCapacityLeft() + entity.getCount() );
 
         return true;
     }
 
     @Override
-    @Transactional( isolation = Isolation.READ_COMMITTED )
+    @Transactional
     public Reservation pay( long reservation, String password, int amount ) {
         Reservation entity = em.find( Reservation.class, reservation );
 
@@ -100,7 +99,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    @Transactional( isolation = Isolation.READ_COMMITTED )
+    @Transactional
     public int withdrawCredit( long reservation, String password, int amount ) {
         Reservation entity = em.find( Reservation.class, reservation );
 

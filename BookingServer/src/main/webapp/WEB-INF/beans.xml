@@ -2,12 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:jaxws="http://cxf.apache.org/jaxws"
-       xmlns:context="http://www.springframework.org/schema/context" xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-
-         http://cxf.apache.org/jaxws  http://cxf.apache.org/schemas/jaxws.xsd
-         http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+         http://cxf.apache.org/jaxws  http://cxf.apache.org/schemas/jaxws.xsd">
 
     <context:component-scan base-package="cz.cvut.fel.aos" annotation-config="true"/>
 
@@ -25,18 +25,17 @@
     <bean id="reservationServiceImpl" class="cz.cvut.fel.aos.bookingserver.service.reservation.ReservationServiceImpl"/>
     <jaxws:endpoint id="reservationService" implementor="#reservationServiceImpl" address="/ReservationService"/>
 
-    <jee:jndi-lookup id="entityManagerFactory" jndi-name="persistence/flightSystemPersistence"/>
+    <bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager"/>
 
-    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
-        <property name="proxyTargetClass" value="true"/>
-        <property name="beanNames" value="*ServiceImpl"/>
-        <property name="interceptorNames" value="loggingAdvice"/>
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="flightSystemPersistence"/>
+        <property name="persistenceUnitManager" ref="persistenceUnitManager"/>
     </bean>
 
-    <bean id="loggingAdvice" class="org.springframework.aop.interceptor.CustomizableTraceInterceptor">
-        <property name="useDynamicLogger" value="true"/>
-        <property name="hideProxyClassNames" value="true"/>
-        <property name="enterMessage" value="Entering method '$[methodName]' of class [$[targetClassShortName]], args: $[arguments]"/>
+    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
+
+    <tx:annotation-driven transaction-manager="txManager"/>
 
 </beans>
