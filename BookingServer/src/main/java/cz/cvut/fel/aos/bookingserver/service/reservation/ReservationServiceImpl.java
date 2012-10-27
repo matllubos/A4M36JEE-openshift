@@ -2,6 +2,7 @@ package cz.cvut.fel.aos.bookingserver.service.reservation;
 
 import cz.cvut.fel.aos.bookingserver.model.Flight;
 import cz.cvut.fel.aos.bookingserver.model.Reservation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.jws.WebService;
@@ -9,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /** @author Karel Cemus */
+@Slf4j
 @WebService( endpointInterface = "cz.cvut.fel.aos.bookingserver.service.reservation.ReservationService" )
 public class ReservationServiceImpl implements ReservationService {
 
@@ -53,6 +55,8 @@ public class ReservationServiceImpl implements ReservationService {
         entity.setPassword( password );
         em.persist( entity );
 
+        log.info( "Reservation with ID '{}' was successfully created.", entity.getId() );
+
         return entity;
     }
 
@@ -73,8 +77,10 @@ public class ReservationServiceImpl implements ReservationService {
         entity.setCanceled( true );
 
         // uvolni zabraná místa v letadle
-//        Flight flight = entity.getFlight();
-//        flight.setCapacityLeft( flight.getCapacityLeft() + entity.getCount() );
+        Flight flight = entity.getFlight();
+        flight.setCapacityLeft( flight.getCapacityLeft() + entity.getCount() );
+
+        log.info( "Reservation with ID '{}' was successfully canceled.", entity.getId() );
 
         return true;
     }
@@ -95,6 +101,8 @@ public class ReservationServiceImpl implements ReservationService {
         // vlož platbu
         entity.setPaid( entity.getPaid() + amount );
 
+        log.info( "Reservation with ID '{}' received '{}' money. There is '{}'.", new Object[]{ entity.getId(), amount, entity.getPaid() } );
+
         return entity;
     }
 
@@ -114,6 +122,8 @@ public class ReservationServiceImpl implements ReservationService {
         // omez množství vybraných peněz a vyber je
         amount = Math.min( amount, entity.getPaid() );
         entity.setPaid( entity.getPaid() - amount );
+
+        log.info( "Reservation with ID '{}' withdrawn '{}' money. There left '{}'.", new Object[]{ entity.getId(), amount, entity.getPaid() } );
 
         return amount;
     }
