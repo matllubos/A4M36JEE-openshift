@@ -1,9 +1,14 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="PaymentService Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7">
+  <configuration default="false" name="3rd Layer Service Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7">
     <option name="OPEN_IN_BROWSER" value="false" />
     <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
-    <option name="UPDATING_POLICY" value="restart-server" />
+    <option name="UPDATING_POLICY" value="redeploy-artifacts" />
     <deployment>
+      <artifact name="BookingServer:war exploded">
+        <settings>
+          <option name="CONTEXT_PATH" value="/BookingServer" />
+        </settings>
+      </artifact>
       <artifact name="PaymentServer:war exploded">
         <settings>
           <option name="CONTEXT_PATH" value="/PaymentServer" />
@@ -11,7 +16,7 @@
       </artifact>
     </deployment>
     <server-settings>
-      <option name="BASE_DIRECTORY_NAME" value="PaymentService_Tomcat" />
+      <option name="BASE_DIRECTORY_NAME" value="BookingService_Tomcat" />
     </server-settings>
     <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
     <RunnerSettings RunnerId="Debug">
@@ -99,6 +104,7 @@
     </ConfigurationWrapper>
     <method>
       <option name="BuildArtifacts" enabled="true">
+        <artifact name="BookingServer:war exploded" />
         <artifact name="PaymentServer:war exploded" />
       </option>
     </method>

@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Service Test" type="TestNG" factoryName="TestNG">
+  <configuration default="false" name="3rd Layer Service Test" type="TestNG" factoryName="TestNG">
     <module name="ServiceClient" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
     <option name="ALTERNATIVE_JRE_PATH" value="" />

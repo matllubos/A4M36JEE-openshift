@@ -1,6 +1,8 @@
-package cz.cvut.fel.aos.booking.service.reservation;
+package cz.cvut.fel.aos.service;
 
 import cz.cvut.fel.aos.booking.service.flight.Flight;
+import cz.cvut.fel.aos.booking.service.reservation.*;
+import cz.cvut.fel.aos.booking.service.reservation.SecurityException;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -39,7 +41,7 @@ public class ReservationTest {
     }
 
     @Test( dependsOnMethods = "testCreate" )
-    public void testFind() throws SecurityException {
+    public void testFind() throws cz.cvut.fel.aos.booking.service.reservation.SecurityException {
         Reservation reservation = service.find( reservationId, PASSWORD );
 
         assertNotNull( reservation.getId() );
@@ -73,28 +75,4 @@ public class ReservationTest {
         assertEquals( updatedFlight.getCapacityLeft(), freeSpace + reservation.getCount() );
     }
 
-//    @Test( dependsOnMethods = "testCreate" )
-//    public void testPay() throws SecurityException {
-//        Reservation reservation = service.find( reservationId, PASSWORD );
-//        int paid = reservation.getPaid();
-//
-//        // execute
-//        Reservation paidReservation = service.pay( reservationId, PASSWORD, 1000 );
-//
-//        assertEquals( paidReservation.getPaid(), paid + 1000 );
-//    }
-
-//    @Test( dependsOnMethods = "testPay" )
-//    public void testWithdraw() throws SecurityException {
-//        Reservation reservation = service.find( reservationId, PASSWORD );
-//
-//        int paid = reservation.getPaid();
-//
-//        // execute
-//        int withdrawn = service.withdrawCredit( reservationId, PASSWORD, 1000 );
-//
-//        Reservation updated = service.find( reservationId, PASSWORD );
-//        assertEquals( withdrawn, 1000 );
-//        assertEquals( updated.getPaid(), paid - 1000 );
-//    }
 }

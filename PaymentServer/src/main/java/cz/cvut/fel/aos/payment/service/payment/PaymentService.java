@@ -1,5 +1,7 @@
 package cz.cvut.fel.aos.payment.service.payment;
 
+import cz.cvut.fel.aos.model.Reservation;
+
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import java.util.Date;
@@ -13,23 +15,21 @@ import java.util.Date;
 public interface PaymentService {
 
     /** přijme platbu visa kartou */
-    long payVisa( long reservationId, long creditCard, String name, Date validUntil, int code );
+    Reservation payVisa(
+            @WebParam( name = "reservationId" ) long reservationId,
+            @WebParam( name = "password" ) String password,
+            @WebParam( name = "cardName" ) String cardName,
+            @WebParam( name = "creditCard" ) long creditCard,
+            @WebParam( name = "validUntil" ) Date validUntil,
+            @WebParam( name = "verificationCode" ) int verificationCode
+    ) throws SecurityException, InvalidPaymentException, NoSuchReservationException;
 
-//    long transferFromOtherReservation
-
-    /** přijme platbu pro danou rezervaci. Heslo v podobě SHA-1 */
-//    Reservation pay(
-//            @WebParam( name = "reservation" ) long reservation,
-//            @WebParam( name = "password" ) String password,
-//            @WebParam( name = "amount" ) int amount
-//    ) throws SecurityException;
-//
-//
-//    /** vybere peníze vložené na zrušenou rezervaci. Lze použít pro platbu jiné rezervace */
-//    int withdrawCredit(
-//            @WebParam( name = "reservation" ) long reservation,
-//            @WebParam( name = "password" ) String password,
-//            @WebParam( name = "amount" ) int amount
-//    ) throws SecurityException;
+    /** převod peněz ze zrušené rezervace na platnou */
+    Reservation transferFromReservation(
+            @WebParam( name = "reservationIdFrom" ) long reservationIdFrom,
+            @WebParam( name = "passwordFrom" ) String passwordFrom,
+            @WebParam( name = "reservationIdTo" ) long reservationIdTo,
+            @WebParam( name = "passwordTo" ) String passwordTo
+    ) throws SecurityException, NoSuchReservationException;
 
 }

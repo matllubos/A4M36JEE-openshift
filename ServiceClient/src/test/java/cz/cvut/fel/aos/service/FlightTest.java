@@ -1,5 +1,8 @@
-package cz.cvut.fel.aos.booking.service.flight;
+package cz.cvut.fel.aos.service;
 
+import cz.cvut.fel.aos.booking.service.flight.Flight;
+import cz.cvut.fel.aos.booking.service.flight.FlightService;
+import cz.cvut.fel.aos.booking.service.flight.FlightServiceImplService;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

@@ -13,8 +13,8 @@ public class CodeGenerator {
                 "-b",
                 "src/main/resources/jaxws-bindings.xml",
                 "-p",
-                "cz.cvut.fel.aos.booking.service.reservation",
-                "http://localhost:8080/BookingServer/ReservationService?wsdl"
+                "cz.cvut.fel.aos.payment.service.payment",
+                "http://localhost:8080/PaymentServer/PaymentService?wsdl"
         } );
         System.out.println( "Done!" );
     }
