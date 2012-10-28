@@ -21,6 +21,7 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/BookingServer" />
+    <file type="web" url="file://$PROJECT_DIR$/PaymentServer" />
   </component>
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" />
@@ -45,6 +46,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/BookingServer/pom.xml" />
         <option value="$PROJECT_DIR$/Model/pom.xml" />
+        <option value="$PROJECT_DIR$/PaymentServer/pom.xml" />
       </list>
     </option>
     <option name="activeProfiles">

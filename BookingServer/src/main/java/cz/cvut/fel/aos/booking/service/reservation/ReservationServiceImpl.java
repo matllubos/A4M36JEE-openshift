@@ -85,49 +85,6 @@ public class ReservationServiceImpl implements ReservationService {
         return true;
     }
 
-    @Override
-    @Transactional
-    public Reservation pay( long reservation, String password, int amount ) {
-        Reservation entity = em.find( Reservation.class, reservation );
-
-        if ( entity == null ) // rezervace neexistuje
-        {
-            throw new IllegalArgumentException( "Reservation doesn't exists." );
-        }
-
-        // zkontroluj přístup k rezervaci
-        checkSecurity( entity, password );
-
-        // vlož platbu
-        entity.setPaid( entity.getPaid() + amount );
-
-        ReservationServiceImpl.log.info( "Reservation with ID '{}' received '{}' money. There is '{}'.", new Object[]{ entity.getId(), amount, entity.getPaid() } );
-
-        return entity;
-    }
-
-    @Override
-    @Transactional
-    public int withdrawCredit( long reservation, String password, int amount ) {
-        Reservation entity = em.find( Reservation.class, reservation );
-
-        if ( entity == null ) // rezervace neexistuje
-        {
-            throw new IllegalArgumentException( "Reservation doesn't exists." );
-        }
-
-        // zkontroluj přístup k rezervaci
-        checkSecurity( entity, password );
-
-        // omez množství vybraných peněz a vyber je
-        amount = Math.min( amount, entity.getPaid() );
-        entity.setPaid( entity.getPaid() - amount );
-
-        ReservationServiceImpl.log.info( "Reservation with ID '{}' withdrawn '{}' money. There left '{}'.", new Object[]{ entity.getId(), amount, entity.getPaid() } );
-
-        return amount;
-    }
-
     private void checkSecurity( Reservation reservation, String password ) throws SecurityException {
         if ( reservation != null && !reservation.getPassword().equalsIgnoreCase( password ) ) {
             throw new SecurityException( String.format( "Access to reservation with id '%d' is forbidden. Password is incorrect.", reservation.getId() ) );
