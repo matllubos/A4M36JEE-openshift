@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/BookingServer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Model" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/PaymentServer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PrintServer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ServiceClient" charset="UTF-8" />
   </component>
 </project>

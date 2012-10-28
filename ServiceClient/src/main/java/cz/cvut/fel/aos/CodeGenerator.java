@@ -13,8 +13,8 @@ public class CodeGenerator {
                 "-b",
                 "src/main/resources/jaxws-bindings.xml",
                 "-p",
-                "cz.cvut.fel.aos.payment.service.payment",
-                "http://localhost:8080/PaymentServer/PaymentService?wsdl"
+                "cz.cvut.fel.aos.print.service.print",
+                "http://localhost:8080/PrintServer/PrintService?wsdl"
         } );
         System.out.println( "Done!" );
     }

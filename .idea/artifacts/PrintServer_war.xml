@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="PrintServer:war">
+    <output-path>$PROJECT_DIR$/PrintServer/target</output-path>
+    <root id="archive" name="PrintServer-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="PrintServer:war exploded" />
+    </root>
+  </artifact>
+</component>
