@@ -54,7 +54,7 @@ public class ReservationTest {
         fail( "Expected exception" );
     }
 
-    @Test( dependsOnMethods = { "testFind", "testFindWithException", "testPay", "testWithdraw" } )
+    @Test( dependsOnMethods = { "testFind", "testFindWithException" } )
     public void testCancel() throws SecurityException {
         Reservation reservation = service.find( reservationId, PASSWORD );
         Flight flight = reservation.getFlight();
@@ -73,28 +73,28 @@ public class ReservationTest {
         assertEquals( updatedFlight.getCapacityLeft(), freeSpace + reservation.getCount() );
     }
 
-    @Test( dependsOnMethods = "testCreate" )
-    public void testPay() throws SecurityException {
-        Reservation reservation = service.find( reservationId, PASSWORD );
-        int paid = reservation.getPaid();
+//    @Test( dependsOnMethods = "testCreate" )
+//    public void testPay() throws SecurityException {
+//        Reservation reservation = service.find( reservationId, PASSWORD );
+//        int paid = reservation.getPaid();
+//
+//        // execute
+//        Reservation paidReservation = service.pay( reservationId, PASSWORD, 1000 );
+//
+//        assertEquals( paidReservation.getPaid(), paid + 1000 );
+//    }
 
-        // execute
-        Reservation paidReservation = service.pay( reservationId, PASSWORD, 1000 );
-
-        assertEquals( paidReservation.getPaid(), paid + 1000 );
-    }
-
-    @Test( dependsOnMethods = "testPay" )
-    public void testWithdraw() throws SecurityException {
-        Reservation reservation = service.find( reservationId, PASSWORD );
-
-        int paid = reservation.getPaid();
-
-        // execute
-        int withdrawn = service.withdrawCredit( reservationId, PASSWORD, 1000 );
-
-        Reservation updated = service.find( reservationId, PASSWORD );
-        assertEquals( withdrawn, 1000 );
-        assertEquals( updated.getPaid(), paid - 1000 );
-    }
+//    @Test( dependsOnMethods = "testPay" )
+//    public void testWithdraw() throws SecurityException {
+//        Reservation reservation = service.find( reservationId, PASSWORD );
+//
+//        int paid = reservation.getPaid();
+//
+//        // execute
+//        int withdrawn = service.withdrawCredit( reservationId, PASSWORD, 1000 );
+//
+//        Reservation updated = service.find( reservationId, PASSWORD );
+//        assertEquals( withdrawn, 1000 );
+//        assertEquals( updated.getPaid(), paid - 1000 );
+//    }
 }

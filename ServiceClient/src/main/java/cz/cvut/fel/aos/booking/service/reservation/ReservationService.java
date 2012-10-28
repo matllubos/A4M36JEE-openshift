@@ -31,32 +31,6 @@ public interface ReservationService {
     ) throws SecurityException;
 
     @WebResult(name = "return", targetNamespace = "")
-    @RequestWrapper(localName = "pay", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.booking.service.reservation.Pay")
-    @WebMethod
-    @ResponseWrapper(localName = "payResponse", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.booking.service.reservation.PayResponse")
-    public cz.cvut.fel.aos.booking.service.reservation.Reservation pay(
-        @WebParam(name = "reservation", targetNamespace = "")
-        long reservation,
-        @WebParam(name = "password", targetNamespace = "")
-        java.lang.String password,
-        @WebParam(name = "amount", targetNamespace = "")
-        int amount
-    ) throws SecurityException;
-
-    @WebResult(name = "return", targetNamespace = "")
-    @RequestWrapper(localName = "withdrawCredit", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.booking.service.reservation.WithdrawCredit")
-    @WebMethod
-    @ResponseWrapper(localName = "withdrawCreditResponse", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.booking.service.reservation.WithdrawCreditResponse")
-    public int withdrawCredit(
-        @WebParam(name = "reservation", targetNamespace = "")
-        long reservation,
-        @WebParam(name = "password", targetNamespace = "")
-        java.lang.String password,
-        @WebParam(name = "amount", targetNamespace = "")
-        int amount
-    ) throws SecurityException;
-
-    @WebResult(name = "return", targetNamespace = "")
     @RequestWrapper(localName = "create", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.booking.service.reservation.Create")
     @WebMethod
     @ResponseWrapper(localName = "createResponse", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.booking.service.reservation.CreateResponse")

@@ -64,35 +64,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PayResponse }
-     * 
-     */
-    public PayResponse createPayResponse() {
-        return new PayResponse();
-    }
-
-    /**
-     * Create an instance of {@link WithdrawCreditResponse }
-     * 
-     */
-    public WithdrawCreditResponse createWithdrawCreditResponse() {
-        return new WithdrawCreditResponse();
-    }
-
-    /**
      * Create an instance of {@link SecurityFault }
      * 
      */
     public SecurityFault createSecurityFault() {
         return new SecurityFault();
-    }
-
-    /**
-     * Create an instance of {@link WithdrawCredit }
-     * 
-     */
-    public WithdrawCredit createWithdrawCredit() {
-        return new WithdrawCredit();
     }
 
     /**
@@ -109,14 +85,6 @@ public class ObjectFactory {
      */
     public CreateResponse createCreateResponse() {
         return new CreateResponse();
-    }
-
-    /**
-     * Create an instance of {@link Pay }
-     * 
-     */
-    public Pay createPay() {
-        return new Pay();
     }
 
     /**
@@ -186,24 +154,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PayResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://reservation.service.booking.aos.fel.cvut.cz/", name = "payResponse")
-    public JAXBElement<PayResponse> createPayResponse(PayResponse value) {
-        return new JAXBElement<PayResponse>(_PayResponse_QNAME, PayResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link WithdrawCreditResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://reservation.service.booking.aos.fel.cvut.cz/", name = "withdrawCreditResponse")
-    public JAXBElement<WithdrawCreditResponse> createWithdrawCreditResponse(WithdrawCreditResponse value) {
-        return new JAXBElement<WithdrawCreditResponse>(_WithdrawCreditResponse_QNAME, WithdrawCreditResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateResponse }{@code >}}
      * 
      */
@@ -222,30 +172,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link WithdrawCredit }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://reservation.service.booking.aos.fel.cvut.cz/", name = "withdrawCredit")
-    public JAXBElement<WithdrawCredit> createWithdrawCredit(WithdrawCredit value) {
-        return new JAXBElement<WithdrawCredit>(_WithdrawCredit_QNAME, WithdrawCredit.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SecurityFault }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://reservation.service.booking.aos.fel.cvut.cz/", name = "SecurityFault")
     public JAXBElement<SecurityFault> createSecurityFault(SecurityFault value) {
         return new JAXBElement<SecurityFault>(_SecurityFault_QNAME, SecurityFault.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Pay }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://reservation.service.booking.aos.fel.cvut.cz/", name = "pay")
-    public JAXBElement<Pay> createPay(Pay value) {
-        return new JAXBElement<Pay>(_Pay_QNAME, Pay.class, null, value);
     }
 
     /**

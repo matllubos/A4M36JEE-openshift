@@ -1,10 +1,11 @@
-package cz.cvut.fel.aos.booking.model;
+package cz.cvut.fel.aos.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Model reprezentující rezervace v bookovacím systému. Uživatel může požádat o

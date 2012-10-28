@@ -1,6 +1,6 @@
 package cz.cvut.fel.aos.booking.service.destination;
 
-import cz.cvut.fel.aos.booking.model.Destination;
+import cz.cvut.fel.aos.model.Destination;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.jws.WebService;

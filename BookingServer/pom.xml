@@ -94,6 +94,12 @@
             <!--<scope>test</scope>-->
         </dependency>
 
+        <dependency>
+            <groupId>cz.cvut.fel.aos</groupId>
+            <artifactId>Model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
 </project>

@@ -1,7 +1,7 @@
 package cz.cvut.fel.aos.booking.service.reservation;
 
-import cz.cvut.fel.aos.booking.model.Flight;
-import cz.cvut.fel.aos.booking.model.Reservation;
+import cz.cvut.fel.aos.model.Flight;
+import cz.cvut.fel.aos.model.Reservation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 

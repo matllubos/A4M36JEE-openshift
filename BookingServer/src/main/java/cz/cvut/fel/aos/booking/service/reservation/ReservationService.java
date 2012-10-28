@@ -1,10 +1,9 @@
 package cz.cvut.fel.aos.booking.service.reservation;
 
-import cz.cvut.fel.aos.booking.model.Reservation;
+import cz.cvut.fel.aos.model.Reservation;
 
 import javax.jws.WebParam;
 import javax.jws.WebService;
-import java.lang.*;
 
 /**
  * API pro přístup k rezervacím. Umožňuje jejich tvorbu a aktualizaci
@@ -34,21 +33,5 @@ public interface ReservationService {
     boolean cancel(
             @WebParam( name = "reservation" ) long reservation,
             @WebParam( name = "password" ) String password
-    ) throws SecurityException;
-
-
-    /** přijme platbu pro danou rezervaci. Heslo v podobě SHA-1 */
-    Reservation pay(
-            @WebParam( name = "reservation" ) long reservation,
-            @WebParam( name = "password" ) String password,
-            @WebParam( name = "amount" ) int amount
-    ) throws SecurityException;
-
-
-    /** vybere peníze vložené na zrušenou rezervaci. Lze použít pro platbu jiné rezervace */
-    int withdrawCredit(
-            @WebParam( name = "reservation" ) long reservation,
-            @WebParam( name = "password" ) String password,
-            @WebParam( name = "amount" ) int amount
     ) throws SecurityException;
 }

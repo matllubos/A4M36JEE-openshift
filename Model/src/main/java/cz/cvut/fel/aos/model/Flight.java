@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.booking.model;
+package cz.cvut.fel.aos.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,12 +36,12 @@ public class Flight implements Serializable {
 
     /** datum a čas odletu */
     @Column( nullable = false )
-    @Temporal( javax.persistence.TemporalType.TIMESTAMP )
+    @Temporal( TemporalType.TIMESTAMP )
     private Date departure;
 
     /** datum a čas příletu */
     @Column( nullable = false )
-    @Temporal( javax.persistence.TemporalType.TIMESTAMP )
+    @Temporal( TemporalType.TIMESTAMP )
     private Date arrival;
 
     /** cena letu */
