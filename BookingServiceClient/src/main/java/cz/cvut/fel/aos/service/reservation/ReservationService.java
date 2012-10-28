@@ -15,14 +15,14 @@ import javax.xml.ws.ResponseWrapper;
  * 
  */
  
-@WebService(targetNamespace = "http://reservation.service.bookingserver.aos.fel.cvut.cz/", name = "ReservationService")
+@WebService(targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", name = "ReservationService")
 @XmlSeeAlso({ObjectFactory.class})
 public interface ReservationService {
 
     @WebResult(name = "return", targetNamespace = "")
-    @RequestWrapper(localName = "cancel", targetNamespace = "http://reservation.service.bookingserver.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.Cancel")
+    @RequestWrapper(localName = "cancel", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.Cancel")
     @WebMethod
-    @ResponseWrapper(localName = "cancelResponse", targetNamespace = "http://reservation.service.bookingserver.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.CancelResponse")
+    @ResponseWrapper(localName = "cancelResponse", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.CancelResponse")
     public boolean cancel(
         @WebParam(name = "reservation", targetNamespace = "")
         long reservation,
@@ -31,9 +31,9 @@ public interface ReservationService {
     ) throws SecurityException;
 
     @WebResult(name = "return", targetNamespace = "")
-    @RequestWrapper(localName = "pay", targetNamespace = "http://reservation.service.bookingserver.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.Pay")
+    @RequestWrapper(localName = "pay", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.Pay")
     @WebMethod
-    @ResponseWrapper(localName = "payResponse", targetNamespace = "http://reservation.service.bookingserver.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.PayResponse")
+    @ResponseWrapper(localName = "payResponse", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.PayResponse")
     public cz.cvut.fel.aos.service.reservation.Reservation pay(
         @WebParam(name = "reservation", targetNamespace = "")
         long reservation,
@@ -44,9 +44,9 @@ public interface ReservationService {
     ) throws SecurityException;
 
     @WebResult(name = "return", targetNamespace = "")
-    @RequestWrapper(localName = "withdrawCredit", targetNamespace = "http://reservation.service.bookingserver.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.WithdrawCredit")
+    @RequestWrapper(localName = "withdrawCredit", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.WithdrawCredit")
     @WebMethod
-    @ResponseWrapper(localName = "withdrawCreditResponse", targetNamespace = "http://reservation.service.bookingserver.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.WithdrawCreditResponse")
+    @ResponseWrapper(localName = "withdrawCreditResponse", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.WithdrawCreditResponse")
     public int withdrawCredit(
         @WebParam(name = "reservation", targetNamespace = "")
         long reservation,
@@ -57,9 +57,9 @@ public interface ReservationService {
     ) throws SecurityException;
 
     @WebResult(name = "return", targetNamespace = "")
-    @RequestWrapper(localName = "create", targetNamespace = "http://reservation.service.bookingserver.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.Create")
+    @RequestWrapper(localName = "create", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.Create")
     @WebMethod
-    @ResponseWrapper(localName = "createResponse", targetNamespace = "http://reservation.service.bookingserver.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.CreateResponse")
+    @ResponseWrapper(localName = "createResponse", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.CreateResponse")
     public cz.cvut.fel.aos.service.reservation.Reservation create(
         @WebParam(name = "flightNumber", targetNamespace = "")
         java.lang.String flightNumber,
@@ -70,9 +70,9 @@ public interface ReservationService {
     ) throws FullFlightException;
 
     @WebResult(name = "return", targetNamespace = "")
-    @RequestWrapper(localName = "find", targetNamespace = "http://reservation.service.bookingserver.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.Find")
+    @RequestWrapper(localName = "find", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.Find")
     @WebMethod
-    @ResponseWrapper(localName = "findResponse", targetNamespace = "http://reservation.service.bookingserver.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.FindResponse")
+    @ResponseWrapper(localName = "findResponse", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.reservation.FindResponse")
     public cz.cvut.fel.aos.service.reservation.Reservation find(
         @WebParam(name = "reservation", targetNamespace = "")
         long reservation,

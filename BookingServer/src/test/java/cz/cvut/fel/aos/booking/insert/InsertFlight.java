@@ -1,14 +1,14 @@
-package cz.cvut.fel.aos.bookingserver.insert;
+package cz.cvut.fel.aos.booking.insert;
 
-import cz.cvut.fel.aos.bookingserver.model.Destination;
-import cz.cvut.fel.aos.bookingserver.model.Flight;
+import cz.cvut.fel.aos.booking.model.Destination;
+import cz.cvut.fel.aos.booking.model.Flight;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Date;
 import java.util.List;
 
-import static cz.cvut.fel.aos.bookingserver.utils.DateUtils.date;
+import static cz.cvut.fel.aos.booking.utils.DateUtils.date;
 import static org.testng.Assert.*;
 
 /** @author Karel Cemus */

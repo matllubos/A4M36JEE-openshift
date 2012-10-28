@@ -17,14 +17,14 @@ import java.net.URL;
 
 @WebServiceClient( name = "FlightServiceImplService",
         wsdlLocation = "http://localhost:8080/BookingServer/FlightService?wsdl",
-        targetNamespace = "http://flight.service.bookingserver.aos.fel.cvut.cz/" )
+        targetNamespace = "http://flight.service.booking.aos.fel.cvut.cz/" )
 public class FlightServiceImplService extends Service {
 
     public final static URL WSDL_LOCATION;
 
-    public final static QName SERVICE = new QName( "http://flight.service.bookingserver.aos.fel.cvut.cz/", "FlightServiceImplService" );
+    public final static QName SERVICE = new QName( "http://flight.service.booking.aos.fel.cvut.cz/", "FlightServiceImplService" );
 
-    public final static QName FlightServiceImplPort = new QName( "http://flight.service.bookingserver.aos.fel.cvut.cz/", "FlightServiceImplPort" );
+    public final static QName FlightServiceImplPort = new QName( "http://flight.service.booking.aos.fel.cvut.cz/", "FlightServiceImplPort" );
 
     static {
         URL url = null;

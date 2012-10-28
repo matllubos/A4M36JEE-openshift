@@ -11,7 +11,7 @@ import javax.xml.ws.WebFault;
  * 
  */
 
-@WebFault(name = "FullFlightFault", targetNamespace = "http://reservation.service.bookingserver.aos.fel.cvut.cz/")
+@WebFault(name = "FullFlightFault", targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/")
 public class FullFlightException extends Exception {
     public static final long serialVersionUID = 20121024213441L;
     

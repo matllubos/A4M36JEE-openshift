@@ -1,6 +1,6 @@
-package cz.cvut.fel.aos.bookingserver.service.flight;
+package cz.cvut.fel.aos.booking.service.flight;
 
-import cz.cvut.fel.aos.bookingserver.model.Flight;
+import cz.cvut.fel.aos.booking.model.Flight;
 
 import javax.jws.WebParam;
 import javax.jws.WebService;

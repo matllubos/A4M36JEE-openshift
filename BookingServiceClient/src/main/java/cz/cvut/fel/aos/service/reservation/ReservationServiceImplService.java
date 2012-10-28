@@ -23,12 +23,12 @@ import javax.xml.ws.Service;
 
 @WebServiceClient(name = "ReservationServiceImplService", 
                   wsdlLocation = "http://localhost:8080/BookingServer/ReservationService?wsdl",
-                  targetNamespace = "http://reservation.service.bookingserver.aos.fel.cvut.cz/") 
+                  targetNamespace = "http://reservation.service.booking.aos.fel.cvut.cz/")
 public class ReservationServiceImplService extends Service {
 
     public final static URL WSDL_LOCATION;
-    public final static QName SERVICE = new QName("http://reservation.service.bookingserver.aos.fel.cvut.cz/", "ReservationServiceImplService");
-    public final static QName ReservationServiceImplPort = new QName("http://reservation.service.bookingserver.aos.fel.cvut.cz/", "ReservationServiceImplPort");
+    public final static QName SERVICE = new QName("http://reservation.service.booking.aos.fel.cvut.cz/", "ReservationServiceImplService");
+    public final static QName ReservationServiceImplPort = new QName("http://reservation.service.booking.aos.fel.cvut.cz/", "ReservationServiceImplPort");
     static {
         URL url = null;
         try {

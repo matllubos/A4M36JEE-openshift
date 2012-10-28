@@ -1,9 +1,10 @@
-package cz.cvut.fel.aos.bookingserver.service.reservation;
+package cz.cvut.fel.aos.booking.service.reservation;
 
-import cz.cvut.fel.aos.bookingserver.model.Reservation;
+import cz.cvut.fel.aos.booking.model.Reservation;
 
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import java.lang.*;
 
 /**
  * API pro přístup k rezervacím. Umožňuje jejich tvorbu a aktualizaci

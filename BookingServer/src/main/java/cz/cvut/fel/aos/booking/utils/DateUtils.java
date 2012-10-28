@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.bookingserver.utils;
+package cz.cvut.fel.aos.booking.utils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -91,7 +91,7 @@ public class DateUtils {
             return DATE_FORMATTER_TO_GMT.parse( date );
 
         } catch ( ParseException e ) {
-            log.error( "Date parsing failed. Conversion to GMT wasn't performed.", e );
+            DateUtils.log.error( "Date parsing failed. Conversion to GMT wasn't performed.", e );
             return base;
         }
     }

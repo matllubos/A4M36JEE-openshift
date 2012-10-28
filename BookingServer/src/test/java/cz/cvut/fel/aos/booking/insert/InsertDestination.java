@@ -1,6 +1,6 @@
-package cz.cvut.fel.aos.bookingserver.insert;
+package cz.cvut.fel.aos.booking.insert;
 
-import cz.cvut.fel.aos.bookingserver.model.Destination;
+import cz.cvut.fel.aos.booking.model.Destination;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

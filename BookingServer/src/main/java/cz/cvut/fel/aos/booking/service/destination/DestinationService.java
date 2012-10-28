@@ -1,6 +1,6 @@
-package cz.cvut.fel.aos.bookingserver.service.destination;
+package cz.cvut.fel.aos.booking.service.destination;
 
-import cz.cvut.fel.aos.bookingserver.model.Destination;
+import cz.cvut.fel.aos.booking.model.Destination;
 
 import javax.jws.WebService;
 import java.util.Collection;

@@ -16,13 +16,13 @@
 
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
 
-    <bean id="destinationServiceImpl" class="cz.cvut.fel.aos.bookingserver.service.destination.DestinationServiceImpl"/>
+    <bean id="destinationServiceImpl" class="cz.cvut.fel.aos.booking.service.destination.DestinationServiceImpl"/>
     <jaxws:endpoint id="destinationService" implementor="#destinationServiceImpl" address="/DestinationService"/>
 
-    <bean id="flightServiceImpl" class="cz.cvut.fel.aos.bookingserver.service.flight.FlightServiceImpl"/>
+    <bean id="flightServiceImpl" class="cz.cvut.fel.aos.booking.service.flight.FlightServiceImpl"/>
     <jaxws:endpoint id="flightService" implementor="#flightServiceImpl" address="/FlightService"/>
 
-    <bean id="reservationServiceImpl" class="cz.cvut.fel.aos.bookingserver.service.reservation.ReservationServiceImpl"/>
+    <bean id="reservationServiceImpl" class="cz.cvut.fel.aos.booking.service.reservation.ReservationServiceImpl"/>
     <jaxws:endpoint id="reservationService" implementor="#reservationServiceImpl" address="/ReservationService"/>
 
     <bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager"/>

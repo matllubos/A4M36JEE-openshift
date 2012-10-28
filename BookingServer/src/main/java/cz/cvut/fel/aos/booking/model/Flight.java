@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.bookingserver.model;
+package cz.cvut.fel.aos.booking.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

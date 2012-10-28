@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="canceled" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="cost" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="count" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="flight" type="{http://reservation.service.bookingserver.aos.fel.cvut.cz/}flight" minOccurs="0"/>
+ *         &lt;element name="flight" type="{http://reservation.cz.cvut.fel.aos.payment.service.service.booking.aos.fel.cvut.cz/}flight" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="paid" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>

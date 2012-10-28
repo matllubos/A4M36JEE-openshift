@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the cz.cvut.fel.aos.service.destination package. 
+ * generated in the cz.cvut.fel.aos.cz.cvut.fel.aos.payment.service.service.destination package.
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -24,11 +24,11 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _FindAll_QNAME = new QName("http://destination.service.bookingserver.aos.fel.cvut.cz/", "findAll");
-    private final static QName _FindAllResponse_QNAME = new QName("http://destination.service.bookingserver.aos.fel.cvut.cz/", "findAllResponse");
+    private final static QName _FindAll_QNAME = new QName("http://destination.service.booking.aos.fel.cvut.cz/", "findAll");
+    private final static QName _FindAllResponse_QNAME = new QName("http://destination.service.booking.aos.fel.cvut.cz/", "findAllResponse");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: cz.cvut.fel.aos.service.destination
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: cz.cvut.fel.aos.cz.cvut.fel.aos.payment.service.service.destination
      * 
      */
     public ObjectFactory() {
@@ -62,7 +62,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link FindAll }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://destination.service.bookingserver.aos.fel.cvut.cz/", name = "findAll")
+    @XmlElementDecl(namespace = "http://destination.service.booking.aos.fel.cvut.cz/", name = "findAll")
     public JAXBElement<FindAll> createFindAll(FindAll value) {
         return new JAXBElement<FindAll>(_FindAll_QNAME, FindAll.class, null, value);
     }
@@ -71,7 +71,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link FindAllResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://destination.service.bookingserver.aos.fel.cvut.cz/", name = "findAllResponse")
+    @XmlElementDecl(namespace = "http://destination.service.booking.aos.fel.cvut.cz/", name = "findAllResponse")
     public JAXBElement<FindAllResponse> createFindAllResponse(FindAllResponse value) {
         return new JAXBElement<FindAllResponse>(_FindAllResponse_QNAME, FindAllResponse.class, null, value);
     }

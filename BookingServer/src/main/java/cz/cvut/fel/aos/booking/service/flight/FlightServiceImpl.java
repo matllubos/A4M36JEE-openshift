@@ -1,6 +1,6 @@
-package cz.cvut.fel.aos.bookingserver.service.flight;
+package cz.cvut.fel.aos.booking.service.flight;
 
-import cz.cvut.fel.aos.bookingserver.model.Flight;
+import cz.cvut.fel.aos.booking.model.Flight;
 
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Date;
 
 /** @author Karel Cemus */
-@WebService( endpointInterface = "cz.cvut.fel.aos.bookingserver.service.flight.FlightService" )
+@WebService( endpointInterface = "cz.cvut.fel.aos.booking.service.flight.FlightService" )
 public class FlightServiceImpl implements FlightService {
 
     @PersistenceContext

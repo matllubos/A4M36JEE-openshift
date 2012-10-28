@@ -1,7 +1,5 @@
-package cz.cvut.fel.aos.bookingserver.insert;
+package cz.cvut.fel.aos.booking.insert;
 
-import org.hibernate.ejb.EntityManagerFactoryImpl;
-import org.hibernate.ejb.EntityManagerImpl;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
