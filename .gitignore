@@ -1,4 +1,5 @@
 target/
 *.iws
-.idea/
+.idea/workspace.xml
+.idea/dataSources*
 rebel.xml
