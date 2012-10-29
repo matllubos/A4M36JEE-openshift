@@ -23,8 +23,10 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;sequence>
  *         &lt;element name="reservation" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="flightNumber" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="destinationFrom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="destinationTo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="takeOff" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="destination" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,8 +39,10 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlType(name = "printTicket", propOrder = {
     "reservation",
     "password",
-    "takeOff",
-    "destination"
+    "flightNumber",
+    "destinationFrom",
+    "destinationTo",
+    "takeOff"
 })
 public class PrintTicket
     implements Serializable
@@ -47,11 +51,13 @@ public class PrintTicket
     private final static long serialVersionUID = 1L;
     protected long reservation;
     protected String password;
+    protected long flightNumber;
+    protected String destinationFrom;
+    protected String destinationTo;
     @XmlElement(type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "dateTime")
     protected Date takeOff;
-    protected String destination;
 
     /**
      * Gets the value of the reservation property.
@@ -94,6 +100,70 @@ public class PrintTicket
     }
 
     /**
+     * Gets the value of the flightNumber property.
+     * 
+     */
+    public long getFlightNumber() {
+        return flightNumber;
+    }
+
+    /**
+     * Sets the value of the flightNumber property.
+     * 
+     */
+    public void setFlightNumber(long value) {
+        this.flightNumber = value;
+    }
+
+    /**
+     * Gets the value of the destinationFrom property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDestinationFrom() {
+        return destinationFrom;
+    }
+
+    /**
+     * Sets the value of the destinationFrom property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDestinationFrom(String value) {
+        this.destinationFrom = value;
+    }
+
+    /**
+     * Gets the value of the destinationTo property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDestinationTo() {
+        return destinationTo;
+    }
+
+    /**
+     * Sets the value of the destinationTo property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDestinationTo(String value) {
+        this.destinationTo = value;
+    }
+
+    /**
      * Gets the value of the takeOff property.
      * 
      * @return
@@ -115,30 +185,6 @@ public class PrintTicket
      */
     public void setTakeOff(Date value) {
         this.takeOff = value;
-    }
-
-    /**
-     * Gets the value of the destination property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDestination() {
-        return destination;
-    }
-
-    /**
-     * Sets the value of the destination property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDestination(String value) {
-        this.destination = value;
     }
 
 }
