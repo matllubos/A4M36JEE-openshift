@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.payment.service.payment;
+package cz.cvut.fel.aos.service.payment;
 
 import javax.xml.ws.WebFault;
 

@@ -19,7 +19,7 @@ import java.io.Serializable;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://payment.service.payment.aos.fel.cvut.cz/}reservation" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://payment.service.aos.fel.cvut.cz/}reservation" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

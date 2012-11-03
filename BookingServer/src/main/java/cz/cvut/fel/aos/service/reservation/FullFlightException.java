@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.booking.service.reservation;
+package cz.cvut.fel.aos.service.reservation;
 
 import javax.xml.ws.WebFault;
 

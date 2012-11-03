@@ -16,7 +16,7 @@
 
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
 
-    <bean id="paymentServiceImpl" class="cz.cvut.fel.aos.payment.service.payment.PaymentServiceImpl"/>
+    <bean id="paymentServiceImpl" class="cz.cvut.fel.aos.service.payment.PaymentServiceImpl"/>
     <jaxws:endpoint id="paymentService" implementor="#paymentServiceImpl" address="/PaymentService"/>
 
     <!--<bean id="flightServiceImpl" class="cz.cvut.fel.aos.booking.service.flight.FlightServiceImpl"/>-->

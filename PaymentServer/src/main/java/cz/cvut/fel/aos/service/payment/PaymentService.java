@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.payment.service.payment;
+package cz.cvut.fel.aos.service.payment;
 
 import cz.cvut.fel.aos.model.Reservation;
 

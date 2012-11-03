@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import java.util.Date;
 import java.util.List;
 
-import static cz.cvut.fel.aos.booking.utils.DateUtils.date;
+import static cz.cvut.fel.aos.utils.DateUtils.date;
 import static org.testng.Assert.*;
 
 /** @author Karel Cemus */

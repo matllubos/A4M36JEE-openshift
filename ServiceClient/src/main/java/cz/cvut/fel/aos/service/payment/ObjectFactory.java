@@ -19,19 +19,19 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _SecurityFault_QNAME = new QName( "http://payment.service.payment.aos.fel.cvut.cz/", "SecurityFault" );
+    private final static QName _SecurityFault_QNAME = new QName( "http://payment.service.aos.fel.cvut.cz/", "SecurityFault" );
 
-    private final static QName _TransferFromReservation_QNAME = new QName( "http://payment.service.payment.aos.fel.cvut.cz/", "transferFromReservation" );
+    private final static QName _TransferFromReservation_QNAME = new QName( "http://payment.service.aos.fel.cvut.cz/", "transferFromReservation" );
 
-    private final static QName _NoSuchReservationFault_QNAME = new QName( "http://payment.service.payment.aos.fel.cvut.cz/", "NoSuchReservationFault" );
+    private final static QName _NoSuchReservationFault_QNAME = new QName( "http://payment.service.aos.fel.cvut.cz/", "NoSuchReservationFault" );
 
-    private final static QName _InvalidPaymentFault_QNAME = new QName( "http://payment.service.payment.aos.fel.cvut.cz/", "InvalidPaymentFault" );
+    private final static QName _InvalidPaymentFault_QNAME = new QName( "http://payment.service.aos.fel.cvut.cz/", "InvalidPaymentFault" );
 
-    private final static QName _PayVisaResponse_QNAME = new QName( "http://payment.service.payment.aos.fel.cvut.cz/", "payVisaResponse" );
+    private final static QName _PayVisaResponse_QNAME = new QName( "http://payment.service.aos.fel.cvut.cz/", "payVisaResponse" );
 
-    private final static QName _TransferFromReservationResponse_QNAME = new QName( "http://payment.service.payment.aos.fel.cvut.cz/", "transferFromReservationResponse" );
+    private final static QName _TransferFromReservationResponse_QNAME = new QName( "http://payment.service.aos.fel.cvut.cz/", "transferFromReservationResponse" );
 
-    private final static QName _PayVisa_QNAME = new QName( "http://payment.service.payment.aos.fel.cvut.cz/", "payVisa" );
+    private final static QName _PayVisa_QNAME = new QName( "http://payment.service.aos.fel.cvut.cz/", "payVisa" );
 
     /** Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: cz.cvut.fel.aos.service.payment */
     public ObjectFactory() {
@@ -88,43 +88,43 @@ public class ObjectFactory {
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link SecurityFault }{@code >}} */
-    @XmlElementDecl( namespace = "http://payment.service.payment.aos.fel.cvut.cz/", name = "SecurityFault" )
+    @XmlElementDecl( namespace = "http://payment.service.aos.fel.cvut.cz/", name = "SecurityFault" )
     public JAXBElement<SecurityFault> createSecurityFault( SecurityFault value ) {
         return new JAXBElement<SecurityFault>( _SecurityFault_QNAME, SecurityFault.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link TransferFromReservation }{@code >}} */
-    @XmlElementDecl( namespace = "http://payment.service.payment.aos.fel.cvut.cz/", name = "transferFromReservation" )
+    @XmlElementDecl( namespace = "http://payment.service.aos.fel.cvut.cz/", name = "transferFromReservation" )
     public JAXBElement<TransferFromReservation> createTransferFromReservation( TransferFromReservation value ) {
         return new JAXBElement<TransferFromReservation>( _TransferFromReservation_QNAME, TransferFromReservation.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link NoSuchReservationFault }{@code >}} */
-    @XmlElementDecl( namespace = "http://payment.service.payment.aos.fel.cvut.cz/", name = "NoSuchReservationFault" )
+    @XmlElementDecl( namespace = "http://payment.service.aos.fel.cvut.cz/", name = "NoSuchReservationFault" )
     public JAXBElement<NoSuchReservationFault> createNoSuchReservationFault( NoSuchReservationFault value ) {
         return new JAXBElement<NoSuchReservationFault>( _NoSuchReservationFault_QNAME, NoSuchReservationFault.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link InvalidPaymentFault }{@code >}} */
-    @XmlElementDecl( namespace = "http://payment.service.payment.aos.fel.cvut.cz/", name = "InvalidPaymentFault" )
+    @XmlElementDecl( namespace = "http://payment.service.aos.fel.cvut.cz/", name = "InvalidPaymentFault" )
     public JAXBElement<InvalidPaymentFault> createInvalidPaymentFault( InvalidPaymentFault value ) {
         return new JAXBElement<InvalidPaymentFault>( _InvalidPaymentFault_QNAME, InvalidPaymentFault.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link PayVisaResponse }{@code >}} */
-    @XmlElementDecl( namespace = "http://payment.service.payment.aos.fel.cvut.cz/", name = "payVisaResponse" )
+    @XmlElementDecl( namespace = "http://payment.service.aos.fel.cvut.cz/", name = "payVisaResponse" )
     public JAXBElement<PayVisaResponse> createPayVisaResponse( PayVisaResponse value ) {
         return new JAXBElement<PayVisaResponse>( _PayVisaResponse_QNAME, PayVisaResponse.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link TransferFromReservationResponse }{@code >}} */
-    @XmlElementDecl( namespace = "http://payment.service.payment.aos.fel.cvut.cz/", name = "transferFromReservationResponse" )
+    @XmlElementDecl( namespace = "http://payment.service.aos.fel.cvut.cz/", name = "transferFromReservationResponse" )
     public JAXBElement<TransferFromReservationResponse> createTransferFromReservationResponse( TransferFromReservationResponse value ) {
         return new JAXBElement<TransferFromReservationResponse>( _TransferFromReservationResponse_QNAME, TransferFromReservationResponse.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link PayVisa }{@code >}} */
-    @XmlElementDecl( namespace = "http://payment.service.payment.aos.fel.cvut.cz/", name = "payVisa" )
+    @XmlElementDecl( namespace = "http://payment.service.aos.fel.cvut.cz/", name = "payVisa" )
     public JAXBElement<PayVisa> createPayVisa( PayVisa value ) {
         return new JAXBElement<PayVisa>( _PayVisa_QNAME, PayVisa.class, null, value );
     }

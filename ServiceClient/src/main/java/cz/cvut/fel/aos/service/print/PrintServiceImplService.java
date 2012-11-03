@@ -17,14 +17,14 @@ import java.net.URL;
 
 @WebServiceClient( name = "PrintServiceImplService",
         wsdlLocation = "http://localhost:8080/PrintServer/PrintService?wsdl",
-        targetNamespace = "http://print.service.print.aos.fel.cvut.cz/" )
+        targetNamespace = "http://print.service.aos.fel.cvut.cz/" )
 public class PrintServiceImplService extends Service {
 
     public final static URL WSDL_LOCATION;
 
-    public final static QName SERVICE = new QName( "http://print.service.print.aos.fel.cvut.cz/", "PrintServiceImplService" );
+    public final static QName SERVICE = new QName( "http://print.service.aos.fel.cvut.cz/", "PrintServiceImplService" );
 
-    public final static QName PrintServiceImplPort = new QName( "http://print.service.print.aos.fel.cvut.cz/", "PrintServiceImplPort" );
+    public final static QName PrintServiceImplPort = new QName( "http://print.service.aos.fel.cvut.cz/", "PrintServiceImplPort" );
 
     static {
         URL url = null;

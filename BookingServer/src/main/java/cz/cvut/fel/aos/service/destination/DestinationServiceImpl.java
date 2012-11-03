@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.booking.service.destination;
+package cz.cvut.fel.aos.service.destination;
 
 import cz.cvut.fel.aos.model.Destination;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +10,7 @@ import java.util.Collection;
 
 /** @author Karel Cemus */
 @Slf4j
-@WebService( endpointInterface = "cz.cvut.fel.aos.booking.service.destination.DestinationService" )
+@WebService( endpointInterface = "cz.cvut.fel.aos.service.destination.DestinationService" )
 public class DestinationServiceImpl implements DestinationService {
 
     @PersistenceContext

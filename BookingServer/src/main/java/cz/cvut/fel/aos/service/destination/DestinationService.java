@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.booking.service.destination;
+package cz.cvut.fel.aos.service.destination;
 
 import cz.cvut.fel.aos.model.Destination;
 

@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.booking.service.flight;
+package cz.cvut.fel.aos.service.flight;
 
 import cz.cvut.fel.aos.model.Flight;
 
@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Date;
 
 /** @author Karel Cemus */
-@WebService( endpointInterface = "cz.cvut.fel.aos.booking.service.flight.FlightService" )
+@WebService( endpointInterface = "cz.cvut.fel.aos.service.flight.FlightService" )
 public class FlightServiceImpl implements FlightService {
 
     @PersistenceContext

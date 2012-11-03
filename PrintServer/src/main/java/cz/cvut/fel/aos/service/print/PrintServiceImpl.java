@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.print.service.print;
+package cz.cvut.fel.aos.service.print;
 
 import javax.activation.DataHandler;
 import javax.jws.WebService;
@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Karel Cemus
  */
-@WebService( endpointInterface = "cz.cvut.fel.aos.print.service.print.PrintService" )
+@WebService( endpointInterface = "cz.cvut.fel.aos.service.print.PrintService" )
 public class PrintServiceImpl implements PrintService {
 
     private static final String DELIMITER = "---------------------------------------------------------------------------\n";

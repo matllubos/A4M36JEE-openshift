@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.payment.service.payment;
+package cz.cvut.fel.aos.service.payment;
 
 import cz.cvut.fel.aos.model.Reservation;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ import java.util.Date;
  * @author Karel Cemus
  */
 @Slf4j
-@WebService( endpointInterface = "cz.cvut.fel.aos.payment.service.payment.PaymentService" )
+@WebService( endpointInterface = "cz.cvut.fel.aos.service.payment.PaymentService" )
 public class PaymentServiceImpl implements PaymentService {
 
     @PersistenceContext

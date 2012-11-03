@@ -17,14 +17,14 @@ import java.net.URL;
 
 @WebServiceClient( name = "PaymentServiceImplService",
         wsdlLocation = "http://localhost:8080/PaymentServer/PaymentService?wsdl",
-        targetNamespace = "http://payment.service.payment.aos.fel.cvut.cz/" )
+        targetNamespace = "http://payment.service.aos.fel.cvut.cz/" )
 public class PaymentServiceImplService extends Service {
 
     public final static URL WSDL_LOCATION;
 
-    public final static QName SERVICE = new QName( "http://payment.service.payment.aos.fel.cvut.cz/", "PaymentServiceImplService" );
+    public final static QName SERVICE = new QName( "http://payment.service.aos.fel.cvut.cz/", "PaymentServiceImplService" );
 
-    public final static QName PaymentServiceImplPort = new QName( "http://payment.service.payment.aos.fel.cvut.cz/", "PaymentServiceImplPort" );
+    public final static QName PaymentServiceImplPort = new QName( "http://payment.service.aos.fel.cvut.cz/", "PaymentServiceImplPort" );
 
     static {
         URL url = null;

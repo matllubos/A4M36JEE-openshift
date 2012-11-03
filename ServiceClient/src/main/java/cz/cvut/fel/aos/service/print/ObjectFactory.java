@@ -15,21 +15,21 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _PrintTicket_QNAME = new QName( "http://print.service.print.aos.fel.cvut.cz/", "printTicket" );
+    private final static QName _PrintTicket_QNAME = new QName( "http://print.service.aos.fel.cvut.cz/", "printTicket" );
 
-    private final static QName _PrintPaymentConfirmation_QNAME = new QName( "http://print.service.print.aos.fel.cvut.cz/", "printPaymentConfirmation" );
+    private final static QName _PrintPaymentConfirmation_QNAME = new QName( "http://print.service.aos.fel.cvut.cz/", "printPaymentConfirmation" );
 
-    private final static QName _PrintPaymentConfirmationResponse_QNAME = new QName( "http://print.service.print.aos.fel.cvut.cz/", "printPaymentConfirmationResponse" );
+    private final static QName _PrintPaymentConfirmationResponse_QNAME = new QName( "http://print.service.aos.fel.cvut.cz/", "printPaymentConfirmationResponse" );
 
-    private final static QName _PrintTicketResponse_QNAME = new QName( "http://print.service.print.aos.fel.cvut.cz/", "printTicketResponse" );
+    private final static QName _PrintTicketResponse_QNAME = new QName( "http://print.service.aos.fel.cvut.cz/", "printTicketResponse" );
 
-    private final static QName _PrintCancelConfirmationResponse_QNAME = new QName( "http://print.service.print.aos.fel.cvut.cz/", "printCancelConfirmationResponse" );
+    private final static QName _PrintCancelConfirmationResponse_QNAME = new QName( "http://print.service.aos.fel.cvut.cz/", "printCancelConfirmationResponse" );
 
-    private final static QName _PrintReservationConfirmation_QNAME = new QName( "http://print.service.print.aos.fel.cvut.cz/", "printReservationConfirmation" );
+    private final static QName _PrintReservationConfirmation_QNAME = new QName( "http://print.service.aos.fel.cvut.cz/", "printReservationConfirmation" );
 
-    private final static QName _PrintCancelConfirmation_QNAME = new QName( "http://print.service.print.aos.fel.cvut.cz/", "printCancelConfirmation" );
+    private final static QName _PrintCancelConfirmation_QNAME = new QName( "http://print.service.aos.fel.cvut.cz/", "printCancelConfirmation" );
 
-    private final static QName _PrintReservationConfirmationResponse_QNAME = new QName( "http://print.service.print.aos.fel.cvut.cz/", "printReservationConfirmationResponse" );
+    private final static QName _PrintReservationConfirmationResponse_QNAME = new QName( "http://print.service.aos.fel.cvut.cz/", "printReservationConfirmationResponse" );
 
     /** Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: cz.cvut.fel.aos.service.print */
     public ObjectFactory() {
@@ -76,49 +76,49 @@ public class ObjectFactory {
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link PrintTicket }{@code >}} */
-    @XmlElementDecl( namespace = "http://print.service.print.aos.fel.cvut.cz/", name = "printTicket" )
+    @XmlElementDecl( namespace = "http://print.service.aos.fel.cvut.cz/", name = "printTicket" )
     public JAXBElement<PrintTicket> createPrintTicket( PrintTicket value ) {
         return new JAXBElement<PrintTicket>( _PrintTicket_QNAME, PrintTicket.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link PrintPaymentConfirmation }{@code >}} */
-    @XmlElementDecl( namespace = "http://print.service.print.aos.fel.cvut.cz/", name = "printPaymentConfirmation" )
+    @XmlElementDecl( namespace = "http://print.service.aos.fel.cvut.cz/", name = "printPaymentConfirmation" )
     public JAXBElement<PrintPaymentConfirmation> createPrintPaymentConfirmation( PrintPaymentConfirmation value ) {
         return new JAXBElement<PrintPaymentConfirmation>( _PrintPaymentConfirmation_QNAME, PrintPaymentConfirmation.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link PrintPaymentConfirmationResponse }{@code >}} */
-    @XmlElementDecl( namespace = "http://print.service.print.aos.fel.cvut.cz/", name = "printPaymentConfirmationResponse" )
+    @XmlElementDecl( namespace = "http://print.service.aos.fel.cvut.cz/", name = "printPaymentConfirmationResponse" )
     public JAXBElement<PrintPaymentConfirmationResponse> createPrintPaymentConfirmationResponse( PrintPaymentConfirmationResponse value ) {
         return new JAXBElement<PrintPaymentConfirmationResponse>( _PrintPaymentConfirmationResponse_QNAME, PrintPaymentConfirmationResponse.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link PrintTicketResponse }{@code >}} */
-    @XmlElementDecl( namespace = "http://print.service.print.aos.fel.cvut.cz/", name = "printTicketResponse" )
+    @XmlElementDecl( namespace = "http://print.service.aos.fel.cvut.cz/", name = "printTicketResponse" )
     public JAXBElement<PrintTicketResponse> createPrintTicketResponse( PrintTicketResponse value ) {
         return new JAXBElement<PrintTicketResponse>( _PrintTicketResponse_QNAME, PrintTicketResponse.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link PrintCancelConfirmationResponse }{@code >}} */
-    @XmlElementDecl( namespace = "http://print.service.print.aos.fel.cvut.cz/", name = "printCancelConfirmationResponse" )
+    @XmlElementDecl( namespace = "http://print.service.aos.fel.cvut.cz/", name = "printCancelConfirmationResponse" )
     public JAXBElement<PrintCancelConfirmationResponse> createPrintCancelConfirmationResponse( PrintCancelConfirmationResponse value ) {
         return new JAXBElement<PrintCancelConfirmationResponse>( _PrintCancelConfirmationResponse_QNAME, PrintCancelConfirmationResponse.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link PrintReservationConfirmation }{@code >}} */
-    @XmlElementDecl( namespace = "http://print.service.print.aos.fel.cvut.cz/", name = "printReservationConfirmation" )
+    @XmlElementDecl( namespace = "http://print.service.aos.fel.cvut.cz/", name = "printReservationConfirmation" )
     public JAXBElement<PrintReservationConfirmation> createPrintReservationConfirmation( PrintReservationConfirmation value ) {
         return new JAXBElement<PrintReservationConfirmation>( _PrintReservationConfirmation_QNAME, PrintReservationConfirmation.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link PrintCancelConfirmation }{@code >}} */
-    @XmlElementDecl( namespace = "http://print.service.print.aos.fel.cvut.cz/", name = "printCancelConfirmation" )
+    @XmlElementDecl( namespace = "http://print.service.aos.fel.cvut.cz/", name = "printCancelConfirmation" )
     public JAXBElement<PrintCancelConfirmation> createPrintCancelConfirmation( PrintCancelConfirmation value ) {
         return new JAXBElement<PrintCancelConfirmation>( _PrintCancelConfirmation_QNAME, PrintCancelConfirmation.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link PrintReservationConfirmationResponse }{@code >}} */
-    @XmlElementDecl( namespace = "http://print.service.print.aos.fel.cvut.cz/", name = "printReservationConfirmationResponse" )
+    @XmlElementDecl( namespace = "http://print.service.aos.fel.cvut.cz/", name = "printReservationConfirmationResponse" )
     public JAXBElement<PrintReservationConfirmationResponse> createPrintReservationConfirmationResponse( PrintReservationConfirmationResponse value ) {
         return new JAXBElement<PrintReservationConfirmationResponse>( _PrintReservationConfirmationResponse_QNAME, PrintReservationConfirmationResponse.class, null, value );
     }

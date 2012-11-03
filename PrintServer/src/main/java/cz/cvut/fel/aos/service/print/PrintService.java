@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.print.service.print;
+package cz.cvut.fel.aos.service.print;
 
 import javax.activation.DataHandler;
 import javax.jws.WebParam;

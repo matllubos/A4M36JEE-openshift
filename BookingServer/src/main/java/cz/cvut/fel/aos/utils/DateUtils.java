@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.booking.utils;
+package cz.cvut.fel.aos.utils;
 
 import lombok.extern.slf4j.Slf4j;
 

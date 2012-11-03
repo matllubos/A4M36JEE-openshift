@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.booking.service.reservation;
+package cz.cvut.fel.aos.service.reservation;
 
 import cz.cvut.fel.aos.model.Flight;
 import cz.cvut.fel.aos.model.Reservation;
@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 
 /** @author Karel Cemus */
 @Slf4j
-@WebService( endpointInterface = "cz.cvut.fel.aos.booking.service.reservation.ReservationService" )
+@WebService( endpointInterface = "cz.cvut.fel.aos.service.reservation.ReservationService" )
 public class ReservationServiceImpl implements ReservationService {
 
     @PersistenceContext

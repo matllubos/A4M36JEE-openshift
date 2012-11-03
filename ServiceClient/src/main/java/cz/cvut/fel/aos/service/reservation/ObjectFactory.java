@@ -18,21 +18,21 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Find_QNAME = new QName( "http://reservation.service.booking.aos.fel.cvut.cz/", "find" );
+    private final static QName _Find_QNAME = new QName( "http://reservation.service.aos.fel.cvut.cz/", "find" );
 
-    private final static QName _Create_QNAME = new QName( "http://reservation.service.booking.aos.fel.cvut.cz/", "create" );
+    private final static QName _Create_QNAME = new QName( "http://reservation.service.aos.fel.cvut.cz/", "create" );
 
-    private final static QName _Cancel_QNAME = new QName( "http://reservation.service.booking.aos.fel.cvut.cz/", "cancel" );
+    private final static QName _Cancel_QNAME = new QName( "http://reservation.service.aos.fel.cvut.cz/", "cancel" );
 
-    private final static QName _CreateResponse_QNAME = new QName( "http://reservation.service.booking.aos.fel.cvut.cz/", "createResponse" );
+    private final static QName _CreateResponse_QNAME = new QName( "http://reservation.service.aos.fel.cvut.cz/", "createResponse" );
 
-    private final static QName _FindResponse_QNAME = new QName( "http://reservation.service.booking.aos.fel.cvut.cz/", "findResponse" );
+    private final static QName _FindResponse_QNAME = new QName( "http://reservation.service.aos.fel.cvut.cz/", "findResponse" );
 
-    private final static QName _SecurityFault_QNAME = new QName( "http://reservation.service.booking.aos.fel.cvut.cz/", "SecurityFault" );
+    private final static QName _SecurityFault_QNAME = new QName( "http://reservation.service.aos.fel.cvut.cz/", "SecurityFault" );
 
-    private final static QName _FullFlightFault_QNAME = new QName( "http://reservation.service.booking.aos.fel.cvut.cz/", "FullFlightFault" );
+    private final static QName _FullFlightFault_QNAME = new QName( "http://reservation.service.aos.fel.cvut.cz/", "FullFlightFault" );
 
-    private final static QName _CancelResponse_QNAME = new QName( "http://reservation.service.booking.aos.fel.cvut.cz/", "cancelResponse" );
+    private final static QName _CancelResponse_QNAME = new QName( "http://reservation.service.aos.fel.cvut.cz/", "cancelResponse" );
 
     /** Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: cz.cvut.fel.aos.service.reservation */
     public ObjectFactory() {
@@ -94,49 +94,49 @@ public class ObjectFactory {
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link Find }{@code >}} */
-    @XmlElementDecl( namespace = "http://reservation.service.booking.aos.fel.cvut.cz/", name = "find" )
+    @XmlElementDecl( namespace = "http://reservation.service.aos.fel.cvut.cz/", name = "find" )
     public JAXBElement<Find> createFind( Find value ) {
         return new JAXBElement<Find>( _Find_QNAME, Find.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link Create }{@code >}} */
-    @XmlElementDecl( namespace = "http://reservation.service.booking.aos.fel.cvut.cz/", name = "create" )
+    @XmlElementDecl( namespace = "http://reservation.service.aos.fel.cvut.cz/", name = "create" )
     public JAXBElement<Create> createCreate( Create value ) {
         return new JAXBElement<Create>( _Create_QNAME, Create.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link Cancel }{@code >}} */
-    @XmlElementDecl( namespace = "http://reservation.service.booking.aos.fel.cvut.cz/", name = "cancel" )
+    @XmlElementDecl( namespace = "http://reservation.service.aos.fel.cvut.cz/", name = "cancel" )
     public JAXBElement<Cancel> createCancel( Cancel value ) {
         return new JAXBElement<Cancel>( _Cancel_QNAME, Cancel.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link CreateResponse }{@code >}} */
-    @XmlElementDecl( namespace = "http://reservation.service.booking.aos.fel.cvut.cz/", name = "createResponse" )
+    @XmlElementDecl( namespace = "http://reservation.service.aos.fel.cvut.cz/", name = "createResponse" )
     public JAXBElement<CreateResponse> createCreateResponse( CreateResponse value ) {
         return new JAXBElement<CreateResponse>( _CreateResponse_QNAME, CreateResponse.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link FindResponse }{@code >}} */
-    @XmlElementDecl( namespace = "http://reservation.service.booking.aos.fel.cvut.cz/", name = "findResponse" )
+    @XmlElementDecl( namespace = "http://reservation.service.aos.fel.cvut.cz/", name = "findResponse" )
     public JAXBElement<FindResponse> createFindResponse( FindResponse value ) {
         return new JAXBElement<FindResponse>( _FindResponse_QNAME, FindResponse.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link SecurityFault }{@code >}} */
-    @XmlElementDecl( namespace = "http://reservation.service.booking.aos.fel.cvut.cz/", name = "SecurityFault" )
+    @XmlElementDecl( namespace = "http://reservation.service.aos.fel.cvut.cz/", name = "SecurityFault" )
     public JAXBElement<SecurityFault> createSecurityFault( SecurityFault value ) {
         return new JAXBElement<SecurityFault>( _SecurityFault_QNAME, SecurityFault.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link FullFlightFault }{@code >}} */
-    @XmlElementDecl( namespace = "http://reservation.service.booking.aos.fel.cvut.cz/", name = "FullFlightFault" )
+    @XmlElementDecl( namespace = "http://reservation.service.aos.fel.cvut.cz/", name = "FullFlightFault" )
     public JAXBElement<FullFlightFault> createFullFlightFault( FullFlightFault value ) {
         return new JAXBElement<FullFlightFault>( _FullFlightFault_QNAME, FullFlightFault.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link CancelResponse }{@code >}} */
-    @XmlElementDecl( namespace = "http://reservation.service.booking.aos.fel.cvut.cz/", name = "cancelResponse" )
+    @XmlElementDecl( namespace = "http://reservation.service.aos.fel.cvut.cz/", name = "cancelResponse" )
     public JAXBElement<CancelResponse> createCancelResponse( CancelResponse value ) {
         return new JAXBElement<CancelResponse>( _CancelResponse_QNAME, CancelResponse.class, null, value );
     }

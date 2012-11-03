@@ -24,10 +24,10 @@ import java.util.Date;
  *         &lt;element name="capacityLeft" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="cost" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="departure" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="from" type="{http://flight.service.booking.aos.fel.cvut.cz/}destination" minOccurs="0"/>
+ *         &lt;element name="from" type="{http://flight.service.aos.fel.cvut.cz/}destination" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="number" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="to" type="{http://flight.service.booking.aos.fel.cvut.cz/}destination" minOccurs="0"/>
+ *         &lt;element name="to" type="{http://flight.service.aos.fel.cvut.cz/}destination" minOccurs="0"/>
  *         &lt;element name="version" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>

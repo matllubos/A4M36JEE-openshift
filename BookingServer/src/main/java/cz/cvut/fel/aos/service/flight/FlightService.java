@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.booking.service.flight;
+package cz.cvut.fel.aos.service.flight;
 
 import cz.cvut.fel.aos.model.Flight;
 
