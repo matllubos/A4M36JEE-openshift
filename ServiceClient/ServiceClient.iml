@@ -8,7 +8,12 @@
       <sourceFolder url="file://$USER_HOME$/Projects/A4M36AOS_projekt/ServiceClient/src/main/resources" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/Projects/A4M36AOS_projekt/ServiceClient/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$USER_HOME$/Projects/A4M36AOS_projekt/ServiceClient/src/test/resources" isTestSource="true" />
-      <excludeFolder url="file://$USER_HOME$/Projects/A4M36AOS_projekt/ServiceClient/target" />
+      <sourceFolder url="file://$USER_HOME$/Projects/A4M36AOS_projekt/ServiceClient/target/generated-sources/annotations" isTestSource="false" />
+      <excludeFolder url="file://$USER_HOME$/Projects/A4M36AOS_projekt/ServiceClient/target/classes" />
+      <excludeFolder url="file://$USER_HOME$/Projects/A4M36AOS_projekt/ServiceClient/target/lib" />
+      <excludeFolder url="file://$USER_HOME$/Projects/A4M36AOS_projekt/ServiceClient/target/maven-archiver" />
+      <excludeFolder url="file://$USER_HOME$/Projects/A4M36AOS_projekt/ServiceClient/target/surefire-reports" />
+      <excludeFolder url="file://$USER_HOME$/Projects/A4M36AOS_projekt/ServiceClient/target/test-classes" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
