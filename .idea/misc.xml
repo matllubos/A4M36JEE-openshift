@@ -21,6 +21,7 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/BookingServer" />
+    <file type="web" url="file://$PROJECT_DIR$/InterfaceServer" />
     <file type="web" url="file://$PROJECT_DIR$/PaymentServer" />
     <file type="web" url="file://$PROJECT_DIR$/PrintServer" />
   </component>
@@ -48,6 +49,7 @@
         <option value="$PROJECT_DIR$/BookingServer/pom.xml" />
         <option value="$PROJECT_DIR$/Model/pom.xml" />
         <option value="$PROJECT_DIR$/PaymentServer/pom.xml" />
+        <option value="$PROJECT_DIR$/InterfaceServer/pom.xml" />
       </list>
     </option>
     <option name="activeProfiles">
