@@ -1,7 +1,7 @@
 package cz.cvut.fel.aos.service;
 
-import cz.cvut.fel.aos.print.service.print.PrintService;
-import cz.cvut.fel.aos.print.service.print.PrintServiceImplService;
+import cz.cvut.fel.aos.service.print.PrintService;
+import cz.cvut.fel.aos.service.print.PrintServiceImplService;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static cz.cvut.fel.aos.booking.utils.DateUtils.date;
+import static cz.cvut.fel.aos.utils.DateUtils.date;
 import static org.testng.Assert.*;
 
 /** @author Karel Cemus */

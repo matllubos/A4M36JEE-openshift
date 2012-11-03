@@ -1,17 +1,17 @@
 package cz.cvut.fel.aos.service;
 
-import cz.cvut.fel.aos.booking.service.reservation.*;
-import cz.cvut.fel.aos.payment.service.payment.SecurityException;
-import cz.cvut.fel.aos.payment.service.payment.InvalidPaymentException;
-import cz.cvut.fel.aos.payment.service.payment.NoSuchReservationException;
-import cz.cvut.fel.aos.payment.service.payment.PaymentService;
-import cz.cvut.fel.aos.payment.service.payment.PaymentServiceImplService;
+import cz.cvut.fel.aos.service.payment.*;
+import cz.cvut.fel.aos.service.payment.SecurityException;
+import cz.cvut.fel.aos.service.reservation.FullFlightException;
+import cz.cvut.fel.aos.service.reservation.Reservation;
+import cz.cvut.fel.aos.service.reservation.ReservationService;
+import cz.cvut.fel.aos.service.reservation.ReservationServiceImplService;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static cz.cvut.fel.aos.booking.utils.DateUtils.date;
+import static cz.cvut.fel.aos.utils.DateUtils.date;
 import static org.testng.Assert.*;
 
 /** @author Karel Cemus */
@@ -45,12 +45,12 @@ public class PaymentTest {
     }
 
     @AfterMethod
-    public void tearDown() throws cz.cvut.fel.aos.booking.service.reservation.SecurityException {
+    public void tearDown() throws cz.cvut.fel.aos.service.reservation.SecurityException {
         reservationService.cancel( reservationId, PASSWORD );
     }
 
     @Test
-    public void testPayVisa() throws SecurityException, NoSuchReservationException, InvalidPaymentException, cz.cvut.fel.aos.payment.service.payment.SecurityException, cz.cvut.fel.aos.booking.service.reservation.SecurityException {
+    public void testPayVisa() throws SecurityException, NoSuchReservationException, InvalidPaymentException, SecurityException, cz.cvut.fel.aos.service.reservation.SecurityException {
 
         // ověř předpoklady - nezaplaceno
         Reservation reservation = reservationService.find( reservationId, PASSWORD );
@@ -91,7 +91,7 @@ public class PaymentTest {
     }
 
     @Test( expectedExceptions = InvalidPaymentException.class )
-    public void testPayVisaCanceled() throws SecurityException, NoSuchReservationException, InvalidPaymentException, cz.cvut.fel.aos.booking.service.reservation.SecurityException {
+    public void testPayVisaCanceled() throws SecurityException, NoSuchReservationException, InvalidPaymentException, cz.cvut.fel.aos.service.reservation.SecurityException {
 
         // předpoklady
         reservationService.cancel( reservationId, PASSWORD );
@@ -105,7 +105,7 @@ public class PaymentTest {
     }
 
     @Test
-    public void testTransfer() throws SecurityException, NoSuchReservationException, InvalidPaymentException, FullFlightException, cz.cvut.fel.aos.booking.service.reservation.SecurityException {
+    public void testTransfer() throws SecurityException, NoSuchReservationException, InvalidPaymentException, FullFlightException, cz.cvut.fel.aos.service.reservation.SecurityException {
 
         // ověř předpoklady - zaplaceno
         service.payVisa( reservationId, PASSWORD, "Jan Novak", 123654789, date( 1, 1, 2014 ), 789 );

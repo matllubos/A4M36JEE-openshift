@@ -1,15 +1,15 @@
 package cz.cvut.fel.aos.service;
 
-import cz.cvut.fel.aos.booking.service.flight.Flight;
-import cz.cvut.fel.aos.booking.service.flight.FlightService;
-import cz.cvut.fel.aos.booking.service.flight.FlightServiceImplService;
+import cz.cvut.fel.aos.service.flight.Flight;
+import cz.cvut.fel.aos.service.flight.FlightService;
+import cz.cvut.fel.aos.service.flight.FlightServiceImplService;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.*;
 
-import static cz.cvut.fel.aos.booking.utils.DateUtils.date;
+import static cz.cvut.fel.aos.utils.DateUtils.date;
 import static org.testng.Assert.*;
 
 /** @author Karel Cemus */

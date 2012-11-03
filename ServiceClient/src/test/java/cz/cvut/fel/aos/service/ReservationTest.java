@@ -1,8 +1,8 @@
 package cz.cvut.fel.aos.service;
 
-import cz.cvut.fel.aos.booking.service.flight.Flight;
-import cz.cvut.fel.aos.booking.service.reservation.*;
-import cz.cvut.fel.aos.booking.service.reservation.SecurityException;
+import cz.cvut.fel.aos.service.flight.Flight;
+import cz.cvut.fel.aos.service.reservation.*;
+import cz.cvut.fel.aos.service.reservation.SecurityException;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -41,7 +41,7 @@ public class ReservationTest {
     }
 
     @Test( dependsOnMethods = "testCreate" )
-    public void testFind() throws cz.cvut.fel.aos.booking.service.reservation.SecurityException {
+    public void testFind() throws SecurityException {
         Reservation reservation = service.find( reservationId, PASSWORD );
 
         assertNotNull( reservation.getId() );
