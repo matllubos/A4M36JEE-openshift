@@ -53,7 +53,7 @@ public class PrintTest {
     @Test
     public void printTicket() throws IOException {
 
-        DataHandler handler = service.printTicket( 123456, "somepassword", 21341, "Prague", "Brusel", date( 10, 12, 2012, 9, 50 ) );
+        DataHandler handler = service.printTicket( 123456, "somepassword", "21341", "Prague", "Brusel", date( 10, 12, 2012, 9, 50 ) );
 
         byte[] buffer = new byte[ 1000000 ];
         int read = handler.getInputStream().read( buffer );
@@ -81,7 +81,7 @@ public class PrintTest {
     @Test
     public void printReservationConfirmation() throws IOException {
 
-        DataHandler handler = service.printReservationConfirmation( 123456, "somepassword", 31248, "Prague", "Madrid", date( 10, 12, 2012, 9, 50 ), 10000 );
+        DataHandler handler = service.printReservationConfirmation( 123456, "somepassword", "31248", "Prague", "Madrid", date( 10, 12, 2012, 9, 50 ), 10000 );
 
         byte[] buffer = new byte[ 1000000 ];
         int read = handler.getInputStream().read( buffer );
@@ -109,7 +109,7 @@ public class PrintTest {
     @Test
     public void printCancelConfirmation() throws IOException {
 
-        DataHandler handler = service.printCancelConfirmation( 123456, 354789, "Prague", "London", date( 10, 12, 2012, 9, 50 ) );
+        DataHandler handler = service.printCancelConfirmation( 123456, "354789", "Prague", "London", date( 10, 12, 2012, 9, 50 ) );
 
         byte[] buffer = new byte[ 1000000 ];
         int read = handler.getInputStream().read( buffer );

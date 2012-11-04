@@ -50,7 +50,7 @@ public class PrintReservationConfirmation
 
     protected String password;
 
-    protected long flightNumber;
+    protected String flightNumber;
 
     protected String destinationFrom;
 
@@ -92,12 +92,12 @@ public class PrintReservationConfirmation
     }
 
     /** Gets the value of the flightNumber property. */
-    public long getFlightNumber() {
+    public String getFlightNumber() {
         return flightNumber;
     }
 
     /** Sets the value of the flightNumber property. */
-    public void setFlightNumber( long value ) {
+    public void setFlightNumber( String value ) {
         this.flightNumber = value;
     }
 

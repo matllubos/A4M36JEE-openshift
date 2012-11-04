@@ -19,7 +19,7 @@ public class PrintServiceImpl implements PrintService {
     private static final String FORMAT = "%1$20s";
 
     @Override
-    public DataHandler printReservationConfirmation( final long reservation, final String password, final long flightNumber, final String destinationFrom, final String destinationTo, final Date takeOff, final int cost ) {
+    public DataHandler printReservationConfirmation( final long reservation, final String password, final String flightNumber, final String destinationFrom, final String destinationTo, final Date takeOff, final int cost ) {
         final StringBuilder builder = new StringBuilder();
 
         builder.append( DELIMITER );
@@ -39,7 +39,7 @@ public class PrintServiceImpl implements PrintService {
     }
 
     @Override
-    public DataHandler printTicket( final long reservation, final String password, final long flightNumber, final String destinationFrom, final String destinationTo, final Date takeOff ) {
+    public DataHandler printTicket( final long reservation, final String password, final String flightNumber, final String destinationFrom, final String destinationTo, final Date takeOff ) {
         final StringBuilder builder = new StringBuilder();
 
         builder.append( DELIMITER );
@@ -59,7 +59,7 @@ public class PrintServiceImpl implements PrintService {
     }
 
     @Override
-    public DataHandler printCancelConfirmation( final long reservation, final long flightNumber, final String destinationFrom, final String destinationTo, final Date takeOff ) {
+    public DataHandler printCancelConfirmation( final long reservation, final String flightNumber, final String destinationFrom, final String destinationTo, final Date takeOff ) {
         final StringBuilder builder = new StringBuilder();
 
         builder.append( DELIMITER );

@@ -19,7 +19,7 @@ public interface PrintService {
     DataHandler printReservationConfirmation(
             @WebParam( name = "reservation" ) long reservation,
             @WebParam( name = "password" ) String password,
-            @WebParam( name = "flightNumber" ) long flightNumber,
+            @WebParam( name = "flightNumber" ) String flightNumber,
             @WebParam( name = "destinationFrom" ) String destinationFrom,
             @WebParam( name = "destinationTo" ) String destinationTo,
             @WebParam( name = "takeOff" ) Date takeOff,
@@ -31,7 +31,7 @@ public interface PrintService {
     DataHandler printTicket(
             @WebParam( name = "reservation" ) long reservation,
             @WebParam( name = "password" ) String password,
-            @WebParam( name = "flightNumber" ) long flightNumber,
+            @WebParam( name = "flightNumber" ) String flightNumber,
             @WebParam( name = "destinationFrom" ) String destinationFrom,
             @WebParam( name = "destinationTo" ) String destinationTo,
             @WebParam( name = "takeOff" ) Date takeOff
@@ -51,7 +51,7 @@ public interface PrintService {
     @XmlMimeType( "application/octet-stream" )
     DataHandler printCancelConfirmation(
             @WebParam( name = "reservation" ) long reservation,
-            @WebParam( name = "flightNumber" ) long flightNumber,
+            @WebParam( name = "flightNumber" ) String flightNumber,
             @WebParam( name = "destinationFrom" ) String destinationFrom,
             @WebParam( name = "destinationTo" ) String destinationTo,
             @WebParam( name = "takeOff" ) Date takeOff

@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.service.print;
+package cz.cvut.fel.aos.service.facade;
 
 import cz.cvut.fel.aos.utils.DateAdapter;
 
@@ -48,7 +48,7 @@ public class PrintTicket
 
     protected String password;
 
-    protected String flightNumber;
+    protected long flightNumber;
 
     protected String destinationFrom;
 
@@ -88,12 +88,12 @@ public class PrintTicket
     }
 
     /** Gets the value of the flightNumber property. */
-    public String getFlightNumber() {
+    public long getFlightNumber() {
         return flightNumber;
     }
 
     /** Sets the value of the flightNumber property. */
-    public void setFlightNumber( String value ) {
+    public void setFlightNumber( long value ) {
         this.flightNumber = value;
     }
 

@@ -37,7 +37,7 @@ public interface PrintService {
             @WebParam( name = "password", targetNamespace = "" )
             java.lang.String password,
             @WebParam( name = "flightNumber", targetNamespace = "" )
-            long flightNumber,
+            String flightNumber,
             @WebParam( name = "destinationFrom", targetNamespace = "" )
             java.lang.String destinationFrom,
             @WebParam( name = "destinationTo", targetNamespace = "" )
@@ -56,7 +56,7 @@ public interface PrintService {
             @WebParam( name = "password", targetNamespace = "" )
             java.lang.String password,
             @WebParam( name = "flightNumber", targetNamespace = "" )
-            long flightNumber,
+            String flightNumber,
             @WebParam( name = "destinationFrom", targetNamespace = "" )
             java.lang.String destinationFrom,
             @WebParam( name = "destinationTo", targetNamespace = "" )
@@ -75,7 +75,7 @@ public interface PrintService {
             @WebParam( name = "reservation", targetNamespace = "" )
             long reservation,
             @WebParam( name = "flightNumber", targetNamespace = "" )
-            long flightNumber,
+            String flightNumber,
             @WebParam( name = "destinationFrom", targetNamespace = "" )
             java.lang.String destinationFrom,
             @WebParam( name = "destinationTo", targetNamespace = "" )
