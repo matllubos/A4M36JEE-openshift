@@ -2,11 +2,13 @@ package cz.cvut.fel.aos.service.payment;
 
 import cz.cvut.fel.aos.model.Reservation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.geronimo.mail.util.Hex;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.security.MessageDigest;
 import java.util.Date;
 
 /**
@@ -118,11 +120,22 @@ public class PaymentServiceImpl implements PaymentService {
         }
 
         // zkontroluj přístup k rezervaci
-        if ( reservation != null && !reservation.getPassword().equalsIgnoreCase( password ) ) {
+        if ( reservation != null && !reservation.getPassword().equalsIgnoreCase( hash( password ) ) ) {
             throw new SecurityException( String.format( "Access to reservation with ID '%d' is forbidden. Password is incorrect.", reservation.getId() ) );
         }
 
         return reservation;
+    }
+
+    private String hash( String password ) {
+        try {
+            byte[] bytesOfMessage = ( "some salt 12345" + password ).getBytes( "UTF-8" );
+            MessageDigest md = MessageDigest.getInstance( "SHA-1" );
+            byte[] digest = md.digest( bytesOfMessage );
+            return new String( Hex.encode( digest ) );
+        } catch ( Exception e ) {
+            return password;
+        }
     }
 
 }

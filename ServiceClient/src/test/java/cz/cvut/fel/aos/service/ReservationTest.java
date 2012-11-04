@@ -33,7 +33,7 @@ public class ReservationTest {
         assertEquals( reservation.getPaid(), 0 );
         assertEquals( reservation.getFlight().getNumber(), "F987545" );
         assertEquals( reservation.getCost(), 5000 * 5 );
-        assertEquals( reservation.getPassword(), "heslo12345" );
+        assertNotEquals( reservation.getPassword(), "heslo12345" );
         assertNotNull( reservation.getId() );
 
         // set up of another tests
@@ -73,6 +73,25 @@ public class ReservationTest {
         Flight updatedFlight = canceled.getFlight();
 
         assertEquals( updatedFlight.getCapacityLeft(), freeSpace + reservation.getCount() );
+    }
+
+    @Test( dependsOnMethods = "testCancel" )
+    public void testCancelAlreadyCanceled() throws SecurityException {
+        Reservation reservation = service.find( reservationId, PASSWORD );
+        Flight flight = reservation.getFlight();
+        int freeSpace = flight.getCapacityLeft();
+
+        // verify assumption
+        assertTrue( reservation.isCanceled() );
+
+        // execute && verify
+        assertTrue( service.cancel( reservationId, PASSWORD ) );
+
+        // verify freed capacity in the flight
+        Reservation canceled = service.find( reservationId, PASSWORD );
+        Flight updatedFlight = canceled.getFlight();
+
+        assertEquals( updatedFlight.getCapacityLeft(), freeSpace );
     }
 
 }

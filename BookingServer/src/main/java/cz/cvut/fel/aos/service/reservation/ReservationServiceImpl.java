@@ -3,11 +3,13 @@ package cz.cvut.fel.aos.service.reservation;
 import cz.cvut.fel.aos.model.Flight;
 import cz.cvut.fel.aos.model.Reservation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.geronimo.mail.util.Hex;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.security.MessageDigest;
 
 /** @author Karel Cemus */
 @Slf4j
@@ -52,7 +54,7 @@ public class ReservationServiceImpl implements ReservationService {
         entity.setPaid( 0 );
         entity.setCost( flight.getCost() * count );
         entity.setCanceled( false );
-        entity.setPassword( password );
+        entity.setPassword( hash( password ) );
         em.persist( entity );
 
         ReservationServiceImpl.log.info( "Reservation with ID '{}' was successfully created.", entity.getId() );
@@ -73,6 +75,9 @@ public class ReservationServiceImpl implements ReservationService {
         // zkontroluj přístup k rezervaci
         checkSecurity( entity, password );
 
+        // already canceled
+        if ( entity.isCanceled() ) return true;
+
         // zruš rezervaci
         entity.setCanceled( true );
 
@@ -86,8 +91,20 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     private void checkSecurity( Reservation reservation, String password ) throws SecurityException {
+        password = hash( password );
         if ( reservation != null && !reservation.getPassword().equalsIgnoreCase( password ) ) {
             throw new SecurityException( String.format( "Access to reservation with id '%d' is forbidden. Password is incorrect.", reservation.getId() ) );
+        }
+    }
+
+    private String hash( String password ) {
+        try {
+            byte[] bytesOfMessage = ( "some salt 12345" + password ).getBytes( "UTF-8" );
+            MessageDigest md = MessageDigest.getInstance( "SHA-1" );
+            byte[] digest = md.digest( bytesOfMessage );
+            return new String( Hex.encode( digest ) );
+        } catch ( Exception e ) {
+            return password;
         }
     }
 }

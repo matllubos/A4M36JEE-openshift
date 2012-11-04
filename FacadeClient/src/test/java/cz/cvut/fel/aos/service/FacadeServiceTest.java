@@ -103,7 +103,6 @@ public class FacadeServiceTest {
         assertEquals( reservation.getPaid(), 0 );
         assertEquals( reservation.getFlight().getNumber(), "F987545" );
         assertEquals( reservation.getCost(), 5000 * 5 );
-        assertEquals( reservation.getPassword(), PASSWORD );
         assertNotNull( reservationId = reservation.getId() );
 
         String confirmation = new String( container.getConfirmation() );
@@ -247,7 +246,6 @@ public class FacadeServiceTest {
             assertEquals( reservation.getPaid(), 0 );
             assertEquals( reservation.getFlight().getNumber(), "F987545" );
             assertEquals( reservation.getCost(), 5000 * 4 );
-            assertEquals( reservation.getPassword(), PASSWORD );
 
             // verify assumptions
             Reservation canceled = service.findReservation( reservationId, PASSWORD );
