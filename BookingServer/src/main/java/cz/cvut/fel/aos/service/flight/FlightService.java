@@ -21,7 +21,7 @@ public interface FlightService {
     );
 
     /** Vrací všechny lety, které jsou zavedené v systému společnosti */
-    Collection<Flight> findAll();
+    Collection<Flight> findAllFlights();
 
     /** všechny lety z dané oblasti v daném rozsahu dní */
     Collection<Flight> findFlightsFrom(

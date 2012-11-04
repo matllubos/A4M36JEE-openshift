@@ -17,7 +17,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _FindAllResponse_QNAME = new QName( "http://flight.service.aos.fel.cvut.cz/", "findAllResponse" );
+    private final static QName _FindFlightsTo_QNAME = new QName( "http://flight.service.aos.fel.cvut.cz/", "findFlightsTo" );
 
     private final static QName _FindFlightsFrom_QNAME = new QName( "http://flight.service.aos.fel.cvut.cz/", "findFlightsFrom" );
 
@@ -25,20 +25,25 @@ public class ObjectFactory {
 
     private final static QName _FindFlights_QNAME = new QName( "http://flight.service.aos.fel.cvut.cz/", "findFlights" );
 
-    private final static QName _FindFlightsTo_QNAME = new QName( "http://flight.service.aos.fel.cvut.cz/", "findFlightsTo" );
-
     private final static QName _FindResponse_QNAME = new QName( "http://flight.service.aos.fel.cvut.cz/", "findResponse" );
 
-    private final static QName _FindAll_QNAME = new QName( "http://flight.service.aos.fel.cvut.cz/", "findAll" );
+    private final static QName _FindAllFlightsResponse_QNAME = new QName( "http://flight.service.aos.fel.cvut.cz/", "findAllFlightsResponse" );
 
     private final static QName _FindFlightsFromResponse_QNAME = new QName( "http://flight.service.aos.fel.cvut.cz/", "findFlightsFromResponse" );
 
-    private final static QName _FindFlightsResponse_QNAME = new QName( "http://flight.service.aos.fel.cvut.cz/", "findFlightsResponse" );
-
     private final static QName _FindFlightsToResponse_QNAME = new QName( "http://flight.service.aos.fel.cvut.cz/", "findFlightsToResponse" );
+
+    private final static QName _FindAllFlights_QNAME = new QName( "http://flight.service.aos.fel.cvut.cz/", "findAllFlights" );
+
+    private final static QName _FindFlightsResponse_QNAME = new QName( "http://flight.service.aos.fel.cvut.cz/", "findFlightsResponse" );
 
     /** Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: cz.cvut.fel.aos.service.flight */
     public ObjectFactory() {
+    }
+
+    /** Create an instance of {@link FindAllFlights } */
+    public FindAllFlights createFindAllFlights() {
+        return new FindAllFlights();
     }
 
     /** Create an instance of {@link FindFlightsToResponse } */
@@ -56,14 +61,14 @@ public class ObjectFactory {
         return new FindFlightsFromResponse();
     }
 
-    /** Create an instance of {@link FindAll } */
-    public FindAll createFindAll() {
-        return new FindAll();
-    }
-
     /** Create an instance of {@link FindResponse } */
     public FindResponse createFindResponse() {
         return new FindResponse();
+    }
+
+    /** Create an instance of {@link FindAllFlightsResponse } */
+    public FindAllFlightsResponse createFindAllFlightsResponse() {
+        return new FindAllFlightsResponse();
     }
 
     /** Create an instance of {@link FindFlightsTo } */
@@ -86,11 +91,6 @@ public class ObjectFactory {
         return new FindFlightsFrom();
     }
 
-    /** Create an instance of {@link FindAllResponse } */
-    public FindAllResponse createFindAllResponse() {
-        return new FindAllResponse();
-    }
-
     /** Create an instance of {@link Flight } */
     public Flight createFlight() {
         return new Flight();
@@ -101,10 +101,10 @@ public class ObjectFactory {
         return new Destination();
     }
 
-    /** Create an instance of {@link JAXBElement }{@code <}{@link FindAllResponse }{@code >}} */
-    @XmlElementDecl( namespace = "http://flight.service.aos.fel.cvut.cz/", name = "findAllResponse" )
-    public JAXBElement<FindAllResponse> createFindAllResponse( FindAllResponse value ) {
-        return new JAXBElement<FindAllResponse>( _FindAllResponse_QNAME, FindAllResponse.class, null, value );
+    /** Create an instance of {@link JAXBElement }{@code <}{@link FindFlightsTo }{@code >}} */
+    @XmlElementDecl( namespace = "http://flight.service.aos.fel.cvut.cz/", name = "findFlightsTo" )
+    public JAXBElement<FindFlightsTo> createFindFlightsTo( FindFlightsTo value ) {
+        return new JAXBElement<FindFlightsTo>( _FindFlightsTo_QNAME, FindFlightsTo.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link FindFlightsFrom }{@code >}} */
@@ -125,22 +125,16 @@ public class ObjectFactory {
         return new JAXBElement<FindFlights>( _FindFlights_QNAME, FindFlights.class, null, value );
     }
 
-    /** Create an instance of {@link JAXBElement }{@code <}{@link FindFlightsTo }{@code >}} */
-    @XmlElementDecl( namespace = "http://flight.service.aos.fel.cvut.cz/", name = "findFlightsTo" )
-    public JAXBElement<FindFlightsTo> createFindFlightsTo( FindFlightsTo value ) {
-        return new JAXBElement<FindFlightsTo>( _FindFlightsTo_QNAME, FindFlightsTo.class, null, value );
-    }
-
     /** Create an instance of {@link JAXBElement }{@code <}{@link FindResponse }{@code >}} */
     @XmlElementDecl( namespace = "http://flight.service.aos.fel.cvut.cz/", name = "findResponse" )
     public JAXBElement<FindResponse> createFindResponse( FindResponse value ) {
         return new JAXBElement<FindResponse>( _FindResponse_QNAME, FindResponse.class, null, value );
     }
 
-    /** Create an instance of {@link JAXBElement }{@code <}{@link FindAll }{@code >}} */
-    @XmlElementDecl( namespace = "http://flight.service.aos.fel.cvut.cz/", name = "findAll" )
-    public JAXBElement<FindAll> createFindAll( FindAll value ) {
-        return new JAXBElement<FindAll>( _FindAll_QNAME, FindAll.class, null, value );
+    /** Create an instance of {@link JAXBElement }{@code <}{@link FindAllFlightsResponse }{@code >}} */
+    @XmlElementDecl( namespace = "http://flight.service.aos.fel.cvut.cz/", name = "findAllFlightsResponse" )
+    public JAXBElement<FindAllFlightsResponse> createFindAllFlightsResponse( FindAllFlightsResponse value ) {
+        return new JAXBElement<FindAllFlightsResponse>( _FindAllFlightsResponse_QNAME, FindAllFlightsResponse.class, null, value );
     }
 
     /** Create an instance of {@link JAXBElement }{@code <}{@link FindFlightsFromResponse }{@code >}} */
@@ -149,16 +143,22 @@ public class ObjectFactory {
         return new JAXBElement<FindFlightsFromResponse>( _FindFlightsFromResponse_QNAME, FindFlightsFromResponse.class, null, value );
     }
 
-    /** Create an instance of {@link JAXBElement }{@code <}{@link FindFlightsResponse }{@code >}} */
-    @XmlElementDecl( namespace = "http://flight.service.aos.fel.cvut.cz/", name = "findFlightsResponse" )
-    public JAXBElement<FindFlightsResponse> createFindFlightsResponse( FindFlightsResponse value ) {
-        return new JAXBElement<FindFlightsResponse>( _FindFlightsResponse_QNAME, FindFlightsResponse.class, null, value );
-    }
-
     /** Create an instance of {@link JAXBElement }{@code <}{@link FindFlightsToResponse }{@code >}} */
     @XmlElementDecl( namespace = "http://flight.service.aos.fel.cvut.cz/", name = "findFlightsToResponse" )
     public JAXBElement<FindFlightsToResponse> createFindFlightsToResponse( FindFlightsToResponse value ) {
         return new JAXBElement<FindFlightsToResponse>( _FindFlightsToResponse_QNAME, FindFlightsToResponse.class, null, value );
+    }
+
+    /** Create an instance of {@link JAXBElement }{@code <}{@link FindAllFlights }{@code >}} */
+    @XmlElementDecl( namespace = "http://flight.service.aos.fel.cvut.cz/", name = "findAllFlights" )
+    public JAXBElement<FindAllFlights> createFindAllFlights( FindAllFlights value ) {
+        return new JAXBElement<FindAllFlights>( _FindAllFlights_QNAME, FindAllFlights.class, null, value );
+    }
+
+    /** Create an instance of {@link JAXBElement }{@code <}{@link FindFlightsResponse }{@code >}} */
+    @XmlElementDecl( namespace = "http://flight.service.aos.fel.cvut.cz/", name = "findFlightsResponse" )
+    public JAXBElement<FindFlightsResponse> createFindFlightsResponse( FindFlightsResponse value ) {
+        return new JAXBElement<FindFlightsResponse>( _FindFlightsResponse_QNAME, FindFlightsResponse.class, null, value );
     }
 
 }

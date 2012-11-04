@@ -17,7 +17,7 @@ public class DestinationServiceImpl implements DestinationService {
     private EntityManager em;
 
     @Override
-    public Collection<Destination> findAll() {
+    public Collection<Destination> findAllDestinations() {
         return em.createNamedQuery( "Destination.findAll", Destination.class ).getResultList();
     }
 }

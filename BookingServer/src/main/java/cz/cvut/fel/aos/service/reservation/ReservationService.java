@@ -14,14 +14,14 @@ import javax.jws.WebService;
 @WebService
 public interface ReservationService {
 
-    /** najde rezervaci s daným číslem. Kontroluje oprávnění přístupu heslem v podobně SHA-1 */
+    /** najde rezervaci s daným číslem. Kontroluje oprávnění přístupu heslem */
     Reservation find(
             @WebParam( name = "reservation" ) long reservation,
             @WebParam( name = "password" ) String password
     ) throws SecurityException;
 
 
-    /** vytvoří rezervaci na let pro daný počet míst. Nastaví i heslo pro přístup v podobě SHA-1 */
+    /** vytvoří rezervaci na let pro daný počet míst. Nastaví i heslo pro přístup */
     Reservation create(
             @WebParam( name = "flightNumber" ) String flightNumber,
             @WebParam( name = "password" ) String password,
@@ -29,7 +29,7 @@ public interface ReservationService {
     ) throws FullFlightException;
 
 
-    /** zruší rezervaci, pokud má klient oprávnění. Heslo v podobně SHA-1 */
+    /** zruší rezervaci, pokud má klient oprávnění. */
     boolean cancel(
             @WebParam( name = "reservation" ) long reservation,
             @WebParam( name = "password" ) String password

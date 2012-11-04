@@ -51,6 +51,7 @@
         <option value="$PROJECT_DIR$/PaymentServer/pom.xml" />
         <option value="$PROJECT_DIR$/InterfaceServer/pom.xml" />
         <option value="$PROJECT_DIR$/ServiceClient/pom.xml" />
+        <option value="$PROJECT_DIR$/FacadeClient/pom.xml" />
       </list>
     </option>
     <option name="activeProfiles">

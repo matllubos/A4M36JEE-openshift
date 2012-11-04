@@ -27,7 +27,7 @@ public class FlightTest {
     @Test
     public void testFindAll() {
 
-        Collection<Flight> flights = service.findAll();
+        Collection<Flight> flights = service.findAllFlights();
 
         assertEquals( flights.size(), 10 );
         assertFlights( flights, "F987545", "F987687", "F987987", "F987126", "F987981", "F987136", "F987358", "F987972", "F987321", "F987963" );

@@ -14,5 +14,5 @@ import java.util.Collection;
 public interface DestinationService {
 
     /** Vrací všechny destinace, do kterých společnost létá */
-    Collection<Destination> findAll();
+    Collection<Destination> findAllDestinations();
 }

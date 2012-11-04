@@ -21,7 +21,7 @@ public class DestinationTest {
 
         DestinationServiceImplService factory = new DestinationServiceImplService( DestinationServiceImplService.WSDL_LOCATION, DestinationServiceImplService.SERVICE );
         DestinationService service = factory.getDestinationServiceImplPort();
-        Collection<Destination> destinations = service.findAll();
+        Collection<Destination> destinations = service.findAllDestinations();
 
         assertEquals( destinations.size(), 5 );
 

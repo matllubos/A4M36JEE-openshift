@@ -15,22 +15,22 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _FindAllResponse_QNAME = new QName( "http://destination.service.aos.fel.cvut.cz/", "findAllResponse" );
+    private final static QName _FindAllDestinationsResponse_QNAME = new QName( "http://destination.service.aos.fel.cvut.cz/", "findAllDestinationsResponse" );
 
-    private final static QName _FindAll_QNAME = new QName( "http://destination.service.aos.fel.cvut.cz/", "findAll" );
+    private final static QName _FindAllDestinations_QNAME = new QName( "http://destination.service.aos.fel.cvut.cz/", "findAllDestinations" );
 
     /** Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: cz.cvut.fel.aos.service.destination */
     public ObjectFactory() {
     }
 
-    /** Create an instance of {@link FindAll } */
-    public FindAll createFindAll() {
-        return new FindAll();
+    /** Create an instance of {@link FindAllDestinations } */
+    public FindAllDestinations createFindAllDestinations() {
+        return new FindAllDestinations();
     }
 
-    /** Create an instance of {@link FindAllResponse } */
-    public FindAllResponse createFindAllResponse() {
-        return new FindAllResponse();
+    /** Create an instance of {@link FindAllDestinationsResponse } */
+    public FindAllDestinationsResponse createFindAllDestinationsResponse() {
+        return new FindAllDestinationsResponse();
     }
 
     /** Create an instance of {@link Destination } */
@@ -38,16 +38,16 @@ public class ObjectFactory {
         return new Destination();
     }
 
-    /** Create an instance of {@link JAXBElement }{@code <}{@link FindAllResponse }{@code >}} */
-    @XmlElementDecl( namespace = "http://destination.service.aos.fel.cvut.cz/", name = "findAllResponse" )
-    public JAXBElement<FindAllResponse> createFindAllResponse( FindAllResponse value ) {
-        return new JAXBElement<FindAllResponse>( _FindAllResponse_QNAME, FindAllResponse.class, null, value );
+    /** Create an instance of {@link JAXBElement }{@code <}{@link FindAllDestinationsResponse }{@code >}} */
+    @XmlElementDecl( namespace = "http://destination.service.aos.fel.cvut.cz/", name = "findAllDestinationsResponse" )
+    public JAXBElement<FindAllDestinationsResponse> createFindAllDestinationsResponse( FindAllDestinationsResponse value ) {
+        return new JAXBElement<FindAllDestinationsResponse>( _FindAllDestinationsResponse_QNAME, FindAllDestinationsResponse.class, null, value );
     }
 
-    /** Create an instance of {@link JAXBElement }{@code <}{@link FindAll }{@code >}} */
-    @XmlElementDecl( namespace = "http://destination.service.aos.fel.cvut.cz/", name = "findAll" )
-    public JAXBElement<FindAll> createFindAll( FindAll value ) {
-        return new JAXBElement<FindAll>( _FindAll_QNAME, FindAll.class, null, value );
+    /** Create an instance of {@link JAXBElement }{@code <}{@link FindAllDestinations }{@code >}} */
+    @XmlElementDecl( namespace = "http://destination.service.aos.fel.cvut.cz/", name = "findAllDestinations" )
+    public JAXBElement<FindAllDestinations> createFindAllDestinations( FindAllDestinations value ) {
+        return new JAXBElement<FindAllDestinations>( _FindAllDestinations_QNAME, FindAllDestinations.class, null, value );
     }
 
 }

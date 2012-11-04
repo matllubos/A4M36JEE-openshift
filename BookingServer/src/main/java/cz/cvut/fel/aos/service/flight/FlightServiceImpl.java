@@ -23,7 +23,7 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public Collection<Flight> findAll() {
+    public Collection<Flight> findAllFlights() {
         return em.createNamedQuery( "Flight.findAll", Flight.class ).
                 getResultList();
     }

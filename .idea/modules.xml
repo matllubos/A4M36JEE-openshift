@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BookingServer/BookingServer.iml" filepath="$PROJECT_DIR$/BookingServer/BookingServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FacadeClient/FacadeClient.iml" filepath="$PROJECT_DIR$/FacadeClient/FacadeClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/FlightSystem.iml" filepath="$PROJECT_DIR$/FlightSystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/InterfaceServer/InterfaceServer.iml" filepath="$PROJECT_DIR$/InterfaceServer/InterfaceServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/Model/Model.iml" filepath="$PROJECT_DIR$/Model/Model.iml" />

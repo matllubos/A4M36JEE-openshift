@@ -7,12 +7,12 @@ import java.io.Serializable;
 
 
 /**
- * <p>Java class for findAll complex type.
+ * <p>Java class for findAllDestinations complex type.
  * <p/>
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p/>
  * <pre>
- * &lt;complexType name="findAll">
+ * &lt;complexType name="findAllDestinations">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -23,8 +23,8 @@ import java.io.Serializable;
  * </pre>
  */
 @XmlAccessorType( XmlAccessType.FIELD )
-@XmlType( name = "findAll" )
-public class FindAll
+@XmlType( name = "findAllDestinations" )
+public class FindAllDestinations
         implements Serializable {
 
     private final static long serialVersionUID = 1L;

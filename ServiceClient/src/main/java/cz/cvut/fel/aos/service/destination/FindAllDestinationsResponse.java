@@ -10,12 +10,12 @@ import java.util.List;
 
 
 /**
- * <p>Java class for findAllResponse complex type.
+ * <p>Java class for findAllDestinationsResponse complex type.
  * <p/>
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p/>
  * <pre>
- * &lt;complexType name="findAllResponse">
+ * &lt;complexType name="findAllDestinationsResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -27,10 +27,10 @@ import java.util.List;
  * </pre>
  */
 @XmlAccessorType( XmlAccessType.FIELD )
-@XmlType( name = "findAllResponse", propOrder = {
+@XmlType( name = "findAllDestinationsResponse", propOrder = {
         "_return"
 } )
-public class FindAllResponse
+public class FindAllDestinationsResponse
         implements Serializable {
 
     private final static long serialVersionUID = 1L;
