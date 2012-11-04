@@ -32,15 +32,14 @@ public class PayFromCanceledReservationResponse
     private final static long serialVersionUID = 1L;
 
     @XmlElement( name = "return" )
-    @XmlMimeType( "application/octet-stream" )
-    protected DataHandler _return;
+    protected boolean _return;
 
     /**
      * Gets the value of the return property.
      *
      * @return possible object is {@link DataHandler }
      */
-    public DataHandler getReturn() {
+    public boolean getReturn() {
         return _return;
     }
 
@@ -49,7 +48,7 @@ public class PayFromCanceledReservationResponse
      *
      * @param value allowed object is {@link DataHandler }
      */
-    public void setReturn( DataHandler value ) {
+    public void setReturn( boolean value ) {
         this._return = value;
     }
 

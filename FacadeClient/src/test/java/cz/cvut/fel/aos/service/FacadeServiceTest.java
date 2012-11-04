@@ -7,6 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import javax.activation.DataHandler;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static cz.cvut.fel.aos.utils.DateUtils.date;
@@ -94,16 +95,6 @@ public class FacadeServiceTest {
     }
 
     @Test
-    public void testPayFromCanceledReservation() throws Exception {
-
-    }
-
-    @Test
-    public void testPrintTicket() throws Exception {
-
-    }
-
-    @Test
     public void testCreateReservation() throws Exception {
         SuccessfulReservation container = service.createReservation( "F987545", PASSWORD, 5 );
 
@@ -151,7 +142,63 @@ public class FacadeServiceTest {
         fail( "Expected exception" );
     }
 
-    @Test( dependsOnMethods = { "testFindReservation", "testFindReservationWithException" } )
+
+    @Test( dependsOnMethods = "testFindReservation" )
+    public void testPayVisa() throws Exception {
+        // assumption
+        Reservation before = service.findReservation( reservationId, PASSWORD );
+        assertEquals( before.getPaid(), 0 );
+
+        DataHandler response = service.payVisa( reservationId, PASSWORD, "Jan Novak", 98745600, date( 5, 6, 2014 ), 600 );
+
+        Reservation after = service.findReservation( reservationId, PASSWORD );
+        assertEquals( after.getPaid(), after.getCost() );
+
+        byte[] buffer = new byte[ 1024 * 1024 ];
+        int read = response.getInputStream().read( buffer );
+        String confirmation = new String( buffer, 0, read );
+
+        String expected = "" +
+                "---------------------------------------------------------------------------\n" +
+                "Potvrzení o přijetí platby\n" +
+                "---------------------------------------------------------------------------\n" +
+                "    Číslo rezervace:\t" + reservationId + "\n" +
+                "     Kreditní karta:\t98745600\n" +
+                "     Přijatá částka:\t" + before.getCost() + "\n" +
+                "       Datum platby:\t" + new SimpleDateFormat( "dd.MM.yyyy HH:mm" ).format( new Date() ) + "\n" +
+                "---------------------------------------------------------------------------\n";
+
+        assertEquals( confirmation, expected );
+    }
+
+
+    @Test( dependsOnMethods = "testPayVisa" )
+    public void testPrintTicket() throws Exception {
+        Reservation reservation = service.findReservation( reservationId, PASSWORD );
+        Flight flight = reservation.getFlight();
+        DataHandler handler = service.printTicket( reservationId, PASSWORD );
+        byte[] buffer = new byte[ 1024 * 1024 ];
+        int read = handler.getInputStream().read( buffer );
+        String confirmation = new String( buffer, 0, read );
+
+        String expected = "" +
+                "---------------------------------------------------------------------------\n" +
+                "E-letenka\n" +
+                "---------------------------------------------------------------------------\n" +
+                "    Číslo rezervace:\t" + reservationId + "\n" +
+                "         Číslo letu:\t" + flight.getNumber() + "\n" +
+                "            Odlet z:\t" + flight.getFrom().getName() + "\n" +
+                "          Přílet do:\t" + flight.getTo().getName() + "\n" +
+                "       Datum odletu:\t01.01.2012\n" +
+                "         Čas odletu:\t10:20\n" +
+                "               Stav:\tzaplaceno\n" +
+                "---------------------------------------------------------------------------\n";
+
+        assertEquals( confirmation, expected );
+    }
+
+
+    @Test( dependsOnMethods = "testPrintTicket" )
     public void testCancelReservation() throws Exception {
         Reservation reservation = service.findReservation( reservationId, PASSWORD );
         Flight flight = reservation.getFlight();
@@ -188,11 +235,41 @@ public class FacadeServiceTest {
         assertEquals( updatedFlight.getCapacityLeft(), freeSpace + reservation.getCount() );
     }
 
+    @Test( dependsOnMethods = "testCancelReservation" )
+    public void testPayFromCanceledReservation() throws Exception {
 
-    @Test
-    public void testPayVisa() throws Exception {
+        // init another reservation
+        SuccessfulReservation container = service.createReservation( "F987545", PASSWORD, 4 );
+        Reservation reservation = container.getReservation();
 
+        try {
+            assertEquals( reservation.getCount(), 4 );
+            assertEquals( reservation.getPaid(), 0 );
+            assertEquals( reservation.getFlight().getNumber(), "F987545" );
+            assertEquals( reservation.getCost(), 5000 * 4 );
+            assertEquals( reservation.getPassword(), PASSWORD );
+
+            // verify assumptions
+            Reservation canceled = service.findReservation( reservationId, PASSWORD );
+            assertTrue( canceled.isCanceled() );
+            assertEquals( canceled.getPaid(), 5 * 5000 );
+
+
+            // execute test
+            assertTrue( service.payFromCanceledReservation( reservationId, PASSWORD, reservation.getId(), PASSWORD ) );
+
+            // verify
+            canceled = service.findReservation( reservationId, PASSWORD );
+            reservation = service.findReservation( reservation.getId(), PASSWORD );
+
+            assertEquals( canceled.getPaid(), 1 * 5000 );
+            assertEquals( reservation.getPaid(), 4 * 5000 );
+            assertEquals( reservation.getPaid(), reservation.getCost() );
+        } finally {
+            service.cancelReservation( reservation.getId(), PASSWORD );
+        }
     }
+
 
     private void assertFlights( Collection<Flight> flights, String... model ) {
         // convert values to set

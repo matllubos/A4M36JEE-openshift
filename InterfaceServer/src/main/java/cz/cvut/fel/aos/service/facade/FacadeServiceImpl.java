@@ -79,16 +79,35 @@ public class FacadeServiceImpl implements FacadeService {
 
     @Override
     public DataHandler payVisa( final long reservationId, final String password, final String cardName, final long creditCard, final Date validUntil, final int verificationCode ) throws SecurityException, InvalidPaymentException, NoSuchReservationException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        // get paid status before paying
+        Reservation before = reservationService.find( reservationId, password );
+
+        // get paid status after paying
+        Reservation after = paymentService.payVisa( reservationId, password, cardName, creditCard, validUntil, verificationCode );
+
+        // print confirmation
+        return printService.printPaymentConfirmation( reservationId, creditCard, after.getPaid() - before.getPaid() );
     }
 
     @Override
-    public DataHandler payFromCanceledReservation( final long reservationIdFrom, final String passwordFrom, final long reservationIdTo, final String passwordTo ) throws SecurityException, NoSuchReservationException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public boolean payFromCanceledReservation( final long reservationIdFrom, final String passwordFrom, final long reservationIdTo, final String passwordTo ) throws SecurityException, NoSuchReservationException {
+        paymentService.transferFromReservation( reservationIdFrom, passwordFrom, reservationIdTo, passwordTo );
+
+        // no exception, payment was successful
+        return true;
     }
 
     @Override
-    public DataHandler printTicket( final long reservation, final String password, final String flightNumber, final String destinationFrom, final String destinationTo, final Date takeOff ) throws NoSuchReservationException, SecurityException, ReservationNotPaidException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public DataHandler printTicket( final long reservationId, final String password ) throws NoSuchReservationException, SecurityException, ReservationNotPaidException {
+        // verify paid status
+        Reservation reservation = reservationService.find( reservationId, password );
+
+        if ( reservation == null ) throw new NoSuchReservationException( "Reservation doesn't exists." );
+        if ( reservation.isCanceled() ) throw new NoSuchReservationException( "Reservation is canceled." );
+        if ( reservation.getPaid() != reservation.getCost() ) throw new ReservationNotPaidException( "Reservation is not paid, e-ticket cannot be provided." );
+
+        Flight flight = reservation.getFlight();
+
+        return printService.printTicket( reservationId, flight.getNumber(), flight.getFrom().getName(), flight.getTo().getName(), flight.getDeparture() );
     }
 }

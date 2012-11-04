@@ -55,7 +55,7 @@ public interface FacadeService {
     @RequestWrapper( localName = "payFromCanceledReservation", targetNamespace = "http://facade.service.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.facade.PayFromCanceledReservation" )
     @WebMethod
     @ResponseWrapper( localName = "payFromCanceledReservationResponse", targetNamespace = "http://facade.service.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.facade.PayFromCanceledReservationResponse" )
-    public javax.activation.DataHandler payFromCanceledReservation(
+    public boolean payFromCanceledReservation(
             @WebParam( name = "reservationIdFrom", targetNamespace = "" )
             long reservationIdFrom,
             @WebParam( name = "passwordFrom", targetNamespace = "" )
@@ -74,15 +74,7 @@ public interface FacadeService {
             @WebParam( name = "reservation", targetNamespace = "" )
             long reservation,
             @WebParam( name = "password", targetNamespace = "" )
-            java.lang.String password,
-            @WebParam( name = "flightNumber", targetNamespace = "" )
-            long flightNumber,
-            @WebParam( name = "destinationFrom", targetNamespace = "" )
-            java.lang.String destinationFrom,
-            @WebParam( name = "destinationTo", targetNamespace = "" )
-            java.lang.String destinationTo,
-            @WebParam( name = "takeOff", targetNamespace = "" )
-            java.util.Date takeOff
+            java.lang.String password
     ) throws NoSuchReservationException, SecurityException, ReservationNotPaidException;
 
     @WebResult( name = "return", targetNamespace = "" )

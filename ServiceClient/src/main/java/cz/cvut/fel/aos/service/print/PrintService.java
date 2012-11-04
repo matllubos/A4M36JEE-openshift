@@ -34,8 +34,6 @@ public interface PrintService {
     public javax.activation.DataHandler printTicket(
             @WebParam( name = "reservation", targetNamespace = "" )
             long reservation,
-            @WebParam( name = "password", targetNamespace = "" )
-            java.lang.String password,
             @WebParam( name = "flightNumber", targetNamespace = "" )
             String flightNumber,
             @WebParam( name = "destinationFrom", targetNamespace = "" )

@@ -39,14 +39,13 @@ public class PrintServiceImpl implements PrintService {
     }
 
     @Override
-    public DataHandler printTicket( final long reservation, final String password, final String flightNumber, final String destinationFrom, final String destinationTo, final Date takeOff ) {
+    public DataHandler printTicket( final long reservation, final String flightNumber, final String destinationFrom, final String destinationTo, final Date takeOff ) {
         final StringBuilder builder = new StringBuilder();
 
         builder.append( DELIMITER );
         builder.append( "E-letenka\n" );
         builder.append( DELIMITER );
         builder.append( String.format( FORMAT, "Číslo rezervace:" ) ).append( '\t' ).append( reservation ).append( '\n' );
-        builder.append( String.format( FORMAT, "Heslo pro přístup:" ) ).append( '\t' ).append( password ).append( '\n' );
         builder.append( String.format( FORMAT, "Číslo letu:" ) ).append( '\t' ).append( flightNumber ).append( '\n' );
         builder.append( String.format( FORMAT, "Odlet z:" ) ).append( '\t' ).append( destinationFrom ).append( '\n' );
         builder.append( String.format( FORMAT, "Přílet do:" ) ).append( '\t' ).append( destinationTo ).append( '\n' );

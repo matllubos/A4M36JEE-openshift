@@ -25,8 +25,8 @@ public class PrintService {
         return client.printPaymentConfirmation( reservation, cardNumber, amount );
     }
 
-    public DataHandler printTicket( final long reservation, final String password, final String flightNumber, final String destinationFrom, final String destinationTo, final Date takeOff ) {
-        return client.printTicket( reservation, password, flightNumber, destinationFrom, destinationTo, takeOff );
+    public DataHandler printTicket( final long reservation, final String flightNumber, final String destinationFrom, final String destinationTo, final Date takeOff ) {
+        return client.printTicket( reservation, flightNumber, destinationFrom, destinationTo, takeOff );
     }
 
     public DataHandler printCancelConfirmation( final long reservation, final String flightNumber, final String destinationFrom, final String destinationTo, final Date takeOff ) {

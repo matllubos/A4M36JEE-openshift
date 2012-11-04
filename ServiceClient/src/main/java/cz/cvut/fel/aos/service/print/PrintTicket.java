@@ -33,7 +33,6 @@ import java.util.Date;
 @XmlAccessorType( XmlAccessType.FIELD )
 @XmlType( name = "printTicket", propOrder = {
         "reservation",
-        "password",
         "flightNumber",
         "destinationFrom",
         "destinationTo",
@@ -45,8 +44,6 @@ public class PrintTicket
     private final static long serialVersionUID = 1L;
 
     protected long reservation;
-
-    protected String password;
 
     protected String flightNumber;
 
@@ -67,24 +64,6 @@ public class PrintTicket
     /** Sets the value of the reservation property. */
     public void setReservation( long value ) {
         this.reservation = value;
-    }
-
-    /**
-     * Gets the value of the password property.
-     *
-     * @return possible object is {@link String }
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * Sets the value of the password property.
-     *
-     * @param value allowed object is {@link String }
-     */
-    public void setPassword( String value ) {
-        this.password = value;
     }
 
     /** Gets the value of the flightNumber property. */

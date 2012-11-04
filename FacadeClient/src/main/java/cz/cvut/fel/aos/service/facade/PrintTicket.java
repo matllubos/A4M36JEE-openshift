@@ -33,11 +33,7 @@ import java.util.Date;
 @XmlAccessorType( XmlAccessType.FIELD )
 @XmlType( name = "printTicket", propOrder = {
         "reservation",
-        "password",
-        "flightNumber",
-        "destinationFrom",
-        "destinationTo",
-        "takeOff"
+        "password"
 } )
 public class PrintTicket
         implements Serializable {
@@ -47,17 +43,6 @@ public class PrintTicket
     protected long reservation;
 
     protected String password;
-
-    protected long flightNumber;
-
-    protected String destinationFrom;
-
-    protected String destinationTo;
-
-    @XmlElement( type = String.class )
-    @XmlJavaTypeAdapter( DateAdapter.class )
-    @XmlSchemaType( name = "dateTime" )
-    protected Date takeOff;
 
     /** Gets the value of the reservation property. */
     public long getReservation() {
@@ -86,69 +71,4 @@ public class PrintTicket
     public void setPassword( String value ) {
         this.password = value;
     }
-
-    /** Gets the value of the flightNumber property. */
-    public long getFlightNumber() {
-        return flightNumber;
-    }
-
-    /** Sets the value of the flightNumber property. */
-    public void setFlightNumber( long value ) {
-        this.flightNumber = value;
-    }
-
-    /**
-     * Gets the value of the destinationFrom property.
-     *
-     * @return possible object is {@link String }
-     */
-    public String getDestinationFrom() {
-        return destinationFrom;
-    }
-
-    /**
-     * Sets the value of the destinationFrom property.
-     *
-     * @param value allowed object is {@link String }
-     */
-    public void setDestinationFrom( String value ) {
-        this.destinationFrom = value;
-    }
-
-    /**
-     * Gets the value of the destinationTo property.
-     *
-     * @return possible object is {@link String }
-     */
-    public String getDestinationTo() {
-        return destinationTo;
-    }
-
-    /**
-     * Sets the value of the destinationTo property.
-     *
-     * @param value allowed object is {@link String }
-     */
-    public void setDestinationTo( String value ) {
-        this.destinationTo = value;
-    }
-
-    /**
-     * Gets the value of the takeOff property.
-     *
-     * @return possible object is {@link String }
-     */
-    public Date getTakeOff() {
-        return takeOff;
-    }
-
-    /**
-     * Sets the value of the takeOff property.
-     *
-     * @param value allowed object is {@link String }
-     */
-    public void setTakeOff( Date value ) {
-        this.takeOff = value;
-    }
-
 }

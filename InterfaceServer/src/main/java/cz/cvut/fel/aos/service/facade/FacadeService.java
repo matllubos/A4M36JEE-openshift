@@ -79,7 +79,7 @@ public interface FacadeService {
 
     /** převod peněz ze zrušené rezervace na platnou, vrací TXT potvrzení */
     @XmlMimeType( "application/octet-stream" )
-    DataHandler payFromCanceledReservation(
+    boolean payFromCanceledReservation(
             @WebParam( name = "reservationIdFrom" ) long reservationIdFrom,
             @WebParam( name = "passwordFrom" ) String passwordFrom,
             @WebParam( name = "reservationIdTo" ) long reservationIdTo,
@@ -90,10 +90,6 @@ public interface FacadeService {
     @XmlMimeType( "application/octet-stream" )
     DataHandler printTicket(
             @WebParam( name = "reservation" ) long reservation,
-            @WebParam( name = "password" ) String password,
-            @WebParam( name = "flightNumber" ) String flightNumber,
-            @WebParam( name = "destinationFrom" ) String destinationFrom,
-            @WebParam( name = "destinationTo" ) String destinationTo,
-            @WebParam( name = "takeOff" ) Date takeOff
+            @WebParam( name = "password" ) String password
     ) throws NoSuchReservationException, SecurityException, ReservationNotPaidException;
 }

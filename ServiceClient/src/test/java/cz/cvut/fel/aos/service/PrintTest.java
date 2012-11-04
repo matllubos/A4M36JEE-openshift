@@ -53,7 +53,7 @@ public class PrintTest {
     @Test
     public void printTicket() throws IOException {
 
-        DataHandler handler = service.printTicket( 123456, "somepassword", "21341", "Prague", "Brusel", date( 10, 12, 2012, 9, 50 ) );
+        DataHandler handler = service.printTicket( 123456, "21341", "Prague", "Brusel", date( 10, 12, 2012, 9, 50 ) );
 
         byte[] buffer = new byte[ 1000000 ];
         int read = handler.getInputStream().read( buffer );
@@ -66,7 +66,6 @@ public class PrintTest {
                 "E-letenka\n" +
                 "---------------------------------------------------------------------------\n" +
                 "    Číslo rezervace:\t123456\n" +
-                "  Heslo pro přístup:\tsomepassword\n" +
                 "         Číslo letu:\t21341\n" +
                 "            Odlet z:\tPrague\n" +
                 "          Přílet do:\tBrusel\n" +

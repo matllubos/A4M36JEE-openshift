@@ -30,7 +30,6 @@ public interface PrintService {
     @XmlMimeType( "application/octet-stream" )
     DataHandler printTicket(
             @WebParam( name = "reservation" ) long reservation,
-            @WebParam( name = "password" ) String password,
             @WebParam( name = "flightNumber" ) String flightNumber,
             @WebParam( name = "destinationFrom" ) String destinationFrom,
             @WebParam( name = "destinationTo" ) String destinationTo,
