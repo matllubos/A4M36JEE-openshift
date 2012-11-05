@@ -11,3 +11,9 @@ table, tr, td, th {
 th {
     background-color: #ee5;
 }
+
+td.title {
+    text-align: left;
+    font-weight: bold;
+    background-color: #ee5;
+}

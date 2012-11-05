@@ -10,4 +10,18 @@
         <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
     </application>
 
+    <navigation-rule>
+
+        <navigation-case>
+            <from-outcome>flights</from-outcome>
+            <to-view-id>/flights.xhml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>reservation</from-outcome>
+            <to-view-id>/reservation.xhml</to-view-id>
+        </navigation-case>
+
+    </navigation-rule>
+
 </faces-config>

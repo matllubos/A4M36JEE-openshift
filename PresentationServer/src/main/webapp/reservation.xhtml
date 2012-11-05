@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+        >
+
+<ui:composition template="template.xhtml">,
+
+    <ui:define name="title">Rezervace číslo #{reservationBean.identifier}</ui:define>
+
+    <ui:define name="content">
+
+        <c:set var="reservation" value="#{reservationBean.reservation}"/>
+
+        <h:outputText value="Rezervace nebyla nalezena" rendered="#{reservation == null}"/>
+
+        <h:panelGroup rendered="#{reservation != null}">
+
+
+            <c:set var="flight" value="#{reservation.flight}"/>
+
+            <table>
+                <tr>
+                    <td class="title">Číslo rezervace:</td>
+                    <td><h:outputText value="#{reservation.id}"/></td>
+                </tr>
+                <tr>
+                    <td class="title">Číslo letu:</td>
+                    <td><h:outputText value="#{flight.number}"/></td>
+                </tr>
+                <tr>
+                    <td class="title">Odlet z:</td>
+                    <td><h:outputText value="#{flight.from.name}"/></td>
+                </tr>
+                <tr>
+                    <td class="title">Přílet do:</td>
+                    <td><h:outputText value="#{flight.to.name}"/></td>
+                </tr>
+                <tr>
+                    <td class="title">Datum odletu:</td>
+                    <td>
+                        <h:outputText value="#{flight.departure}">
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm"/>
+                        </h:outputText>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">Počet míst:</td>
+                    <td><h:outputText value="#{reservation.count}"/></td>
+                </tr>
+                <tr>
+                    <td class="title">Celková cena</td>
+                    <td><h:outputText value="#{reservation.cost}"/> Kč</td>
+                </tr>
+                <tr>
+                    <td class="title">Zaplacená částka:</td>
+                    <td><h:outputText value="#{reservation.paid}"/> Kč</td>
+                </tr>
+                <tr>
+                    <td class="title">Stav:</td>
+                    <td>
+                        <h:outputText value="Zrušeno" rendered="#{reservation.canceled}"/>
+                        <h:outputText value="Zaplaceno"
+                                      rendered="#{!reservation.canceled and reservation.paid == reservation.cost}"/>
+                        <h:outputText value="Nezaplaceno"
+                                      rendered="#{!reservation.canceled and reservation.paid != reservation.cost}"/>
+                    </td>
+                </tr>
+            </table>
+
+            Zaplatit přes VISA kartu
+            <br></br>
+            Zaplatit převodem ze stornované rezervace
+            <br/>
+            Stornovat
+            <br/>
+            tisk e-letenky
+
+        </h:panelGroup>
+
+    </ui:define>
+
+</ui:composition>
+</html>

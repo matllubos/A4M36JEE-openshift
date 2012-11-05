@@ -50,7 +50,6 @@ public class FlightBean {
     }
 
     public void filter() {
-        System.out.println( "filter in process" );
         if ( destinationFrom == null && destinationTo == null ) {
             FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Musí být vybrána alespoň jedna destinace (přílet / odlet)." ) );
             return;
