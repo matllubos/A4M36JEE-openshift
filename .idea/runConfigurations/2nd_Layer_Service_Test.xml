@@ -1,0 +1,42 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="2nd Layer Service Test" type="TestNG" factoryName="TestNG">
+    <module name="FacadeClient" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+    <option name="ALTERNATIVE_JRE_PATH" value="" />
+    <option name="SUITE_NAME" value="$PROJECT_DIR$/FacadeClient/src/test/resources/suite.xml" />
+    <option name="PACKAGE_NAME" value="" />
+    <option name="MAIN_CLASS_NAME" value="" />
+    <option name="METHOD_NAME" value="" />
+    <option name="GROUP_NAME" value="" />
+    <option name="TEST_OBJECT" value="SUITE" />
+    <option name="VM_PARAMETERS" value="" />
+    <option name="PARAMETERS" value="" />
+    <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$/target" />
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/FacadeClient/target" />
+    <option name="ANNOTATION_TYPE" />
+    <option name="ENV_VARIABLES" />
+    <option name="PASS_PARENT_ENVS" value="true" />
+    <option name="TEST_SEARCH_SCOPE">
+      <value defaultName="moduleWithDependencies" />
+    </option>
+    <option name="USE_DEFAULT_REPORTERS" value="false" />
+    <option name="PROPERTIES_FILE" value="" />
+    <envs />
+    <properties />
+    <listeners />
+    <RunnerSettings RunnerId="JRebel Debug">
+      <option name="bootstrapPath" />
+      <option name="debugPort" value="" />
+      <option name="jrebelArgs" />
+      <option name="loggingEnabled" value="false" />
+      <option name="transport" value="0" />
+      <option name="useBootstrapDefaults" value="true" />
+      <option name="DEBUG_PORT" value="" />
+      <option name="TRANSPORT" value="0" />
+      <option name="LOCAL" value="true" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="Run" />
+    <ConfigurationWrapper RunnerId="Run" />
+    <method />
+  </configuration>
+</component>
