@@ -1,7 +1,8 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Services 3rd layer @Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7">
     <option name="OPEN_IN_BROWSER" value="false" />
-    <option name="COMMON_VM_ARGUMENTS" value="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Xmx768M  -XX:MaxPermSize=192M" />
+    <option name="COMMON_VM_ARGUMENTS" value="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Xmx768M -XX:MaxPermSize=192M -Dorg.apache.el.parser.COERCE_TO_ZERO=false" />
+    <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
     <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
     <option name="UPDATING_POLICY" value="redeploy-artifacts" />
     <deployment>
@@ -23,6 +24,7 @@
     </deployment>
     <server-settings>
       <option name="BASE_DIRECTORY_NAME" value="BookingService_Tomcat" />
+      <option name="PRESERVE_SESSIONS" value="true" />
     </server-settings>
     <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
     <RunnerSettings RunnerId="Debug">

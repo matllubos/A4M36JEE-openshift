@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="template.xhtml">,
+
+    <ui:define name="title">Výběr letů</ui:define>
+
+    <ui:define name="content">
+
+        <h:form>
+            <div>
+                <h:outputLabel for="dateFrom" value="Datum od:"/>
+                <h:inputText id="dateFrom" value="#{flightBean.dateFrom}" converterMessage="'Datum od' nemá platný formát." required="true"
+                             requiredMessage="'Datum od' je povinný atribut">
+                    <f:convertDateTime pattern="dd.MM.yyyy"/>
+                </h:inputText>
+
+                <h:outputLabel for="dateTo" value="Datum do:"/>
+                <h:inputText id="dateTo" value="#{flightBean.dateTo}" converterMessage="'Datum do' nemá platný formát." required="true"
+                             requiredMessage="'Datum do' je povinný atribut">
+                    <f:convertDateTime pattern="dd.MM.yyyy"/>
+                </h:inputText>
+
+                <h:outputLabel for="destinationFrom" value="Odlet z:"/>
+                <h:selectOneMenu id="destinationFrom" value="#{flightBean.destinationFrom}">
+                    <f:selectItem value="#{null}" itemLabel="- neurčeno -"/>
+                    <f:selectItems value="#{destinationBean.destinations}" var="item" itemLabel="#{item.name}" itemValue="#{item.code}"/>
+                </h:selectOneMenu>
+
+                <h:outputLabel for="destinationTo" value="Přílet do:"/>
+                <h:selectOneMenu id="destinationTo" value="#{flightBean.destinationTo}">
+                    <f:selectItem value="#{null}" itemLabel="- neurčeno -"/>
+                    <f:selectItems value="#{destinationBean.destinations}" var="item" itemLabel="#{item.name}" itemValue="#{item.code}"/>
+                </h:selectOneMenu>
+
+                <h:commandButton action="#{flightBean.filter}" value="Filtrovat"/>
+            </div>
+        </h:form>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Číslo letu</th>
+                <th>Datum odletu</th>
+                <th>Odlet z</th>
+                <th>Přílet do</th>
+                <th>Počet volných míst</th>
+                <th>Cena letenky</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="#{flightBean.flights}" var="item">
+                <tr>
+                    <td><h:outputText value="#{item.number}"/></td>
+                    <td><h:outputText value="#{item.departure}"/></td>
+                    <td><h:outputText value="#{item.from.name}"/></td>
+                    <td><h:outputText value="#{item.to.name}"/></td>
+                    <td><h:outputText value="#{item.capacityLeft}"/></td>
+                    <td><h:outputText value="#{item.cost}"/></td>
+                    <td>xx</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+
+        </table>
+    </ui:define>
+
+</ui:composition>
+</html>

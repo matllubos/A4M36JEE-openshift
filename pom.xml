@@ -17,6 +17,7 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.springframework.version>3.1.2.RELEASE</org.springframework.version>
+        <apache.cxf.version>2.4.2</apache.cxf.version>
     </properties>
 
     <dependencies>

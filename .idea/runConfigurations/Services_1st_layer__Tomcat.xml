@@ -1,0 +1,57 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Services 1st layer @Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" APPLICATION_SERVER_NAME="Tomcat 7">
+    <option name="LOCAL" value="false" />
+    <option name="OPEN_IN_BROWSER" value="false" />
+    <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
+    <option name="UPDATING_POLICY" value="redeploy-artifacts" />
+    <deployment>
+      <artifact name="PresentationServer:war exploded">
+        <settings>
+          <option name="CONTEXT_PATH" value="/FlightSystem" />
+        </settings>
+      </artifact>
+    </deployment>
+    <server-settings>
+      <data>
+        <option name="stagingRemotePath" value="" />
+        <option name="transportStagingTarget">
+          <TransportTarget>
+            <option name="id" value="b007b25d-e8de-4177-a558-dad6630c3f29" />
+          </TransportTarget>
+        </option>
+      </data>
+    </server-settings>
+    <RunnerSettings RunnerId="Debug">
+      <option name="DEBUG_PORT" value="33342" />
+      <option name="TRANSPORT" value="0" />
+      <option name="LOCAL" value="false" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="JRebel">
+      <option name="bootstrapPath" />
+      <option name="jrebelArgs" />
+      <option name="loggingEnabled" value="false" />
+      <option name="useBootstrapDefaults" value="true" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="JRebel Debug">
+      <option name="bootstrapPath" />
+      <option name="debugPort" value="53029" />
+      <option name="jrebelArgs" />
+      <option name="loggingEnabled" value="false" />
+      <option name="transport" value="0" />
+      <option name="useBootstrapDefaults" value="true" />
+      <option name="DEBUG_PORT" value="53029" />
+      <option name="TRANSPORT" value="0" />
+      <option name="LOCAL" value="false" />
+    </RunnerSettings>
+    <RunnerSettings RunnerId="Run" />
+    <ConfigurationWrapper RunnerId="Debug" />
+    <ConfigurationWrapper RunnerId="JRebel" />
+    <ConfigurationWrapper RunnerId="JRebel Debug" />
+    <ConfigurationWrapper RunnerId="Run" />
+    <method>
+      <option name="BuildArtifacts" enabled="true">
+        <artifact name="PresentationServer:war exploded" />
+      </option>
+    </method>
+  </configuration>
+</component>

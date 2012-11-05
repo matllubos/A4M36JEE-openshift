@@ -1,5 +1,7 @@
 package cz.cvut.fel.aos.service.facade;
 
+import lombok.ToString;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -25,6 +27,7 @@ import java.io.Serializable;
  * &lt;/complexType>
  * </pre>
  */
+@ToString
 @XmlAccessorType( XmlAccessType.FIELD )
 @XmlType( name = "destination", propOrder = {
         "code",
