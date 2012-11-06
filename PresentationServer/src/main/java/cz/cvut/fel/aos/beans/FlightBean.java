@@ -19,7 +19,7 @@ import static cz.cvut.fel.aos.utils.DateUtils.date;
 /** @author Karel Cemus */
 @Data
 @Component
-@Scope( "request" )
+@Scope( "session" )
 public class FlightBean {
 
     @Autowired

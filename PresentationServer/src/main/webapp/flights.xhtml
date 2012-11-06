@@ -47,7 +47,7 @@
                 <th>Přílet do</th>
                 <th>Počet volných míst</th>
                 <th>Cena letenky</th>
-                <th></th>
+                <th>Rezervovat (počet)</th>
             </tr>
             </thead>
             <tbody>
@@ -59,7 +59,18 @@
                     <td><h:outputText value="#{item.to.name}"/></td>
                     <td><h:outputText value="#{item.capacityLeft}"/></td>
                     <td><h:outputText value="#{item.cost}"/></td>
-                    <td>xx</td>
+                    <td>
+                        <h:form rendered="#{item.capacityLeft > 0}">
+                            <h:inputText id="count" value="#{reservationBean.count}" required="true"
+                                         requiredMessage="Pro rezervaci je přípustný pouze počet letenek v rozmezí 1 až #{item.capacityLeft}"
+                                         validatorMessage="Pro rezervaci je přípustný pouze počet letenek v rozmezí 1 až #{item.capacityLeft}">
+                                <f:convertNumber/>
+                                <f:validateLongRange minimum="1" maximum="#{item.capacityLeft}"/>
+                            </h:inputText>
+                            <h:commandLink action="#{reservationBean.createReservation(item.number)}" value="Zarezervovat"/>
+                        </h:form>
+                        <h:outputText value="Obsazeno" rendered="#{item.capacityLeft == 0}"/>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

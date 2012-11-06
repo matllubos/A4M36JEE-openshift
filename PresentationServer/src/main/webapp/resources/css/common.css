@@ -3,6 +3,10 @@ td, th {
     text-align: center;
 }
 
+table{
+    margin-bottom: 2em;
+}
+
 table, tr, td, th {
     border: 1px solid black;
     border-collapse: collapse;
@@ -16,4 +20,9 @@ td.title {
     text-align: left;
     font-weight: bold;
     background-color: #ee5;
+}
+
+input, select {
+    display:inline-block;
+    margin: 0.2em 1em;
 }

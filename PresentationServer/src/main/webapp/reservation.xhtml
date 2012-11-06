@@ -67,6 +67,13 @@
                 </tr>
             </table>
 
+            <h:form>
+                <h:commandLink value="Stáhnout potvrzení o rezervaci. OBSAHUJE HESLO pro přístup"
+                               action="#{reservationBean.download}"
+                               rendered="#{reservationBean.confirmation != null}"/>
+            </h:form>
+            <br/>
+
             Zaplatit přes VISA kartu
             <br></br>
             Zaplatit převodem ze stornované rezervace
