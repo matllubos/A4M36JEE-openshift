@@ -5,13 +5,14 @@
 
 <ui:composition template="template.xhtml">,
 
-    <ui:define name="title">Rezervace číslo #{reservationBean.identifier}</ui:define>
+    <ui:define name="title">
+        <h:outputText value="Rezervace číslo #{context.identifier}" rendered="#{reservationBean.reservation != null}"/>
+        <h:outputText value="Rezervace nebyla nalezena" rendered="#{reservationBean.reservation == null}"/>
+    </ui:define>
 
     <ui:define name="content">
 
         <c:set var="reservation" value="#{reservationBean.reservation}"/>
-
-        <h:outputText value="Rezervace nebyla nalezena" rendered="#{reservation == null}"/>
 
         <h:panelGroup rendered="#{reservation != null}">
 
@@ -59,19 +60,15 @@
                     <td class="title">Stav:</td>
                     <td>
                         <h:outputText value="Zrušeno" rendered="#{reservation.canceled}"/>
-                        <h:outputText value="Zaplaceno"
-                                      rendered="#{!reservation.canceled and reservation.paid == reservation.cost}"/>
-                        <h:outputText value="Nezaplaceno"
-                                      rendered="#{!reservation.canceled and reservation.paid != reservation.cost}"/>
+                        <h:outputText value="Zaplaceno" rendered="#{!reservation.canceled and reservation.paid == reservation.cost}"/>
+                        <h:outputText value="Nezaplaceno" rendered="#{!reservation.canceled and reservation.paid != reservation.cost}"/>
                     </td>
                 </tr>
             </table>
 
             <h:form styleClass="block-links">
 
-                <h:commandLink value="#{reservationBean.fileTitle}"
-                               action="#{reservationBean.download}"
-                               rendered="#{reservationBean.fileTitle != null}"/>
+                <h:commandLink value="#{file.title}" action="#{file.download}" rendered="#{file.stored}"/>
 
                 <h:link value="Zaplatit přes VISA kartu" outcome="pay-visa" rendered="#{!reservation.canceled}"/>
 

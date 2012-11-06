@@ -4,37 +4,37 @@
 
 <ui:composition template="template.xhtml">,
 
-    <ui:define name="title">Výběr letů</ui:define>
+    <ui:define name="title">Přehled letů</ui:define>
 
     <ui:define name="content">
 
         <h:form>
             <div>
                 <h:outputLabel for="dateFrom" value="Datum od:"/>
-                <h:inputText id="dateFrom" value="#{flightBean.dateFrom}" converterMessage="'Datum od' nemá platný formát." required="true"
-                             requiredMessage="'Datum od' je povinný atribut">
+                <h:inputText id="dateFrom" value="#{context.dateFrom}" converterMessage="'Datum od' nemá platný formát." required="true"
+                             requiredMessage="'Datum od' je povinný atribut" style="width:7em;">
                     <f:convertDateTime pattern="dd.MM.yyyy"/>
                 </h:inputText>
 
                 <h:outputLabel for="dateTo" value="Datum do:"/>
-                <h:inputText id="dateTo" value="#{flightBean.dateTo}" converterMessage="'Datum do' nemá platný formát." required="true"
-                             requiredMessage="'Datum do' je povinný atribut">
+                <h:inputText id="dateTo" value="#{context.dateTo}" converterMessage="'Datum do' nemá platný formát." required="true"
+                             requiredMessage="'Datum do' je povinný atribut" style="width:7em;">
                     <f:convertDateTime pattern="dd.MM.yyyy"/>
                 </h:inputText>
 
                 <h:outputLabel for="destinationFrom" value="Odlet z:"/>
-                <h:selectOneMenu id="destinationFrom" value="#{flightBean.destinationFrom}">
+                <h:selectOneMenu id="destinationFrom" value="#{context.destinationFrom}">
                     <f:selectItem value="#{null}" itemLabel="- neurčeno -"/>
                     <f:selectItems value="#{destinationBean.destinations}" var="item" itemLabel="#{item.name}" itemValue="#{item.code}"/>
                 </h:selectOneMenu>
 
                 <h:outputLabel for="destinationTo" value="Přílet do:"/>
-                <h:selectOneMenu id="destinationTo" value="#{flightBean.destinationTo}">
+                <h:selectOneMenu id="destinationTo" value="#{context.destinationTo}">
                     <f:selectItem value="#{null}" itemLabel="- neurčeno -"/>
                     <f:selectItems value="#{destinationBean.destinations}" var="item" itemLabel="#{item.name}" itemValue="#{item.code}"/>
                 </h:selectOneMenu>
 
-                <h:commandButton action="#{flightBean.filter}" value="Filtrovat"/>
+                <h:commandButton action="flights" value="Filtrovat"/>
             </div>
         </h:form>
 
@@ -60,8 +60,8 @@
                     <td><h:outputText value="#{item.capacityLeft}"/></td>
                     <td><h:outputText value="#{item.cost}"/></td>
                     <td>
-                        <h:form rendered="#{item.capacityLeft > 0}">
-                            <h:inputText id="count" value="#{reservationBean.count}" required="true"
+                        <h:form rendered="#{item.capacityLeft > 0}" prependId="false">
+                            <h:inputText id="#{item.number}-count" required="true" style="width:2em;"
                                          requiredMessage="Pro rezervaci je přípustný pouze počet letenek v rozmezí 1 až #{item.capacityLeft}"
                                          validatorMessage="Pro rezervaci je přípustný pouze počet letenek v rozmezí 1 až #{item.capacityLeft}">
                                 <f:convertNumber/>

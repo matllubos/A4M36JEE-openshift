@@ -10,21 +10,20 @@
 
         <ul>
             <li><h:link outcome="flights" value="Seznam letů"/></li>
-            <!--<li><h:commandLink action="" value=""/></li>-->
         </ul>
 
         <h:form>
             <div>
                 <h:outputLabel for="identifier" value="Číslo rezervace:"/>
-                <h:inputText id="identifier" value="#{reservationBean.identifier}" converterMessage="'Číslo rezervace' není platné." required="true"
-                             requiredMessage="'Číslo rezervace' je povinné">
+                <h:inputText id="identifier" value="#{dispatcherBean.reservationId}" converterMessage="'Číslo rezervace' není platné."
+                             required="true" requiredMessage="'Číslo rezervace' je povinné">
                     <f:convertNumber integerOnly="true"/>
                 </h:inputText>
 
                 <h:outputLabel for="password" value="Heslo pro přístup:"/>
-                <h:inputSecret id="password" value="#{reservationBean.password}" required="true" requiredMessage="'Heslo pro přístup' je povinné"/>
+                <h:inputSecret id="password" value="#{dispatcherBean.reservationPassword}" required="true" requiredMessage="'Heslo pro přístup' je povinné"/>
 
-                <h:commandButton action="#{reservationBean.find}" value="Hledat"/>
+                <h:commandButton action="#{dispatcherBean.findReservation}" value="Hledat"/>
             </div>
         </h:form>
 
