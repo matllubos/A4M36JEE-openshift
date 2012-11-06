@@ -84,7 +84,7 @@ public interface FacadeService {
             @WebParam( name = "passwordFrom" ) String passwordFrom,
             @WebParam( name = "reservationIdTo" ) long reservationIdTo,
             @WebParam( name = "passwordTo" ) String passwordTo
-    ) throws SecurityException, NoSuchReservationException;
+    ) throws SecurityException, InvalidPaymentException, NoSuchReservationException;
 
     /** vytiskne e-letenku */
     @XmlMimeType( "application/octet-stream" )

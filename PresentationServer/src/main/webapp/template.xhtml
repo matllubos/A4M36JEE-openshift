@@ -17,11 +17,14 @@
         <h:messages style="color: red;"/>
 
         <div>
-            <ui:insert name="content" />
+            <ui:insert name="content"/>
         </div>
 
         <div style="margin-top: 5em">
-            <h:link outcome="home" value="Návrat na hlavní stranu" />
+            <h:form>
+                <h:commandLink action="#{context.home}" value="Návrat na hlavní stranu"/>
+            </h:form>
         </div>
     </h:body>
+
 </html>

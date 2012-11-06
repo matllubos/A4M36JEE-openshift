@@ -24,13 +24,15 @@ public class PaymentService {
         client = factory.getPaymentServiceImplPort();
     }
 
-    public Reservation transferFromReservation( final long reservationIdFrom, final String passwordFrom, final long reservationIdTo, final String passwordTo ) throws NoSuchReservationException, SecurityException {
+    public Reservation transferFromReservation( final long reservationIdFrom, final String passwordFrom, final long reservationIdTo, final String passwordTo ) throws NoSuchReservationException, SecurityException, InvalidPaymentException {
         try {
             return new Reservation( client.transferFromReservation( reservationIdFrom, passwordFrom, reservationIdTo, passwordTo ) );
         } catch ( cz.cvut.fel.aos.service.payment.NoSuchReservationException e ) {
             throw new NoSuchReservationException( e.getMessage(), e.getCause() );
         } catch ( cz.cvut.fel.aos.service.payment.SecurityException e ) {
             throw new SecurityException( e.getMessage(), e.getCause() );
+        } catch ( cz.cvut.fel.aos.service.payment.InvalidPaymentException e ) {
+            throw new InvalidPaymentException( e.getMessage(), e.getCause() );
         }
     }
 

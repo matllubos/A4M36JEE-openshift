@@ -54,7 +54,7 @@ public class InterfaceService {
     }
 
 
-    public boolean payFromCanceledReservation( final long reservationIdFrom, final String passwordFrom, final long reservationIdTo, final String passwordTo ) throws NoSuchReservationException, SecurityException {
+    public boolean payFromCanceledReservation( final long reservationIdFrom, final String passwordFrom, final long reservationIdTo, final String passwordTo ) throws NoSuchReservationException, SecurityException, InvalidPaymentException {
         return client.payFromCanceledReservation( reservationIdFrom, passwordFrom, reservationIdTo, passwordTo );
     }
 

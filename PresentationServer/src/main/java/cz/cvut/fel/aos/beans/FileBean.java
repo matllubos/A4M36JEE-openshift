@@ -51,6 +51,21 @@ public class FileBean {
     }
 
     public void download() {
+        download( name, length, content );
+    }
+
+    public void download( String name, DataHandler handler ) {
+        try {
+            byte[] content = new byte[ 1024 * 100 ];
+            int length = handler.getInputStream().read( content );
+            download( name, length, content );
+        } catch ( IOException e ) {
+            log.warn( "Stažení souboru se nepovedlo.", e );
+            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Příprava souboru se nezdařila, opakujte prosím akci později." ) );
+        }
+    }
+
+    public void download( String name, int length, byte[] content ) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         HttpServletResponse response = ( HttpServletResponse ) externalContext.getResponse();

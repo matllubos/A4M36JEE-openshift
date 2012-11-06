@@ -90,7 +90,7 @@ public class FacadeServiceImpl implements FacadeService {
     }
 
     @Override
-    public boolean payFromCanceledReservation( final long reservationIdFrom, final String passwordFrom, final long reservationIdTo, final String passwordTo ) throws SecurityException, NoSuchReservationException {
+    public boolean payFromCanceledReservation( final long reservationIdFrom, final String passwordFrom, final long reservationIdTo, final String passwordTo ) throws SecurityException, NoSuchReservationException, InvalidPaymentException {
         paymentService.transferFromReservation( reservationIdFrom, passwordFrom, reservationIdTo, passwordTo );
 
         // no exception, payment was successful

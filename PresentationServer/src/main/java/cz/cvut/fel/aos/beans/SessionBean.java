@@ -52,4 +52,11 @@ public class SessionBean {
         file.reset();
         this.identifier = identifier;
     }
+
+    public String home() {
+        this.identifier = 0;
+        this.password = null;
+        file.reset();
+        return "home";
+    }
 }

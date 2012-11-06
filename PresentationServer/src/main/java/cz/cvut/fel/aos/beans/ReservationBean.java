@@ -57,6 +57,8 @@ public class ReservationBean {
             session.setIdentifier( success.getReservation().getId() );
             file.setFile( "Stáhnout potvrzení o rezervaci. OBSAHUJE HESLO pro přístup.", "confirmation.txt", success.getConfirmation() );
 
+            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Rezervace byla vytvořena." ) );
+
             return "reservation";
         } catch ( FullFlightException e ) {
             session.setIdentifier( 0 );
@@ -72,6 +74,8 @@ public class ReservationBean {
             DataHandler handler = service.cancelReservation( session.getIdentifier(), session.getPassword() );
             file.setFile( "Stáhnout potvrzení o zrušení rezervace", "cancel-confirmation.txt", handler );
 
+            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Rezervace byla zrušena." ) );
+
         } catch ( NoSuchReservationException e ) {
             FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Rezervace nebyla nalezena." ) );
         } catch ( SecurityException e ) {
@@ -83,7 +87,7 @@ public class ReservationBean {
     public void printETicket() {
         try {
             DataHandler handler = service.printTicket( session.getIdentifier(), session.getPassword() );
-            file.setFile( "Stáhnout E-letenku", "eticket.txt", handler );
+            file.download( "eticket.txt", handler );
 
         } catch ( NoSuchReservationException e ) {
             FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Rezervace nebyla nalezena." ) );

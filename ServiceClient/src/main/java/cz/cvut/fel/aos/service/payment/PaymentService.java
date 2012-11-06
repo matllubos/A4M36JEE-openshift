@@ -29,7 +29,7 @@ public interface PaymentService {
             long reservationIdTo,
             @WebParam( name = "passwordTo", targetNamespace = "" )
             java.lang.String passwordTo
-    ) throws NoSuchReservationException, SecurityException;
+    ) throws NoSuchReservationException, SecurityException, InvalidPaymentException;
 
     @WebResult( name = "return", targetNamespace = "" )
     @RequestWrapper( localName = "payVisa", targetNamespace = "http://payment.service.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.payment.PayVisa" )

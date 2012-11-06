@@ -66,7 +66,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     @Transactional
-    public Reservation transferFromReservation( final long reservationIdFrom, final String passwordFrom, final long reservationIdTo, final String passwordTo ) {
+    public Reservation transferFromReservation( final long reservationIdFrom, final String passwordFrom, final long reservationIdTo, final String passwordTo ) throws InvalidPaymentException {
 
         // rezervace, ze které se převádí peníze
         Reservation reservationFrom = loadReservation( reservationIdFrom, passwordFrom );

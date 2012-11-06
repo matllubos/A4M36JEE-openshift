@@ -64,7 +64,7 @@ public interface FacadeService {
             long reservationIdTo,
             @WebParam( name = "passwordTo", targetNamespace = "" )
             java.lang.String passwordTo
-    ) throws NoSuchReservationException, SecurityException;
+    ) throws NoSuchReservationException, SecurityException, InvalidPaymentException;
 
     @WebResult( name = "return", targetNamespace = "" )
     @RequestWrapper( localName = "printTicket", targetNamespace = "http://facade.service.aos.fel.cvut.cz/", className = "cz.cvut.fel.aos.service.facade.PrintTicket" )

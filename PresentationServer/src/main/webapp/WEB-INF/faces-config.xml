@@ -10,6 +10,10 @@
         <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
     </application>
 
+    <lifecycle>
+        <phase-listener>cz.cvut.fel.aos.utils.MultiPageMessagesSupport</phase-listener>
+    </lifecycle>
+
     <navigation-rule>
 
         <navigation-case>

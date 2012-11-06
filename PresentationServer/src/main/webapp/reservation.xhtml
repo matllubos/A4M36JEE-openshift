@@ -70,9 +70,9 @@
 
                 <h:commandLink value="#{file.title}" action="#{file.download}" rendered="#{file.stored}"/>
 
-                <h:link value="Zaplatit přes VISA kartu" outcome="pay-visa" rendered="#{!reservation.canceled}"/>
+                <h:commandLink value="Zaplatit přes VISA kartu" action="pay-visa" rendered="#{!reservation.canceled}"/>
 
-                <h:link value="Zaplatit převodem ze stornované rezervace" outcome="pay-canceled" rendered="#{!reservation.canceled}"/>
+                <h:commandLink value="Zaplatit převodem ze stornované rezervace" action="pay-canceled" rendered="#{!reservation.canceled}"/>
 
                 <h:commandLink value="Stornovat" action="#{reservationBean.cancel}" rendered="#{!reservation.canceled}"/>
 

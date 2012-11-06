@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+        >
+
+<ui:composition template="template.xhtml">,
+
+    <ui:define name="title">Platba rezervace číslo #{context.identifier}</ui:define>
+
+    <ui:define name="content">
+
+        <h:form>
+
+            <h:outputLabel value="Číslo kreditní karty" for="creditCard"/>
+            <h:inputText id="creditCard" value="#{paymentBean.creditCard}" required="true"
+                         requiredMessage="Číslo platební karty není platné" converterMessage="Číslo platební karty není platné">
+                <f:convertNumber/>
+            </h:inputText>
+            <br/>
+
+            <h:outputLabel value="Jméno držitele karty" for="cardName"/>
+            <h:inputText id="cardName" value="#{paymentBean.cardName}" required="true"
+                         requiredMessage="Chybí jméno držitele karty" />
+            <br/>
+
+            <h:outputLabel value="Platnost karty" for="validUntil"/>
+            <h:inputText id="validUntil" value="#{paymentBean.validUntil}" required="true"
+                         requiredMessage="Datum platnosti není správné" converterMessage="Datum platnosti není správné">
+                <f:convertDateTime pattern="dd.MM.yyyy"/>
+            </h:inputText>
+            <br/>
+
+            <h:outputLabel value="Verifikační kód (posl. 3 číslice čísla karty)" for="verificationCode"/>
+            <h:inputText id="verificationCode" value="#{paymentBean.verificationCode}" required="true"
+                         requiredMessage="Verifikační kód není platný" converterMessage="Verifikační kód není platný">
+                <f:convertNumber/>
+            </h:inputText>
+            <br/>
+
+            <h:commandButton action="#{paymentBean.payVisa}" value="Převést hotovost"/>
+
+        </h:form>
+
+        <h:link outcome="reservation" value="Návrat k rezervaci"/>
+
+    </ui:define>
+
+</ui:composition>
+</html>
