@@ -26,3 +26,7 @@ input, select {
     display:inline-block;
     margin: 0.2em 1em;
 }
+
+.block-links a {
+    display:block;
+}

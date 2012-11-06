@@ -15,16 +15,29 @@
         <navigation-case>
             <from-outcome>home</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
 
         <navigation-case>
             <from-outcome>flights</from-outcome>
             <to-view-id>/flights.xhml</to-view-id>
+            <redirect/>
         </navigation-case>
 
         <navigation-case>
             <from-outcome>reservation</from-outcome>
             <to-view-id>/reservation.xhml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>pay-visa</from-outcome>
+            <to-view-id>/pay-visa.xhml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>pay-canceled</from-outcome>
+            <to-view-id>/pay-canceled.xhml</to-view-id>
         </navigation-case>
 
     </navigation-rule>

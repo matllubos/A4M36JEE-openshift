@@ -67,20 +67,22 @@
                 </tr>
             </table>
 
-            <h:form>
-                <h:commandLink value="Stáhnout potvrzení o rezervaci. OBSAHUJE HESLO pro přístup"
-                               action="#{reservationBean.download}"
-                               rendered="#{reservationBean.confirmation != null}"/>
-            </h:form>
-            <br/>
+            <h:form styleClass="block-links">
 
-            Zaplatit přes VISA kartu
-            <br></br>
-            Zaplatit převodem ze stornované rezervace
-            <br/>
-            Stornovat
-            <br/>
-            tisk e-letenky
+                <h:commandLink value="#{reservationBean.fileTitle}"
+                               action="#{reservationBean.download}"
+                               rendered="#{reservationBean.fileTitle != null}"/>
+
+                <h:link value="Zaplatit přes VISA kartu" outcome="pay-visa" rendered="#{!reservation.canceled}"/>
+
+                <h:link value="Zaplatit převodem ze stornované rezervace" outcome="pay-canceled" rendered="#{!reservation.canceled}"/>
+
+                <h:commandLink value="Stornovat" action="#{reservationBean.cancel}" rendered="#{!reservation.canceled}"/>
+
+                <h:commandLink value="Vytisknout e-letenku" action="#{reservationBean.printETicket}"
+                               rendered="#{!reservation.canceled and reservation.paid == reservation.cost}"/>
+
+            </h:form>
 
         </h:panelGroup>
 
