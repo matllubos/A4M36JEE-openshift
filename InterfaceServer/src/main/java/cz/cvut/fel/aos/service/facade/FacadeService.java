@@ -55,7 +55,7 @@ public interface FacadeService {
             @WebParam( name = "flightNumber" ) String flightNumber,
             @WebParam( name = "password" ) String password,
             @WebParam( name = "count" ) int count
-    ) throws FullFlightException, NoSuchReservationException, SecurityException, ReservationNotPaidException;
+    ) throws FullFlightException;
 
 
     /** zruší rezervaci, pokud má klient oprávnění. Pokud je již zrušeno, dojde k vygenerování výjimky */
