@@ -16,7 +16,7 @@ import java.net.URL;
 
 
 @WebServiceClient( name = "PrintServiceImplService",
-        wsdlLocation = "http://localhost:8080/PrintServer/PrintService?wsdl",
+        wsdlLocation = "http://localhost:8080/PrintService?wsdl",
         targetNamespace = "http://print.service.aos.fel.cvut.cz/" )
 public class PrintServiceImplService extends Service {
 
@@ -29,9 +29,9 @@ public class PrintServiceImplService extends Service {
     static {
         URL url = null;
         try {
-            url = new URL( "http://localhost:8080/PrintServer/PrintService?wsdl" );
+            url = new URL( "http://localhost:8080/PrintService?wsdl" );
         } catch ( MalformedURLException e ) {
-            System.err.println( "Can not initialize the default wsdl from http://localhost:8080/PrintServer/PrintService?wsdl" );
+            System.err.println( "Can not initialize the default wsdl from http://localhost:8080/PrintService?wsdl" );
             // e.printStackTrace();
         }
         WSDL_LOCATION = url;

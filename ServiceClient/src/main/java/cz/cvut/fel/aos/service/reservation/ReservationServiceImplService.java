@@ -16,7 +16,7 @@ import java.net.URL;
 
 
 @WebServiceClient( name = "ReservationServiceImplService",
-        wsdlLocation = "http://localhost:8080/BookingServer/ReservationService?wsdl",
+        wsdlLocation = "http://localhost:8080/ReservationService?wsdl",
         targetNamespace = "http://reservation.service.aos.fel.cvut.cz/" )
 public class ReservationServiceImplService extends Service {
 
@@ -29,9 +29,9 @@ public class ReservationServiceImplService extends Service {
     static {
         URL url = null;
         try {
-            url = new URL( "http://localhost:8080/BookingServer/ReservationService?wsdl" );
+            url = new URL( "http://localhost:8080/ReservationService?wsdl" );
         } catch ( MalformedURLException e ) {
-            System.err.println( "Can not initialize the default wsdl from http://localhost:8080/BookingServer/ReservationService?wsdl" );
+            System.err.println( "Can not initialize the default wsdl from http://localhost:8080/ReservationService?wsdl" );
             // e.printStackTrace();
         }
         WSDL_LOCATION = url;

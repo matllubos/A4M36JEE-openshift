@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="PaymentServer:war">
-    <output-path>$PROJECT_DIR$/PaymentServer/target</output-path>
-    <root id="archive" name="PaymentServer-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="PaymentServer:war exploded" />
-    </root>
-  </artifact>
-</component>
