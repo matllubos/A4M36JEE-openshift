@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FacadeClient/FacadeClient.iml" filepath="$PROJECT_DIR$/FacadeClient/FacadeClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/FlightSystem.iml" filepath="$PROJECT_DIR$/FlightSystem.iml" />
-      <module fileurl="file://$PROJECT_DIR$/InterfaceServer/InterfaceServer.iml" filepath="$PROJECT_DIR$/InterfaceServer/InterfaceServer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PresentationServer/PresentationServer.iml" filepath="$PROJECT_DIR$/PresentationServer/PresentationServer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ServiceClient/ServiceClient.iml" filepath="$PROJECT_DIR$/ServiceClient/ServiceClient.iml" />
     </modules>
   </component>
 </project>

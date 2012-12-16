@@ -11,8 +11,6 @@ import java.lang.*;
  *
  * @author Karel Cemus
  */
-
-@WebService
 public interface ReservationService {
 
     /** najde rezervaci s daným číslem. Kontroluje oprávnění přístupu heslem */

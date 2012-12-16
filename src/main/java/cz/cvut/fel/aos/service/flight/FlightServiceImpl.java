@@ -1,6 +1,7 @@
 package cz.cvut.fel.aos.service.flight;
 
 import cz.cvut.fel.aos.model.Flight;
+import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
@@ -9,7 +10,7 @@ import java.util.Collection;
 import java.util.Date;
 
 /** @author Karel Cemus */
-@WebService( endpointInterface = "cz.cvut.fel.aos.service.flight.FlightService" )
+@Service
 public class FlightServiceImpl implements FlightService {
 
     @PersistenceContext

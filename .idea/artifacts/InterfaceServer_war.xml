@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="InterfaceServer:war">
-    <output-path>$PROJECT_DIR$/InterfaceServer/target</output-path>
-    <root id="archive" name="InterfaceServer-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="InterfaceServer:war exploded" />
-    </root>
-  </artifact>
-</component>

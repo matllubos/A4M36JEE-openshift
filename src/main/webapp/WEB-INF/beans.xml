@@ -16,26 +16,14 @@
 
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
 
-    <bean id="destinationServiceImpl" class="cz.cvut.fel.aos.service.destination.DestinationServiceImpl"/>
-    <jaxws:endpoint id="destinationService" implementor="#destinationServiceImpl" address="/DestinationService"/>
-
-    <bean id="flightServiceImpl" class="cz.cvut.fel.aos.service.flight.FlightServiceImpl"/>
-    <jaxws:endpoint id="flightService" implementor="#flightServiceImpl" address="/FlightService"/>
-
-    <bean id="reservationServiceImpl" class="cz.cvut.fel.aos.service.reservation.ReservationServiceImpl"/>
-    <jaxws:endpoint id="reservationService" implementor="#reservationServiceImpl" address="/ReservationService"/>
-
-    <bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager"/>
-
-    <bean id="paymentServiceImpl" class="cz.cvut.fel.aos.service.payment.PaymentServiceImpl"/>
-    <jaxws:endpoint id="paymentService" implementor="#paymentServiceImpl" address="/PaymentService"/>
-
-    <bean id="printServiceImpl" class="cz.cvut.fel.aos.service.print.PrintServiceImpl"/>
-    <jaxws:endpoint id="printService" implementor="#printServiceImpl" address="/PrintService">
+    <bean id="facadeServiceImpl" class="cz.cvut.fel.aos.service.facade.FacadeServiceImpl"/>
+    <jaxws:endpoint id="facadeService" implementor="#facadeServiceImpl" address="/FacadeService">
         <jaxws:properties>
             <entry key="mtom-enabled" value="true"/>
         </jaxws:properties>
     </jaxws:endpoint>
+
+    <bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager"/>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="flightSystemPersistence"/>

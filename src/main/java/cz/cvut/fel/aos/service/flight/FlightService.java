@@ -12,7 +12,6 @@ import java.util.Date;
  *
  * @author Karel Cemus
  */
-@WebService
 public interface FlightService {
 
     /** najde let s daným číslem */

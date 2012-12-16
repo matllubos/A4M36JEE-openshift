@@ -10,7 +10,6 @@ import java.util.Collection;
  *
  * @author Karel Cemus
  */
-@WebService
 public interface DestinationService {
 
     /** Vrací všechny destinace, do kterých společnost létá */

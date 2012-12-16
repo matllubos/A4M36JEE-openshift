@@ -2,6 +2,7 @@ package cz.cvut.fel.aos.service.destination;
 
 import cz.cvut.fel.aos.model.Destination;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
@@ -10,7 +11,7 @@ import java.util.Collection;
 
 /** @author Karel Cemus */
 @Slf4j
-@WebService( endpointInterface = "cz.cvut.fel.aos.service.destination.DestinationService" )
+@Service
 public class DestinationServiceImpl implements DestinationService {
 
     @PersistenceContext

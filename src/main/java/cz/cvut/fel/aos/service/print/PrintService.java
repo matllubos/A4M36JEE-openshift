@@ -11,7 +11,6 @@ import java.util.Date;
  *
  * @author Karel Cemus
  */
-@WebService
 public interface PrintService {
 
     /** vytiskne potvrzení o vytvoření rezervace */

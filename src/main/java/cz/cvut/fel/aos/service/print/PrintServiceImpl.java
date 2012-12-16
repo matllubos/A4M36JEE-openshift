@@ -1,5 +1,7 @@
 package cz.cvut.fel.aos.service.print;
 
+import org.springframework.stereotype.Service;
+
 import javax.activation.DataHandler;
 import javax.jws.WebService;
 import javax.mail.util.ByteArrayDataSource;
@@ -11,7 +13,7 @@ import java.util.Date;
  *
  * @author Karel Cemus
  */
-@WebService( endpointInterface = "cz.cvut.fel.aos.service.print.PrintService" )
+@Service
 public class PrintServiceImpl implements PrintService {
 
     private static final String DELIMITER = "---------------------------------------------------------------------------\n";

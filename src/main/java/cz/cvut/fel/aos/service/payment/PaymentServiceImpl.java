@@ -3,6 +3,7 @@ package cz.cvut.fel.aos.service.payment;
 import cz.cvut.fel.aos.model.Reservation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.geronimo.mail.util.Hex;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.jws.WebService;
@@ -18,7 +19,7 @@ import java.util.Date;
  * @author Karel Cemus
  */
 @Slf4j
-@WebService( endpointInterface = "cz.cvut.fel.aos.service.payment.PaymentService" )
+@Service
 public class PaymentServiceImpl implements PaymentService {
 
     @PersistenceContext
