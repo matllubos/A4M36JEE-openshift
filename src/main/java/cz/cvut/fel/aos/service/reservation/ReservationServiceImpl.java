@@ -3,7 +3,6 @@ package cz.cvut.fel.aos.service.reservation;
 import cz.cvut.fel.aos.model.Flight;
 import cz.cvut.fel.aos.model.Reservation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.geronimo.mail.util.Hex;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -100,13 +99,13 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     private String hash( String password ) {
-        try {
-            byte[] bytesOfMessage = ( "some salt 12345" + password ).getBytes( "UTF-8" );
-            MessageDigest md = MessageDigest.getInstance( "SHA-1" );
-            byte[] digest = md.digest( bytesOfMessage );
-            return new String( Hex.encode( digest ) );
-        } catch ( Exception e ) {
+//        try {
+//            byte[] bytesOfMessage = ( "some salt 12345" + password ).getBytes( "UTF-8" );
+//            MessageDigest md = MessageDigest.getInstance( "SHA-1" );
+//            byte[] digest = md.digest( bytesOfMessage );
+//            return new String( Hex.encode( digest ) );
+//        } catch ( Exception e ) {
             return password;
-        }
+//        }
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure>
+
+    <deployment>
+
+        <dependencies>
+            <!--<module name="deployment.javassist.proxy" />-->
+            <!--<module name="deployment.myjavassist" />-->
+            <module name="org.slf4j" />
+            <module name="javax.faces.api" slot="main" export="true"/>
+            <module name="com.sun.jsf-impl" slot="main" export="true"/>
+        </dependencies>
+
+        <!-- Exclusions allow you to prevent the server from automatically adding some dependencies     -->
+        <exclusions>
+            <module name="org.slf4j.impl" />
+        </exclusions>
+    </deployment>
+
+</jboss-deployment-structure>
