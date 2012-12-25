@@ -1,23 +1,25 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Deploy on Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7">
+  <configuration default="false" name="Deploy on JBoss" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 7.1.1.Final">
     <option name="OPEN_IN_BROWSER" value="false" />
-    <option name="COMMON_VM_ARGUMENTS" value="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Xmx768M -XX:MaxPermSize=512M -Dorg.apache.el.parser.COERCE_TO_ZERO=false" />
+    <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/FlightSystem/" />
     <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
-    <option name="UPDATING_POLICY" value="restart-server" />
+    <option name="UPDATING_POLICY" value="redeploy-artifacts" />
     <deployment>
-      <artifact name="FlightSystem:war exploded">
-        <settings>
-          <option name="CONTEXT_PATH" value="/" />
-        </settings>
+      <artifact name="FlightSystem:war">
+        <settings />
       </artifact>
     </deployment>
     <server-settings>
-      <option name="BASE_DIRECTORY_NAME" value="BookingService_Tomcat" />
-      <option name="PRESERVE_SESSIONS" value="true" />
+      <option name="SERVER" />
+      <option name="BINDING_SET_NAME" value="" />
+      <option name="USERNAME" value="" />
+      <option name="PASSWORD" value="" />
     </server-settings>
-    <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
+    <predefined_log_file id="JBoss" enabled="true" />
+    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+    <RunnerSettings RunnerId="Cover" />
     <RunnerSettings RunnerId="Debug">
-      <option name="DEBUG_PORT" value="52083" />
+      <option name="DEBUG_PORT" value="54715" />
       <option name="TRANSPORT" value="0" />
       <option name="LOCAL" value="true" />
     </RunnerSettings>
@@ -29,16 +31,31 @@
     </RunnerSettings>
     <RunnerSettings RunnerId="JRebel Debug">
       <option name="bootstrapPath" />
-      <option name="debugPort" value="48866" />
+      <option name="debugPort" value="45501" />
       <option name="jrebelArgs" />
       <option name="loggingEnabled" value="false" />
       <option name="transport" value="0" />
       <option name="useBootstrapDefaults" value="true" />
-      <option name="DEBUG_PORT" value="48866" />
+      <option name="DEBUG_PORT" value="45501" />
       <option name="TRANSPORT" value="0" />
       <option name="LOCAL" value="true" />
     </RunnerSettings>
     <RunnerSettings RunnerId="Run" />
+    <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+      <option name="USE_ENV_VARIABLES" value="true" />
+      <STARTUP>
+        <option name="USE_DEFAULT" value="true" />
+        <option name="SCRIPT" value="" />
+        <option name="VM_PARAMETERS" value="" />
+        <option name="PROGRAM_PARAMETERS" value="" />
+      </STARTUP>
+      <SHUTDOWN>
+        <option name="USE_DEFAULT" value="true" />
+        <option name="SCRIPT" value="" />
+        <option name="VM_PARAMETERS" value="" />
+        <option name="PROGRAM_PARAMETERS" value="" />
+      </SHUTDOWN>
+    </ConfigurationWrapper>
     <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
       <option name="USE_ENV_VARIABLES" value="true" />
       <STARTUP>
@@ -101,8 +118,10 @@
     </ConfigurationWrapper>
     <method>
       <option name="BuildArtifacts" enabled="true">
-        <artifact name="FlightSystem:war exploded" />
+        <artifact name="FlightSystem:war" />
       </option>
+      <option name="Make" enabled="false" />
+      <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="prepare-package" />
     </method>
   </configuration>
 </component>
