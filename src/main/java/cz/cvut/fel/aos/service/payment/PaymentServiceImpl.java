@@ -2,15 +2,13 @@ package cz.cvut.fel.aos.service.payment;
 
 import cz.cvut.fel.aos.model.Reservation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.jws.WebService;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.lang.*;
-import java.security.MessageDigest;
 import java.util.Date;
+
+//import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>Web service přijímající platby rezervací.</p>
@@ -18,14 +16,14 @@ import java.util.Date;
  * @author Karel Cemus
  */
 @Slf4j
-@Service
+@Stateless
 public class PaymentServiceImpl implements PaymentService {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    @Transactional
+    //    @Transactional
     public Reservation payVisa( final long reservationId, final String password, final String cardName, final long creditCard, final Date validUntil, final int verificationCode ) throws NoSuchReservationException, InvalidPaymentException, SecurityException {
 
         // načti rezervaci
@@ -66,7 +64,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    @Transactional
+    //    @Transactional
     public Reservation transferFromReservation( final long reservationIdFrom, final String passwordFrom, final long reservationIdTo, final String passwordTo ) throws InvalidPaymentException {
 
         // rezervace, ze které se převádí peníze
@@ -129,14 +127,14 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     private String hash( String password ) {
-//        try {
-//            byte[] bytesOfMessage = ( "some salt 12345" + password ).getBytes( "UTF-8" );
-//            MessageDigest md = MessageDigest.getInstance( "SHA-1" );
-//            byte[] digest = md.digest( bytesOfMessage );
-//            return new String( Hex.encode( digest ) );
-//        } catch ( Exception e ) {
-            return password;
-//        }
+        //        try {
+        //            byte[] bytesOfMessage = ( "some salt 12345" + password ).getBytes( "UTF-8" );
+        //            MessageDigest md = MessageDigest.getInstance( "SHA-1" );
+        //            byte[] digest = md.digest( bytesOfMessage );
+        //            return new String( Hex.encode( digest ) );
+        //        } catch ( Exception e ) {
+        return password;
+        //        }
     }
 
 }

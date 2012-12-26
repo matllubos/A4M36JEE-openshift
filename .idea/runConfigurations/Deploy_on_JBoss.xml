@@ -2,6 +2,7 @@
   <configuration default="false" name="Deploy on JBoss" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 7.1.1.Final">
     <option name="OPEN_IN_BROWSER" value="false" />
     <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/FlightSystem/" />
+    <option name="COMMON_VM_ARGUMENTS" value="-XX:MaxPermSize=512m -XX:+CMSClassUnloadingEnabled" />
     <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
     <option name="UPDATING_POLICY" value="redeploy-artifacts" />
     <deployment>

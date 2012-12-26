@@ -1,16 +1,17 @@
 package cz.cvut.fel.aos.service.flight;
 
 import cz.cvut.fel.aos.model.Flight;
-import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
 
-import javax.jws.WebService;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
 import java.util.Date;
 
 /** @author Karel Cemus */
-@Service
+@Slf4j
+@Stateless
 public class FlightServiceImpl implements FlightService {
 
     @PersistenceContext

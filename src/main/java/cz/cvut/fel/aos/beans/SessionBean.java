@@ -2,10 +2,11 @@ package cz.cvut.fel.aos.beans;
 
 import lombok.Data;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -13,11 +14,11 @@ import static cz.cvut.fel.aos.utils.DateUtils.date;
 
 /** @author Karel Cemus */
 @Data
-@Component( "context" )
-@Scope( "session" )
-public class SessionBean {
+@Named( "context" )
+@SessionScoped
+public class SessionBean implements Serializable {
 
-    @Autowired
+    @Inject
     private FileBean file;
 
     /** flight-filter-configuration */

@@ -4,28 +4,27 @@ import cz.cvut.fel.aos.service.facade.FacadeService;
 import cz.cvut.fel.aos.service.payment.InvalidPaymentException;
 import cz.cvut.fel.aos.service.payment.NoSuchReservationException;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import javax.activation.DataHandler;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.Date;
 
 /** @author Karel Cemus */
 @Data
-@Component
-@Scope( "request" )
-public class PaymentBean {
+@RequestScoped
+public class PaymentBean implements Serializable {
 
-    @Autowired
+    @Inject
     private FacadeService service;
 
-    @Autowired
+    @Inject
     private SessionBean session;
 
-    @Autowired
+    @Inject
     private FileBean file;
 
     private long canceledReservationId;

@@ -1,9 +1,7 @@
 package cz.cvut.fel.aos.service.print;
 
-import org.springframework.stereotype.Service;
-
 import javax.activation.DataHandler;
-import javax.jws.WebService;
+import javax.ejb.Stateless;
 import javax.mail.util.ByteArrayDataSource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,7 +11,7 @@ import java.util.Date;
  *
  * @author Karel Cemus
  */
-@Service
+@Stateless
 public class PrintServiceImpl implements PrintService {
 
     private static final String DELIMITER = "---------------------------------------------------------------------------\n";

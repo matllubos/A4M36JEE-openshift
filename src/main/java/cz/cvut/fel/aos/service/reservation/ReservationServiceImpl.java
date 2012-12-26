@@ -3,18 +3,16 @@ package cz.cvut.fel.aos.service.reservation;
 import cz.cvut.fel.aos.model.Flight;
 import cz.cvut.fel.aos.model.Reservation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.jws.WebService;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.lang.*;
-import java.security.MessageDigest;
+
+//import org.springframework.transaction.annotation.Transactional;
 
 /** @author Karel Cemus */
 @Slf4j
-@Service
+@Stateless
 public class ReservationServiceImpl implements ReservationService {
 
     @PersistenceContext
@@ -31,7 +29,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    @Transactional
+    //    @Transactional
     public Reservation create( String flightNumber, String password, int count ) throws FullFlightException {
 
         // získej let
@@ -64,7 +62,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    @Transactional
+    //    @Transactional
     public boolean cancel( long reservation, String password ) throws SecurityException {
         Reservation entity = em.find( Reservation.class, reservation );
 
@@ -99,13 +97,13 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     private String hash( String password ) {
-//        try {
-//            byte[] bytesOfMessage = ( "some salt 12345" + password ).getBytes( "UTF-8" );
-//            MessageDigest md = MessageDigest.getInstance( "SHA-1" );
-//            byte[] digest = md.digest( bytesOfMessage );
-//            return new String( Hex.encode( digest ) );
-//        } catch ( Exception e ) {
-            return password;
-//        }
+        //        try {
+        //            byte[] bytesOfMessage = ( "some salt 12345" + password ).getBytes( "UTF-8" );
+        //            MessageDigest md = MessageDigest.getInstance( "SHA-1" );
+        //            byte[] digest = md.digest( bytesOfMessage );
+        //            return new String( Hex.encode( digest ) );
+        //        } catch ( Exception e ) {
+        return password;
+        //        }
     }
 }

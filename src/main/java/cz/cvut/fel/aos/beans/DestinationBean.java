@@ -2,25 +2,26 @@ package cz.cvut.fel.aos.beans;
 
 import cz.cvut.fel.aos.model.Destination;
 import cz.cvut.fel.aos.service.facade.FacadeService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.Collection;
-import java.util.List;
 
 /** @author Karel Cemus */
-@Component
-@Scope( "request" )
+@Named( "destinationBean" )
+@RequestScoped
 public class DestinationBean {
 
-    @Autowired
+    @Inject
     private FacadeService service;
 
     private Collection<Destination> destinations;
 
     public Collection<Destination> getDestinations() {
+        System.out.println( "aaaaaaaaa" );
         if ( destinations == null ) {
+            System.out.println( "yyyyyyyyyy" );
             destinations = service.findAllDestinations();
         }
         return destinations;

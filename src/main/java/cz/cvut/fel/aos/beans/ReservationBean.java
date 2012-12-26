@@ -8,28 +8,27 @@ import cz.cvut.fel.aos.service.payment.NoSuchReservationException;
 import cz.cvut.fel.aos.service.reservation.FullFlightException;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import javax.activation.DataHandler;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import java.io.Serializable;
 
 /** @author Karel Cemus */
 @Slf4j
 @Getter
-@Component
-@Scope( "request" )
-public class ReservationBean {
+@RequestScoped
+public class ReservationBean implements Serializable {
 
-    @Autowired
+    @Inject
     private FacadeService service;
 
-    @Autowired
+    @Inject
     private SessionBean session;
 
-    @Autowired
+    @Inject
     private FileBean file;
 
     private Reservation reservation;

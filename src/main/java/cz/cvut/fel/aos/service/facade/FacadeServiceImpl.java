@@ -12,32 +12,31 @@ import cz.cvut.fel.aos.service.payment.SecurityException;
 import cz.cvut.fel.aos.service.print.PrintService;
 import cz.cvut.fel.aos.service.reservation.FullFlightException;
 import cz.cvut.fel.aos.service.reservation.ReservationService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import javax.activation.DataHandler;
-import javax.jws.WebService;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Date;
 
 /** @author Karel Cemus */
 //@WebService( endpointInterface = "cz.cvut.fel.aos.service.facade.FacadeService" )
-@Service
+@Stateless
 public class FacadeServiceImpl implements FacadeService {
 
-    @Autowired
+    @Inject
     private DestinationService destinationService;
 
-    @Autowired
+    @Inject
     private FlightService flightService;
 
-    @Autowired
+    @Inject
     private ReservationService reservationService;
 
-    @Autowired
+    @Inject
     private PaymentService paymentService;
 
-    @Autowired
+    @Inject
     private PrintService printService;
 
     @Override

@@ -2,23 +2,24 @@ package cz.cvut.fel.aos.beans;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import javax.activation.DataHandler;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 
 /** @author Karel Cemus */
 @Slf4j
 @Getter
-@Component( "file" )
-@Scope( "session" )
-public class FileBean {
+@Named( "file" )
+@SessionScoped
+public class FileBean implements Serializable {
 
 
     private String title;
@@ -28,7 +29,6 @@ public class FileBean {
     private int length;
 
     private byte[] content;
-
 
     public void setFile( String fileTitle, String fileName, byte[] content ) {
         this.title = fileTitle;

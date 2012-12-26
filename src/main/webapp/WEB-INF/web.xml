@@ -12,13 +12,13 @@
     <display-name>FlightSystem</display-name>
 
     <!-- Add Support for Spring -->
-    <listener>
-        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-    </listener>
+    <!--<listener>-->
+    <!--<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>-->
+    <!--</listener>-->
 
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+    <!--<listener>-->
+    <!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+    <!--</listener>-->
 
     <!-- Change to "Production" when you are ready to deploy -->
     <context-param>
@@ -42,10 +42,10 @@
     </welcome-file-list>
 
     <!--<servlet>-->
-        <!--<display-name>CXF Servlet</display-name>-->
-        <!--<servlet-name>CXFServlet</servlet-name>-->
-        <!--<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>-->
-        <!--<load-on-startup>1</load-on-startup>-->
+    <!--<display-name>CXF Servlet</display-name>-->
+    <!--<servlet-name>CXFServlet</servlet-name>-->
+    <!--<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>-->
+    <!--<load-on-startup>1</load-on-startup>-->
     <!--</servlet>-->
 
     <!-- JSF mapping -->
@@ -77,13 +77,13 @@
     </error-page>
 
     <!--<servlet-mapping>-->
-        <!--<servlet-name>CXFServlet</servlet-name>-->
-        <!--<url-pattern>/cxf/*</url-pattern>-->
+    <!--<servlet-name>CXFServlet</servlet-name>-->
+    <!--<url-pattern>/cxf/*</url-pattern>-->
     <!--</servlet-mapping>-->
 
     <!--<persistence-unit-ref>-->
-        <!--<persistence-unit-ref-name>persistence/flightSystemPersistence</persistence-unit-ref-name>-->
-        <!--<persistence-unit-name>flightSystemPersistence</persistence-unit-name>-->
+    <!--<persistence-unit-ref-name>persistence/flightSystemPersistence</persistence-unit-ref-name>-->
+    <!--<persistence-unit-name>flightSystemPersistence</persistence-unit-name>-->
     <!--</persistence-unit-ref>-->
 
 </web-app>
