@@ -10,11 +10,13 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Date;
 
 /** @author Karel Cemus */
 @Data
+@Named
 @RequestScoped
 public class PaymentBean implements Serializable {
 

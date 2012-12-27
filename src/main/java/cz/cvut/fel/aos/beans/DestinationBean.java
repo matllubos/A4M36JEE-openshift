@@ -9,7 +9,7 @@ import javax.inject.Named;
 import java.util.Collection;
 
 /** @author Karel Cemus */
-@Named( "destinationBean" )
+@Named
 @RequestScoped
 public class DestinationBean {
 
@@ -19,9 +19,7 @@ public class DestinationBean {
     private Collection<Destination> destinations;
 
     public Collection<Destination> getDestinations() {
-        System.out.println( "aaaaaaaaa" );
         if ( destinations == null ) {
-            System.out.println( "yyyyyyyyyy" );
             destinations = service.findAllDestinations();
         }
         return destinations;
