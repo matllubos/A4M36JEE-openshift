@@ -2,6 +2,7 @@ package cz.cvut.fel.aos.booking.insert;
 
 import cz.cvut.fel.aos.model.Destination;
 import cz.cvut.fel.aos.model.Flight;
+import cz.cvut.fel.util.DatabaseTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
