@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datasources>
 
-    <datasource jndi-name="java:/jdbc/FlightSystem" enabled="true" use-java-context="true" pool-name="jdbc/FlightSystemPool">
-        <connection-url>jdbc:postgresql://gaim.xen.prgmr.com/jee_db</connection-url>
+    <datasource jndi-name="java:/jdbc/FlightSystemTest" enabled="true" use-java-context="true" pool-name="jdbc/FlightSystemPool">
+        <connection-url>jdbc:postgresql://gaim.xen.prgmr.com/jee_test</connection-url>
         <driver>postgresql-driver</driver>
         <security>
             <user-name>jee</user-name>
