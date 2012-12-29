@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.booking.insert;
+package cz.cvut.fel.init;
 
 import cz.cvut.fel.aos.model.Destination;
 import cz.cvut.fel.util.DatabaseTest;
@@ -8,22 +8,22 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.*;
 
 /** @author Karel Cemus */
 @Slf4j
-@Test( enabled = true )
-public class InsertDestination extends DatabaseTest {
+@Test( groups = "initialization" )
+public class InitializeDestinationTest extends DatabaseTest {
 
     @Test
     public void clearAll() {
 
-        log.info( "Clearing all destinations in the database." );
+        InitializeDestinationTest.log.info( "Clearing all destinations in the database." );
 
         List<Destination> destinations = em.createNamedQuery( "Destination.findAll", Destination.class ).getResultList();
 
         for ( Destination destination : destinations ) {
-            log.info( "Removing '{}'.", destination );
+            InitializeDestinationTest.log.info( "Removing '{}'.", destination );
             em.remove( destination );
         }
     }
@@ -35,7 +35,7 @@ public class InsertDestination extends DatabaseTest {
         destination.setCode( code );
         destination.setName( name );
 
-        log.info( "Saving '{}'", destination );
+        InitializeDestinationTest.log.info( "Saving '{}'", destination );
         em.persist( destination );
 
         assertFalse( destination.getId() == 0 );

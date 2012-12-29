@@ -1,12 +1,30 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite PUBLIC "-//TESTNG//DTD SUITE 1.0//EN" "http://testng.org/testng-1.0.dtd" >
 
-<suite name="service-test" verbose="1">
+<suite name="FlightSystem" verbose="1">
 
-    <test name="service-test">
+    <test name="FlightSystem" annotations="JDK">
+
+        <!-- groups to run -->
+        <groups>
+            <define name="arquillian"/>
+            <define name="initialization"/>
+
+            <run>
+                <include name="arquillian"/>
+                <include name="initialization"/>
+                <include name="services"/>
+            </run>
+
+            <dependencies>
+                <group name="services" depends-on="initialization"/>
+            </dependencies>
+
+        </groups>
 
         <!-- the location of the unit tests -->
         <packages>
-            <package name="cz.cvut.fel.aos.*">
+            <package name="cz.cvut.fel.*">
             </package>
         </packages>
 

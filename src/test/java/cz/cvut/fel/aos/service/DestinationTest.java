@@ -16,6 +16,7 @@ import static org.testng.Assert.*;
 
 /** @author Karel Cemus */
 @Slf4j
+@Test(groups = "services")
 public class DestinationTest extends ArquillianTest {
 
     @Inject

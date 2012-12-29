@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.booking.insert;
+package cz.cvut.fel.init;
 
 import cz.cvut.fel.aos.model.Destination;
 import cz.cvut.fel.aos.model.Flight;
@@ -14,7 +14,7 @@ import static org.testng.Assert.*;
 
 /** @author Karel Cemus */
 @Test( enabled = false )
-public class InsertFlight extends DatabaseTest {
+public class InitializeFlightTest extends DatabaseTest {
 
     @Test
     public void clearAll() {
