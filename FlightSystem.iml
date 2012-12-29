@@ -39,8 +39,8 @@
       <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/test-annotations" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/annotations" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/target/FlightSystem-1.0-SNAPSHOT" />
       <excludeFolder url="file://$MODULE_DIR$/target/classes" />
-      <excludeFolder url="file://$MODULE_DIR$/target/lib" />
       <excludeFolder url="file://$MODULE_DIR$/target/test-classes" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -80,18 +80,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.shrinkwrap:shrinkwrap-impl-base:1.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.shrinkwrap:shrinkwrap-spi:1.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.arquillian.protocol:arquillian-protocol-servlet:1.0.0.CR7" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.hibernate:hibernate-entitymanager:3.6.10.Final" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.hibernate:hibernate-core:3.6.10.Final" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: antlr:antlr:2.7.6" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: commons-collections:commons-collections:3.1" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: dom4j:dom4j:1.6.1" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.hibernate:hibernate-commons-annotations:3.2.0.Final" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.transaction:jta:1.1" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: cglib:cglib:2.2" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: asm:asm:3.1" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: javassist:javassist:3.12.0.GA" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: com.sun.faces:jsf-api:2.1.7" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.as:jboss-as-arquillian-container-remote:7.1.1.Final" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.as:jboss-as-arquillian-common:7.1.1.Final" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.arquillian.container:arquillian-container-osgi:1.0.2.Final" level="project" />

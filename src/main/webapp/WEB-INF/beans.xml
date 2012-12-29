@@ -1,33 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans xmlns="http://java.sun.com/xml/ns/javaee"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-
-    <!--<context:component-scan base-package="cz.cvut.fel.aos" annotation-config="true"/>-->
-
-    <!-- Registers Spring's standard post-processors for annotation-based configuration like @Repository -->
-    <!--<context:annotation-config/>-->
-
-    <!--<import resource="classpath:META-INF/cxf/cxf.xml"/>-->
-
-    <!--<bean id="facadeServiceImpl" class="cz.cvut.fel.aos.service.facade.FacadeServiceImpl"/>-->
-    <!--<jaxws:endpoint id="facadeService" implementor="#facadeServiceImpl" address="/FacadeService">-->
-    <!--<jaxws:properties>-->
-    <!--<entry key="mtom-enabled" value="true"/>-->
-    <!--</jaxws:properties>-->
-    <!--</jaxws:endpoint>-->
-
-    <!--<bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager"/>-->
-
-    <!--<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">-->
-    <!--<property name="persistenceUnitName" value="flightSystemPersistence"/>-->
-    <!--<property name="persistenceUnitManager" ref="persistenceUnitManager"/>-->
-    <!--</bean>-->
-
-    <!--<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">-->
-    <!--<property name="transactionManagerName" value="java:/TransactionManager" />-->
-    <!--</bean>-->
-
-    <!--<tx:annotation-driven />-->
-
+       xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd">
 </beans>
