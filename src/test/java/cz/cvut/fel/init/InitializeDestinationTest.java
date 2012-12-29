@@ -6,57 +6,37 @@ import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
+import static cz.cvut.fel.util.ArquillianDataProvider.provide;
 import static org.testng.Assert.*;
 
 /** @author Karel Cemus */
 @Slf4j
-@Test( groups = "initialization" )
+@Test( groups = "initialization", dependsOnMethods = "cz.cvut.fel.init.InitializeEmptyDatabaseTest.clearAllDestinations" )
 public class InitializeDestinationTest extends DatabaseTest {
 
-    @Test
-    public void clearAll() {
-
-        InitializeDestinationTest.log.info( "Clearing all destinations in the database." );
-
-        List<Destination> destinations = em.createNamedQuery( "Destination.findAll", Destination.class ).getResultList();
-
-        for ( Destination destination : destinations ) {
-            InitializeDestinationTest.log.info( "Removing '{}'.", destination );
-            em.remove( destination );
-        }
-    }
-
-    @Test( dataProvider = "destinationProvider", dependsOnMethods = "clearAll" )
-    public void run( String code, String name ) {
+    @Test( dataProvider = "destinationProvider" )
+    public void insert( String code, String name ) {
 
         Destination destination = new Destination();
         destination.setCode( code );
         destination.setName( name );
 
-        InitializeDestinationTest.log.info( "Saving '{}'", destination );
+        log.trace( "Saving '{}'", destination );
         em.persist( destination );
 
         assertFalse( destination.getId() == 0 );
     }
 
-    private static int destinationProviderCounter = 0;
-
     @DataProvider
-    public String[][] destinationProvider() {
-        String[][] data = new String[][]{
-                new String[]{ "PRG", "Prague" },
-                new String[]{ "MAD", "Madrid" },
-                new String[]{ "LHR", "London (Heathrow)" },
-                new String[]{ "INN", "Innsburck" },
-                new String[]{ "VIE", "Vienna" }
-        };
-
-        if ( isInContainer() ) {
-            return new String[][]{ data[ destinationProviderCounter++ ] };
-        } else {
-            return data;
-        }
+    public Object[][] destinationProvider() {
+        return provide(
+                "InitializeDestinationTest#destinationProvider",
+                new Object[][]{
+                        new Object[]{ "PRG", "Prague" },
+                        new Object[]{ "MAD", "Madrid" },
+                        new Object[]{ "LHR", "London (Heathrow)" },
+                        new Object[]{ "INN", "Innsburck" },
+                        new Object[]{ "VIE", "Vienna" }
+                } );
     }
 }
