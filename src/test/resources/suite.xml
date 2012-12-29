@@ -12,20 +12,19 @@
 
             <run>
                 <include name="arquillian"/>
-                <include name="initialization"/>
+                <!--<include name="initialization"/>-->
                 <include name="services"/>
             </run>
 
             <dependencies>
-                <group name="services" depends-on="initialization"/>
+                <!--<group name="services" depends-on="initialization"/>-->
             </dependencies>
 
         </groups>
 
         <!-- the location of the unit tests -->
         <packages>
-            <package name="cz.cvut.fel.*">
-            </package>
+            <package name="cz.cvut.fel.*" />
         </packages>
 
     </test>
