@@ -32,7 +32,7 @@ public class DispatcherBean implements Serializable {
             session.setIdentifier( reservationId );
             session.setPassword( reservationPassword );
             return "reservation";
-        } catch ( cz.cvut.fel.aos.service.payment.SecurityException e ) {
+        } catch ( SecurityException e ) {
             FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Heslo pro přístup k rezervaci není správné" ) );
             return null;
         }

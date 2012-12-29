@@ -5,7 +5,6 @@ import cz.cvut.fel.aos.model.Flight;
 import cz.cvut.fel.aos.model.Reservation;
 import cz.cvut.fel.aos.service.facade.FacadeService;
 import cz.cvut.fel.aos.service.facade.SuccessfulReservation;
-import cz.cvut.fel.aos.service.payment.SecurityException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;

@@ -3,6 +3,7 @@ package cz.cvut.fel.aos.service.reservation;
 import cz.cvut.fel.aos.model.Flight;
 import cz.cvut.fel.aos.model.Reservation;
 import cz.cvut.fel.aos.utils.SecurityProvider;
+import cz.cvut.fel.exception.FullFlightException;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.ejb.Stateless;

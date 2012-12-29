@@ -2,10 +2,10 @@ package cz.cvut.fel.aos.beans;
 
 import cz.cvut.fel.aos.model.Reservation;
 import cz.cvut.fel.aos.service.facade.FacadeService;
-import cz.cvut.fel.aos.service.facade.ReservationNotPaidException;
+import cz.cvut.fel.exception.ReservationNotPaidException;
 import cz.cvut.fel.aos.service.facade.SuccessfulReservation;
-import cz.cvut.fel.aos.service.payment.NoSuchReservationException;
-import cz.cvut.fel.aos.service.reservation.FullFlightException;
+import cz.cvut.fel.exception.NoSuchReservationException;
+import cz.cvut.fel.exception.FullFlightException;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 

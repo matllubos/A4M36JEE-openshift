@@ -3,14 +3,13 @@ package cz.cvut.fel.aos.service.facade;
 import cz.cvut.fel.aos.model.Destination;
 import cz.cvut.fel.aos.model.Flight;
 import cz.cvut.fel.aos.model.Reservation;
-import cz.cvut.fel.aos.service.payment.InvalidPaymentException;
-import cz.cvut.fel.aos.service.payment.NoSuchReservationException;
-import cz.cvut.fel.aos.service.payment.SecurityException;
-import cz.cvut.fel.aos.service.reservation.FullFlightException;
+import cz.cvut.fel.exception.InvalidPaymentException;
+import cz.cvut.fel.exception.NoSuchReservationException;
+import cz.cvut.fel.exception.FullFlightException;
+import cz.cvut.fel.exception.ReservationNotPaidException;
 
 import javax.activation.DataHandler;
 import javax.jws.WebParam;
-import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlMimeType;
 import java.util.Collection;
 import java.util.Date;

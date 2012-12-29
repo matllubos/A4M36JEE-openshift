@@ -1,8 +1,8 @@
 package cz.cvut.fel.aos.beans;
 
 import cz.cvut.fel.aos.service.facade.FacadeService;
-import cz.cvut.fel.aos.service.payment.InvalidPaymentException;
-import cz.cvut.fel.aos.service.payment.NoSuchReservationException;
+import cz.cvut.fel.exception.InvalidPaymentException;
+import cz.cvut.fel.exception.NoSuchReservationException;
 import lombok.Data;
 
 import javax.activation.DataHandler;

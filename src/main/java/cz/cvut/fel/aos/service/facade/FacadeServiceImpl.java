@@ -5,13 +5,13 @@ import cz.cvut.fel.aos.model.Flight;
 import cz.cvut.fel.aos.model.Reservation;
 import cz.cvut.fel.aos.service.destination.DestinationService;
 import cz.cvut.fel.aos.service.flight.FlightService;
-import cz.cvut.fel.aos.service.payment.InvalidPaymentException;
-import cz.cvut.fel.aos.service.payment.NoSuchReservationException;
+import cz.cvut.fel.exception.InvalidPaymentException;
+import cz.cvut.fel.exception.NoSuchReservationException;
 import cz.cvut.fel.aos.service.payment.PaymentService;
-import cz.cvut.fel.aos.service.payment.SecurityException;
 import cz.cvut.fel.aos.service.print.PrintService;
-import cz.cvut.fel.aos.service.reservation.FullFlightException;
+import cz.cvut.fel.exception.FullFlightException;
 import cz.cvut.fel.aos.service.reservation.ReservationService;
+import cz.cvut.fel.exception.ReservationNotPaidException;
 
 import javax.activation.DataHandler;
 import javax.ejb.Stateless;

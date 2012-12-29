@@ -2,6 +2,8 @@ package cz.cvut.fel.aos.service.payment;
 
 import cz.cvut.fel.aos.model.Reservation;
 import cz.cvut.fel.aos.utils.SecurityProvider;
+import cz.cvut.fel.exception.InvalidPaymentException;
+import cz.cvut.fel.exception.NoSuchReservationException;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.ejb.Stateless;

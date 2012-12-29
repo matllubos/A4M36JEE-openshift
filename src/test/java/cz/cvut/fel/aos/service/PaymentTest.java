@@ -1,9 +1,8 @@
 package cz.cvut.fel.aos.service;
 
 import cz.cvut.fel.aos.model.Reservation;
-import cz.cvut.fel.aos.service.payment.InvalidPaymentException;
+import cz.cvut.fel.exception.InvalidPaymentException;
 import cz.cvut.fel.aos.service.payment.PaymentService;
-import cz.cvut.fel.aos.service.payment.SecurityException;
 import cz.cvut.fel.aos.service.reservation.ReservationService;
 import cz.cvut.fel.util.ArquillianTest;
 import lombok.extern.slf4j.Slf4j;

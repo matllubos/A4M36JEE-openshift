@@ -2,9 +2,8 @@ package cz.cvut.fel.aos.service;
 
 import cz.cvut.fel.aos.model.Flight;
 import cz.cvut.fel.aos.model.Reservation;
-import cz.cvut.fel.aos.service.reservation.FullFlightException;
+import cz.cvut.fel.exception.FullFlightException;
 import cz.cvut.fel.aos.service.reservation.ReservationService;
-import cz.cvut.fel.aos.service.reservation.SecurityException;
 import cz.cvut.fel.aos.utils.SecurityProvider;
 import cz.cvut.fel.util.ArquillianTest;
 import lombok.extern.slf4j.Slf4j;

@@ -1,9 +1,10 @@
 package cz.cvut.fel.aos.service.payment;
 
 import cz.cvut.fel.aos.model.Reservation;
+import cz.cvut.fel.exception.InvalidPaymentException;
+import cz.cvut.fel.exception.NoSuchReservationException;
 
 import javax.jws.WebParam;
-import javax.jws.WebService;
 import java.util.Date;
 
 /**

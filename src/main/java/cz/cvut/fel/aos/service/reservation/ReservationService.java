@@ -1,10 +1,9 @@
 package cz.cvut.fel.aos.service.reservation;
 
 import cz.cvut.fel.aos.model.Reservation;
+import cz.cvut.fel.exception.FullFlightException;
 
 import javax.jws.WebParam;
-import javax.jws.WebService;
-import java.lang.*;
 
 /**
  * API pro přístup k rezervacím. Umožňuje jejich tvorbu a aktualizaci
