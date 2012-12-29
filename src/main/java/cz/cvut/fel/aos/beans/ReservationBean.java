@@ -1,18 +1,10 @@
 package cz.cvut.fel.aos.beans;
 
 import cz.cvut.fel.aos.model.Reservation;
-import cz.cvut.fel.aos.service.facade.FacadeService;
-import cz.cvut.fel.exception.ReservationNotPaidException;
-import cz.cvut.fel.aos.service.facade.SuccessfulReservation;
-import cz.cvut.fel.exception.NoSuchReservationException;
-import cz.cvut.fel.exception.FullFlightException;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.activation.DataHandler;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -24,8 +16,8 @@ import java.io.Serializable;
 @RequestScoped
 public class ReservationBean implements Serializable {
 
-    @Inject
-    private FacadeService service;
+    //    @Inject
+    //    private FacadeService service;
 
     @Inject
     private SessionBean session;
@@ -43,63 +35,63 @@ public class ReservationBean implements Serializable {
     }
 
     public Reservation find() {
-        try {
-            if ( session.getIdentifier() == 0 ) return null;
-            return service.findReservation( session.getIdentifier(), session.getPassword() );
-        } catch ( SecurityException e ) {
-            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Heslo pro přístup k rezervaci není správné" ) );
-            return null;
-        }
+        //        try {
+        //            if ( session.getIdentifier() == 0 ) return null;
+        //            return service.findReservation( session.getIdentifier(), session.getPassword() );
+        //        } catch ( SecurityException e ) {
+        //            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Heslo pro přístup k rezervaci není správné" ) );
+        return null;
+        //        }
     }
 
     public String createReservation( String flightNumber ) {
-        try {
-            int count = Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get( flightNumber + "-count" ) );
-            session.setPassword( generatePassword() );
-
-            SuccessfulReservation success = service.createReservation( flightNumber, session.getPassword(), count );
-            session.setIdentifier( success.getReservation().getId() );
-            file.setFile( "Stáhnout potvrzení o rezervaci. OBSAHUJE HESLO pro přístup.", "confirmation.txt", success.getConfirmation() );
-
-            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Rezervace byla vytvořena." ) );
-
-            return "reservation";
-        } catch ( FullFlightException e ) {
-            session.setIdentifier( 0 );
-            session.setPassword( null );
-            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Let je již plně obsazen." ) );
-            return null;
-        }
+        //        try {
+        //            int count = Integer.parseInt( FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get( flightNumber + "-count" ) );
+        //            session.setPassword( generatePassword() );
+        //
+        //            SuccessfulReservation success = service.createReservation( flightNumber, session.getPassword(), count );
+        //            session.setIdentifier( success.getReservation().getId() );
+        //            file.setFile( "Stáhnout potvrzení o rezervaci. OBSAHUJE HESLO pro přístup.", "confirmation.txt", success.getConfirmation() );
+        //
+        //            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Rezervace byla vytvořena." ) );
+        //
+        //            return "reservation";
+        //        } catch ( FullFlightException e ) {
+        //            session.setIdentifier( 0 );
+        //            session.setPassword( null );
+        //            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Let je již plně obsazen." ) );
+        return null;
+        //        }
     }
 
 
     public String cancel() {
-        try {
-            DataHandler handler = service.cancelReservation( session.getIdentifier(), session.getPassword() );
-            file.setFile( "Stáhnout potvrzení o zrušení rezervace", "cancel-confirmation.txt", handler );
-
-            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Rezervace byla zrušena." ) );
-
-        } catch ( NoSuchReservationException e ) {
-            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Rezervace nebyla nalezena." ) );
-        } catch ( SecurityException e ) {
-            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Přístup k rezervaci nebyl povolen. Zkontrolujte heslo a opakujte akci později." ) );
-        }
+        //        try {
+        //            DataHandler handler = service.cancelReservation( session.getIdentifier(), session.getPassword() );
+        //            file.setFile( "Stáhnout potvrzení o zrušení rezervace", "cancel-confirmation.txt", handler );
+        //
+        //            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Rezervace byla zrušena." ) );
+        //
+        //        } catch ( NoSuchReservationException e ) {
+        //            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Rezervace nebyla nalezena." ) );
+        //        } catch ( SecurityException e ) {
+        //            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Přístup k rezervaci nebyl povolen. Zkontrolujte heslo a opakujte akci později." ) );
+        //        }
         return "reservation";
     }
 
     public void printETicket() {
-        try {
-            DataHandler handler = service.printTicket( session.getIdentifier(), session.getPassword() );
-            file.download( "eticket.txt", handler );
-
-        } catch ( NoSuchReservationException e ) {
-            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Rezervace nebyla nalezena." ) );
-        } catch ( SecurityException e ) {
-            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Přístup k rezervaci nebyl povolen. Zkontrolujte heslo a opakujte akci později." ) );
-        } catch ( ReservationNotPaidException e ) {
-            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Rezervace ještě není zaplacena, nelze vytisknout platnou letenku." ) );
-        }
+        //        try {
+        //            DataHandler handler = service.printTicket( session.getIdentifier(), session.getPassword() );
+        //            file.download( "eticket.txt", handler );
+        //
+        //        } catch ( NoSuchReservationException e ) {
+        //            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Rezervace nebyla nalezena." ) );
+        //        } catch ( SecurityException e ) {
+        //            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Přístup k rezervaci nebyl povolen. Zkontrolujte heslo a opakujte akci později." ) );
+        //        } catch ( ReservationNotPaidException e ) {
+        //            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "Rezervace ještě není zaplacena, nelze vytisknout platnou letenku." ) );
+        //        }
     }
 
     private String generatePassword() {
