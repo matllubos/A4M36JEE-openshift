@@ -2,13 +2,14 @@ package cz.cvut.fel.aos.service.reservation;
 
 import cz.cvut.fel.aos.model.Flight;
 import cz.cvut.fel.aos.model.Reservation;
+import cz.cvut.fel.aos.utils.SecurityProvider;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-//import org.springframework.transaction.annotation.Transactional;
 
 /** @author Karel Cemus */
 @Slf4j
@@ -18,12 +19,15 @@ public class ReservationServiceImpl implements ReservationService {
     @PersistenceContext
     private EntityManager em;
 
+    @Inject
+    private SecurityProvider security;
+
     @Override
     public Reservation find( long reservation, String password ) throws SecurityException {
         Reservation entity = em.find( Reservation.class, reservation );
 
         // zkontroluj přístup k rezervaci
-        checkSecurity( entity, password );
+        security.verifyAccess( entity.getId(), entity.getPassword(), password );
 
         return entity;
     }
@@ -53,8 +57,8 @@ public class ReservationServiceImpl implements ReservationService {
         entity.setPaid( 0 );
         entity.setCost( flight.getCost() * count );
         entity.setCanceled( false );
-        entity.setPassword( hash( password ) );
         em.persist( entity );
+        entity.setPassword( security.hash( entity.getId(), password ) );
 
         ReservationServiceImpl.log.info( "Reservation with ID '{}' was successfully created.", entity.getId() );
 
@@ -72,7 +76,7 @@ public class ReservationServiceImpl implements ReservationService {
         }
 
         // zkontroluj přístup k rezervaci
-        checkSecurity( entity, password );
+        security.verifyAccess( entity.getId(), entity.getPassword(), password );
 
         // already canceled
         if ( entity.isCanceled() ) return true;
@@ -87,23 +91,5 @@ public class ReservationServiceImpl implements ReservationService {
         ReservationServiceImpl.log.info( "Reservation with ID '{}' was successfully canceled.", entity.getId() );
 
         return true;
-    }
-
-    private void checkSecurity( Reservation reservation, String password ) throws SecurityException {
-        password = hash( password );
-        if ( reservation != null && !reservation.getPassword().equalsIgnoreCase( password ) ) {
-            throw new SecurityException( String.format( "Access to reservation with id '%d' is forbidden. Password is incorrect.", reservation.getId() ) );
-        }
-    }
-
-    private String hash( String password ) {
-        //        try {
-        //            byte[] bytesOfMessage = ( "some salt 12345" + password ).getBytes( "UTF-8" );
-        //            MessageDigest md = MessageDigest.getInstance( "SHA-1" );
-        //            byte[] digest = md.digest( bytesOfMessage );
-        //            return new String( Hex.encode( digest ) );
-        //        } catch ( Exception e ) {
-        return password;
-        //        }
     }
 }

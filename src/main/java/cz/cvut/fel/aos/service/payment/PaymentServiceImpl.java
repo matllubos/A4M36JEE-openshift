@@ -1,9 +1,11 @@
 package cz.cvut.fel.aos.service.payment;
 
 import cz.cvut.fel.aos.model.Reservation;
+import cz.cvut.fel.aos.utils.SecurityProvider;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Date;
@@ -21,6 +23,9 @@ public class PaymentServiceImpl implements PaymentService {
 
     @PersistenceContext
     private EntityManager em;
+
+    @Inject
+    private SecurityProvider security;
 
     @Override
     //    @Transactional
@@ -118,23 +123,8 @@ public class PaymentServiceImpl implements PaymentService {
             throw new NoSuchReservationException( String.format( "Reservation with ID '%d' doesn't exists.", id ) );
         }
 
-        // zkontroluj přístup k rezervaci
-        if ( reservation != null && !reservation.getPassword().equalsIgnoreCase( hash( password ) ) ) {
-            throw new SecurityException( String.format( "Access to reservation with ID '%d' is forbidden. Password is incorrect.", reservation.getId() ) );
-        }
+        security.verifyAccess( reservation.getId(), reservation.getPassword(), password );
 
         return reservation;
     }
-
-    private String hash( String password ) {
-        //        try {
-        //            byte[] bytesOfMessage = ( "some salt 12345" + password ).getBytes( "UTF-8" );
-        //            MessageDigest md = MessageDigest.getInstance( "SHA-1" );
-        //            byte[] digest = md.digest( bytesOfMessage );
-        //            return new String( Hex.encode( digest ) );
-        //        } catch ( Exception e ) {
-        return password;
-        //        }
-    }
-
 }
