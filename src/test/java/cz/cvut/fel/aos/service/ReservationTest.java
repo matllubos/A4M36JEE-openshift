@@ -5,28 +5,31 @@ import cz.cvut.fel.aos.model.Reservation;
 import cz.cvut.fel.aos.service.reservation.FullFlightException;
 import cz.cvut.fel.aos.service.reservation.ReservationService;
 import cz.cvut.fel.aos.service.reservation.SecurityException;
+import cz.cvut.fel.aos.utils.SecurityProvider;
+import cz.cvut.fel.util.ArquillianTest;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import javax.ejb.EJBException;
+import javax.inject.Inject;
 
 import static org.testng.Assert.*;
 
 /** @author Karel Cemus */
-@Test( enabled = false )
-public class ReservationTest {
+@Slf4j
+@Test( groups = "services" )
+public class ReservationTest extends ArquillianTest {
 
     private static final String PASSWORD = "heslo12345";
 
-    ReservationService service;
+    @Inject
+    private ReservationService service;
 
-    private long reservationId;
+    @Inject
+    private SecurityProvider security;
 
-    @BeforeTest
-    public void setUp() {
-        //        ReservationServiceImplService factory = new ReservationServiceImplService( ReservationServiceImplService.WSDL_LOCATION, ReservationServiceImplService.SERVICE );
-        //        service = factory.getReservationServiceImplPort();
-    }
-
+    private static long reservationId;
 
     public void testCreate() throws FullFlightException {
 
@@ -36,8 +39,9 @@ public class ReservationTest {
         Assert.assertEquals( reservation.getPaid(), 0 );
         Assert.assertEquals( reservation.getFlight().getNumber(), "F987545" );
         Assert.assertEquals( reservation.getCost(), 5000 * 5 );
-        assertNotEquals( reservation.getPassword(), "heslo12345" );
-        assertNotNull( reservation.getId() );
+        assertEquals( reservation.getPassword(), security.hash( reservation.getId(), PASSWORD ) );
+        assertTrue( reservation.getId() != 0 );
+        log.trace( "Created reservation with id '{}'.", reservation.getId() );
 
         // set up of another tests
         reservationId = reservation.getId();
@@ -53,7 +57,7 @@ public class ReservationTest {
         Assert.assertEquals( reservation.getCost(), 5000 * 5 );
     }
 
-    @Test( dependsOnMethods = "testCreate", expectedExceptions = SecurityException.class )
+    @Test( dependsOnMethods = "testCreate", expectedExceptions = { EJBException.class, SecurityException.class } )
     public void testFindWithException() throws SecurityException {
         service.find( reservationId, "wrongPassword" );
         fail( "Expected exception" );
@@ -96,5 +100,4 @@ public class ReservationTest {
 
         Assert.assertEquals( updatedFlight.getCapacityLeft(), freeSpace );
     }
-
 }

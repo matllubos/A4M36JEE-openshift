@@ -2,6 +2,7 @@ package cz.cvut.fel.init;
 
 import cz.cvut.fel.aos.model.Destination;
 import cz.cvut.fel.aos.model.Flight;
+import cz.cvut.fel.aos.model.Reservation;
 import cz.cvut.fel.util.DatabaseTest;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
@@ -18,6 +19,20 @@ import java.util.List;
 public class InitializeEmptyDatabaseTest extends DatabaseTest {
 
     @Test
+    public void clearAllReservations() {
+
+        log.trace( "Clearing all reservations in the database." );
+
+        // all flights in the system
+        List<Reservation> reservations = em.createNamedQuery( "Reservation.findAll", Reservation.class ).getResultList();
+
+        for ( Reservation reservation : reservations ) {
+            log.trace( "Removing '{}'.", reservation );
+            em.remove( reservation );
+        }
+    }
+
+    @Test( dependsOnMethods = "clearAllReservations" )
     public void clearAllFlights() {
 
         log.trace( "Clearing all flights in the database." );

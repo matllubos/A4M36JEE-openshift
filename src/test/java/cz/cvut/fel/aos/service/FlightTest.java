@@ -2,26 +2,23 @@ package cz.cvut.fel.aos.service;
 
 import cz.cvut.fel.aos.model.Flight;
 import cz.cvut.fel.aos.service.flight.FlightService;
-import org.testng.annotations.BeforeTest;
+import cz.cvut.fel.util.ArquillianTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import javax.inject.Inject;
 import java.util.*;
 
 import static cz.cvut.fel.aos.utils.DateUtils.date;
+import static cz.cvut.fel.util.ArquillianDataProvider.provide;
 import static org.testng.Assert.*;
 
 /** @author Karel Cemus */
-@Test( enabled = false )
-public class FlightTest {
+@Test( groups = "services" )
+public class FlightTest extends ArquillianTest {
 
-    FlightService service;
-
-    @BeforeTest
-    public void setUp() {
-//        FlightServiceImplService factory = new FlightServiceImplService( FlightServiceImplService.WSDL_LOCATION, FlightServiceImplService.SERVICE );
-//        service = factory.getFlightServiceImplPort();
-    }
+    @Inject
+    private FlightService service;
 
     @Test
     public void testFindAll() {
@@ -43,11 +40,13 @@ public class FlightTest {
 
     @DataProvider
     public Object[][] flightsFromProvider() {
-        return new Object[][]{
-                new Object[]{ date( 1, 1, 2012, 0, 0 ), date( 1, 1, 2012, 23, 59 ), "PRG", new String[]{ "F987545", "F987987" } },
-                new Object[]{ date( 1, 1, 2012, 8, 30 ), date( 2, 1, 2012, 23, 59 ), "VIE", new String[]{ "F987687", "F987981" } },
-                new Object[]{ date( 3, 1, 2012, 0, 0 ), date( 3, 1, 2012, 23, 59 ), "INN", new String[]{ "F987972" } }
-        };
+        return provide(
+                "FlightTest#flightsFromProvider",
+                new Object[][]{
+                        new Object[]{ date( 1, 1, 2012, 0, 0 ), date( 1, 1, 2012, 23, 59 ), "PRG", new String[]{ "F987545", "F987987" } },
+                        new Object[]{ date( 1, 1, 2012, 8, 30 ), date( 2, 1, 2012, 23, 59 ), "VIE", new String[]{ "F987687", "F987981" } },
+                        new Object[]{ date( 3, 1, 2012, 0, 0 ), date( 3, 1, 2012, 23, 59 ), "INN", new String[]{ "F987972" } }
+                } );
     }
 
     @Test( dataProvider = "flightsToProvider" )
@@ -61,11 +60,13 @@ public class FlightTest {
 
     @DataProvider
     public Object[][] flightsToProvider() {
-        return new Object[][]{
-                new Object[]{ date( 1, 1, 2012, 0, 0 ), date( 1, 1, 2012, 23, 59 ), "PRG", new String[]{ "F987687" } },
-                new Object[]{ date( 1, 1, 2012, 8, 30 ), date( 2, 1, 2012, 23, 59 ), "MAD", new String[]{ "F987545", "F987126", "F987358" } },
-                new Object[]{ date( 3, 1, 2012, 0, 0 ), date( 3, 1, 2012, 23, 59 ), "LHR", new String[]{ "F987963" } }
-        };
+        return provide(
+                "FlightTest#flightsToProvider",
+                new Object[][]{
+                        new Object[]{ date( 1, 1, 2012, 0, 0 ), date( 1, 1, 2012, 23, 59 ), "PRG", new String[]{ "F987687" } },
+                        new Object[]{ date( 1, 1, 2012, 8, 30 ), date( 2, 1, 2012, 23, 59 ), "MAD", new String[]{ "F987545", "F987126", "F987358" } },
+                        new Object[]{ date( 3, 1, 2012, 0, 0 ), date( 3, 1, 2012, 23, 59 ), "LHR", new String[]{ "F987963" } }
+                } );
     }
 
     @Test( dataProvider = "flightsProvider" )
@@ -78,11 +79,13 @@ public class FlightTest {
 
     @DataProvider
     public Object[][] flightsProvider() {
-        return new Object[][]{
-                new Object[]{ date( 1, 1, 2012, 0, 0 ), date( 1, 1, 2012, 23, 59 ), "PRG", "LHR", new String[]{ "F987987" } },
-                new Object[]{ date( 1, 1, 2012, 8, 30 ), date( 3, 1, 2012, 23, 59 ), "PRG", "MAD", new String[]{ "F987545", "F987126", "F987358" } },
-                new Object[]{ date( 3, 1, 2012, 0, 0 ), date( 3, 1, 2012, 23, 59 ), "PRG", "LHR", new String[]{ "F987963" } }
-        };
+        return provide(
+                "FlightTest#flightsProvider",
+                new Object[][]{
+                        new Object[]{ date( 1, 1, 2012, 0, 0 ), date( 1, 1, 2012, 23, 59 ), "PRG", "LHR", new String[]{ "F987987" } },
+                        new Object[]{ date( 1, 1, 2012, 8, 30 ), date( 3, 1, 2012, 23, 59 ), "PRG", "MAD", new String[]{ "F987545", "F987126", "F987358" } },
+                        new Object[]{ date( 3, 1, 2012, 0, 0 ), date( 3, 1, 2012, 23, 59 ), "PRG", "LHR", new String[]{ "F987963" } }
+                } );
     }
 
     private void assertFlights( Collection<Flight> flights, String... model ) {
