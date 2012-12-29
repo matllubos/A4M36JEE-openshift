@@ -2,7 +2,6 @@ package cz.cvut.fel.aos.service.print;
 
 import javax.activation.DataHandler;
 import javax.ejb.Stateless;
-import javax.mail.util.ByteArrayDataSource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,6 +11,7 @@ import java.util.Date;
  * @author Karel Cemus
  */
 @Stateless
+@Deprecated
 public class PrintServiceImpl implements PrintService {
 
     private static final String DELIMITER = "---------------------------------------------------------------------------\n";
@@ -35,7 +35,8 @@ public class PrintServiceImpl implements PrintService {
         builder.append( String.format( FORMAT, "Cena:" ) ).append( '\t' ).append( cost ).append( " Kč" ).append( '\n' );
         builder.append( DELIMITER );
 
-        return new DataHandler( new ByteArrayDataSource( builder.toString().getBytes(), "plain/text" ) );
+//        return new DataHandler( new ByteArrayDataSource( builder.toString().getBytes(), "plain/text" ) );
+        return null;
     }
 
     @Override
@@ -54,7 +55,8 @@ public class PrintServiceImpl implements PrintService {
         builder.append( String.format( FORMAT, "Stav:" ) ).append( '\t' ).append( "zaplaceno" ).append( '\n' );
         builder.append( DELIMITER );
 
-        return new DataHandler( new ByteArrayDataSource( builder.toString().getBytes(), "plain/text" ) );
+//        return new DataHandler( new ByteArrayDataSource( builder.toString().getBytes(), "plain/text" ) );
+        return null;
     }
 
     @Override
@@ -72,7 +74,8 @@ public class PrintServiceImpl implements PrintService {
         builder.append( String.format( FORMAT, "Čas odletu:" ) ).append( '\t' ).append( new SimpleDateFormat( "HH:mm" ).format( takeOff ) ).append( '\n' );
         builder.append( DELIMITER );
 
-        return new DataHandler( new ByteArrayDataSource( builder.toString().getBytes(), "plain/text" ) );
+//     return new DataHandler( new ByteArrayDataSource( builder.toString().getBytes(), "plain/text" ) );
+        return null;
     }
 
 
@@ -89,7 +92,8 @@ public class PrintServiceImpl implements PrintService {
         builder.append( String.format( FORMAT, "Datum platby:" ) ).append( '\t' ).append( new SimpleDateFormat( "dd.MM.yyyy HH:mm" ).format( new Date() ) ).append( '\n' );
         builder.append( DELIMITER );
 
-        return new DataHandler( new ByteArrayDataSource( builder.toString().getBytes(), "plain/text" ) );
+//        return new DataHandler( new ByteArrayDataSource( builder.toString().getBytes(), "plain/text" ) );
+        return null;
     }
 
 }
