@@ -18,8 +18,8 @@ public interface DestinationService {
     Collection<Destination> findAllDestinations();
 
     /** saves given destination whether it is new or modified only */
-    Destination saveDestination( Destination destination );
+    Destination save( Destination destination );
 
     /** deletes the selected destination and it will not be available any more */
-    void deleteDestination( long id ) throws NoSuchDestinationException;
+    void delete( long id ) throws NoSuchDestinationException;
 }

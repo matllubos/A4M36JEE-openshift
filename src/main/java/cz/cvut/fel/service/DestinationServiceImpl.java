@@ -40,7 +40,7 @@ public class DestinationServiceImpl implements DestinationService {
     }
 
     @Override
-    public Destination saveDestination( @Valid final Destination destination ) {
+    public Destination save( @Valid final Destination destination ) {
 
         // verify and validate entity
         if ( destination == null ) throw new IllegalArgumentException( "Destination is required parameter." );
@@ -50,18 +50,17 @@ public class DestinationServiceImpl implements DestinationService {
     }
 
     @Override
-    public void deleteDestination( final long id ) throws NoSuchDestinationException {
+    public void delete( final long id ) throws NoSuchDestinationException {
 
         if ( id <= 0 ) throw new IllegalArgumentException( "Illegal identifier. Value must be greater than 0." );
 
-        // try to find the instance
-        Destination destination = em.find( Destination.class, id );
+        int result = em.createNamedQuery( "Destination.invalidate" ).setParameter( "id", id ).executeUpdate();
 
-        if ( destination == null ) {
+        if ( result == 0 ) {
             throw new NoSuchDestinationException( String.format( "Destination with id '%d' doesn't exist.", id ) );
+        } else if ( result > 1 ) {
+            log.error( "Destination deletion affected too many rows. Transaction will be rollback." );
+            throw new IllegalStateException( "Destination deletion affected too many rows." );
         }
-
-        // delete (it is automatically persisted, instance is attached to entity manager)
-        destination.invalidate();
     }
 }

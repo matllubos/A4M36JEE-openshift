@@ -1,6 +1,8 @@
 package cz.cvut.fel.model;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -21,14 +23,15 @@ import static cz.cvut.fel.utils.DateUtils.date;
 @NoArgsConstructor
 @Table( uniqueConstraints = @UniqueConstraint( columnNames = { "code", "validUntil" } ) )
 @NamedQueries( {
-        /** for administration purpose only */
-        @NamedQuery( name = "Destination.findAll", query = "SELECT d FROM Destination d" ),
 
         /** lists all active destinations */
         @NamedQuery( name = "Destination.findAllValid", query = "SELECT d FROM Destination d WHERE d.validUntil >= current_timestamp()" ),
 
         /** finds the destination by its code */
-        @NamedQuery( name = "Destination.findByCode", query = "SELECT d FROM Destination d WHERE d.code = :code AND d.validUntil >= current_timestamp()" )
+        @NamedQuery( name = "Destination.findByCode", query = "SELECT d FROM Destination d WHERE d.code = :code AND d.validUntil >= current_timestamp()" ),
+
+        /** invalidate given instance */
+        @NamedQuery( name = "Destination.invalidate", query = "UPDATE Destination d SET d.validUntil = current_timestamp() WHERE d.id = :id AND d.validUntil >= current_timestamp()" )
 } )
 
 public class Destination implements Serializable {
@@ -66,10 +69,5 @@ public class Destination implements Serializable {
     void preUpdate() {
         // hack due to unique constraint - code && NULL never violates it
         if ( validUntil == null ) validUntil = VALID_UNTIl;
-    }
-
-    /** mark instance as deleted */
-    public void invalidate() {
-        validUntil = new Date();
     }
 }

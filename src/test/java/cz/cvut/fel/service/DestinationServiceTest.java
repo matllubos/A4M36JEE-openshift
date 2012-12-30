@@ -7,7 +7,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import javax.ejb.EJBException;
 import javax.inject.Inject;
+import javax.validation.ConstraintViolationException;
 import java.util.*;
 
 import static cz.cvut.fel.util.ArquillianDataProvider.provide;
@@ -87,13 +89,35 @@ public class DestinationServiceTest extends ArquillianTest {
         destination.setValidUntil( calendar.getTime() );
 
         // perform test
-        destination = service.saveDestination( destination );
+        destination = service.save( destination );
 
         // verify results
         assertTrue( destination.getId() > 0 );
         destination = service.findByCode( "ABC" );
         assertEquals( destination.getCode(), "ABC" );
         assertEquals( destination.getName(), "Alphabetic" );
+    }
+
+    @Test
+    public void testCreateInvalid() {
+        try {
+            Destination destination = new Destination();
+            destination.setCode( "LONG" ); // code is too long
+            destination.setName( "Destination with long name" );
+
+            // set validity for 5 minutes, after that the instance gets invalid
+            Calendar calendar = Calendar.getInstance();
+            calendar.add( Calendar.MINUTE, 2 );
+            destination.setValidUntil( calendar.getTime() );
+
+            // perform test
+            service.save( destination );
+            fail( "Instance is invalid, it supposed to throw validation exception." );
+        } catch ( EJBException ex ) {
+            if ( !( ex.getCause() instanceof ConstraintViolationException ) ) {
+                fail( "Expected validation exception." );
+            }
+        }
     }
 
     @Test( dependsOnMethods = "testCreate" )
@@ -107,7 +131,7 @@ public class DestinationServiceTest extends ArquillianTest {
         destination.setName( "Non-Alphabetic" );
 
         // perform test
-        service.saveDestination( destination );
+        service.save( destination );
 
         // verify results
         assertTrue( destination.getId() > 0 );
@@ -125,7 +149,7 @@ public class DestinationServiceTest extends ArquillianTest {
         Destination destination = service.findByCode( "ABC" );
 
         // perform test
-        service.deleteDestination( destination.getId() );
+        service.delete( destination.getId() );
 
         // wait for new timestamp
         sleep( 1000 );
