@@ -9,6 +9,11 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.DependencyResolvers;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
 
+import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
+
 /**
  * <p>Parent class for all arquillian tests. It takes care of proper test package initialization.</p>
  *
@@ -18,6 +23,12 @@ public class ArquillianTest extends Arquillian {
 
     /** determines whether the class is run inside of the container. suppose true */
     private static boolean inContainer = true;
+
+    @PersistenceContext
+    protected EntityManager em;
+
+    @Resource
+    protected UserTransaction transaction;
 
     @Deployment
     public static Archive<?> getDeployment() {

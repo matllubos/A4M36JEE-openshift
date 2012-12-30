@@ -41,7 +41,7 @@ public class InitializeDestinationTest extends DatabaseTest {
                         new Object[]{ "LHR", "London (Heathrow)", null },
                         new Object[]{ "INN", "Innsburck", null },
                         new Object[]{ "VIE", "Vienna", null },
-                        new Object[]{ "PRG", "Prague", date( 1, 1, 2012 ) },
+                        new Object[]{ "RUS", "Russia", date( 1, 1, 2012 ) },
                         new Object[]{ "PRG", "Prague", date( 1, 2, 2012 ) },
                         new Object[]{ "MAD", "Madrid", date( 1, 1, 2012 ) },
                         new Object[]{ "LHR", "London (Heathrow)", date( 1, 1, 2012 ) },

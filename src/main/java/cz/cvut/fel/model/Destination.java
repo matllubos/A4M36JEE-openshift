@@ -1,8 +1,6 @@
 package cz.cvut.fel.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -68,5 +66,10 @@ public class Destination implements Serializable {
     void preUpdate() {
         // hack due to unique constraint - code && NULL never violates it
         if ( validUntil == null ) validUntil = VALID_UNTIl;
+    }
+
+    /** mark instance as deleted */
+    public void invalidate() {
+        validUntil = new Date();
     }
 }
