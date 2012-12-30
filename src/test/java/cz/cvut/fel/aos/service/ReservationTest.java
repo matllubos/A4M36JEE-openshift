@@ -72,7 +72,7 @@ public class ReservationTest extends ArquillianTest {
         assertFalse( reservation.isCanceled() );
 
         // execute && verify
-        assertTrue( service.cancel( reservationId, PASSWORD ) );
+        assertTrue( service.cancel( reservationId, PASSWORD ).isCanceled() );
 
         // verify freed capacity in the flight
         Reservation canceled = service.find( reservationId, PASSWORD );
@@ -91,7 +91,7 @@ public class ReservationTest extends ArquillianTest {
         assertTrue( reservation.isCanceled() );
 
         // execute && verify
-        assertTrue( service.cancel( reservationId, PASSWORD ) );
+        assertTrue( service.cancel( reservationId, PASSWORD ).isCanceled() );
 
         // verify freed capacity in the flight
         Reservation canceled = service.find( reservationId, PASSWORD );

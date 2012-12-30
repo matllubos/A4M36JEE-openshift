@@ -68,7 +68,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     //    @Transactional
-    public boolean cancel( long reservation, String password ) throws SecurityException {
+    public Reservation cancel( long reservation, String password ) throws SecurityException {
         Reservation entity = em.find( Reservation.class, reservation );
 
         if ( entity == null ) // rezervace neexistuje
@@ -80,7 +80,7 @@ public class ReservationServiceImpl implements ReservationService {
         security.verifyAccess( entity.getId(), entity.getPassword(), password );
 
         // already canceled
-        if ( entity.isCanceled() ) return true;
+        if ( entity.isCanceled() ) return entity;
 
         // zruš rezervaci
         entity.setCanceled( true );
@@ -91,6 +91,6 @@ public class ReservationServiceImpl implements ReservationService {
 
         ReservationServiceImpl.log.info( "Reservation with ID '{}' was successfully canceled.", entity.getId() );
 
-        return true;
+        return entity;
     }
 }

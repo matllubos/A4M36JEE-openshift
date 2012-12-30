@@ -28,7 +28,7 @@ public interface ReservationService {
 
 
     /** zruší rezervaci, pokud má klient oprávnění. */
-    boolean cancel(
+    Reservation cancel(
             @WebParam( name = "reservation" ) long reservation,
             @WebParam( name = "password" ) String password
     ) throws SecurityException;
