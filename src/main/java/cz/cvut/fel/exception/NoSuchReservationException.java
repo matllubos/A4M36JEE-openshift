@@ -3,7 +3,7 @@ package cz.cvut.fel.exception;
 import javax.xml.ws.WebFault;
 
 /**
- * <p>Chyba indikující neplatné ID rezervace.</p>
+ * <p>No such reservation exists.</p>
  *
  * @author Karel Cemus
  */

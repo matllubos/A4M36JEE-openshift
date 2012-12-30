@@ -3,7 +3,7 @@ package cz.cvut.fel.exception;
 import javax.xml.ws.WebFault;
 
 /**
- * <p>Požadovaný let je již plný</p>
+ * <p>Flight is already full.</p>
  *
  * @author Karel Cemus
  */

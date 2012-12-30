@@ -3,7 +3,7 @@ package cz.cvut.fel.exception;
 import javax.xml.ws.WebFault;
 
 /**
- * <p>Chyba indikující neplatné údaje pro platbu, převod selhal.</p>
+ * <p>Invalid payment setup. Transaction failed.</p>
  *
  * @author Karel Cemus
  */

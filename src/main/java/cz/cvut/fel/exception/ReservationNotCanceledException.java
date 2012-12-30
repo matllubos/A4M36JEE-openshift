@@ -2,7 +2,11 @@ package cz.cvut.fel.exception;
 
 import javax.xml.ws.WebFault;
 
-/** @author Karel Cemus */
+/**
+ * <p>Reservation is not canceled, required operation is not allowed.</p>
+ *
+ * @author Karel Cemus
+ */
 @WebFault( name = "ReservationNotCanceledExceptionFault" )
 public class ReservationNotCanceledException extends Exception {
 
