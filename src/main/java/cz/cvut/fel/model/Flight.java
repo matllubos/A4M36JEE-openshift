@@ -3,10 +3,16 @@ package cz.cvut.fel.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
+import java.util.Date;
+
+import static cz.cvut.fel.utils.DateUtils.date;
 
 /**
  * Model reflects all flights which is possible to find and book in the system.
@@ -17,29 +23,25 @@ import java.io.Serializable;
 @Entity
 @ToString
 @NoArgsConstructor
+@Table( uniqueConstraints = @UniqueConstraint( columnNames = { "number", "validUntil" } ) )
 @NamedQueries( {
 
-        /** For administration purposes only */
-        @NamedQuery( name = "Flight.findAll", query = "SELECT f FROM Flight f" ),
-
         /** finds the flight by its number */
-        @NamedQuery( name = "Flight.findByNumber", query = "SELECT f FROM Flight f WHERE f.number = :number" ),
+        @NamedQuery( name = "Flight.findByNumber", query = "SELECT f FROM Flight f WHERE f.number = :number AND f.validUntil >= current_timestamp()" ),
 
         /** finds all scheduled but not realised flights from the location. */
         @NamedQuery( name = "Flight.findByFrom", query = "SELECT f FROM Flight f WHERE " +
                 "f.departure.actual >= :intervalFrom AND " +
                 "f.departure.actual <= :intervalTo AND " +
                 "f.from.code = :codeFrom AND " +
-                "f.status <> 'CANCELED' AND " +
-                "f.status <> 'LANDED'" ),
+                "f.validUntil >= current_timestamp()" ),
 
         /** finds all scheduled but not realised flights to the location. */
         @NamedQuery( name = "Flight.findByTo", query = "SELECT f FROM Flight f WHERE " +
                 "f.departure.actual >= :intervalFrom AND " +
                 "f.departure.actual <= :intervalTo AND " +
                 "f.to.code = :codeTo AND " +
-                "f.status <> 'CANCELED' AND " +
-                "f.status <> 'LANDED'" ),
+                "f.validUntil >= current_timestamp()" ),
 
         /** finds all scheduled but not realised flights between the locations. */
         @NamedQuery( name = "Flight.findByFromTo", query = "SELECT f FROM Flight f WHERE " +
@@ -47,8 +49,10 @@ import java.io.Serializable;
                 "f.departure.actual <= :intervalTo AND " +
                 "f.from.code = :codeFrom AND " +
                 "f.to.code = :codeTo AND " +
-                "f.status <> 'CANCELED' AND " +
-                "f.status <> 'LANDED'" )
+                "f.validUntil >= current_timestamp()" ),
+
+        /** invalidate given instance */
+        @NamedQuery( name = "Flight.invalidate", query = "UPDATE Flight f SET f.validUntil = current_timestamp() WHERE f.number = :number AND f.validUntil >= current_timestamp()" )
 } )
 public class Flight implements Serializable {
 
@@ -57,23 +61,25 @@ public class Flight implements Serializable {
     private long id;
 
     /** flight number */
+    @NotBlank
+    @Pattern( regexp = "F[0-9]{6}")
     @Column( length = 20, nullable = false )
     private String number;
 
     /** departure date and time */
     @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name="actual",column=@Column(name="DEPARTURE_ACTUAL")),
-            @AttributeOverride(name="scheduled",column=@Column(name="DEPARTURE_SCHEDULED"))
-    })
+    @AttributeOverrides( {
+            @AttributeOverride( name = "actual", column = @Column( name = "DEPARTURE_ACTUAL" ) ),
+            @AttributeOverride( name = "scheduled", column = @Column( name = "DEPARTURE_SCHEDULED" ) )
+    } )
     private Time departure;
 
     /** arrival date and time */
     @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name="actual",column=@Column(name="ARRIVAL_ACTUAL")),
-            @AttributeOverride(name="scheduled",column=@Column(name="ARRIVAL_SCHEDULED"))
-    })
+    @AttributeOverrides( {
+            @AttributeOverride( name = "actual", column = @Column( name = "ARRIVAL_ACTUAL" ) ),
+            @AttributeOverride( name = "scheduled", column = @Column( name = "ARRIVAL_SCHEDULED" ) )
+    } )
     private Time arrival;
 
     /** flight price per seat */
@@ -101,8 +107,31 @@ public class Flight implements Serializable {
     @Enumerated( EnumType.STRING )
     private FlightStatus status;
 
+    /** instance is valid until deletion date */
+    @Temporal( TemporalType.TIMESTAMP )
+    private Date validUntil;
+
     /** optimistic lock */
     @Version
     private long version;
 
+    /** default validation date */
+    private static final Date VALID_UNTIl = date( 1, 1, 2200 );
+
+    @PrePersist
+    void prePersist() {
+        // hack due to unique constraint - code && NULL never violates it
+        if ( validUntil == null ) validUntil = VALID_UNTIl;
+    }
+
+    @PreUpdate
+    void preUpdate() {
+        // hack due to unique constraint - code && NULL never violates it
+        if ( validUntil == null ) validUntil = VALID_UNTIl;
+    }
+
+    /** mark instance as deleted */
+    public void invalidate() {
+        validUntil = new Date();
+    }
 }

@@ -12,7 +12,7 @@ public enum FlightStatus implements Serializable {
     DELAYED,
 
     /** plane took-off */
-    IN_AIR,
+    STARTED,
 
     /** plane landed */
     LANDED,
