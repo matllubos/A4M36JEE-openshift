@@ -1,6 +1,6 @@
 package cz.cvut.fel.init;
 
-import cz.cvut.fel.aos.model.Destination;
+import cz.cvut.fel.model.Destination;
 import cz.cvut.fel.util.DatabaseTest;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.DataProvider;
