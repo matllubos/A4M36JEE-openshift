@@ -3,7 +3,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
-    <persistence-unit name="flightSystemPersistence" transaction-type="JTA">
+    <persistence-unit name="flightSystemTestPersistence" transaction-type="JTA">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <jta-data-source>jdbc/FlightSystemTest</jta-data-source>
         <properties>
@@ -12,7 +12,7 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
             <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
             <property name="hibernate.use_sql_comments" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.archive.autodetection" value="class"/>
