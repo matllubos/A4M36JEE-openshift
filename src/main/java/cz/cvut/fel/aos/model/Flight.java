@@ -5,11 +5,11 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
- * Model zachycuje všechny lety, které je v systému možné najít a rezervovat.
+ * Model reflects all flights which is possible to find and book in the system.
  *
  * @author Karel Cemus
  */
@@ -18,11 +18,37 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 @NamedQueries( {
-        @NamedQuery( name = "Flight.findByNumber", query = "SELECT f FROM Flight f WHERE f.number = :number" ),
+
+        /** For administration purposes only */
         @NamedQuery( name = "Flight.findAll", query = "SELECT f FROM Flight f" ),
-        @NamedQuery( name = "Flight.findByFrom", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.from.code = :codeFrom" ),
-        @NamedQuery( name = "Flight.findByTo", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.to.code = :codeTo" ),
-        @NamedQuery( name = "Flight.findByFromTo", query = "SELECT f FROM Flight f WHERE f.departure >= :intervalFrom AND f.departure <= :intervalTo AND f.from.code = :codeFrom AND f.to.code = :codeTo" )
+
+        /** finds the flight by its number */
+        @NamedQuery( name = "Flight.findByNumber", query = "SELECT f FROM Flight f WHERE f.number = :number" ),
+
+        /** finds all scheduled but not realised flights from the location. */
+        @NamedQuery( name = "Flight.findByFrom", query = "SELECT f FROM Flight f WHERE " +
+                "f.departure.actual >= :intervalFrom AND " +
+                "f.departure.actual <= :intervalTo AND " +
+                "f.from.code = :codeFrom AND " +
+                "f.status <> 'CANCELED' AND " +
+                "f.status <> 'LANDED'" ),
+
+        /** finds all scheduled but not realised flights to the location. */
+        @NamedQuery( name = "Flight.findByTo", query = "SELECT f FROM Flight f WHERE " +
+                "f.departure.actual >= :intervalFrom AND " +
+                "f.departure.actual <= :intervalTo AND " +
+                "f.to.code = :codeTo AND " +
+                "f.status <> 'CANCELED' AND " +
+                "f.status <> 'LANDED'" ),
+
+        /** finds all scheduled but not realised flights between the locations. */
+        @NamedQuery( name = "Flight.findByFromTo", query = "SELECT f FROM Flight f WHERE " +
+                "f.departure.actual >= :intervalFrom AND " +
+                "f.departure.actual <= :intervalTo AND " +
+                "f.from.code = :codeFrom AND " +
+                "f.to.code = :codeTo AND " +
+                "f.status <> 'CANCELED' AND " +
+                "f.status <> 'LANDED'" )
 } )
 public class Flight implements Serializable {
 
@@ -30,41 +56,52 @@ public class Flight implements Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private long id;
 
-    /** číslo letu */
+    /** flight number */
     @Column( length = 20, nullable = false )
     private String number;
 
-    /** datum a čas odletu */
-    @Column( nullable = false )
-    @Temporal( TemporalType.TIMESTAMP )
-    private Date departure;
+    /** departure date and time */
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name="actual",column=@Column(name="DEPARTURE_ACTUAL")),
+            @AttributeOverride(name="scheduled",column=@Column(name="DEPARTURE_SCHEDULED"))
+    })
+    private Time departure;
 
-    /** datum a čas příletu */
-    @Column( nullable = false )
-    @Temporal( TemporalType.TIMESTAMP )
-    private Date arrival;
+    /** arrival date and time */
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name="actual",column=@Column(name="ARRIVAL_ACTUAL")),
+            @AttributeOverride(name="scheduled",column=@Column(name="ARRIVAL_SCHEDULED"))
+    })
+    private Time arrival;
 
-    /** cena letu */
+    /** flight price per seat */
     @Column( nullable = false )
     private int cost;
 
-    /** odletá z oblasti */
+    /** departure destination */
     @ManyToOne( optional = false )
-    @JoinColumn( name = "DESTINATION_FROM" )
+    @JoinColumn( name = "DEPARTURE_FROM" )
     private Destination from;
 
-    /** letí do oblasti */
+    /** arrival destination */
     @ManyToOne( optional = false )
-    @JoinColumn( name = "DESTINATION_TO" )
+    @JoinColumn( name = "ARRIVAL_TO" )
     private Destination to;
 
-    /** celková kapacita letu */
+    /** total plane capacity */
     private int capacity;
 
-    /** zbývající volná kapacity */
+    /** capacity left - number of free seats */
     private int capacityLeft;
 
-    /** optimistický zámek */
+    /** current status of flight */
+    @NotNull
+    @Enumerated( EnumType.STRING )
+    private FlightStatus status;
+
+    /** optimistic lock */
     @Version
     private long version;
 

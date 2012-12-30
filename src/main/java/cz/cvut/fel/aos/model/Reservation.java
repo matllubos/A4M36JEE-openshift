@@ -3,13 +3,16 @@ package cz.cvut.fel.aos.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
- * Model reprezentující rezervace v bookovacím systému. Uživatel může požádat o
- * rezervaci míst na určitý let.
+ * Model representing reservations in the booking system. User is able to book certain number of seats on selected flight.
  *
  * @author Karel Cemus
  */
@@ -18,7 +21,11 @@ import java.io.Serializable;
 @ToString
 @NoArgsConstructor
 @NamedQueries( {
-    @NamedQuery( name = "Reservation.findAll", query = "SELECT r FROM Reservation r" )
+        /** for administration purpose only */
+        @NamedQuery( name = "Reservation.findAll", query = "SELECT r FROM Reservation r" ),
+
+        /** lists all reservations for given flight */
+        @NamedQuery( name = "Reservation.findAllForFlight", query = "SELECT r FROM Reservation r WHERE r.flight.number = :number" )
 } )
 public class Reservation implements Serializable {
 
@@ -26,28 +33,33 @@ public class Reservation implements Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private long id;
 
-    /** heslo pro přístup */
+    /** access password */
+    @NotBlank
+    @Length( min = 8 )
     private String password;
 
     @ManyToOne( optional = false )
     private Flight flight;
 
-    /** počet rezervovaných míst */
+    /** amount of booked seats */
+    @Min( 1 )
     private int count;
 
-    /** cena rezervace, redundantní, aby mohlo dojít ke změně ceny letu s blížícím se
-     * termínem odletu, což je běžná praxe */
+    /** reservation price, redundant information to allow flight price change in time */
+    @Min( 0 )
     private int cost;
 
-    /** zaplaceno, částka zaplacená k této rezervaci, Lze použít při placení jiných
-     * rezervací */
+    /** paid money to this reservations */
+    @Min( 0 )
     private int paid;
 
-    /** rezervace byla zrušena */
+    /** reservation status */
     private boolean canceled;
 
-    /** optimistický zámek */
+    /** optimistic lock */
     @Version
     private long version;
 
+    @OneToMany( mappedBy = "reservation", fetch = FetchType.LAZY )
+    private Collection<Payment> payments;
 }
