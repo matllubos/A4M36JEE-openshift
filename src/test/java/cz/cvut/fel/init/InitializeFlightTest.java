@@ -11,13 +11,13 @@ import org.testng.annotations.Test;
 
 import java.util.Date;
 
-import static cz.cvut.fel.utils.DateUtils.date;
 import static cz.cvut.fel.util.ArquillianDataProvider.provide;
+import static cz.cvut.fel.utils.DateUtils.date;
 import static org.testng.Assert.*;
 
 /** @author Karel Cemus */
 @Slf4j
-//@Test( groups = "initialization", dependsOnMethods = "cz.cvut.fel.init.InitializeDestinationTest.insert" )
+@Test( groups = "initialization", dependsOnMethods = "cz.cvut.fel.init.InitializeDestinationTest.insert" )
 public class InitializeFlightTest extends DatabaseTest {
 
     @Test( dataProvider = "flightProvider" )
@@ -53,7 +53,8 @@ public class InitializeFlightTest extends DatabaseTest {
                 new Object[]{ "F987358", date( 2, 1, 2012, 23, 0 ), date( 3, 1, 2012, 4, 10 ), "PRG", "MAD", 110, 5000, FlightStatus.SCHEDULED },
                 new Object[]{ "F987972", date( 3, 1, 2012, 7, 10 ), date( 3, 1, 2012, 9, 20 ), "INN", "PRG", 120, 4000, FlightStatus.SCHEDULED },
                 new Object[]{ "F987321", date( 3, 1, 2012, 16, 20 ), date( 3, 1, 2012, 18, 20 ), "PRG", "VIE", 130, 3000, FlightStatus.SCHEDULED },
-                new Object[]{ "F987963", date( 3, 1, 2012, 17, 40 ), date( 3, 1, 2012, 20, 50 ), "PRG", "LHR", 80, 7000, FlightStatus.SCHEDULED }
+                new Object[]{ "F987963", date( 3, 1, 2012, 17, 40 ), date( 3, 1, 2012, 20, 50 ), "PRG", "LHR", 80, 7000, FlightStatus.SCHEDULED },
+                new Object[]{ "F987235", date( 3, 1, 2011, 17, 40 ), date( 3, 1, 2012, 20, 50 ), "PRG", "LHR", 80, 7000, FlightStatus.LANDED }
         } );
     }
 
