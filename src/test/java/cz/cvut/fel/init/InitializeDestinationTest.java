@@ -14,7 +14,7 @@ import static org.testng.Assert.*;
 
 /** @author Karel Cemus */
 @Slf4j
-@Test( groups = "initialization", dependsOnMethods = "cz.cvut.fel.init.InitializeEmptyDatabaseTest.clearAllDestinations" )
+@Test( groups = "initialization", dependsOnMethods = "cz.cvut.fel.init.InitializeEmptyDatabaseTest.truncateTable" )
 public class InitializeDestinationTest extends DatabaseTest {
 
     @Test( dataProvider = "destinationProvider" )
