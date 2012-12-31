@@ -1,6 +1,7 @@
 package cz.cvut.fel.exception;
 
 import javax.xml.ws.WebFault;
+import java.io.Serializable;
 
 /**
  * <p>Reservation is not fully paid yet, operation is not allowed.</p>
@@ -8,7 +9,7 @@ import javax.xml.ws.WebFault;
  * @author Karel Cemus
  */
 @WebFault( name = "ReservationNotPaidFault" )
-public class ReservationNotPaidException extends Exception {
+public class ReservationNotPaidException extends RuntimeException implements Serializable {
 
     public ReservationNotPaidException() {
     }

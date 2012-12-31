@@ -1,6 +1,7 @@
 package cz.cvut.fel.exception;
 
 import javax.xml.ws.WebFault;
+import java.io.Serializable;
 
 /**
  * <p>Reservation is not Cancelled, required operation is not allowed.</p>
@@ -8,7 +9,7 @@ import javax.xml.ws.WebFault;
  * @author Karel Cemus
  */
 @WebFault( name = "ReservationNotCancelledExceptionFault" )
-public class ReservationNotCancelledException extends Exception {
+public class ReservationNotCancelledException extends RuntimeException implements Serializable {
 
     public ReservationNotCancelledException() {
     }
