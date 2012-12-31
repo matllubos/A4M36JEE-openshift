@@ -57,7 +57,7 @@ public class ReservationServiceImpl implements ReservationService {
         entity.setCount( count );
         entity.setPaid( 0 );
         entity.setCost( flight.getCost() * count );
-        entity.setCanceled( false );
+        entity.setCancelled( false );
         em.persist( entity );
         entity.setPassword( security.hash( entity.getId(), password ) );
 
@@ -79,17 +79,17 @@ public class ReservationServiceImpl implements ReservationService {
         // zkontroluj přístup k rezervaci
         security.verifyAccess( entity.getId(), entity.getPassword(), password );
 
-        // already canceled
-        if ( entity.isCanceled() ) return entity;
+        // already Cancelled
+        if ( entity.isCancelled() ) return entity;
 
         // zruš rezervaci
-        entity.setCanceled( true );
+        entity.setCancelled( true );
 
         // uvolni zabraná místa v letadle
         Flight flight = entity.getFlight();
         flight.setCapacityLeft( flight.getCapacityLeft() + entity.getCount() );
 
-        ReservationServiceImpl.log.info( "Reservation with ID '{}' was successfully canceled.", entity.getId() );
+        ReservationServiceImpl.log.info( "Reservation with ID '{}' was successfully Cancelled.", entity.getId() );
 
         return entity;
     }

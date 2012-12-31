@@ -17,6 +17,6 @@ public enum FlightStatus implements Serializable {
     /** plane landed */
     LANDED,
 
-    /** flight was canceled */
-    CANCELED;
+    /** flight was cancelled */
+    CANCELLED;
 }

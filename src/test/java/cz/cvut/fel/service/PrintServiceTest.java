@@ -126,7 +126,7 @@ public class PrintServiceTest extends ArquillianTest {
 
         String expected = "" +
                 "---------------------------------------------------------------------------\n" +
-                "Reservation canceled\n" +
+                "Reservation cancelled\n" +
                 "---------------------------------------------------------------------------\n" +
                 " Reservation number:\t123456\n" +
                 "      Flight number:\tF213411\n" +

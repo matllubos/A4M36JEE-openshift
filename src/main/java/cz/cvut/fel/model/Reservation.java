@@ -54,7 +54,7 @@ public class Reservation implements Serializable {
     private int paid;
 
     /** reservation status */
-    private boolean canceled;
+    private boolean cancelled;
 
     /** optimistic lock */
     @Version

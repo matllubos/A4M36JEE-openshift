@@ -70,7 +70,7 @@ public class PrintServiceImpl implements PrintService {
         final Flight flight = reservation.getFlight();
 
         builder.append( DELIMITER );
-        builder.append( "Reservation canceled\n" );
+        builder.append( "Reservation cancelled\n" );
         builder.append( DELIMITER );
         builder.append( String.format( FORMAT, "Reservation number:" ) ).append( reservation.getId() ).append( '\n' );
         addCommonFlightInformation( builder, flight );

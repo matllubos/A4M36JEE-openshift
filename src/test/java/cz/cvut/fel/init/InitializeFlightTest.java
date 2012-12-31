@@ -46,7 +46,7 @@ public class InitializeFlightTest extends DatabaseTest {
     public Object[][] flightProvider() {
         return provide( "InitializeFlightTest#flightProvider", new Object[][]{
                 new Object[]{ "F987545", date( 1, 1, 2012, 10, 20 ), date( 1, 1, 2012, 14, 20 ), "PRG", "MAD", 100, 5000, FlightStatus.SCHEDULED, false },
-                new Object[]{ "F987687", date( 1, 1, 2012, 8, 30 ), date( 1, 1, 2012, 10, 10 ), "VIE", "PRG", 80, 3000, FlightStatus.CANCELED, false },
+                new Object[]{ "F987687", date( 1, 1, 2012, 8, 30 ), date( 1, 1, 2012, 10, 10 ), "VIE", "PRG", 80, 3000, FlightStatus.CANCELLED, false },
                 new Object[]{ "F987987", date( 1, 1, 2012, 14, 40 ), date( 1, 1, 2012, 17, 15 ), "PRG", "LHR", 130, 7000, FlightStatus.DELAYED, false },
                 new Object[]{ "F987126", date( 2, 1, 2012, 9, 10 ), date( 2, 1, 2012, 13, 20 ), "PRG", "MAD", 110, 5000, FlightStatus.SCHEDULED, false },
                 new Object[]{ "F987981", date( 2, 1, 2012, 10, 30 ), date( 2, 1, 2012, 12, 30 ), "VIE", "PRG", 90, 3000, FlightStatus.SCHEDULED, false },
