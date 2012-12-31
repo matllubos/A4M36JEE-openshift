@@ -1,5 +1,6 @@
 package cz.cvut.fel.service;
 
+import cz.cvut.fel.exception.NoSuchFlightException;
 import cz.cvut.fel.model.Flight;
 import lombok.extern.slf4j.Slf4j;
 

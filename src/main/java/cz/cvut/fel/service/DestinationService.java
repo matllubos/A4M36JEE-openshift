@@ -1,5 +1,6 @@
 package cz.cvut.fel.service;
 
+import cz.cvut.fel.exception.NoSuchDestinationException;
 import cz.cvut.fel.model.Destination;
 
 import java.util.Collection;

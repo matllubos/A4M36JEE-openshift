@@ -1,5 +1,6 @@
 package cz.cvut.fel.service;
 
+import cz.cvut.fel.exception.NoSuchDestinationException;
 import cz.cvut.fel.model.Destination;
 import cz.cvut.fel.util.ArquillianTest;
 import lombok.extern.slf4j.Slf4j;
