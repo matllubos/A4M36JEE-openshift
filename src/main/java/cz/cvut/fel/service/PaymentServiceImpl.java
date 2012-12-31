@@ -4,7 +4,6 @@ import cz.cvut.fel.exception.InvalidPaymentException;
 import cz.cvut.fel.exception.NoSuchReservationException;
 import cz.cvut.fel.model.Payment;
 import cz.cvut.fel.model.Reservation;
-import cz.cvut.fel.service.reservation.ReservationService;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.ejb.Stateless;

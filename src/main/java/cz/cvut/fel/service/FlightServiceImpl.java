@@ -20,7 +20,7 @@ public class FlightServiceImpl implements FlightService {
     private EntityManager em;
 
     @Override
-    public Flight find( String flightNumber ) {
+    public Flight find( String flightNumber ) throws NoSuchFlightException {
 
         // verify flightNumber is set
         if ( flightNumber == null || flightNumber.isEmpty() ) {

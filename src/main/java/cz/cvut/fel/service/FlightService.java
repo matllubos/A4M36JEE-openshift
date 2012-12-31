@@ -10,7 +10,7 @@ import java.util.Date;
 public interface FlightService {
 
     /** returns flight with the particular number */
-    Flight find( String flightNumber );
+    Flight find( String flightNumber ) throws NoSuchFlightException;
 
     /** all flights into given destination */
     Collection<Flight> findFlightsFrom( Date intervalFrom, Date intervalTo, String codeFrom );

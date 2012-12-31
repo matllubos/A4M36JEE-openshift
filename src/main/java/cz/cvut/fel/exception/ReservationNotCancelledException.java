@@ -4,7 +4,7 @@ import javax.xml.ws.WebFault;
 import java.io.Serializable;
 
 /**
- * <p>Reservation is not Cancelled, required operation is not allowed.</p>
+ * <p>Reservation is not cancelled, required operation is not allowed.</p>
  *
  * @author Karel Cemus
  */
