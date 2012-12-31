@@ -3,16 +3,17 @@
 
 <suite name="FlightSystem" verbose="1">
 
-    <test name="FlightSystem" annotations="JDK">
+    <test name="FlightSystem" annotations="JDK" preserve-order="true">
 
         <!-- groups to run -->
-        <groups>
+        <groups >
             <define name="arquillian"/>
             <define name="initialization"/>
+            <define name="services"/>
 
             <run>
                 <include name="arquillian"/>
-                <!--<include name="initialization"/>-->
+                <exclude name="initialization"/>
                 <include name="services"/>
             </run>
 

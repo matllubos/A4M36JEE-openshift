@@ -58,7 +58,7 @@ public class DestinationServiceTest extends ArquillianTest {
                         new Object[]{ "INN", true },
                         new Object[]{ "VIE", true },
                         new Object[]{ "XXX", false },
-                        new Object[]{ "RUS", false },
+                        new Object[]{ "RUS", false }
                 } );
     }
 

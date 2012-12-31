@@ -30,30 +30,37 @@ public class ArquillianTest extends Arquillian {
     @Resource
     protected UserTransaction transaction;
 
+    private static Archive<?> deployment;
+
     @Deployment
     public static Archive<?> getDeployment() {
 
-        // deployment is run locally
-        inContainer = false;
+        // create package and cache it
+        if ( deployment == null ) {
 
-        MavenDependencyResolver resolver = DependencyResolvers.use( MavenDependencyResolver.class ).loadMetadataFromPom( "pom.xml" );
+            // deployment is run locally
+            inContainer = false;
 
-        return ShrinkWrap.create( WebArchive.class, "web.war" )
-                // definition of persistence unit used in tests
-                .addAsResource( "test-persistence.xml", "META-INF/persistence.xml" )
-                        // define the data-source with testing database
-                .addAsWebInfResource( "jboss-test-ds.xml", "jboss-test-ds.xml" )
-                        // define the unnecessary configuration
-                .addAsWebInfResource( EmptyAsset.INSTANCE, "beans.xml" )
-                        // logging configuration
-                .addAsResource( "log4j.xml", "log4j.xml" )
-                        // add all classes in the project
-                .addPackages( true, "cz.cvut.fel" )
-                        // required libraries
-                .addAsLibraries(
-                        resolver.artifact( "org.slf4j:slf4j-log4j12" )
-                                .resolveAsFiles()
-                );
+            MavenDependencyResolver resolver = DependencyResolvers.use( MavenDependencyResolver.class ).loadMetadataFromPom( "pom.xml" );
+
+            deployment = ShrinkWrap.create( WebArchive.class, "web.war" )
+                    // definition of persistence unit used in tests
+                    .addAsResource( "test-persistence.xml", "META-INF/persistence.xml" )
+                            // define the data-source with testing database
+                    .addAsWebInfResource( "jboss-test-ds.xml", "jboss-test-ds.xml" )
+                            // define the unnecessary configuration
+                    .addAsWebInfResource( EmptyAsset.INSTANCE, "beans.xml" )
+                            // logging configuration
+                    .addAsResource( "log4j.xml", "log4j.xml" )
+                            // add all classes in the project
+                    .addPackages( true, "cz.cvut.fel" )
+                            // required libraries
+                    .addAsLibraries(
+                            resolver.artifact( "org.slf4j:slf4j-log4j12" )
+                                    .resolveAsFiles()
+                    );
+        }
+        return deployment;
     }
 
     protected static boolean isInContainer() {
