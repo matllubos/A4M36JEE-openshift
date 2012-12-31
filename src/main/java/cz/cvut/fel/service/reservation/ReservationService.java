@@ -1,5 +1,6 @@
 package cz.cvut.fel.service.reservation;
 
+import cz.cvut.fel.exception.NoSuchReservationException;
 import cz.cvut.fel.model.Reservation;
 import cz.cvut.fel.exception.FullFlightException;
 
@@ -16,7 +17,7 @@ public interface ReservationService {
     Reservation find(
             @WebParam( name = "reservation" ) long reservation,
             @WebParam( name = "password" ) String password
-    ) throws SecurityException;
+    ) throws SecurityException, NoSuchReservationException;
 
 
     /** vytvoří rezervaci na let pro daný počet míst. Nastaví i heslo pro přístup */

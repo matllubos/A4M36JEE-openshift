@@ -34,7 +34,6 @@ public class Reservation implements Serializable {
     private long id;
 
     /** access password */
-    @NotBlank
     @Length( min = 8 )
     private String password;
 
