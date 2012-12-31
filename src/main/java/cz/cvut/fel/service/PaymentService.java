@@ -3,7 +3,6 @@ package cz.cvut.fel.service;
 import cz.cvut.fel.exception.InvalidPaymentException;
 import cz.cvut.fel.exception.NoSuchReservationException;
 import cz.cvut.fel.model.Payment;
-import cz.cvut.fel.model.Reservation;
 
 import java.util.Date;
 

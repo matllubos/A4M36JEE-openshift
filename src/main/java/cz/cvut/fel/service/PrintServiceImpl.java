@@ -79,14 +79,12 @@ public class PrintServiceImpl implements PrintService {
         return builder.toString().getBytes();
     }
 
-    private StringBuilder addCommonFlightInformation( final StringBuilder builder, final Flight flight ) {
+    private void addCommonFlightInformation( final StringBuilder builder, final Flight flight ) {
         builder.append( String.format( FORMAT, "Flight number:" ) ).append( flight.getNumber() ).append( '\n' );
         builder.append( String.format( FORMAT, "Departure from:" ) ).append( flight.getFrom().getName() ).append( '\n' );
         builder.append( String.format( FORMAT, "Arrival to:" ) ).append( flight.getTo().getName() ).append( '\n' );
         builder.append( String.format( FORMAT, "Date of departure:" ) ).append( new SimpleDateFormat( "dd.MM.yyyy" ).format( flight.getDeparture().getScheduled() ) ).append( '\n' );
         builder.append( String.format( FORMAT, "Time of departure:" ) ).append( new SimpleDateFormat( "HH:mm" ).format( flight.getDeparture().getScheduled() ) ).append( '\n' );
-
-        return builder;
     }
 
 }

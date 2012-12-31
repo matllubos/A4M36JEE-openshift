@@ -3,7 +3,6 @@ package cz.cvut.fel.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -62,23 +61,23 @@ public class Flight implements Serializable {
 
     /** flight number */
     @NotBlank
-    @Pattern( regexp = "F[0-9]{6}")
+    @Pattern( regexp = "F[0-9]{6}" )
     @Column( length = 20, nullable = false )
     private String number;
 
     /** departure date and time */
     @Embedded
     @AttributeOverrides( {
-            @AttributeOverride( name = "actual", column = @Column( name = "DEPARTURE_ACTUAL" ) ),
-            @AttributeOverride( name = "scheduled", column = @Column( name = "DEPARTURE_SCHEDULED" ) )
+            @AttributeOverride( name = "actual", column = @Column( name = "departure_actual" ) ),
+            @AttributeOverride( name = "scheduled", column = @Column( name = "departure_scheduled" ) )
     } )
     private Time departure;
 
     /** arrival date and time */
     @Embedded
     @AttributeOverrides( {
-            @AttributeOverride( name = "actual", column = @Column( name = "ARRIVAL_ACTUAL" ) ),
-            @AttributeOverride( name = "scheduled", column = @Column( name = "ARRIVAL_SCHEDULED" ) )
+            @AttributeOverride( name = "actual", column = @Column( name = "arrival_actual" ) ),
+            @AttributeOverride( name = "scheduled", column = @Column( name = "arrival_scheduled" ) )
     } )
     private Time arrival;
 
