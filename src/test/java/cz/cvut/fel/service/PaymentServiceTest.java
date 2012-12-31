@@ -149,4 +149,41 @@ public class PaymentServiceTest extends ArquillianTest {
         // perform test
         service.returnMoney( reservationId, PASSWORD, 123654789 );
     }
+
+    //    @Test( dependsOnMethods = "testPayVisa" )
+    public void testPrintConfirmation() throws Exception {
+        testPayVisa();
+
+        // verify assumptions
+        Reservation reservation = reservationService.find( reservationId, PASSWORD );
+        transaction.begin();
+        try {
+            reservation = em.merge( reservation );
+            assertEquals( reservation.getPayments().size(), 1 );
+        } finally {
+            transaction.rollback();
+        }
+        assertEquals( reservation.getPaid(), reservation.getCost() );
+
+        Payment payment = reservation.getPayments().iterator().next();
+
+        // perform and verify
+        assertNotNull( service.printPaymentConfirmation( payment.getId() ) );
+    }
+
+    @Test
+    public void testPrintConfirmation_NonExistent() throws Exception {
+        try {
+            service.printPaymentConfirmation( 9999999999L );
+            fail( "Expected exception" );
+        } catch ( IllegalArgumentException ignored ) {
+            // OK
+        } catch ( EJBException ex ) {
+            if ( ex.getCause() instanceof IllegalArgumentException ) {
+                // OK
+            } else {
+                fail( "Wrong exception: " + ex.getCause().getClass() );
+            }
+        }
+    }
 }

@@ -18,4 +18,7 @@ public interface PaymentService {
 
     /** if the reservation is cancelled customer can ask for sending back his money */
     Payment returnMoney( long reservationId, String password, long creditCard ) throws SecurityException, InvalidPaymentException, NoSuchReservationException;
+
+    /** prints confirmation that given payment has been accepted */
+    byte[] printPaymentConfirmation( long payment );
 }

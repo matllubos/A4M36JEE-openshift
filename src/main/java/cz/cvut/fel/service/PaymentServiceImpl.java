@@ -24,6 +24,9 @@ public class PaymentServiceImpl implements PaymentService {
     @Inject
     private ReservationService reservationService;
 
+    @Inject
+    private PrintService printService;
+
     @Override
     public Payment payVisa( final long reservationId, final String cardName, final long creditCard, final Date validUntil, final int verificationCode ) throws InvalidPaymentException, NoSuchReservationException {
 
@@ -112,5 +115,16 @@ public class PaymentServiceImpl implements PaymentService {
         log.info( "Reservation with ID '{}' sent '{}' CZK back to customer's bank account. There is '{}' CZK left.", new Object[]{ reservation.getId(), amount, reservation.getPaid() } );
 
         return payment;
+    }
+
+    @Override
+    public byte[] printPaymentConfirmation( final long id ) {
+
+        // try to find payment
+        Payment payment = em.find( Payment.class, id );
+        if ( payment == null ) throw new IllegalArgumentException( String.format( "Payment with ID '%1$d doesn't exist.", id ) );
+
+        // if found, make confirmation
+        return printService.createConfirmation( payment );
     }
 }
