@@ -5,8 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -30,8 +28,6 @@ public class Payment {
     private long id;
 
     /** credit card number */
-    @Min( 100000000000L )
-    @Max( 999999999999L )
     private long creditCardNumber;
 
     @NotNull
