@@ -4,6 +4,9 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html">
 
+    <!-- metaparameters like view params -->
+    <ui:insert name="metadata"/>
+
     <h:head>
         <h:outputStylesheet library="css" name="common.css"/>
         <h:outputScript library="javax.faces" name="jsf.js"/>
@@ -12,19 +15,24 @@
     </h:head>
 
     <h:body>
+
+        <!-- page title -->
         <h1><ui:insert name="title"/></h1>
 
+        <!-- navigation menu -->
+        <div style="margin: 1em 0">
+            <h:outputLink value="home">Home</h:outputLink>
+        </div>
+
+        <!-- error messages -->
         <h:messages style="color: red;"/>
 
+        <!-- content itself -->
         <div>
             <ui:insert name="content"/>
         </div>
 
-        <div style="margin-top: 5em">
-            <h:form>
-                <h:commandLink action="#{context.home}" value="Návrat na hlavní stranu"/>
-            </h:form>
-        </div>
+
     </h:body>
 
 </html>
