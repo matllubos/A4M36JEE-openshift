@@ -22,6 +22,21 @@
         <param-value>true</param-value>
     </context-param>
 
+    <context-param>
+        <param-name>org.richfaces.push.jms.enabled</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.richfaces.skin</param-name>
+        <param-value>classic</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.richfaces.enableControlSkinning</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
     <!-- Welcome page -->
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
