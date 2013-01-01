@@ -16,6 +16,7 @@ import static cz.cvut.fel.utils.DateUtils.date;
 @Data
 @Named( "context" )
 @SessionScoped
+@Deprecated
 public class SessionBean implements Serializable {
 
     @Inject

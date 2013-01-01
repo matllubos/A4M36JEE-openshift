@@ -14,6 +14,7 @@ import java.io.Serializable;
 @Named
 @Getter
 @RequestScoped
+@Deprecated
 public class ReservationBean implements Serializable {
 
     //    @Inject
