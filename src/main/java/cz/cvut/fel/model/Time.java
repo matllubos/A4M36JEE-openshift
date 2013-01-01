@@ -18,8 +18,8 @@ import java.util.Date;
  */
 @Data
 @ToString
-@NoArgsConstructor
 @Embeddable
+@NoArgsConstructor
 public class Time implements Serializable {
 
     /** scheduled date and time */

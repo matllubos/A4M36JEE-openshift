@@ -1,6 +1,7 @@
 package cz.cvut.fel.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
@@ -21,6 +22,7 @@ import static cz.cvut.fel.utils.DateUtils.date;
 @Entity
 @ToString
 @NoArgsConstructor
+@EqualsAndHashCode( of = "id" )
 @Table( uniqueConstraints = @UniqueConstraint( columnNames = { "code", "validUntil" } ) )
 @NamedQueries( {
 

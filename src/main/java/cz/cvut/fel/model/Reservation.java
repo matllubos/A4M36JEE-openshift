@@ -1,6 +1,7 @@
 package cz.cvut.fel.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
@@ -19,6 +20,7 @@ import java.util.Collection;
 @Entity
 @ToString
 @NoArgsConstructor
+@EqualsAndHashCode( of = "id" )
 @NamedQueries( {
         /** for administration purpose only */
         @NamedQuery( name = "Reservation.findAll", query = "SELECT r FROM Reservation r" ),

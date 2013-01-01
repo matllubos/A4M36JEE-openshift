@@ -1,11 +1,13 @@
 package cz.cvut.fel.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
@@ -22,6 +24,7 @@ import static cz.cvut.fel.utils.DateUtils.date;
 @Entity
 @ToString
 @NoArgsConstructor
+@EqualsAndHashCode( of = "id" )
 @Table( uniqueConstraints = @UniqueConstraint( columnNames = { "number", "validUntil" } ) )
 @NamedQueries( {
 
@@ -33,14 +36,16 @@ import static cz.cvut.fel.utils.DateUtils.date;
                 "f.departure.actual >= :intervalFrom AND " +
                 "f.departure.actual <= :intervalTo AND " +
                 "f.from.code = :codeFrom AND " +
-                "f.validUntil >= current_timestamp()" ),
+                "f.validUntil >= current_timestamp() "
+                + "ORDER BY f.departure.scheduled, f.from.code" ),
 
         /** finds all scheduled but not realised flights to the location. */
         @NamedQuery( name = "Flight.findByTo", query = "SELECT f FROM Flight f WHERE " +
                 "f.departure.actual >= :intervalFrom AND " +
                 "f.departure.actual <= :intervalTo AND " +
                 "f.to.code = :codeTo AND " +
-                "f.validUntil >= current_timestamp()" ),
+                "f.validUntil >= current_timestamp() "
+                + "ORDER BY f.departure.scheduled, f.from.code" ),
 
         /** finds all scheduled but not realised flights between the locations. */
         @NamedQuery( name = "Flight.findByFromTo", query = "SELECT f FROM Flight f WHERE " +
@@ -48,7 +53,8 @@ import static cz.cvut.fel.utils.DateUtils.date;
                 "f.departure.actual <= :intervalTo AND " +
                 "f.from.code = :codeFrom AND " +
                 "f.to.code = :codeTo AND " +
-                "f.validUntil >= current_timestamp()" ),
+                "f.validUntil >= current_timestamp() "
+                + "ORDER BY f.departure.scheduled, f.from.code" ),
 
         /** invalidate given instance */
         @NamedQuery( name = "Flight.invalidate", query = "UPDATE Flight f SET f.validUntil = current_timestamp() WHERE f.number = :number AND f.validUntil >= current_timestamp()" )
@@ -96,9 +102,11 @@ public class Flight implements Serializable {
     private Destination to;
 
     /** total plane capacity */
+    @Min( 0 )
     private int capacity;
 
     /** capacity left - number of free seats */
+    @Min( 0 )
     private int capacityLeft;
 
     /** current status of flight */
@@ -132,5 +140,17 @@ public class Flight implements Serializable {
     /** mark instance as deleted */
     public void invalidate() {
         validUntil = new Date();
+    }
+
+    /** determines whether this flight is available for booking */
+    public boolean isBookable() {
+        // deleted
+        if ( validUntil.getTime() < new Date().getTime() ) return false;
+
+        // no free seat
+        if ( capacityLeft == 0 ) return false;
+
+        // bookable only in these statuses
+        return status == FlightStatus.SCHEDULED || status == FlightStatus.DELAYED;
     }
 }
