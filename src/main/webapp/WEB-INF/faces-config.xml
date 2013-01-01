@@ -15,24 +15,14 @@
 
         <navigation-case>
             <from-outcome>flights</from-outcome>
-            <to-view-id>/flights.xhml</to-view-id>
+            <to-view-id>/flights.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
 
         <navigation-case>
-            <from-outcome>reservation</from-outcome>
-            <to-view-id>/reservation.xhml</to-view-id>
+            <from-outcome>book-it</from-outcome>
+            <to-view-id>/book-it.xhtml</to-view-id>
             <redirect/>
-        </navigation-case>
-
-        <navigation-case>
-            <from-outcome>pay-visa</from-outcome>
-            <to-view-id>/pay-visa.xhml</to-view-id>
-        </navigation-case>
-
-        <navigation-case>
-            <from-outcome>pay-canceled</from-outcome>
-            <to-view-id>/pay-canceled.xhml</to-view-id>
         </navigation-case>
 
     </navigation-rule>

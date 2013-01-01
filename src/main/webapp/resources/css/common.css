@@ -3,11 +3,11 @@ td, th {
     text-align: center;
 }
 
-table{
+table {
     margin-bottom: 2em;
 }
 
-table, tr, td, th {
+.bordered, .bordered td, .bordered th {
     border: 1px solid black;
     border-collapse: collapse;
 }
@@ -23,10 +23,10 @@ td.title {
 }
 
 input, select {
-    display:inline-block;
+    display: inline-block;
     margin: 0.2em 1em;
 }
 
 .block-links a {
-    display:block;
+    display: block;
 }
