@@ -23,13 +23,13 @@ a:hover {
     color: red;
 }
 
-td, th {
+.centered-table td, .centered-table th {
     padding: 0.2em 1em;
     text-align: center;
 }
 
-table {
-    margin-bottom: 2em;
+table.centered-table {
+    margin: 2em 0;
 }
 
 .bordered, .bordered td, .bordered th {
@@ -77,6 +77,6 @@ input, select {
     margin: 0;
 }
 
-tfoot td {
+.centered-table tfoot td {
     text-align: right;
 }
