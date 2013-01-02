@@ -64,3 +64,19 @@ input, select {
     font-size: 1em;
     text-transform: uppercase;
 }
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.right input, .left input {
+    margin: 0;
+}
+
+tfoot td {
+    text-align: right;
+}

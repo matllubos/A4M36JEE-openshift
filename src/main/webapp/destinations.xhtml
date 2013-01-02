@@ -24,7 +24,7 @@
 
             <h:column>
                 <h:link outcome="destination" value="edit">
-                    <f:param name="destination" value="#{item.code}"/>
+                    <f:param name="code" value="#{item.code}"/>
                 </h:link>
             </h:column>
 
@@ -33,6 +33,10 @@
                     <h:commandLink action="#{destinations.remove(item)}" value="remove"/>
                 </h:form>
             </h:column>
+
+            <f:facet name="footer">
+                <h:link outcome="destination" value="new destination" style="text-align: left;" />
+            </f:facet>
 
         </h:dataTable>
 
