@@ -38,13 +38,13 @@ public class DestinationsBean extends BeanBase {
         dirtyData = true;
     }
 
-    public String remove( Destination destination ) {
+    public String remove( long id ) {
 
         try {
-            service.delete( destination.getId() );
+            service.delete( id );
             dirtyData = true;
             addInformation( "Destination was removed." );
-        } catch ( NoSuchDestinationException ex ) {
+        } catch ( Throwable ex ) {
             addError( "No such destination exists." );
         }
 

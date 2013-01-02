@@ -31,4 +31,15 @@ public class BeanBase {
         // add it to root message handler
         FacesContext.getCurrentInstance().addMessage( null, message );
     }
+
+    protected String processException( Throwable ex ) {
+
+        // find the most nested exception
+        while ( ex.getCause() != null ) {
+            ex = ex.getCause();
+        }
+
+        // return the original error message
+        return ex.getMessage();
+    }
 }

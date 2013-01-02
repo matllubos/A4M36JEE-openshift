@@ -18,14 +18,13 @@ import java.util.TimeZone;
 
 /** @author Karel Cemus */
 @Data
-@Named( "flights" )
+@Named( "flight" )
 @RequestScoped
 @EqualsAndHashCode( callSuper = false )
 public class FlightBean extends BeanBase implements Serializable {
 
     @Getter
     private static final TimeZone TIMEZONE = TimeZone.getDefault();
-@ManagedBean( name = "flight" )
 
     @Inject
     @Getter( AccessLevel.NONE )

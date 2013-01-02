@@ -3,6 +3,7 @@ package cz.cvut.fel.beans;
 import cz.cvut.fel.model.Destination;
 import cz.cvut.fel.service.DestinationService;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -24,15 +25,22 @@ public class DestinationBean extends BeanBase implements Converter {
     private DestinationsBean destinations;
 
     @Getter
+    @Setter
     private Destination destination = new Destination();
 
     public String save() {
         try {
+            boolean isNew = destination.getId() == 0;
+
             // persist the destination
             service.save( destination );
 
             // log it
-            addInformation( "Destination successfully created." );
+            if ( isNew ) {
+                addInformation( "Destination successfully created." );
+            } else {
+                addInformation( "Destination successfully updated." );
+            }
 
             // reload all destinations
             destinations.update();
@@ -40,18 +48,11 @@ public class DestinationBean extends BeanBase implements Converter {
             return "destinations";
 
         } catch ( Throwable ex ) {
-            while ( ex.getCause() != null ) {
-                ex = ex.getCause();
-            }
-            addError( ex.getMessage() );
+            addError( processException( ex ) );
             return null;
         }
     }
 
-
-    public void setDestination( final Destination destination ) {
-        this.destination = destination;
-    }
 
     @Override
     public Object getAsObject( final FacesContext context, final UIComponent component, final String value ) {
