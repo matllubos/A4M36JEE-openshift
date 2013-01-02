@@ -70,7 +70,7 @@ public class ReservationServiceImpl implements ReservationService {
         }
 
         // update flight remaining capacity information
-        flight.setCapacityLeft( flight.getCapacityLeft() - seats );
+        flight.setSeatsTaken( flight.getSeatsTaken() + seats );
 
         // make a reservation
         Reservation entity = new Reservation();
@@ -103,7 +103,7 @@ public class ReservationServiceImpl implements ReservationService {
 
         // release taken seats in chosen flight
         Flight flight = reservation.getFlight();
-        flight.setCapacityLeft( flight.getCapacityLeft() + reservation.getCount() );
+        flight.setSeatsTaken( flight.getSeatsTaken() - reservation.getCount() );
 
         log.info( "Reservation with ID '{}' was successfully cancelled.", reservation.getId() );
 
