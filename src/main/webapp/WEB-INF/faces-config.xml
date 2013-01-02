@@ -29,6 +29,18 @@
             <redirect/>
         </navigation-case>
 
+        <navigation-case>
+            <from-outcome>destinations</from-outcome>
+            <to-view-id>/destinations.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>destination</from-outcome>
+            <to-view-id>/destination.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
     </navigation-rule>
 
 </faces-config>

@@ -1,3 +1,28 @@
+input.rf-cal-inp, input[type='submit'], select {
+    font-size: 80%;
+}
+
+label {
+    margin-left: 3em;
+    display: inline-block;
+}
+
+a:visited, a:link, a:active {
+    color: blue;
+    text-decoration: none;
+    font-size: 90%;
+    margin: 0.5em;
+    vertical-align: middle;
+}
+
+form {
+    margin: 0;
+}
+
+a:hover {
+    color: red;
+}
+
 td, th {
     padding: 0.2em 1em;
     text-align: center;
@@ -29,4 +54,13 @@ input, select {
 
 .block-links a {
     display: block;
+}
+
+#navigation a {
+    display: inline-block;
+    /*width: 10em;*/
+    text-align: center;
+    margin: 0 2em;
+    font-size: 1em;
+    text-transform: uppercase;
 }

@@ -14,10 +14,19 @@ import javax.faces.context.FacesContext;
 public class BeanBase {
 
 
-    protected void addMessage( String formatMessage, Object... args ) {
+    protected void addError( String formatMessage, Object... args ) {
 
         // create formatted message
-        FacesMessage message = new FacesMessage( String.format( formatMessage, args ) );
+        FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, String.format( formatMessage, args ), null );
+
+        // add it to root message handler
+        FacesContext.getCurrentInstance().addMessage( null, message );
+    }
+
+    protected void addInformation( String formatMessage, Object... args ) {
+
+        // create formatted message
+        FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_INFO, String.format( formatMessage, args ), null );
 
         // add it to root message handler
         FacesContext.getCurrentInstance().addMessage( null, message );

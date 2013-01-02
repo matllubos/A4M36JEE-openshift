@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+        >
+
+<ui:composition template="/WEB-INF/templates/template.xhtml">,
+
+    <ui:define name="title">Destinations overview</ui:define>
+
+    <ui:define name="content">
+
+        <h:dataTable value="#{destinations.destinations}" var="item" styleClass="bordered">
+
+            <h:column>
+                <f:facet name="header"><h:outputText value="Code"/></f:facet>
+                <h:outputText value="#{item.code}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header"><h:outputText value="Name"/></f:facet>
+                <h:outputText value="#{item.name}"/>
+            </h:column>
+
+            <h:column>
+                <h:link outcome="destination" value="edit">
+                    <f:param name="destination" value="#{item.code}"/>
+                </h:link>
+            </h:column>
+
+            <h:column>
+                <h:form>
+                    <h:commandLink action="#{destinations.remove(item)}" value="remove"/>
+                </h:form>
+            </h:column>
+
+        </h:dataTable>
+
+    </ui:define>
+
+</ui:composition>
+</html>

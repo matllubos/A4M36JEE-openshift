@@ -1,5 +1,6 @@
 package cz.cvut.fel.beans;
 
+import cz.cvut.fel.exception.NoSuchDestinationException;
 import cz.cvut.fel.model.Destination;
 import cz.cvut.fel.service.DestinationService;
 
@@ -12,7 +13,7 @@ import java.util.Collections;
 /** @author Karel Cemus */
 @Named( "destinations" )
 @ApplicationScoped
-public class DestinationBean {
+public class DestinationsBean extends BeanBase {
 
     @Inject
     private DestinationService service;
@@ -35,5 +36,18 @@ public class DestinationBean {
 
     public void update() {
         dirtyData = true;
+    }
+
+    public String remove( Destination destination ) {
+
+        try {
+            service.delete( destination.getId() );
+            dirtyData = true;
+            addInformation( "Destination was removed." );
+        } catch ( NoSuchDestinationException ex ) {
+            addError( "No such destination exists." );
+        }
+
+        return "destinations";
     }
 }
