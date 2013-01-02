@@ -24,6 +24,12 @@
         </navigation-case>
 
         <navigation-case>
+            <from-outcome>flight</from-outcome>
+            <to-view-id>/flight.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
             <from-outcome>book-it</from-outcome>
             <to-view-id>/book-it.xhtml</to-view-id>
             <redirect/>

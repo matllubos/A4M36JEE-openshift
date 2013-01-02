@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -21,11 +20,10 @@ import java.util.TimeZone;
 @Named( "flights" )
 @RequestScoped
 @EqualsAndHashCode( callSuper = false )
-public class FlightBean extends BeanBase implements Serializable {
+public class FlightsBean extends BeanBase {
 
     @Getter
     private static final TimeZone TIMEZONE = TimeZone.getDefault();
-@ManagedBean( name = "flight" )
 
     @Inject
     @Getter( AccessLevel.NONE )
@@ -73,5 +71,16 @@ public class FlightBean extends BeanBase implements Serializable {
         } else {
             return service.findFlights( dateFrom, dateTo, departureFrom, arrivalTo );
         }
+    }
+
+    public String remove( String number ) {
+        try {
+            service.delete( number );
+            addInformation( "Flight was removed." );
+        } catch ( Throwable ex ) {
+            addError( "No such flight exists." );
+        }
+
+        return "flights";
     }
 }

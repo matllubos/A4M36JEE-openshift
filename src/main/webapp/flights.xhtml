@@ -114,12 +114,27 @@
             </h:column>
 
             <h:column>
-                <f:facet name="header"><h:outputText value="Book it"/></f:facet>
                 <h:link outcome="book-it" value="book this" rendered="#{item.bookable}">
                     <f:param name="flight" value="#{item.number}"/>
                 </h:link>
                 <h:outputText value="not available" rendered="#{!item.bookable}"/>
             </h:column>
+
+            <h:column>
+                <h:link outcome="flight" value="edit">
+                    <f:param name="number" value="#{item.number}"/>
+                </h:link>
+            </h:column>
+
+            <h:column>
+                <h:form>
+                    <h:commandLink action="#{flights.remove(item.number)}" value="remove"/>
+                </h:form>
+            </h:column>
+
+            <f:facet name="footer">
+                <h:link outcome="flight" value="new flight"/>
+            </f:facet>
 
         </h:dataTable>
 
