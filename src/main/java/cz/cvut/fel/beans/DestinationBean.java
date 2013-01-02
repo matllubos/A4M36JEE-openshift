@@ -12,11 +12,12 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.inject.Inject;
+import java.io.Serializable;
 
 /** @author Karel Cemus */
 @ViewScoped
 @ManagedBean( name = "destination" )
-public class DestinationBean extends BeanBase implements Converter {
+public class DestinationBean extends BeanBase implements Converter, Serializable {
 
     @Inject
     private DestinationService service;
