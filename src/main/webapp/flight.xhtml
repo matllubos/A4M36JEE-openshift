@@ -11,7 +11,7 @@
     <ui:define name="metadata">
 
         <f:metadata>
-            <f:viewParam name="number" value="#{flight.flight}" converter="#{flight}" converterMessage="Flight doesn't exist."/>
+            <f:viewParam name="number" value="#{flight.flight}" converter="#{flightConverter}" converterMessage="Flight doesn't exist."/>
         </f:metadata>
 
     </ui:define>
@@ -62,7 +62,7 @@
                     <!--<f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"-->
                                    <!--itemValue="#{item.code}"/>-->
                     <!--<rich:validator/>-->
-                    <!--<f:converter binding="#{destination}"/>-->
+                    <!--<f:converter binding="#{destinations}"/>-->
                 <!--</h:selectOneMenu>-->
                 <!--<h:message for="from"/>-->
 
@@ -72,7 +72,7 @@
                     <!--<f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"-->
                                    <!--itemValue="#{item.code}"/>-->
                     <!--<rich:validator/>-->
-                    <!--<f:converter binding="#{destination}"/>-->
+                    <!--<f:converter binding="#{destinations}"/>-->
                 <!--</h:selectOneMenu>-->
                 <!--<h:message for="to"/>-->
 

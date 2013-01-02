@@ -7,17 +7,13 @@ import lombok.Setter;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
 import javax.inject.Inject;
 import java.io.Serializable;
 
 /** @author Karel Cemus */
 @ViewScoped
 @ManagedBean( name = "destination" )
-public class DestinationBean extends BeanBase implements Converter, Serializable {
+public class DestinationBean extends BeanBase implements Serializable {
 
     @Inject
     private DestinationService service;
@@ -51,29 +47,6 @@ public class DestinationBean extends BeanBase implements Converter, Serializable
         } catch ( Throwable ex ) {
             addError( processException( ex ) );
             return null;
-        }
-    }
-
-
-    @Override
-    public Object getAsObject( final FacesContext context, final UIComponent component, final String value ) {
-        try {
-            if ( value == null ) return new Destination();
-            return service.findByCode( value );
-        } catch ( Throwable ex ) {
-            while ( ex.getCause() != null ) {
-                ex = ex.getCause();
-            }
-            throw new ConverterException( String.format( ex.getMessage() ) );
-        }
-    }
-
-    @Override
-    public String getAsString( final FacesContext context, final UIComponent component, final Object value ) {
-        if ( value == null ) {
-            return null;
-        } else {
-            return ( ( Destination ) value ).getCode();
         }
     }
 }
