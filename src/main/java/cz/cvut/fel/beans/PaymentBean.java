@@ -12,6 +12,7 @@ import java.util.Date;
 @Data
 @Named
 @RequestScoped
+@Deprecated
 public class PaymentBean implements Serializable {
 
     //    @Inject

@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Data
 @Named
 @RequestScoped
+@Deprecated
 public class DispatcherBean implements Serializable {
 
     //    @Inject

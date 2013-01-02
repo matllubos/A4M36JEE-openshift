@@ -19,6 +19,7 @@ import java.io.Serializable;
 @Getter
 @Named( "file" )
 @SessionScoped
+@Deprecated
 public class FileBean implements Serializable {
 
 

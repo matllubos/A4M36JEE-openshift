@@ -1,6 +1,7 @@
 package cz.cvut.fel.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -17,6 +18,7 @@ import java.util.Date;
 @Entity
 @ToString
 @NoArgsConstructor
+@EqualsAndHashCode( of = "id" )
 @NamedQueries( {
         /** for administration purpose only */
         @NamedQuery( name = "Payment.findAll", query = "SELECT p FROM Payment p" )

@@ -74,6 +74,17 @@ public class DateUtils {
         return calendar.getTime();
     }
 
+    /** add number of months to given base date */
+    public static Date addMonths( final Date base, final int months ) {
+
+        final Calendar calendar = Calendar.getInstance();
+        calendar.setTime( base );
+        calendar.add( Calendar.MONTH, months );
+
+        // return new date
+        return calendar.getTime();
+    }
+
     private static final SimpleDateFormat DATE_FORMATTER_FROM_GMT = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
 
     private static final SimpleDateFormat DATE_FORMATTER_TO_GMT = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );

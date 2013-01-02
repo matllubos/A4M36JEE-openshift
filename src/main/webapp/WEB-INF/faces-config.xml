@@ -5,6 +5,10 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
         version="2.0">
 
+    <lifecycle>
+        <phase-listener>cz.cvut.fel.utils.MultiPageMessagesSupport</phase-listener>
+    </lifecycle>
+
     <navigation-rule>
 
         <navigation-case>
@@ -15,24 +19,26 @@
 
         <navigation-case>
             <from-outcome>flights</from-outcome>
-            <to-view-id>/flights.xhml</to-view-id>
+            <to-view-id>/flights.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
 
         <navigation-case>
-            <from-outcome>reservation</from-outcome>
-            <to-view-id>/reservation.xhml</to-view-id>
+            <from-outcome>book-it</from-outcome>
+            <to-view-id>/book-it.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
 
         <navigation-case>
-            <from-outcome>pay-visa</from-outcome>
-            <to-view-id>/pay-visa.xhml</to-view-id>
+            <from-outcome>destinations</from-outcome>
+            <to-view-id>/destinations.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
 
         <navigation-case>
-            <from-outcome>pay-canceled</from-outcome>
-            <to-view-id>/pay-canceled.xhml</to-view-id>
+            <from-outcome>destination</from-outcome>
+            <to-view-id>/destination.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
 
     </navigation-rule>
