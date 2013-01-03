@@ -115,7 +115,7 @@
             </h:column>
 
             <h:column>
-                <h:link outcome="book-it" value="book this" rendered="#{item.bookable}">
+                <h:link outcome="book-it" value="book this" rendered="#{item.bookable}" includeViewParams="true">
                     <f:param name="flight" value="#{item.number}"/>
                 </h:link>
                 <h:outputText value="not available" rendered="#{!item.bookable}"/>

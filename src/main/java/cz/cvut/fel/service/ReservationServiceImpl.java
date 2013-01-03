@@ -66,7 +66,7 @@ public class ReservationServiceImpl implements ReservationService {
         }
 
         if ( flight.getCapacityLeft() < seats ) { // not enough seats left
-            throw new FullFlightException( String.format( "Flight '%s' doesn't have enough capacity left.", flight ) );
+            throw new FullFlightException( String.format( "Flight '%s' doesn't have enough capacity left.", flight.getNumber() ) );
         }
 
         // update flight remaining capacity information
