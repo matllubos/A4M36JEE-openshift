@@ -10,22 +10,23 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="date-from" value="#{flights.dateFrom}" converterMessage="Invalid 'date-from' format.">
-                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{flights.getTIMEZONE()}"/>
+
+            <f:viewParam name="date-from" value="#{overviewConfiguration.dateFrom}" converterMessage="Invalid 'date-from' format.">
+                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{flightOverviewConfiguration.timezone}"/>
             </f:viewParam>
 
-            <f:viewParam name="date-to" value="#{flights.dateTo}" converterMessage="Invalid 'date-to' format.">
-                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{flights.getTIMEZONE()}"/>
+            <f:viewParam name="date-to" value="#{overviewConfiguration.dateTo}" converterMessage="Invalid 'date-to' format.">
+                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{flightOverviewConfiguration.timezone}"/>
             </f:viewParam>
 
-            <f:viewParam name="departure-from" value="#{flights.departureFrom}"/>
+            <f:viewParam name="departure-from" value="#{overviewConfiguration.departureFrom}"/>
 
-            <f:viewParam name="arrival-to" value="#{flights.arrivalTo}"/>
+            <f:viewParam name="arrival-to" value="#{overviewConfiguration.arrivalTo}"/>
+
         </f:metadata>
     </ui:define>
 
     <ui:define name="content">
-
         <h:form>
 
             <h:panelGrid columns="5">
@@ -34,21 +35,21 @@
 
                     <h:panelGroup>
                         <h:outputLabel for="dateFrom" value="Date from:"/>
-                        <rich:calendar id="dateFrom" datePattern="dd.MM.yyyy" value="#{flights.dateFrom}"
+                        <rich:calendar id="dateFrom" datePattern="dd.MM.yyyy" value="#{overviewConfiguration.dateFrom}"
                                        validatorMessage="Invalid value 'date-from'" inputSize="7em" showFooter="false"
-                                       timeZone="#{flights.getTIMEZONE()}"/>
+                                       timeZone="#{overviewConfiguration.timezone}"/>
                     </h:panelGroup>
 
                     <h:panelGroup>
                         <h:outputLabel for="dateTo" value="Date do:"/>
-                        <rich:calendar id="dateTo" value="#{flights.dateTo}" datePattern="dd.MM.yyyy" styleClass="calendar"
+                        <rich:calendar id="dateTo" value="#{overviewConfiguration.dateTo}" datePattern="dd.MM.yyyy" styleClass="calendar"
                                        validatorMessage="Invalid value 'date-to'" inputSize="7em" showFooter="false"
-                                       timeZone="#{flights.getTIMEZONE()}"/>
+                                       timeZone="#{overviewConfiguration.timezone}"/>
                     </h:panelGroup>
 
                     <h:panelGroup>
                         <h:outputLabel for="departureFrom" value="Departure from:"/>
-                        <h:selectOneMenu id="departureFrom" value="#{flights.departureFrom}">
+                        <h:selectOneMenu id="departureFrom" value="#{overviewConfiguration.departureFrom}">
                             <f:selectItem value="#{null}" itemLabel="- undefined -"/>
                             <f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"
                                            itemValue="#{item.code}"/>
@@ -57,7 +58,7 @@
 
                     <h:panelGroup>
                         <h:outputLabel for="arrivalTo" value="Arrival to:"/>
-                        <h:selectOneMenu id="arrivalTo" value="#{flights.arrivalTo}">
+                        <h:selectOneMenu id="arrivalTo" value="#{overviewConfiguration.arrivalTo}">
                             <f:selectItem value="#{null}" itemLabel="- undefined -"/>
                             <f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"
                                            itemValue="#{item.code}"/>
@@ -121,7 +122,7 @@
             </h:column>
 
             <h:column>
-                <h:link outcome="flight" value="edit">
+                <h:link outcome="flight?faces-redirect=true&amp;includeViewParams=true" value="edit">
                     <f:param name="number" value="#{item.number}"/>
                 </h:link>
             </h:column>

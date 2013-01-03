@@ -11,7 +11,21 @@
     <ui:define name="metadata">
 
         <f:metadata>
+
             <f:viewParam name="number" value="#{flight.flight}" converter="#{flightConverter}" converterMessage="Flight doesn't exist."/>
+
+            <f:viewParam name="date-from" value="#{overviewConfiguration.dateFrom}" converterMessage="Invalid 'date-from' format.">
+                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{flightOverviewConfiguration.timezone}"/>
+            </f:viewParam>
+
+            <f:viewParam name="date-to" value="#{overviewConfiguration.dateTo}" converterMessage="Invalid 'date-to' format.">
+                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{flightOverviewConfiguration.timezone}"/>
+            </f:viewParam>
+
+            <f:viewParam name="departure-from" value="#{overviewConfiguration.departureFrom}"/>
+
+            <f:viewParam name="arrival-to" value="#{overviewConfiguration.arrivalTo}"/>
+
         </f:metadata>
 
     </ui:define>
@@ -30,49 +44,49 @@
 
                 <h:outputLabel for="departure-scheduled" value="Departure scheduled on"/>
                 <rich:calendar id="departure-scheduled" value="#{flight.flight.departure.scheduled}"
-                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{flights.getTIMEZONE()}">
+                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.timezone}">
                     <rich:validator/>
                 </rich:calendar>
                 <h:message for="departure-scheduled"/>
 
                 <h:outputLabel for="departure-actual" value="Actual departure at"/>
                 <rich:calendar id="departure-actual" value="#{flight.flight.departure.actual}"
-                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{flights.getTIMEZONE()}">
+                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.timezone}">
                     <rich:validator/>
                 </rich:calendar>
                 <h:message for="departure-actual"/>
 
                 <h:outputLabel for="arrival-scheduled" value="Arrival scheduled on"/>
                 <rich:calendar id="arrival-scheduled" value="#{flight.flight.arrival.scheduled}"
-                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{flights.getTIMEZONE()}">
+                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.timezone}">
                     <rich:validator/>
                 </rich:calendar>
                 <h:message for="arrival-scheduled"/>
 
                 <h:outputLabel for="arrival-actual" value="Actual arrival at"/>
                 <rich:calendar id="arrival-actual" value="#{flight.flight.arrival.actual}"
-                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{flights.getTIMEZONE()}">
+                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.timezone}">
                     <rich:validator/>
                 </rich:calendar>
                 <h:message for="arrival-actual"/>
 
                 <!--<h:outputLabel for="from" value="Departure from"/>-->
                 <!--<h:selectOneMenu id="from" value="#{flight.flight.from}">-->
-                    <!--<f:selectItem value="#{null}" itemLabel="- undefined -"/>-->
-                    <!--<f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"-->
-                                   <!--itemValue="#{item.code}"/>-->
-                    <!--<rich:validator/>-->
-                    <!--<f:converter binding="#{destinations}"/>-->
+                <!--<f:selectItem value="#{null}" itemLabel="- undefined -"/>-->
+                <!--<f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"-->
+                <!--itemValue="#{item.code}"/>-->
+                <!--<rich:validator/>-->
+                <!--<f:converter binding="#{destinations}"/>-->
                 <!--</h:selectOneMenu>-->
                 <!--<h:message for="from"/>-->
 
                 <!--<h:outputLabel for="to" value="Arrival to"/>-->
                 <!--<h:selectOneMenu id="to" value="#{flight.flight.to}">-->
-                    <!--<f:selectItem value="#{null}" itemLabel="- undefined -"/>-->
-                    <!--<f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"-->
-                                   <!--itemValue="#{item.code}"/>-->
-                    <!--<rich:validator/>-->
-                    <!--<f:converter binding="#{destinations}"/>-->
+                <!--<f:selectItem value="#{null}" itemLabel="- undefined -"/>-->
+                <!--<f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"-->
+                <!--itemValue="#{item.code}"/>-->
+                <!--<rich:validator/>-->
+                <!--<f:converter binding="#{destinations}"/>-->
                 <!--</h:selectOneMenu>-->
                 <!--<h:message for="to"/>-->
 
@@ -100,7 +114,7 @@
                 <h:message for="status"/>
 
 
-                <h:commandButton value="Storno" action="flights?faces-redirect=true" immediate="true"/>
+                <h:commandButton value="Storno" action="flights?faces-redirect=true&amp;includeViewParams=true" immediate="true"/>
                 <h:commandButton value="Save" action="#{flight.save}">
                     <f:ajax execute="@form" render="@all"/>
                 </h:commandButton>
