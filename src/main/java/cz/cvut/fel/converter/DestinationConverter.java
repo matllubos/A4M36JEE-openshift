@@ -4,18 +4,17 @@ import cz.cvut.fel.beans.BeanBase;
 import cz.cvut.fel.model.Destination;
 import cz.cvut.fel.service.DestinationService;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
+import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
 
 /** @author Karel Cemus */
-@Named( "destinationConverter" )
-@ApplicationScoped
+@FacesConverter( "destinationConverter" )
 public class DestinationConverter extends BeanBase implements Converter, Serializable {
 
     @Inject
@@ -29,14 +28,14 @@ public class DestinationConverter extends BeanBase implements Converter, Seriali
             return service.findByCode( value );
 
         } catch ( Throwable ex ) {
-            throw new ConverterException( processException( ex ) );
+            throw new ConverterException( new FacesMessage( processException( ex ) ) );
         }
     }
 
     @Override
     public String getAsString( final FacesContext context, final UIComponent component, final Object value ) {
         if ( value == null ) {
-            return null;
+            return "";
         } else {
             return ( ( Destination ) value ).getCode();
         }

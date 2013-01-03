@@ -12,9 +12,11 @@
 
         <f:metadata>
 
-            <f:viewParam name="number" value="#{flight.flight}" converter="#{flightConverter}" converterMessage="Flight doesn't exist."/>
+            <f:viewParam name="number" value="#{flight.flight}" converter="flightConverter"
+                         converterMessage="Flight doesn't exist."/>
 
-            <f:viewParam name="date-from" value="#{overviewConfiguration.dateFrom}" converterMessage="Invalid 'date-from' format.">
+            <f:viewParam name="date-from" value="#{overviewConfiguration.dateFrom}"
+                         converterMessage="Invalid 'date-from' format.">
                 <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{overviewConfiguration.getTimezone()}"/>
             </f:viewParam>
 

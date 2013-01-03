@@ -4,19 +4,18 @@ import cz.cvut.fel.beans.BeanBase;
 import cz.cvut.fel.model.Flight;
 import cz.cvut.fel.service.FlightService;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
+import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
 
 
 /** @author Karel Cemus */
-@Named( "flightConverter" )
-@ApplicationScoped
+@FacesConverter( "flightConverter" )
 public class FlightConverter extends BeanBase implements Converter, Serializable {
 
     @Inject
@@ -28,7 +27,7 @@ public class FlightConverter extends BeanBase implements Converter, Serializable
             if ( value == null ) return new Flight();
             return service.find( value );
         } catch ( Throwable ex ) {
-            throw new ConverterException( processException( ex ) );
+            throw new ConverterException( new FacesMessage( processException( ex ) ) );
         }
     }
 
