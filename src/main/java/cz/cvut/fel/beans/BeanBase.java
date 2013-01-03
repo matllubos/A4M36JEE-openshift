@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import java.io.Serializable;
 
 /**
  * <p>Base class for beans providing comfort functionality</p>
@@ -11,7 +12,7 @@ import javax.faces.context.FacesContext;
  * @author Karel Cemus
  */
 @EqualsAndHashCode
-public class BeanBase {
+public class BeanBase implements Serializable {
 
 
     protected void addError( String formatMessage, Object... args ) {

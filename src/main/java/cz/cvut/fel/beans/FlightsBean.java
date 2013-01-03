@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -20,7 +21,7 @@ import java.util.TimeZone;
 @Named( "flights" )
 @RequestScoped
 @EqualsAndHashCode( callSuper = false )
-public class FlightsBean extends BeanBase {
+public class FlightsBean extends BeanBase implements Serializable {
 
     @Getter
     private static final TimeZone TIMEZONE = TimeZone.getDefault();

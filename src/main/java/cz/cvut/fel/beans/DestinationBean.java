@@ -5,14 +5,14 @@ import cz.cvut.fel.service.DestinationService;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.Serializable;
 
 /** @author Karel Cemus */
 @ViewScoped
-@ManagedBean( name = "destination" )
+@Named( "destination" )
 public class DestinationBean extends BeanBase implements Serializable {
 
     @Inject
