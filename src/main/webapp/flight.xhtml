@@ -72,25 +72,25 @@
                 </rich:calendar>
                 <h:message for="arrival-actual"/>
 
-                <!--<h:outputLabel for="from" value="Departure from"/>-->
-                <!--<h:selectOneMenu id="from" value="#{flight.flight.from}">-->
-                <!--<f:selectItem value="#{null}" itemLabel="- undefined -"/>-->
-                <!--<f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"-->
-                <!--itemValue="#{item.code}"/>-->
-                <!--<rich:validator/>-->
-                <!--<f:converter binding="#{destinations}"/>-->
-                <!--</h:selectOneMenu>-->
-                <!--<h:message for="from"/>-->
+                <h:outputLabel for="from" value="Departure from"/>
+                <h:selectOneMenu id="from" value="#{flight.flight.from}">
+                    <f:selectItem value="#{null}" itemLabel="- undefined -"/>
+                    <f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"
+                                   itemValue="#{item}"/>
+                    <rich:validator/>
+                    <f:converter converterId="destinationConverter"/>
+                </h:selectOneMenu>
+                <h:message for="from"/>
 
-                <!--<h:outputLabel for="to" value="Arrival to"/>-->
-                <!--<h:selectOneMenu id="to" value="#{flight.flight.to}">-->
-                <!--<f:selectItem value="#{null}" itemLabel="- undefined -"/>-->
-                <!--<f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"-->
-                <!--itemValue="#{item.code}"/>-->
-                <!--<rich:validator/>-->
-                <!--<f:converter binding="#{destinations}"/>-->
-                <!--</h:selectOneMenu>-->
-                <!--<h:message for="to"/>-->
+                <h:outputLabel for="to" value="Arrival to"/>
+                <h:selectOneMenu id="to" value="#{flight.flight.to}">
+                    <f:selectItem value="#{null}" itemLabel="- undefined -"/>
+                    <f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"
+                                   itemValue="#{item}"/>
+                    <rich:validator/>
+                    <f:converter converterId="destinationConverter"/>
+                </h:selectOneMenu>
+                <h:message for="to"/>
 
                 <h:outputLabel for="price" value="Price per seat"/>
                 <h:inputText id="price" value="#{flight.flight.cost}">

@@ -39,7 +39,7 @@ public class FlightBean extends BeanBase implements Serializable {
                 addInformation( "Flight successfully updated." );
             }
 
-            return "flights";
+            return "flights?includeViewParams=true&faces-redirect=true";
 
         } catch ( Throwable ex ) {
             addError( processException( ex ) );
