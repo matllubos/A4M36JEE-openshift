@@ -21,7 +21,7 @@ import java.util.TimeZone;
 @Named( "overviewConfiguration" )
 public class FlightOverviewConfiguration implements Serializable {
 
-    private final TimeZone TIMEZONE = TimeZone.getDefault();
+    private static final TimeZone TIMEZONE = TimeZone.getDefault();
 
     // in default look at today
     @NotNull
@@ -35,7 +35,7 @@ public class FlightOverviewConfiguration implements Serializable {
 
     private String arrivalTo;
 
-    public TimeZone getTimezone() {
+    public static TimeZone getTimezone() {
         return TIMEZONE;
     }
 

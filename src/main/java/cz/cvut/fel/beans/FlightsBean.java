@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
@@ -22,7 +21,6 @@ public class FlightsBean extends BeanBase implements Serializable {
     @Inject
     private FlightService service;
 
-    @Valid
     @Inject
     private FlightOverviewConfiguration configuration;
 

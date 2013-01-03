@@ -15,11 +15,11 @@
             <f:viewParam name="number" value="#{flight.flight}" converter="#{flightConverter}" converterMessage="Flight doesn't exist."/>
 
             <f:viewParam name="date-from" value="#{overviewConfiguration.dateFrom}" converterMessage="Invalid 'date-from' format.">
-                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{flightOverviewConfiguration.timezone}"/>
+                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{overviewConfiguration.getTimezone()}"/>
             </f:viewParam>
 
             <f:viewParam name="date-to" value="#{overviewConfiguration.dateTo}" converterMessage="Invalid 'date-to' format.">
-                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{flightOverviewConfiguration.timezone}"/>
+                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{overviewConfiguration.getTimezone()}"/>
             </f:viewParam>
 
             <f:viewParam name="departure-from" value="#{overviewConfiguration.departureFrom}"/>
@@ -44,28 +44,28 @@
 
                 <h:outputLabel for="departure-scheduled" value="Departure scheduled on"/>
                 <rich:calendar id="departure-scheduled" value="#{flight.flight.departure.scheduled}"
-                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.timezone}">
+                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}">
                     <rich:validator/>
                 </rich:calendar>
                 <h:message for="departure-scheduled"/>
 
                 <h:outputLabel for="departure-actual" value="Actual departure at"/>
                 <rich:calendar id="departure-actual" value="#{flight.flight.departure.actual}"
-                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.timezone}">
+                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}">
                     <rich:validator/>
                 </rich:calendar>
                 <h:message for="departure-actual"/>
 
                 <h:outputLabel for="arrival-scheduled" value="Arrival scheduled on"/>
                 <rich:calendar id="arrival-scheduled" value="#{flight.flight.arrival.scheduled}"
-                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.timezone}">
+                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}">
                     <rich:validator/>
                 </rich:calendar>
                 <h:message for="arrival-scheduled"/>
 
                 <h:outputLabel for="arrival-actual" value="Actual arrival at"/>
                 <rich:calendar id="arrival-actual" value="#{flight.flight.arrival.actual}"
-                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.timezone}">
+                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}">
                     <rich:validator/>
                 </rich:calendar>
                 <h:message for="arrival-actual"/>

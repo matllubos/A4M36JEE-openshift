@@ -12,11 +12,11 @@
         <f:metadata>
 
             <f:viewParam name="date-from" value="#{overviewConfiguration.dateFrom}" converterMessage="Invalid 'date-from' format.">
-                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{flightOverviewConfiguration.timezone}"/>
+                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{overviewConfiguration.getTimezone()}"/>
             </f:viewParam>
 
             <f:viewParam name="date-to" value="#{overviewConfiguration.dateTo}" converterMessage="Invalid 'date-to' format.">
-                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{flightOverviewConfiguration.timezone}"/>
+                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{overviewConfiguration.getTimezone()}"/>
             </f:viewParam>
 
             <f:viewParam name="departure-from" value="#{overviewConfiguration.departureFrom}"/>
@@ -31,20 +31,20 @@
 
             <h:panelGrid columns="5">
 
-                <rich:graphValidator value="#{flights}">
+                <rich:graphValidator value="#{overviewConfiguration}">
 
                     <h:panelGroup>
                         <h:outputLabel for="dateFrom" value="Date from:"/>
                         <rich:calendar id="dateFrom" datePattern="dd.MM.yyyy" value="#{overviewConfiguration.dateFrom}"
                                        validatorMessage="Invalid value 'date-from'" inputSize="7em" showFooter="false"
-                                       timeZone="#{overviewConfiguration.timezone}"/>
+                                       timeZone="#{overviewConfiguration.getTimezone()}"/>
                     </h:panelGroup>
 
                     <h:panelGroup>
                         <h:outputLabel for="dateTo" value="Date do:"/>
                         <rich:calendar id="dateTo" value="#{overviewConfiguration.dateTo}" datePattern="dd.MM.yyyy" styleClass="calendar"
                                        validatorMessage="Invalid value 'date-to'" inputSize="7em" showFooter="false"
-                                       timeZone="#{overviewConfiguration.timezone}"/>
+                                       timeZone="#{overviewConfiguration.getTimezone()}"/>
                     </h:panelGroup>
 
                     <h:panelGroup>
