@@ -1,4 +1,4 @@
-input.rf-cal-inp, input[type='submit'], select {
+input.rf-cal-inp, input[type='submit'], select, textarea, input[type="text"], input[type="password"]{
     font-size: 80%;
 }
 
