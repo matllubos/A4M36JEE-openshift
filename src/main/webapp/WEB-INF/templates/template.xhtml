@@ -24,6 +24,7 @@
         <h:link value="home" outcome="home"/>
         <h:link value="destinations" outcome="destinations"/>
         <h:link value="flights" outcome="flights">
+            <f:param name="departure-from" value="#{destinations.destinations.get(0).code}" disable="#{destinations.destinations.isEmpty()}" />
         </h:link>
     </div>
 
