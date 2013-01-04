@@ -3,13 +3,15 @@ package cz.cvut.fel.service;
 import cz.cvut.fel.exception.*;
 import cz.cvut.fel.model.Reservation;
 
+import java.io.Serializable;
+
 /**
  * Service provides the interface to reservation administration. Through this API can be created, found and cancelled reservations
  * in the booking system.
  *
  * @author Karel Cemus
  */
-public interface ReservationService {
+public interface ReservationService extends Serializable {
 
     /** finds the reservation with given number and verifies the access validity with given password. */
     Reservation find( long reservation, String password ) throws SecurityException, NoSuchReservationException;

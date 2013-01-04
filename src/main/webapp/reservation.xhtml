@@ -1,83 +1,125 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:rich="http://richfaces.org/rich"
         >
 
 <ui:composition template="WEB-INF/templates/template.xhtml">,
 
     <ui:define name="title">
-        <h:outputText value="Rezervace číslo #{context.identifier}" rendered="#{reservationBean.reservation != null}"/>
-        <h:outputText value="Rezervace nebyla nalezena" rendered="#{reservationBean.reservation == null}"/>
+
+        <h:outputText value="Reservation login screen" rendered="#{reservationBean.reservation == null}"/>
+        <h:outputText value="Reservation number #{reservationBean.id}" rendered="#{reservationBean.reservation != null}"/>
+
+    </ui:define>
+
+
+    <ui:define name="metadata">
+
+        <f:metadata>
+
+            <f:viewParam name="reservation" value="#{reservationBean.id}" converterMessage="Invalid reservation number.">
+                <f:convertNumber/>
+            </f:viewParam>
+
+        </f:metadata>
+
     </ui:define>
 
     <ui:define name="content">
 
-        <c:set var="reservation" value="#{reservationBean.reservation}"/>
+        <h:form rendered="#{reservationBean.reservation == null}">
 
-        <h:panelGroup rendered="#{reservation != null}">
+            <h:panelGrid columns="3" columnClasses="right,left">
+
+                <h:outputLabel for="identifier" value="Reservation number:"/>
+                <h:inputText id="identifier" value="#{reservationBean.id}"
+                             converterMessage="Invalid number.">
+                    <f:convertNumber integerOnly="true"/>
+                    <rich:validator/>
+                </h:inputText>
+                <h:message for="identifier"/>
+
+                <h:outputLabel for="password" value="Access password:"/>
+                <h:inputSecret id="password" value="#{reservationBean.password}">
+                    <rich:validator/>
+                </h:inputSecret>
+                <h:message for="password"/>
+
+                <h:outputText/>
+                <h:commandButton action="#{reservationBean.logIn}" value="LogIn">
+                    <f:ajax execute="@form" render="@all"/>
+                </h:commandButton>
+                <h:outputText/>
+
+            </h:panelGrid>
+
+        </h:form>
+
+        <h:panelGroup rendered="#{reservationBean.reservation != null}">
+
+            <h:panelGrid columns="2" columnClasses="right,left" styleClass="bordered">
+
+                <h:outputLabel for="reservation-number" value="Reservation number"/>
+                <h:outputText id="reservation-number" value="#{reservationBean.reservation.id}"/>
+
+                <h:outputLabel for="flight-number" value="Flight number"/>
+                <h:outputText id="flight-number" value="#{reservationBean.flight.number}"/>
 
 
-            <c:set var="flight" value="#{reservation.flight}"/>
+                <h:outputLabel for="departure" value="Departure scheduled on"/>
+                <h:outputText id="departure" value="#{reservationBean.flight.departure.scheduled}">
+                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}"/>
+                </h:outputText>
 
-            <table>
-                <tr>
-                    <td class="title">Číslo rezervace:</td>
-                    <td><h:outputText value="#{reservation.id}"/></td>
-                </tr>
-                <tr>
-                    <td class="title">Číslo letu:</td>
-                    <td><h:outputText value="#{flight.number}"/></td>
-                </tr>
-                <tr>
-                    <td class="title">Odlet z:</td>
-                    <td><h:outputText value="#{flight.from.name}"/></td>
-                </tr>
-                <tr>
-                    <td class="title">Přílet do:</td>
-                    <td><h:outputText value="#{flight.to.name}"/></td>
-                </tr>
-                <tr>
-                    <td class="title">Datum odletu:</td>
-                    <td>
-                        <h:outputText value="#{flight.departure}">
-                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm"/>
-                        </h:outputText>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="title">Počet míst:</td>
-                    <td><h:outputText value="#{reservation.count}"/></td>
-                </tr>
-                <tr>
-                    <td class="title">Celková cena</td>
-                    <td><h:outputText value="#{reservation.cost}"/> Kč</td>
-                </tr>
-                <tr>
-                    <td class="title">Zaplacená částka:</td>
-                    <td><h:outputText value="#{reservation.paid}"/> Kč</td>
-                </tr>
-                <tr>
-                    <td class="title">Stav:</td>
-                    <td>
-                        <h:outputText value="Zrušeno" rendered="#{reservation.canceled}"/>
-                        <h:outputText value="Zaplaceno" rendered="#{!reservation.canceled and reservation.paid == reservation.cost}"/>
-                        <h:outputText value="Nezaplaceno" rendered="#{!reservation.canceled and reservation.paid != reservation.cost}"/>
-                    </td>
-                </tr>
-            </table>
+                <h:outputLabel for="arrival" value="Arrival scheduled on"/>
+                <h:outputText id="arrival" value="#{reservationBean.flight.arrival.scheduled}">
+                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}"/>
+                </h:outputText>
+
+                <h:outputLabel for="from" value="Departure from"/>
+                <h:outputText id="from" value="#{reservationBean.flight.from.name}"/>
+
+                <h:outputLabel for="to" value="Arrival to"/>
+                <h:outputText id="to" value="#{reservationBean.flight.to.name}"/>
+
+                <h:outputLabel for="seats" value="Number of seats"/>
+                <h:outputText id="seats" value="#{reservationBean.reservation.count}"/>
+
+                <h:outputLabel for="price" value="Price per seat"/>
+                <h:outputText id="price" value="#{reservationBean.flight.cost}"/>
+
+                <h:outputLabel for="price-total" value="Total price"/>
+                <h:outputText id="price-total" value="#{reservationBean.reservation.cost}"/>
+
+                <h:outputLabel for="price-paid" value="Paid"/>
+                <h:outputText id="price-paid" value="#{reservationBean.reservation.paid}"/>
+
+                <h:outputLabel for="status" value="Status"/>
+                <h:outputText id="status" value="#{reservationBean.reservationStatus}"/>
+
+            </h:panelGrid>
 
             <h:form styleClass="block-links">
 
-                <h:commandLink value="#{file.title}" action="#{file.download}" rendered="#{file.stored}"/>
+                <h:panelGrid columns="1">
 
-                <h:commandLink value="Zaplatit přes VISA kartu" action="pay-visa" rendered="#{!reservation.canceled}"/>
+                    <h:commandLink value="Print confirmation" action="#{reservationBean.printConfirmation}"/>
 
-                <h:commandLink value="Zaplatit převodem ze stornované rezervace" action="pay-canceled" rendered="#{!reservation.canceled}"/>
+                    <h:commandLink value="Print E-Ticket" action="#{reservationBean.printETicket}"
+                                   rendered="#{!reservationBean.reservation.cancelled and reservationBean.reservation.fullyPaid}"/>
 
-                <h:commandLink value="Stornovat" action="#{reservationBean.cancel}" rendered="#{!reservation.canceled}"/>
+                    <h:commandLink value="Pay using VISA card" action="pay-visa"
+                                   rendered="#{!reservationBean.reservation.cancelled and !reservationBean.reservation.fullyPaid}"/>
 
-                <h:commandLink value="Vytisknout e-letenku" action="#{reservationBean.printETicket}"
-                               rendered="#{!reservation.canceled and reservation.paid == reservation.cost}"/>
+                    <h:commandLink value="Send money back" action="pay-back"
+                                   rendered="#{reservationBean.reservation.cancelled and reservationBean.reservation.paid > 0}"/>
+
+                    <h:commandLink value="Cancel reservation" action="#{reservationBean.cancel}"
+                                   rendered="#{!reservationBean.reservation.cancelled}">
+                        <f:ajax execute="@form" render="@all"/>
+                    </h:commandLink>
+
+                </h:panelGrid>
 
             </h:form>
 

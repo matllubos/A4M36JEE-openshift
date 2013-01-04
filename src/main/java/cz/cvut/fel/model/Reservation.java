@@ -62,4 +62,9 @@ public class Reservation implements Serializable {
 
     @OneToMany( mappedBy = "reservation", fetch = FetchType.LAZY )
     private Collection<Payment> payments;
+
+    @Transient
+    public boolean isFullyPaid() {
+        return paid >= cost;
+    }
 }

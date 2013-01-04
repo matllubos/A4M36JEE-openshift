@@ -27,6 +27,9 @@ public class BookBean extends BeanBase implements Serializable {
     @Setter( AccessLevel.NONE )
     private ReservationService service;
 
+    @Inject
+    private ReservationBean reservationBean;
+
     private Flight flight;
 
     private int seats;
@@ -42,12 +45,14 @@ public class BookBean extends BeanBase implements Serializable {
             // make reservation
             Reservation reservation = service.create( flight.getNumber(), password, seats );
 
-            System.out.println( "created " + reservation );
-
             // log it
             addInformation( "Seats was reserved." );
 
-            return "flights?includeViewParams=true&faces-redirect=true";
+            reservationBean.setId( reservation.getId() );
+            reservationBean.setPassword( password );
+            reservationBean.logIn();
+
+            return "reservation?includeViewParams=true&faces-redirect=true";
 
         } catch ( Throwable ex ) {
             addError( processException( ex ) );
