@@ -31,7 +31,7 @@ public class FlightOverviewConfiguration implements Serializable {
     @NotNull
     private Date dateTo = DateUtils.addMonths( dateFrom, 1 );
 
-    private String departureFrom;
+    private String departureFrom = "PRG";
 
     private String arrivalTo;
 
