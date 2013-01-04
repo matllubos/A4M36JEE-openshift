@@ -1,4 +1,4 @@
-input.rf-cal-inp, input[type='submit'], select, textarea, input[type="text"], input[type="password"]{
+input.rf-cal-inp, input[type='submit'], select, textarea, input[type="text"], input[type="password"] {
     font-size: 80%;
 }
 
@@ -37,6 +37,10 @@ table.centered-table {
     border-collapse: collapse;
 }
 
+body {
+    margin: 1em 3em;
+}
+
 th {
     background-color: #ee5;
 }
@@ -67,11 +71,28 @@ input, select {
 
 .left {
     text-align: left;
+    padding-left: 0.5em;
+}
+
+.right, .left {
+    padding: 0.1em 0.5em;
+}
+
+.right:after {
+    content: ':'
 }
 
 .right {
     text-align: right;
-    padding-right: 1em;
+    color: #555;
+    font-size: 90%;
+    vertical-align: middle;
+    padding-right: 0.5em;
+}
+
+.bordered .right {
+    background-color: #ee5;
+    font-weight: bold;
 }
 
 .right input, .left input, .left select {
