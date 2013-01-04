@@ -30,7 +30,7 @@ public class InitializeFlightTest extends DatabaseTest {
         flight.setFrom( getDestination( from ) );
         flight.setTo( getDestination( to ) );
         flight.setCapacity( capacity );
-        flight.setCapacityLeft( capacity );
+        flight.setSeatsTaken( 0 );
         flight.setCost( cost );
         flight.setStatus( status );
         if ( deleted ) flight.invalidate();

@@ -2,11 +2,11 @@ package cz.cvut.fel.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -23,7 +23,6 @@ import static cz.cvut.fel.utils.DateUtils.date;
 @Data
 @Entity
 @ToString
-@NoArgsConstructor
 @EqualsAndHashCode( of = "id" )
 @Table( uniqueConstraints = @UniqueConstraint( columnNames = { "number", "validUntil" } ) )
 @NamedQueries( {
@@ -92,11 +91,13 @@ public class Flight implements Serializable {
     private int cost;
 
     /** departure destination */
+    @NotNull
     @ManyToOne( optional = false )
     @JoinColumn( name = "DEPARTURE_FROM" )
     private Destination from;
 
     /** arrival destination */
+    @NotNull
     @ManyToOne( optional = false )
     @JoinColumn( name = "ARRIVAL_TO" )
     private Destination to;
@@ -105,9 +106,9 @@ public class Flight implements Serializable {
     @Min( 0 )
     private int capacity;
 
-    /** capacity left - number of free seats */
+    /** number of taken seats */
     @Min( 0 )
-    private int capacityLeft;
+    private int seatsTaken;
 
     /** current status of flight */
     @NotNull
@@ -124,6 +125,17 @@ public class Flight implements Serializable {
 
     /** default validation date */
     private static final Date VALID_UNTIl = date( 1, 1, 2200 );
+
+    public Flight() {
+        arrival = new Time();
+        departure = new Time();
+    }
+
+    @AssertTrue( message = "Cannot be reserved more seats than it is flight capacity." )
+    boolean isNotFlightOverloaded() {
+        // cannot be reserved more seats than it is flight capacity
+        return seatsTaken <= capacity;
+    }
 
     @PrePersist
     void prePersist() {
@@ -148,9 +160,14 @@ public class Flight implements Serializable {
         if ( validUntil.getTime() < new Date().getTime() ) return false;
 
         // no free seat
-        if ( capacityLeft == 0 ) return false;
+        if ( capacity <= seatsTaken ) return false;
 
         // bookable only in these statuses
         return status == FlightStatus.SCHEDULED || status == FlightStatus.DELAYED;
+    }
+
+    @Transient
+    public int getCapacityLeft() {
+        return capacity - seatsTaken;
     }
 }

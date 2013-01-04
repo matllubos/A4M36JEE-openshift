@@ -10,45 +10,46 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="date-from" value="#{flights.dateFrom}" converterMessage="Invalid 'date-from' format.">
-                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{flights.getTIMEZONE()}"/>
+
+            <f:viewParam name="date-from" value="#{overviewConfiguration.dateFrom}" converterMessage="Invalid 'date-from' format.">
+                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{overviewConfiguration.getTimezone()}"/>
             </f:viewParam>
 
-            <f:viewParam name="date-to" value="#{flights.dateTo}" converterMessage="Invalid 'date-to' format.">
-                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{flights.getTIMEZONE()}"/>
+            <f:viewParam name="date-to" value="#{overviewConfiguration.dateTo}" converterMessage="Invalid 'date-to' format.">
+                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{overviewConfiguration.getTimezone()}"/>
             </f:viewParam>
 
-            <f:viewParam name="departure-from" value="#{flights.departureFrom}"/>
+            <f:viewParam name="departure-from" value="#{overviewConfiguration.departureFrom}"/>
 
-            <f:viewParam name="arrival-to" value="#{flights.arrivalTo}"/>
+            <f:viewParam name="arrival-to" value="#{overviewConfiguration.arrivalTo}"/>
+
         </f:metadata>
     </ui:define>
 
     <ui:define name="content">
-
         <h:form>
 
             <h:panelGrid columns="5">
 
-                <rich:graphValidator value="#{flights}">
+                <rich:graphValidator value="#{overviewConfiguration}">
 
                     <h:panelGroup>
                         <h:outputLabel for="dateFrom" value="Date from:"/>
-                        <rich:calendar id="dateFrom" datePattern="dd.MM.yyyy" value="#{flights.dateFrom}"
+                        <rich:calendar id="dateFrom" datePattern="dd.MM.yyyy" value="#{overviewConfiguration.dateFrom}"
                                        validatorMessage="Invalid value 'date-from'" inputSize="7em" showFooter="false"
-                                       timeZone="#{flights.getTIMEZONE()}"/>
+                                       timeZone="#{overviewConfiguration.getTimezone()}"/>
                     </h:panelGroup>
 
                     <h:panelGroup>
                         <h:outputLabel for="dateTo" value="Date do:"/>
-                        <rich:calendar id="dateTo" value="#{flights.dateTo}" datePattern="dd.MM.yyyy" styleClass="calendar"
+                        <rich:calendar id="dateTo" value="#{overviewConfiguration.dateTo}" datePattern="dd.MM.yyyy" styleClass="calendar"
                                        validatorMessage="Invalid value 'date-to'" inputSize="7em" showFooter="false"
-                                       timeZone="#{flights.getTIMEZONE()}"/>
+                                       timeZone="#{overviewConfiguration.getTimezone()}"/>
                     </h:panelGroup>
 
                     <h:panelGroup>
                         <h:outputLabel for="departureFrom" value="Departure from:"/>
-                        <h:selectOneMenu id="departureFrom" value="#{flights.departureFrom}">
+                        <h:selectOneMenu id="departureFrom" value="#{overviewConfiguration.departureFrom}">
                             <f:selectItem value="#{null}" itemLabel="- undefined -"/>
                             <f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"
                                            itemValue="#{item.code}"/>
@@ -57,7 +58,7 @@
 
                     <h:panelGroup>
                         <h:outputLabel for="arrivalTo" value="Arrival to:"/>
-                        <h:selectOneMenu id="arrivalTo" value="#{flights.arrivalTo}">
+                        <h:selectOneMenu id="arrivalTo" value="#{overviewConfiguration.arrivalTo}">
                             <f:selectItem value="#{null}" itemLabel="- undefined -"/>
                             <f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"
                                            itemValue="#{item.code}"/>
@@ -71,7 +72,7 @@
             </h:panelGrid>
         </h:form>
 
-        <h:dataTable value="#{flights.flights}" var="item" styleClass="bordered">
+        <h:dataTable value="#{flights.flights}" var="item" styleClass="bordered centered-table">
 
             <h:column>
                 <f:facet name="header"><h:outputText value="Flight number"/></f:facet>
@@ -114,12 +115,27 @@
             </h:column>
 
             <h:column>
-                <f:facet name="header"><h:outputText value="Book it"/></f:facet>
-                <h:link outcome="book-it" value="book this" rendered="#{item.bookable}">
+                <h:link outcome="book-it" value="book this" rendered="#{item.bookable}" includeViewParams="true">
                     <f:param name="flight" value="#{item.number}"/>
                 </h:link>
                 <h:outputText value="not available" rendered="#{!item.bookable}"/>
             </h:column>
+
+            <h:column>
+                <h:link outcome="flight?faces-redirect=true&amp;includeViewParams=true" value="edit">
+                    <f:param name="number" value="#{item.number}"/>
+                </h:link>
+            </h:column>
+
+            <h:column>
+                <h:form>
+                    <h:commandLink action="#{flights.remove(item.number)}" value="remove"/>
+                </h:form>
+            </h:column>
+
+            <f:facet name="footer">
+                <h:link outcome="flight" value="new flight"/>
+            </f:facet>
 
         </h:dataTable>
 

@@ -1,18 +1,17 @@
 package cz.cvut.fel.beans;
 
-import cz.cvut.fel.exception.NoSuchDestinationException;
 import cz.cvut.fel.model.Destination;
 import cz.cvut.fel.service.DestinationService;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Collection;
 import java.util.Collections;
 
 /** @author Karel Cemus */
+@RequestScoped
 @Named( "destinations" )
-@ApplicationScoped
 public class DestinationsBean extends BeanBase {
 
     @Inject
@@ -25,12 +24,7 @@ public class DestinationsBean extends BeanBase {
     private Collection<Destination> destinations = Collections.emptyList();
 
     public Collection<Destination> getDestinations() {
-        if ( dirtyData ) {
-            // preserve order due to potential race conditions
-            // better to load twice same data than miss change notification
-            dirtyData = false;
-            destinations = service.findAllDestinations();
-        }
+        if ( dirtyData ) reload();
         return destinations;
     }
 
@@ -38,16 +32,25 @@ public class DestinationsBean extends BeanBase {
         dirtyData = true;
     }
 
-    public String remove( Destination destination ) {
+    public String remove( long id ) {
 
         try {
-            service.delete( destination.getId() );
+            service.delete( id );
             dirtyData = true;
             addInformation( "Destination was removed." );
-        } catch ( NoSuchDestinationException ex ) {
+        } catch ( Throwable ex ) {
             addError( "No such destination exists." );
         }
 
         return "destinations";
+    }
+
+    private void reload() {
+        // preserve order due to potential race conditions
+        // better to load twice same data than miss change notification
+        dirtyData = false;
+
+        // load new collection and create mapping
+        destinations = service.findAllDestinations();
     }
 }

@@ -1,1 +1,93 @@
-BOOK iT
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:rich="http://richfaces.org/rich"
+        >
+
+<ui:composition template="/WEB-INF/templates/template.xhtml">,
+
+    <ui:define name="title">Book it</ui:define>
+
+    <ui:define name="metadata">
+
+        <f:metadata>
+
+            <f:viewParam name="flight" value="#{bookBean.flight}" converter="flightConverter" required="true"
+                         requiredMessage="Flight number is required." converterMessage="Flight doesn't exist."/>
+
+            <f:viewParam name="date-from" value="#{overviewConfiguration.dateFrom}"
+                         converterMessage="Invalid 'date-from' format.">
+                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{overviewConfiguration.getTimezone()}"/>
+            </f:viewParam>
+
+            <f:viewParam name="date-to" value="#{overviewConfiguration.dateTo}" converterMessage="Invalid 'date-to' format.">
+                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{overviewConfiguration.getTimezone()}"/>
+            </f:viewParam>
+
+            <f:viewParam name="departure-from" value="#{overviewConfiguration.departureFrom}"/>
+
+            <f:viewParam name="arrival-to" value="#{overviewConfiguration.arrivalTo}"/>
+
+        </f:metadata>
+
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:form>
+
+            <rich:graphValidator value="#{bookBean}">
+
+                <h:panelGrid columns="2" columnClasses="right,left" rendered="#{bookBean.flight != null}">
+
+                    <h:outputLabel for="number" value="Flight number"/>
+                    <h:outputText id="number" value="#{bookBean.flight.number}"/>
+
+
+                    <h:outputLabel for="departure" value="Departure scheduled on"/>
+                    <h:outputText id="departure" value="#{bookBean.flight.departure.scheduled}">
+                        <f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}"/>
+                    </h:outputText>
+
+                    <h:outputLabel for="arrival" value="Arrival scheduled on"/>
+                    <h:outputText id="arrival" value="#{bookBean.flight.arrival.scheduled}">
+                        <f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}"/>
+                    </h:outputText>
+
+                    <h:outputLabel for="from" value="Departure from"/>
+                    <h:outputText id="from" value="#{bookBean.flight.from.name}"/>
+
+                    <h:outputLabel for="to" value="Arrival to"/>
+                    <h:outputText id="to" value="#{bookBean.flight.to.name}"/>
+
+                    <h:outputLabel for="price" value="Price per seat"/>
+                    <h:outputText id="price" value="#{bookBean.flight.cost}"/>
+
+                    <h:outputLabel for="capacity-left" value="Free capacity"/>
+                    <h:outputText id="capacity-left" value="#{bookBean.flight.capacityLeft}"/>
+
+                    <h:outputLabel for="seats" value="Number of seats"/>
+                    <h:inputText id="seats" value="#{bookBean.seats}"/>
+
+                    <h:outputLabel for="password" value="Access password"/>
+                    <h:inputSecret id="password" value="#{bookBean.password}"/>
+
+                    <h:outputLabel for="confirmation" value="Password confirmation"/>
+                    <h:inputSecret id="confirmation" value="#{bookBean.confirmation}"/>
+
+                    <h:commandButton value="Storno" action="flights?faces-redirect=true&amp;includeViewParams=true"
+                                     immediate="true"/>
+                    <h:commandButton value="Save" action="#{bookBean.book}">
+                        <f:ajax execute="@form" render="@all"/>
+                    </h:commandButton>
+
+                </h:panelGrid>
+
+            </rich:graphValidator>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+</html>

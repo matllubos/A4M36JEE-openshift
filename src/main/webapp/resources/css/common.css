@@ -1,4 +1,4 @@
-input.rf-cal-inp, input[type='submit'], select {
+input.rf-cal-inp, input[type='submit'], select, textarea, input[type="text"], input[type="password"] {
     font-size: 80%;
 }
 
@@ -23,18 +23,22 @@ a:hover {
     color: red;
 }
 
-td, th {
+.centered-table td, .centered-table th {
     padding: 0.2em 1em;
     text-align: center;
 }
 
-table {
-    margin-bottom: 2em;
+table.centered-table {
+    margin: 2em 0;
 }
 
 .bordered, .bordered td, .bordered th {
     border: 1px solid black;
     border-collapse: collapse;
+}
+
+body {
+    margin: 1em 3em;
 }
 
 th {
@@ -67,16 +71,41 @@ input, select {
 
 .left {
     text-align: left;
+    padding-left: 0.5em;
+}
+
+.right, .left {
+    padding: 0.1em 0.5em;
+}
+
+.right:after {
+    content: ':'
 }
 
 .right {
     text-align: right;
+    color: #555;
+    font-size: 90%;
+    vertical-align: middle;
+    padding-right: 0.5em;
 }
 
-.right input, .left input {
+.bordered .right {
+    background-color: #ee5;
+    font-weight: bold;
+}
+
+.right input, .left input, .left select {
     margin: 0;
+    display: inline-block;
+    width: 100%;
 }
 
-tfoot td {
+input[type='submit'] {
+    display: inline-block;
+    width: inherit;
+}
+
+.centered-table tfoot td {
     text-align: right;
 }

@@ -66,11 +66,11 @@ public class ReservationServiceImpl implements ReservationService {
         }
 
         if ( flight.getCapacityLeft() < seats ) { // not enough seats left
-            throw new FullFlightException( String.format( "Flight '%s' doesn't have enough capacity left.", flight ) );
+            throw new FullFlightException( String.format( "Flight '%s' doesn't have enough capacity left.", flight.getNumber() ) );
         }
 
         // update flight remaining capacity information
-        flight.setCapacityLeft( flight.getCapacityLeft() - seats );
+        flight.setSeatsTaken( flight.getSeatsTaken() + seats );
 
         // make a reservation
         Reservation entity = new Reservation();
@@ -103,7 +103,7 @@ public class ReservationServiceImpl implements ReservationService {
 
         // release taken seats in chosen flight
         Flight flight = reservation.getFlight();
-        flight.setCapacityLeft( flight.getCapacityLeft() + reservation.getCount() );
+        flight.setSeatsTaken( flight.getSeatsTaken() - reservation.getCount() );
 
         log.info( "Reservation with ID '{}' was successfully cancelled.", reservation.getId() );
 

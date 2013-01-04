@@ -217,7 +217,7 @@ public class FlightServiceTest extends ArquillianTest {
         flight.setFrom( destinationService.findByCode( "PRG" ) );
         flight.setTo( destinationService.findByCode( "MAD" ) );
         flight.setCapacity( 100 );
-        flight.setCapacityLeft( 100 );
+        flight.setSeatsTaken( 0 );
         flight.setCost( 5000 );
         flight.setStatus( FlightStatus.SCHEDULED );
 

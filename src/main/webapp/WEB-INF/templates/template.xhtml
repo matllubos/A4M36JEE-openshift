@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
 
 <!-- metaparameters like view params -->
 <ui:insert name="metadata"/>
@@ -23,7 +23,11 @@
     <div style="margin: 1em 0" id="navigation">
         <h:link value="home" outcome="home"/>
         <h:link value="destinations" outcome="destinations"/>
-        <h:link value="flights" outcome="flights"/>
+        <h:link value="flights" outcome="flights">
+            <f:param name="departure-from" value="PRG"/>
+        </h:link>
+        <h:link value="reservation" outcome="reservation"/>
+        <h:link value="logout" outcome="flights"/>
     </div>
 
     <!-- content itself -->

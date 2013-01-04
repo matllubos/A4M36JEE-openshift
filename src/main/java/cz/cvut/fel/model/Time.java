@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -23,11 +24,13 @@ import java.util.Date;
 public class Time implements Serializable {
 
     /** scheduled date and time */
+    @NotNull
     @Column( nullable = false )
     @Temporal( TemporalType.TIMESTAMP )
     private Date scheduled;
 
     /** actual date and time */
+    @NotNull
     @Column( nullable = false )
     @Temporal( TemporalType.TIMESTAMP )
     private Date actual;

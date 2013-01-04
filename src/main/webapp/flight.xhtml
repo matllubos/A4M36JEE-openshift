@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:rich="http://richfaces.org/rich"
+        >
+
+<ui:composition template="/WEB-INF/templates/template.xhtml">,
+
+    <ui:define name="title">Flight details</ui:define>
+
+    <ui:define name="metadata">
+
+        <f:metadata>
+
+            <f:viewParam name="number" value="#{flight.flight}" converter="flightConverter"
+                         converterMessage="Flight doesn't exist."/>
+
+            <f:viewParam name="date-from" value="#{overviewConfiguration.dateFrom}"
+                         converterMessage="Invalid 'date-from' format.">
+                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{overviewConfiguration.getTimezone()}"/>
+            </f:viewParam>
+
+            <f:viewParam name="date-to" value="#{overviewConfiguration.dateTo}" converterMessage="Invalid 'date-to' format.">
+                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{overviewConfiguration.getTimezone()}"/>
+            </f:viewParam>
+
+            <f:viewParam name="departure-from" value="#{overviewConfiguration.departureFrom}"/>
+
+            <f:viewParam name="arrival-to" value="#{overviewConfiguration.arrivalTo}"/>
+
+        </f:metadata>
+
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:form>
+
+            <h:panelGrid columns="3" columnClasses="right,left">
+
+                <h:outputLabel for="number" value="Flight number"/>
+                <h:inputText id="number" value="#{flight.flight.number}">
+                    <rich:validator/>
+                </h:inputText>
+                <h:message for="number"/>
+
+                <h:outputLabel for="departure-scheduled" value="Departure scheduled on"/>
+                <rich:calendar id="departure-scheduled" value="#{flight.flight.departure.scheduled}"
+                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}">
+                    <rich:validator/>
+                </rich:calendar>
+                <h:message for="departure-scheduled"/>
+
+                <h:outputLabel for="departure-actual" value="Actual departure at"/>
+                <rich:calendar id="departure-actual" value="#{flight.flight.departure.actual}"
+                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}">
+                    <rich:validator/>
+                </rich:calendar>
+                <h:message for="departure-actual"/>
+
+                <h:outputLabel for="arrival-scheduled" value="Arrival scheduled on"/>
+                <rich:calendar id="arrival-scheduled" value="#{flight.flight.arrival.scheduled}"
+                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}">
+                    <rich:validator/>
+                </rich:calendar>
+                <h:message for="arrival-scheduled"/>
+
+                <h:outputLabel for="arrival-actual" value="Actual arrival at"/>
+                <rich:calendar id="arrival-actual" value="#{flight.flight.arrival.actual}"
+                               datePattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}">
+                    <rich:validator/>
+                </rich:calendar>
+                <h:message for="arrival-actual"/>
+
+                <h:outputLabel for="from" value="Departure from"/>
+                <h:selectOneMenu id="from" value="#{flight.flight.from}">
+                    <f:selectItem value="#{null}" itemLabel="- undefined -"/>
+                    <f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"
+                                   itemValue="#{item}"/>
+                    <rich:validator/>
+                    <f:converter converterId="destinationConverter"/>
+                </h:selectOneMenu>
+                <h:message for="from"/>
+
+                <h:outputLabel for="to" value="Arrival to"/>
+                <h:selectOneMenu id="to" value="#{flight.flight.to}">
+                    <f:selectItem value="#{null}" itemLabel="- undefined -"/>
+                    <f:selectItems value="#{destinations.destinations}" var="item" itemLabel="#{item.name}"
+                                   itemValue="#{item}"/>
+                    <rich:validator/>
+                    <f:converter converterId="destinationConverter"/>
+                </h:selectOneMenu>
+                <h:message for="to"/>
+
+                <h:outputLabel for="price" value="Price per seat"/>
+                <h:inputText id="price" value="#{flight.flight.cost}">
+                    <f:convertNumber/>
+                    <rich:validator/>
+                </h:inputText>
+                <h:message for="price"/>
+
+                <h:outputLabel for="capacity" value="Plane capacity"/>
+                <h:inputText id="capacity" value="#{flight.flight.capacity}">
+                    <f:convertNumber/>
+                    <rich:validator/>
+                </h:inputText>
+                <h:message for="capacity"/>
+
+                <h:outputLabel for="status" value="Flight status"/>
+                <h:selectOneMenu id="status" value="#{flight.flight.status}">
+                    <f:selectItem value="#{null}" itemLabel="- undefined -"/>
+                    <f:selectItems value="#{flight.statuses}" var="item" itemLabel="#{item.name()}"
+                                   itemValue="#{item.name()}"/>
+                    <rich:validator/>
+                </h:selectOneMenu>
+                <h:message for="status"/>
+
+
+                <h:commandButton value="Storno" action="flights?faces-redirect=true&amp;includeViewParams=true" immediate="true"/>
+                <h:commandButton value="Save" action="#{flight.save}">
+                    <f:ajax execute="@form" render="@all"/>
+                </h:commandButton>
+                <h:outputText/>
+
+            </h:panelGrid>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+</html>
