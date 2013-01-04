@@ -21,13 +21,17 @@
 
     <!-- navigation menu -->
     <div style="margin: 1em 0" id="navigation">
-        <h:link value="home" outcome="home"/>
-        <h:link value="destinations" outcome="destinations"/>
-        <h:link value="flights" outcome="flights">
-            <f:param name="departure-from" value="PRG"/>
-        </h:link>
-        <h:link value="reservation" outcome="reservation"/>
-        <h:link value="logout" outcome="flights"/>
+        <h:form>
+            <h:link value="home" outcome="home"/>
+            <h:link value="destinations" outcome="destinations"/>
+            <h:link value="flights" outcome="flights">
+
+            </h:link>
+            <h:link value="reservation" outcome="reservation"/>
+            <h:commandLink value="logout" action="#{reservationBean.logout}" rendered="#{reservationBean.loggedIn}">
+                <f:param name="departure-from" value="PRG"/>
+            </h:commandLink>
+        </h:form>
     </div>
 
     <!-- content itself -->

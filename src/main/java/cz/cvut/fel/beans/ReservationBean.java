@@ -25,17 +25,13 @@ public class ReservationBean extends BeanBase implements Serializable {
     private ReservationService service;
 
     @Getter
-    @Min( value = 1, message = "Invalid identifier. It must be at least 1." )
-    private long id;
-
-    @Getter
     private Reservation reservation;
 
     @Getter
     private Flight flight;
 
-    @Getter
-    @NotBlank( message = "Password is missing." )
+    private long id;
+
     private String password;
 
     public String cancel() {
@@ -78,6 +74,8 @@ public class ReservationBean extends BeanBase implements Serializable {
 
         try {
 
+            System.out.println("logging");
+
             if ( id > 0 && password != null ) {
 
                 // verify login information
@@ -102,5 +100,29 @@ public class ReservationBean extends BeanBase implements Serializable {
         } else {
             return "Active";
         }
+    }
+
+    public String logout() {
+        reservation = null;
+        password = null;
+        flight = null;
+        id = 0;
+
+        return "flights?includeViewParams=true&faces-redirect=true";
+    }
+
+    public boolean isLoggedIn() {
+        return reservation != null;
+    }
+
+    @Min( value = 1l, message = "Invalid identifier. It must be at least 1." )
+    public long getId() {
+        System.out.println("id " + id);
+        return id;
+    }
+
+    @NotBlank( message = "Password is missing." )
+    public String getPassword() {
+        return password;
     }
 }
