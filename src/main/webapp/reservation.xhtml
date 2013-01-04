@@ -92,11 +92,11 @@
                     <h:commandLink value="Print E-Ticket" action="#{reservationBean.printETicket}"
                                    rendered="#{!reservationBean.reservation.cancelled and reservationBean.reservation.fullyPaid}"/>
 
-                    <h:commandLink value="Pay using VISA card" action="pay-visa"
-                                   rendered="#{!reservationBean.reservation.cancelled and !reservationBean.reservation.fullyPaid}"/>
+                    <h:link value="Pay using VISA card" outcome="pay-visa"
+                            rendered="#{!reservationBean.reservation.cancelled and !reservationBean.reservation.fullyPaid}"/>
 
-                    <h:commandLink value="Send money back" action="pay-back"
-                                   rendered="#{reservationBean.reservation.cancelled and reservationBean.reservation.paid > 0}"/>
+                    <h:link value="Send money back" outcome="pay-back"
+                            rendered="#{reservationBean.reservation.cancelled and reservationBean.reservation.paid > 0}"/>
 
                     <h:commandLink value="Cancel reservation" action="#{reservationBean.cancel}"
                                    rendered="#{!reservationBean.reservation.cancelled}">

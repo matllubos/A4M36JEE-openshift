@@ -44,11 +44,13 @@
         <navigation-case>
             <from-outcome>pay-visa</from-outcome>
             <to-view-id>/pay-visa.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
 
         <navigation-case>
             <from-outcome>pay-back</from-outcome>
             <to-view-id>/pay-back.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
 
         <navigation-case>
