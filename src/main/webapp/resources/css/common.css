@@ -86,8 +86,14 @@ input, select {
     text-align: right;
     color: #555;
     font-size: 90%;
-    vertical-align: middle;
     padding-right: 0.5em;
+}
+
+.messages {
+    padding-left: 2em;
+    color: red;
+    font-size: 85%;
+    padding-top: 0.2em;
 }
 
 .bordered .right {

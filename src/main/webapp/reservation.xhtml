@@ -17,7 +17,7 @@
 
         <h:form rendered="#{reservationBean.reservation == null}">
 
-            <h:panelGrid columns="3" columnClasses="right,left">
+            <h:panelGrid columns="3" columnClasses="right,left,messages">
 
                 <h:outputLabel for="identifier" value="Reservation number"/>
                 <h:inputText id="identifier" value="#{reservationBean.id}" converterMessage="Invalid number.">
