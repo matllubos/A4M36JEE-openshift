@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core" xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
         >
 
 <ui:composition template="WEB-INF/templates/template.xhtml">,
@@ -13,36 +13,20 @@
     </ui:define>
 
 
-    <ui:define name="metadata">
-
-        <f:metadata>
-
-            <f:viewParam name="reservation" value="#{reservationBean.id}" converterMessage="Invalid reservation number.">
-                <f:convertNumber/>
-            </f:viewParam>
-
-        </f:metadata>
-
-    </ui:define>
-
     <ui:define name="content">
 
         <h:form rendered="#{reservationBean.reservation == null}">
 
-            <h:panelGrid columns="3" columnClasses="right,left">
+            <h:panelGrid columns="3" columnClasses="right,left,messages">
 
-                <h:outputLabel for="identifier" value="Reservation number:"/>
-                <h:inputText id="identifier" value="#{reservationBean.id}"
-                             converterMessage="Invalid number.">
-                    <f:convertNumber integerOnly="true"/>
-                    <rich:validator/>
+                <h:outputLabel for="identifier" value="Reservation number"/>
+                <h:inputText id="identifier" value="#{reservationBean.id}" converterMessage="Invalid number.">
+                    <f:convertNumber/>
                 </h:inputText>
                 <h:message for="identifier"/>
 
-                <h:outputLabel for="password" value="Access password:"/>
-                <h:inputSecret id="password" value="#{reservationBean.password}">
-                    <rich:validator/>
-                </h:inputSecret>
+                <h:outputLabel for="password" value="Access password"/>
+                <h:inputSecret id="password" value="#{reservationBean.password}"/>
                 <h:message for="password"/>
 
                 <h:outputText/>
@@ -108,11 +92,11 @@
                     <h:commandLink value="Print E-Ticket" action="#{reservationBean.printETicket}"
                                    rendered="#{!reservationBean.reservation.cancelled and reservationBean.reservation.fullyPaid}"/>
 
-                    <h:commandLink value="Pay using VISA card" action="pay-visa"
-                                   rendered="#{!reservationBean.reservation.cancelled and !reservationBean.reservation.fullyPaid}"/>
+                    <h:link value="Pay using VISA card" outcome="pay-visa"
+                            rendered="#{!reservationBean.reservation.cancelled and !reservationBean.reservation.fullyPaid}"/>
 
-                    <h:commandLink value="Send money back" action="pay-back"
-                                   rendered="#{reservationBean.reservation.cancelled and reservationBean.reservation.paid > 0}"/>
+                    <h:link value="Send money back" outcome="pay-back"
+                            rendered="#{reservationBean.reservation.cancelled and reservationBean.reservation.paid > 0}"/>
 
                     <h:commandLink value="Cancel reservation" action="#{reservationBean.cancel}"
                                    rendered="#{!reservationBean.reservation.cancelled}">

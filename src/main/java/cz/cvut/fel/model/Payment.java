@@ -32,8 +32,8 @@ public class Payment {
     /** credit card number */
     private long creditCardNumber;
 
-    @NotNull
     /** card owner's name */
+    @NotNull
     private String creditCardName;
 
     /** money transferred */
