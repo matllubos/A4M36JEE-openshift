@@ -75,11 +75,10 @@
                     <h:outputLabel for="confirmation" value="Password confirmation"/>
                     <h:inputSecret id="confirmation" value="#{bookBean.confirmation}"/>
 
-                    <h:commandButton value="Storno" action="flights?faces-redirect=true&amp;includeViewParams=true"
-                                     immediate="true"/>
                     <h:commandButton value="Save" action="#{bookBean.book}">
                         <f:ajax execute="@form" render="@all"/>
                     </h:commandButton>
+                    <h:commandButton value="Cancel" action="flights?faces-redirect=true&amp;includeViewParams=true" immediate="true"/>
 
                 </h:panelGrid>
 

@@ -115,11 +115,10 @@
                 </h:selectOneMenu>
                 <h:message for="status"/>
 
-
-                <h:commandButton value="Storno" action="flights?faces-redirect=true&amp;includeViewParams=true" immediate="true"/>
                 <h:commandButton value="Save" action="#{flight.save}">
                     <f:ajax execute="@form" render="@all"/>
                 </h:commandButton>
+                <h:commandButton value="Cancel" action="flights?faces-redirect=true&amp;includeViewParams=true" immediate="true"/>
                 <h:outputText/>
 
             </h:panelGrid>
