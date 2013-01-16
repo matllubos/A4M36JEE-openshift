@@ -38,7 +38,7 @@
 
             <rich:graphValidator value="#{bookBean}">
 
-                <h:panelGrid columns="2" columnClasses="right,left" rendered="#{bookBean.flight != null}">
+                <h:panelGrid columns="2" columnClasses="right,left" rendered="#{bookBean.flight != null}" styleClass="edit">
 
                     <h:outputLabel for="number" value="Flight number"/>
                     <h:outputText id="number" value="#{bookBean.flight.number}"/>
