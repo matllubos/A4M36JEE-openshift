@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Model representing reservations in the booking system. User is able to book certain number of seats on selected flight.
@@ -61,7 +61,7 @@ public class Reservation implements Serializable {
     private long version;
 
     @OneToMany( mappedBy = "reservation", fetch = FetchType.LAZY )
-    private Collection<Payment> payments;
+    private List<Payment> payments;
 
     @Transient
     public boolean isFullyPaid() {

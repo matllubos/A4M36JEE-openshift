@@ -1,7 +1,9 @@
 package cz.cvut.fel.beans;
 
 import cz.cvut.fel.model.Flight;
+import cz.cvut.fel.model.Payment;
 import cz.cvut.fel.model.Reservation;
+import cz.cvut.fel.service.PaymentService;
 import cz.cvut.fel.service.ReservationService;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -13,6 +15,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
 /** @author Karel Cemus */
 @Setter
@@ -24,6 +28,10 @@ public class ReservationBean extends BeanBase implements Serializable {
     @Setter( AccessLevel.NONE )
     private ReservationService service;
 
+    @Inject
+    @Setter( AccessLevel.NONE )
+    private PaymentService paymentService;
+
     @Getter
     private Reservation reservation;
 
@@ -33,6 +41,8 @@ public class ReservationBean extends BeanBase implements Serializable {
     private long id;
 
     private String password;
+
+    private List<Payment> payments;
 
     public String cancel() {
 
@@ -64,6 +74,15 @@ public class ReservationBean extends BeanBase implements Serializable {
             } else {
                 confirmation = service.printReservationConfirmation( id, password );
             }
+            download( "confirmation.txt", confirmation.length, confirmation );
+        } catch ( Throwable ex ) {
+            addError( processException( ex ) );
+        }
+    }
+
+    public void printPaymentConfirmation( long identifier ) {
+        try {
+            byte[] confirmation = paymentService.printPaymentConfirmation( identifier );
             download( "confirmation.txt", confirmation.length, confirmation );
         } catch ( Throwable ex ) {
             addError( processException( ex ) );
@@ -126,5 +145,13 @@ public class ReservationBean extends BeanBase implements Serializable {
     public void reload() {
         reservation = service.find( id, password );
         flight = reservation.getFlight();
+        payments = null;
+    }
+
+    public Collection<Payment> getPayments() {
+        if ( payments == null ) {
+            payments = paymentService.findPayments( id, password );
+        }
+        return payments;
     }
 }

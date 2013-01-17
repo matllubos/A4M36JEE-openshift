@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Date;
+import java.util.List;
 
 
 /** @author Karel Cemus */
@@ -26,6 +27,16 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Inject
     private PrintService printService;
+
+    @Override
+    public List<Payment> findPayments( final long reservationId, final String password ) throws SecurityException, NoSuchReservationException {
+        // load reservation from which money should be transferred
+        Reservation reservation = reservationService.find( reservationId, password );
+
+        // load all attached payments if reservation exists
+        reservation.getPayments().size();
+        return reservation.getPayments();
+    }
 
     @Override
     public Payment payVisa( final long reservationId, final String cardName, final long creditCard, final Date validUntil, final int verificationCode ) throws InvalidPaymentException, NoSuchReservationException {

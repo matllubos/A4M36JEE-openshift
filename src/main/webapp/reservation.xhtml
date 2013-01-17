@@ -83,6 +83,34 @@
 
             </h:panelGrid>
 
+
+            <h:dataTable value="#{reservationBean.payments}" var="item" styleClass="bordered centered-table" rendered="#{not reservationBean.payments.isEmpty()}">
+
+                <f:facet name="header">Payments</f:facet>
+
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Date of payment"/></f:facet>
+                    <h:outputText value="#{item.timestamp}"><f:convertDateTime pattern="dd.MM.yyyy HH:mm"/></h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Card Owner"/></f:facet>
+                    <h:outputText value="#{item.creditCardName}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Amount"/></f:facet>
+                    <h:outputText value="#{item.amount}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header"/>
+                    <h:form><h:commandLink value="print confirmation" action="#{reservationBean.printPaymentConfirmation(item.id)}"/></h:form>
+                </h:column>
+
+            </h:dataTable>
+
+
             <h:form styleClass="block-links">
 
                 <h:panelGrid columns="1">
