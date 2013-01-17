@@ -3,7 +3,10 @@ package cz.cvut.fel.service;
 import cz.cvut.fel.exception.NoSuchFlightException;
 import cz.cvut.fel.model.Flight;
 import lombok.extern.slf4j.Slf4j;
+import org.jboss.ejb3.annotation.SecurityDomain;
 
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,6 +17,8 @@ import java.util.Date;
 /** @author Karel Cemus */
 @Slf4j
 @Stateless
+@DeclareRoles({"admin", "flight-manager"})
+@SecurityDomain("FlightSystem-policy")
 public class FlightServiceImpl implements FlightService {
 
     @PersistenceContext
@@ -64,6 +69,7 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
+    @RolesAllowed({"admin", "flight-manager"})
     public Flight save( @Valid final Flight flight ) {
 
         // verify and validate entity
@@ -74,6 +80,7 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
+    @RolesAllowed({"admin", "flight-manager"})
     public void delete( final String number ) throws NoSuchFlightException {
 
         if ( number == null || number.isEmpty() ) throw new IllegalArgumentException( "Illegal flight number." );

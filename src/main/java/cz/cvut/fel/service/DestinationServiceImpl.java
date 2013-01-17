@@ -3,7 +3,10 @@ package cz.cvut.fel.service;
 import cz.cvut.fel.exception.NoSuchDestinationException;
 import cz.cvut.fel.model.Destination;
 import lombok.extern.slf4j.Slf4j;
+import org.jboss.ejb3.annotation.SecurityDomain;
 
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,6 +16,8 @@ import java.util.Collection;
 /** @author Karel Cemus */
 @Slf4j
 @Stateless
+@DeclareRoles({"admin"})
+@SecurityDomain("FlightSystem-policy")
 public class DestinationServiceImpl implements DestinationService {
 
     @PersistenceContext
@@ -41,6 +46,7 @@ public class DestinationServiceImpl implements DestinationService {
     }
 
     @Override
+    @RolesAllowed({"admin"})
     public Destination save( @Valid final Destination destination ) {
 
         // verify and validate entity
@@ -51,6 +57,7 @@ public class DestinationServiceImpl implements DestinationService {
     }
 
     @Override
+    @RolesAllowed({"admin"})
     public void delete( final long id ) throws NoSuchDestinationException {
 
         if ( id <= 0 ) throw new IllegalArgumentException( "Illegal identifier. Value must be greater than 0." );

@@ -5,9 +5,9 @@ import cz.cvut.fel.model.Flight;
 import cz.cvut.fel.model.FlightStatus;
 import cz.cvut.fel.model.Time;
 import cz.cvut.fel.util.ArquillianTest;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.jboss.security.client.SecurityClient;
+import org.jboss.security.client.SecurityClientFactory;
+import org.testng.annotations.*;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
@@ -30,6 +30,18 @@ public class FlightServiceTest extends ArquillianTest {
 
     @Inject
     private DestinationService destinationService;
+
+    @BeforeClass
+    public void loginRoot() throws Exception {
+        System.out.println("spusteno");
+        login("peter", "peter");
+    }
+
+    @AfterClass
+    public void logout() throws Exception {
+        final SecurityClient securityClient = SecurityClientFactory.getSecurityClient();
+        securityClient.logout();
+    }
 
     @AfterMethod
     public void cleanUp() throws Exception {
@@ -209,6 +221,67 @@ public class FlightServiceTest extends ArquillianTest {
         assertEquals( codes, modelSet );
     }
 
+
+    @DataProvider
+    public Object[][] usersProvider() {
+                return new Object[][]{
+                        new Object[]{ "peter", "peter" },
+                        new Object[]{ "marcus", "marcus" },
+                };
+    }
+
+
+    @Test( dataProvider = "usersProvider", enabled = false)
+    public void testCreateWithUser(String username, String password) throws Exception {
+        logout();
+        login(username, password);
+
+        // this should not throw an EJBAccessException
+        Flight flight = service.save( createFlight() );
+        assertTrue( flight.getId() > 0 );
+        assertNotNull( service.find( FLIGHT_NUMBER ) );
+        testDelete();
+    }
+
+    @Test( dependsOnMethods = "testCreateWithUser", dataProvider = "usersProvider", enabled = false )
+    public void testDeleteWithUser(String username, String password) throws Exception {
+        // create test instance
+        testCreate();
+
+        logout();
+        login(username, password);
+        Flight flight = service.find( FLIGHT_NUMBER );
+
+        // this should not throw an EJBAccessException
+        service.delete( flight.getNumber() );
+
+        // wait for new timestamp
+        sleep( 1000 );
+
+        // verify results, it is supposed not to exist - it should throw an exception
+        service.find( FLIGHT_NUMBER );
+    }
+
+    @Test( expectedExceptions = javax.ejb.EJBAccessException.class )
+    public void testCreateWithoutUserAuthorization() throws Exception {
+        logout();
+
+        // this should throw an EJBAccessException
+        service.save( createFlight() );
+    }
+
+    @Test( expectedExceptions = javax.ejb.EJBAccessException.class )
+    public void testDeleteWithoutUserAuthorization() throws Exception {
+        // create test instance
+        testCreate();
+
+        logout();
+        Flight flight = service.find( FLIGHT_NUMBER );
+
+        // this should throw an EJBAccessException
+        service.delete( flight.getNumber() );
+    }
+
     private Flight createFlight() {
         Flight flight = new Flight();
         flight.setNumber( FLIGHT_NUMBER );
@@ -229,4 +302,9 @@ public class FlightServiceTest extends ArquillianTest {
         return flight;
     }
 
+    private void login(String username, String password) throws Exception {
+        final SecurityClient securityClient = SecurityClientFactory.getSecurityClient();
+        securityClient.setSimple(username, password);
+        securityClient.login();
+    }
 }

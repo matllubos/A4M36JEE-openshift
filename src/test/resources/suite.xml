@@ -14,7 +14,8 @@
             <run>
                 <include name="arquillian"/>
                 <exclude name="initialization"/>
-                <include name="services"/>
+                <!-- <include name="services"/>  -->
+                <include name="security"/>
             </run>
 
             <dependencies>

@@ -26,7 +26,7 @@ public class ArquillianDataProvider {
         if ( ArquillianTest.isInContainer() ) {
             // get instance and increase calls counter
             Object[][] testCase = new Object[][]{ data[ calls.get( provider ) ] };
-            calls.put( provider, calls.get( provider ) + 1 );
+            calls.put( provider, ( calls.get( provider ) + 1 ) % data.length );
             return testCase;
 
         } else {

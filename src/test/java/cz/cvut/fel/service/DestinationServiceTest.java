@@ -1,16 +1,19 @@
 package cz.cvut.fel.service;
 
+
 import cz.cvut.fel.exception.NoSuchDestinationException;
 import cz.cvut.fel.model.Destination;
 import cz.cvut.fel.util.ArquillianTest;
 import lombok.extern.slf4j.Slf4j;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.jboss.security.client.SecurityClient;
+import org.jboss.security.client.SecurityClientFactory;
+import org.testng.annotations.*;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
+import javax.security.auth.login.LoginException;
 import javax.validation.ConstraintViolationException;
+
 import java.util.*;
 
 import static cz.cvut.fel.util.ArquillianDataProvider.provide;
@@ -32,9 +35,21 @@ public class DestinationServiceTest extends ArquillianTest {
             em.createQuery( "DELETE FROM Destination d WHERE d.code = 'ABC'" ).executeUpdate();
             transaction.commit();
         }
+
     }
 
-    @Test( dataProvider = "findByCodeProvider" )
+    @BeforeClass
+    public void login() throws Exception {
+        login("peter", "peter");
+    }
+
+    @AfterClass
+    public void logout() throws Exception {
+        final SecurityClient securityClient = SecurityClientFactory.getSecurityClient();
+        securityClient.logout();
+    }
+
+    @Test( dataProvider = "findByCodeProvider")
     public void testFindByCode( String code, boolean exists ) {
         try {
             service.findByCode( code );
@@ -80,17 +95,8 @@ public class DestinationServiceTest extends ArquillianTest {
 
     @Test
     public void testCreate() {
-        Destination destination = new Destination();
-        destination.setCode( "ABC" );
-        destination.setName( "Alphabetic" );
-
-        // set validity for 5 minutes, after that the instance gets invalid
-        Calendar calendar = Calendar.getInstance();
-        calendar.add( Calendar.MINUTE, 2 );
-        destination.setValidUntil( calendar.getTime() );
-
         // perform test
-        destination = service.save( destination );
+        Destination destination = service.save( createDestination() );
 
         // verify results
         assertTrue( destination.getId() > 0 );
@@ -122,7 +128,7 @@ public class DestinationServiceTest extends ArquillianTest {
     }
 
     @Test( dependsOnMethods = "testCreate" )
-    public void testUpdate() {
+    public void testUpdate() throws LoginException {
 
         // create test instance
         testCreate();
@@ -142,7 +148,7 @@ public class DestinationServiceTest extends ArquillianTest {
     }
 
     @Test( dependsOnMethods = "testCreate", expectedExceptions = javax.ejb.EJBException.class )
-    public void testDelete() throws InterruptedException {
+    public void testDelete() throws InterruptedException, LoginException {
 
         // create test instance
         testCreate();
@@ -158,4 +164,87 @@ public class DestinationServiceTest extends ArquillianTest {
         // verify results, it is supposed not to exist - it should throw an exception
         service.findByCode( "ABC" );
     }
+
+
+    @DataProvider
+    public Object[][] usersProvider() {
+         return new Object[][]{
+             new Object[]{ "peter", "peter", true },
+             new Object[]{ "marcus", "marcus", false },
+         };
+    }
+
+    @Test( dependsOnMethods = "testDelete", dataProvider = "usersProvider" )
+    public void testCreateWithUser(String username, String password, boolean allowed) throws Exception {
+        logout();
+
+        login(username, password);
+        try {
+            service.save( createDestination() );
+            assertTrue(allowed);
+        } catch (javax.ejb.EJBAccessException ex)  {
+            assertFalse(allowed);
+        }
+    }
+
+
+    @Test( dataProvider = "usersProvider")
+    public void testDeleteWithUser(String username, String password, boolean allowed ) throws Exception {
+
+        // create test instance
+        testCreate();
+        logout();
+
+        login(username, password);
+        Destination destination = service.findByCode( "ABC" );
+
+        try {
+            service.delete( destination.getId() );
+            assertTrue(allowed);
+        } catch (javax.ejb.EJBAccessException ex)  {
+            assertFalse(allowed);
+        }
+
+    }
+
+    @Test( dependsOnMethods = "testCreate", expectedExceptions = javax.ejb.EJBAccessException.class )
+    public void testDeleteWithoutUser() throws Exception {
+
+        // create test instance
+        testCreate();
+        logout();
+
+        Destination destination = service.findByCode( "ABC" );
+
+        // this should throw an EJBAccessException
+        service.delete( destination.getId() );
+    }
+
+    @Test( expectedExceptions = javax.ejb.EJBAccessException.class )
+    public void testCreateWithoutUser() throws Exception {
+        logout();
+
+        // this should throw an EJBAccessException
+        service.save(createDestination());
+    }
+
+
+    private Destination createDestination() {
+        Destination destination = new Destination();
+        destination.setCode( "ABC" );
+        destination.setName( "Alphabetic" );
+
+        // set validity for 5 minutes, after that the instance gets invalid
+        Calendar calendar = Calendar.getInstance();
+        calendar.add( Calendar.MINUTE, 2 );
+        destination.setValidUntil( calendar.getTime() );
+        return destination;
+    }
+
+    private void login(String username, String password) throws Exception {
+        final SecurityClient securityClient = SecurityClientFactory.getSecurityClient();
+        securityClient.setSimple(username, password);
+        securityClient.login();
+    }
+
 }
