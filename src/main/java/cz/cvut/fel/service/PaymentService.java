@@ -22,7 +22,7 @@ public interface PaymentService extends Serializable {
     Payment payVisa( long reservationId, String cardName, long creditCard, Date validUntil, int verificationCode ) throws InvalidPaymentException, NoSuchReservationException;
 
     /** if the reservation is cancelled customer can ask for sending back his money */
-    Payment returnMoney( long reservationId, String password, long creditCard ) throws SecurityException, InvalidPaymentException, NoSuchReservationException;
+    Payment returnMoney( long reservationId, String password, long account, int bank ) throws SecurityException, InvalidPaymentException, NoSuchReservationException;
 
     /** prints confirmation that given payment has been accepted */
     byte[] printPaymentConfirmation( long payment );

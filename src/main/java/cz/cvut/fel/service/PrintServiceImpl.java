@@ -40,8 +40,16 @@ public class PrintServiceImpl implements PrintService {
         builder.append( "Payment confirmation\n" );
         builder.append( DELIMITER );
         builder.append( String.format( FORMAT, "Reservation number:" ) ).append( payment.getReservation().getId() ).append( '\n' );
-        builder.append( String.format( FORMAT, "Credit card number:" ) ).append( String.format( "XXXX-XXXX-XXXX-%1$d", payment.getCreditCardNumber() ) ).append( '\n' );
-        builder.append( String.format( FORMAT, "Amount received:" ) ).append( payment.getAmount() ).append( '\n' );
+        if ( payment.getCreditCardNumber() > 0 ) {
+            builder.append( String.format( FORMAT, "Credit card number:" ) ).append( String.format( "XXXX-XXXX-XXXX-%1$d", payment.getCreditCardNumber() ) ).append( '\n' );
+        } else {
+            builder.append( String.format( FORMAT, "Target account:" ) ).append( String.format( "%1$d/%2$d", payment.getAccountNumber(), payment.getBankCode() ) ).append( '\n' );
+        }
+        if ( payment.getAmount() > 0 ) {
+            builder.append( String.format( FORMAT, "Amount received:" ) ).append( payment.getAmount() ).append( '\n' );
+        } else {
+            builder.append( String.format( FORMAT, "Amount sent:" ) ).append( -payment.getAmount() ).append( '\n' );
+        }
         builder.append( String.format( FORMAT, "Date of payment:" ) ).append( new SimpleDateFormat( "dd.MM.yyyy HH:mm:ss" ).format( payment.getTimestamp() ) ).append( '\n' );
         builder.append( DELIMITER );
 

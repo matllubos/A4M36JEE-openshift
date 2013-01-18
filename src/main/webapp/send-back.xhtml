@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:rich="http://richfaces.org/rich"
+        >
+
+<ui:composition template="WEB-INF/templates/template.xhtml">,
+
+    <ui:define name="title">Send money back from reservation #{sendBackBean.reservation.id}</ui:define>
+
+    <ui:define name="content">
+
+        <h:form>
+
+            <h:panelGrid columns="3" columnClasses="right,left,messages" styleClass="edit">
+
+                <h:outputLabel value="Account number" for="account"/>
+                <h:inputText id="account" value="#{sendBackBean.account}" converterMessage="Invalid account number">
+                    <f:convertNumber groupingUsed="false"/>
+                </h:inputText>
+                <h:message for="account"/>
+
+                <h:outputLabel value="Bank code" for="bankCode"/>
+                <h:inputText id="bankCode" value="#{sendBackBean.bank}">
+                    <f:convertNumber groupingUsed="false"/>
+                </h:inputText>
+                <h:message for="bankCode"/>
+
+                <h:commandButton action="#{sendBackBean.sendBack}" value="make transaction"/>
+                <h:commandButton action="reservation" value="cancel"/>
+                <span/>
+
+            </h:panelGrid>
+
+            <rich:graphValidator value="#{sendBackBean}"/>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+</html>

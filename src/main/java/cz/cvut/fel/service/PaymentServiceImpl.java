@@ -91,7 +91,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Payment returnMoney( final long reservationId, final String password, final long creditCard ) throws SecurityException, InvalidPaymentException, NoSuchReservationException {
+    public Payment returnMoney( final long reservationId, final String password, final long account, final int bank ) throws SecurityException, InvalidPaymentException, NoSuchReservationException {
 
         // load reservation from which money should be transferred
         Reservation reservation = reservationService.find( reservationId, password );
@@ -111,14 +111,15 @@ public class PaymentServiceImpl implements PaymentService {
 
         Payment payment = new Payment();
         payment.setCreditCardName( "Payment back to customer" );
-        payment.setCreditCardNumber( creditCard % 10000 );
+        payment.setAccountNumber( account );
+        payment.setBankCode( bank );
         payment.setReservation( reservation );
         payment.setTimestamp( new Date() );
         payment.setAmount( -amount );
         em.persist( payment );
 
         // log transaction acceptance and payment proceeding
-        log.info( "Accepted credit transfer from reservation ID '{}' back to bank account '{}'. There was transferred '{}' CZK.", new Object[]{ reservationId, creditCard, amount } );
+        log.info( "Accepted credit transfer from reservation ID '{}' back to bank account '{}' int bank '{}'. There was transferred '{}' CZK.", new Object[]{ reservationId, account, bank, amount } );
 
         // make transaction
         reservation.setPaid( reservation.getPaid() - amount );
