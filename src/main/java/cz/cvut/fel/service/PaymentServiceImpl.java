@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Date;
+import java.util.List;
 
 
 /** @author Karel Cemus */
@@ -26,6 +27,16 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Inject
     private PrintService printService;
+
+    @Override
+    public List<Payment> findPayments( final long reservationId, final String password ) throws SecurityException, NoSuchReservationException {
+        // load reservation from which money should be transferred
+        Reservation reservation = reservationService.find( reservationId, password );
+
+        // load all attached payments if reservation exists
+        reservation.getPayments().size();
+        return reservation.getPayments();
+    }
 
     @Override
     public Payment payVisa( final long reservationId, final String cardName, final long creditCard, final Date validUntil, final int verificationCode ) throws InvalidPaymentException, NoSuchReservationException {
@@ -80,7 +91,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Payment returnMoney( final long reservationId, final String password, final long creditCard ) throws SecurityException, InvalidPaymentException, NoSuchReservationException {
+    public Payment returnMoney( final long reservationId, final String password, final long account, final int bank ) throws SecurityException, InvalidPaymentException, NoSuchReservationException {
 
         // load reservation from which money should be transferred
         Reservation reservation = reservationService.find( reservationId, password );
@@ -100,14 +111,15 @@ public class PaymentServiceImpl implements PaymentService {
 
         Payment payment = new Payment();
         payment.setCreditCardName( "Payment back to customer" );
-        payment.setCreditCardNumber( creditCard % 10000 );
+        payment.setAccountNumber( account );
+        payment.setBankCode( bank );
         payment.setReservation( reservation );
         payment.setTimestamp( new Date() );
         payment.setAmount( -amount );
         em.persist( payment );
 
         // log transaction acceptance and payment proceeding
-        log.info( "Accepted credit transfer from reservation ID '{}' back to bank account '{}'. There was transferred '{}' CZK.", new Object[]{ reservationId, creditCard, amount } );
+        log.info( "Accepted credit transfer from reservation ID '{}' back to bank account '{}' int bank '{}'. There was transferred '{}' CZK.", new Object[]{ reservationId, account, bank, amount } );
 
         // make transaction
         reservation.setPaid( reservation.getPaid() - amount );

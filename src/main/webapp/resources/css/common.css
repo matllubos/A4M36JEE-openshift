@@ -78,15 +78,21 @@ input, select {
     padding: 0.1em 0.5em;
 }
 
-.right:after {
+.right {
+    text-align: right;
+    padding-right: 0.5em;
+}
+
+.right label {
+    color: #555;
+    font-size: 90%;
+}
+.right label:after {
     content: ':'
 }
 
-.right {
-    text-align: right;
-    color: #555;
-    font-size: 90%;
-    padding-right: 0.5em;
+table.edit tr:last-child td input {
+    margin-top: 20px;
 }
 
 .messages {

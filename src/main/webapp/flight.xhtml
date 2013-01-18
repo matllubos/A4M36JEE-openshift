@@ -36,7 +36,7 @@
 
         <h:form>
 
-            <h:panelGrid columns="3" columnClasses="right,left,messages">
+            <h:panelGrid columns="3" columnClasses="right,left,messages" styleClass="edit">
 
                 <h:outputLabel for="number" value="Flight number"/>
                 <h:inputText id="number" value="#{flight.flight.number}">
@@ -115,11 +115,10 @@
                 </h:selectOneMenu>
                 <h:message for="status"/>
 
-
-                <h:commandButton value="Storno" action="flights?faces-redirect=true&amp;includeViewParams=true" immediate="true"/>
                 <h:commandButton value="Save" action="#{flight.save}">
                     <f:ajax execute="@form" render="@all"/>
                 </h:commandButton>
+                <h:commandButton value="Cancel" action="flights?faces-redirect=true&amp;includeViewParams=true" immediate="true"/>
                 <h:outputText/>
 
             </h:panelGrid>

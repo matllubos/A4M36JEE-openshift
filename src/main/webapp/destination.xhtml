@@ -21,7 +21,7 @@
 
         <h:form>
 
-            <h:panelGrid columns="3" columnClasses="right,left,messages">
+            <h:panelGrid columns="3" columnClasses="right,left,messages" styleClass="edit">
 
                 <h:outputLabel for="code" value="Code"/>
                 <h:inputText id="code" value="#{destination.destination.code}">
@@ -35,12 +35,11 @@
                 </h:inputText>
                 <h:message for="name"/>
 
-                <h:commandButton value="Storno" action="destinations?faces-redirect=true" immediate="true"/>
                 <h:commandButton value="Save" action="#{destination.save}">
                     <f:ajax execute="@form" render="@all"/>
                 </h:commandButton>
-                <h:outputText value="{}"/>
-
+                <h:commandButton value="Cancel" action="destinations?faces-redirect=true" immediate="true"/>
+                <h:outputText/>
             </h:panelGrid>
 
         </h:form>

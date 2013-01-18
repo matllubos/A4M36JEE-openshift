@@ -108,11 +108,12 @@ public class PaymentServiceTest extends ArquillianTest {
         assertTrue( reservation.isCancelled() );
 
         // perform test
-        Payment payment = service.returnMoney( reservationId, PASSWORD, 123654789 );
+        Payment payment = service.returnMoney( reservationId, PASSWORD, 123654789, 123 );
 
         // verify
         assertTrue( payment.getId() > 0 );
-        assertEquals( payment.getCreditCardNumber(), 4789 );
+        assertEquals( payment.getAccountNumber(), 123654789 );
+        assertEquals( payment.getBankCode(), 123 );
         assertEquals( payment.getReservation().getId(), reservationId );
         assertEquals( payment.getAmount(), -5 * 5000 ); // price per seat is 5000, ordered 5 seats, negative, money sent back
 
@@ -132,7 +133,7 @@ public class PaymentServiceTest extends ArquillianTest {
         assertTrue( reservation.isCancelled() );
 
         // perform test
-        service.returnMoney( reservationId, PASSWORD, 123654789 );
+        service.returnMoney( reservationId, PASSWORD, 123654789, 123 );
     }
 
     @Test( expectedExceptions = { EJBException.class, InvalidPaymentException.class } )
@@ -147,7 +148,7 @@ public class PaymentServiceTest extends ArquillianTest {
         assertFalse( reservation.isCancelled() );
 
         // perform test
-        service.returnMoney( reservationId, PASSWORD, 123654789 );
+        service.returnMoney( reservationId, PASSWORD, 123654789, 123 );
     }
 
     //    @Test( dependsOnMethods = "testPayVisa" )
