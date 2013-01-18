@@ -5,6 +5,7 @@ import cz.cvut.fel.model.Flight;
 import cz.cvut.fel.model.FlightStatus;
 import cz.cvut.fel.model.Time;
 import cz.cvut.fel.util.ArquillianTest;
+import lombok.extern.slf4j.Slf4j;
 import org.jboss.security.client.SecurityClient;
 import org.jboss.security.client.SecurityClientFactory;
 import org.testng.annotations.*;
@@ -20,8 +21,8 @@ import static java.lang.Thread.sleep;
 import static org.testng.Assert.*;
 
 /** @author Karel Cemus */
-@Test( groups = "services" )
-public class FlightServiceTest extends ArquillianTest {
+@Slf4j
+public class FlightServiceTest extends UsersServiceTest {
 
     private static final String FLIGHT_NUMBER = "F111111";
 
@@ -31,13 +32,7 @@ public class FlightServiceTest extends ArquillianTest {
     @Inject
     private DestinationService destinationService;
 
-    @BeforeClass
-    public void loginRoot() throws Exception {
-        System.out.println("spusteno");
-        login("peter", "peter");
-    }
-
-    @AfterClass
+    @AfterGroups( groups = { "user-flight-manager", "user-admin" })
     public void logout() throws Exception {
         final SecurityClient securityClient = SecurityClientFactory.getSecurityClient();
         securityClient.logout();
@@ -52,7 +47,7 @@ public class FlightServiceTest extends ArquillianTest {
         }
     }
 
-    @Test( dataProvider = "findProvider" )
+    @Test( dataProvider = "findProvider", groups = "user-unlogged" )
     public void testFind( String number, boolean exists ) {
         try {
             service.find( number );
@@ -81,7 +76,7 @@ public class FlightServiceTest extends ArquillianTest {
                 } );
     }
 
-    @Test( dataProvider = "flightsFromProvider" )
+    @Test( dataProvider = "flightsFromProvider", groups = "user-unlogged" )
     public void testFindFlightsFrom( Date from, Date to, String destination, String[] expected ) {
 
         Collection<Flight> flights = service.findFlightsFrom( from, to, destination );
@@ -101,7 +96,7 @@ public class FlightServiceTest extends ArquillianTest {
                 } );
     }
 
-    @Test( dataProvider = "flightsToProvider" )
+    @Test( dataProvider = "flightsToProvider", groups = "user-unlogged" )
     public void testFindFlightsTo( Date from, Date to, String destination, String[] expected ) {
 
         Collection<Flight> flights = service.findFlightsTo( from, to, destination );
@@ -121,7 +116,7 @@ public class FlightServiceTest extends ArquillianTest {
                 } );
     }
 
-    @Test( dataProvider = "flightsProvider" )
+    @Test( dataProvider = "flightsProvider", groups = "user-unlogged" )
     public void testFindFlights( Date from, Date to, String destinationFrom, String destinationTo, String[] expected ) {
         Collection<Flight> flights = service.findFlights( from, to, destinationFrom, destinationTo );
 
@@ -140,7 +135,21 @@ public class FlightServiceTest extends ArquillianTest {
                 } );
     }
 
-    @Test
+    @Test( groups = "user-admin" )
+    public void testCreateAdmin() {
+        testCreate();
+    }
+
+    @Test( groups = "user-flight-manager" )
+    public void testCreateFlightManager() {
+        testCreate();
+    }
+
+    @Test( groups = "user-unlogged", expectedExceptions = javax.ejb.EJBAccessException.class )
+    public void testCreateAllUsers() {
+        testCreate();
+    }
+
     public void testCreate() {
         Flight flight = createFlight();
 
@@ -152,7 +161,7 @@ public class FlightServiceTest extends ArquillianTest {
         assertNotNull( service.find( FLIGHT_NUMBER ) );
     }
 
-    @Test
+    @Test( groups = "user-admin" )
     public void testCreateInvalid() {
         try {
             Flight flight = createFlight();
@@ -168,7 +177,21 @@ public class FlightServiceTest extends ArquillianTest {
         }
     }
 
-    @Test( dependsOnMethods = "testCreate" )
+    @Test( dependsOnMethods = "testCreateAdmin", groups = { "user-admin" } )
+    public void testUpdateAdmin() throws InterruptedException {
+        testUpdate();
+    }
+
+    @Test( groups = "user-flight-manager" )
+    public void testUpdateFlightManager() throws InterruptedException {
+        testUpdate();
+    }
+
+    @Test( groups = "user-unlogged", expectedExceptions = javax.ejb.EJBAccessException.class )
+    public void testUpdateAllUsers() throws InterruptedException {
+        testUpdate();
+    }
+
     public void testUpdate() {
 
         // create test instance
@@ -190,7 +213,21 @@ public class FlightServiceTest extends ArquillianTest {
         assertEquals( flight.getStatus(), FlightStatus.LANDED );
     }
 
-    @Test( dependsOnMethods = "testCreate", expectedExceptions = javax.ejb.EJBException.class )
+    @Test( dependsOnMethods = "testCreateAdmin", groups =  "user-admin", expectedExceptions = javax.ejb.EJBException.class )
+    public void testDeleteAdmin() throws InterruptedException {
+        testDelete();
+    }
+
+    @Test( groups = "user-flight-manager", expectedExceptions = javax.ejb.EJBException.class )
+    public void testDeleteFlightManager() throws InterruptedException {
+        testDelete();
+    }
+
+    @Test( groups = "user-unlogged", expectedExceptions = javax.ejb.EJBAccessException.class )
+    public void testDeleteAllUsers() throws InterruptedException {
+        testDelete();
+    }
+
     public void testDelete() throws InterruptedException {
 
         // create test instance
@@ -230,58 +267,6 @@ public class FlightServiceTest extends ArquillianTest {
                 };
     }
 
-
-    @Test( dataProvider = "usersProvider", enabled = false)
-    public void testCreateWithUser(String username, String password) throws Exception {
-        logout();
-        login(username, password);
-
-        // this should not throw an EJBAccessException
-        Flight flight = service.save( createFlight() );
-        assertTrue( flight.getId() > 0 );
-        assertNotNull( service.find( FLIGHT_NUMBER ) );
-        testDelete();
-    }
-
-    @Test( dependsOnMethods = "testCreateWithUser", dataProvider = "usersProvider", enabled = false )
-    public void testDeleteWithUser(String username, String password) throws Exception {
-        // create test instance
-        testCreate();
-
-        logout();
-        login(username, password);
-        Flight flight = service.find( FLIGHT_NUMBER );
-
-        // this should not throw an EJBAccessException
-        service.delete( flight.getNumber() );
-
-        // wait for new timestamp
-        sleep( 1000 );
-
-        // verify results, it is supposed not to exist - it should throw an exception
-        service.find( FLIGHT_NUMBER );
-    }
-
-    @Test( expectedExceptions = javax.ejb.EJBAccessException.class )
-    public void testCreateWithoutUserAuthorization() throws Exception {
-        logout();
-
-        // this should throw an EJBAccessException
-        service.save( createFlight() );
-    }
-
-    @Test( expectedExceptions = javax.ejb.EJBAccessException.class )
-    public void testDeleteWithoutUserAuthorization() throws Exception {
-        // create test instance
-        testCreate();
-
-        logout();
-        Flight flight = service.find( FLIGHT_NUMBER );
-
-        // this should throw an EJBAccessException
-        service.delete( flight.getNumber() );
-    }
-
     private Flight createFlight() {
         Flight flight = new Flight();
         flight.setNumber( FLIGHT_NUMBER );
@@ -300,11 +285,5 @@ public class FlightServiceTest extends ArquillianTest {
         flight.setValidUntil( calendar.getTime() );
 
         return flight;
-    }
-
-    private void login(String username, String password) throws Exception {
-        final SecurityClient securityClient = SecurityClientFactory.getSecurityClient();
-        securityClient.setSimple(username, password);
-        securityClient.login();
     }
 }

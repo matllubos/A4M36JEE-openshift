@@ -15,8 +15,11 @@
                 <include name="arquillian"/>
                 <exclude name="initialization"/>
                 <!-- <include name="services"/>  -->
-                <include name="security"/>
+                <include name="user-flight-manager"/>
+                <include name="user-admin"/>
+                <include name="user-unlogged"/>
             </run>
+
 
             <dependencies>
                 <!--<group name="services" depends-on="initialization"/>-->
