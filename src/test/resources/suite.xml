@@ -14,7 +14,7 @@
             <run>
                 <include name="arquillian"/>
                 <exclude name="initialization"/>
-                <!-- <include name="services"/>  -->
+                <include name="services"/>
                 <include name="user-flight-manager"/>
                 <include name="user-admin"/>
                 <include name="user-unlogged"/>
