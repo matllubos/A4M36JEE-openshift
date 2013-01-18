@@ -81,12 +81,12 @@
 
             <h:column>
                 <f:facet name="header"><h:outputText value="Departure at"/></f:facet>
-                <h:outputText value="#{item.departure.actual}"><f:convertDateTime pattern="dd.MM.yyyy HH:mm"/></h:outputText>
+                <h:outputText value="#{item.departure.actual}"><f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}"/></h:outputText>
             </h:column>
 
             <h:column>
                 <f:facet name="header"><h:outputText value="Arrival at"/></f:facet>
-                <h:outputText value="#{item.arrival.actual}"><f:convertDateTime pattern="dd.MM.yyyy HH:mm"/></h:outputText>
+                <h:outputText value="#{item.arrival.actual}"><f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}"/></h:outputText>
             </h:column>
 
             <h:column>

@@ -52,12 +52,12 @@
 
                 <h:outputLabel for="departure" value="Departure scheduled on"/>
                 <h:outputText id="departure" value="#{reservationBean.flight.departure.scheduled}">
-                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}"/>
+                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{reservationBean.getTimezone()}"/>
                 </h:outputText>
 
                 <h:outputLabel for="arrival" value="Arrival scheduled on"/>
                 <h:outputText id="arrival" value="#{reservationBean.flight.arrival.scheduled}">
-                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}"/>
+                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{reservationBean.getTimezone()}"/>
                 </h:outputText>
 
                 <h:outputLabel for="from" value="Departure from"/>
@@ -84,13 +84,16 @@
             </h:panelGrid>
 
 
-            <h:dataTable value="#{reservationBean.payments}" var="item" styleClass="bordered centered-table" rendered="#{not reservationBean.payments.isEmpty()}">
+            <h:dataTable value="#{reservationBean.payments}" var="item" styleClass="bordered centered-table"
+                         rendered="#{not reservationBean.payments.isEmpty()}">
 
                 <f:facet name="header">Payments</f:facet>
 
                 <h:column>
                     <f:facet name="header"><h:outputText value="Date of payment"/></f:facet>
-                    <h:outputText value="#{item.timestamp}"><f:convertDateTime pattern="dd.MM.yyyy HH:mm"/></h:outputText>
+                    <h:outputText value="#{item.timestamp}">
+                        <f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{reservationBean.getTimezone()}"/>
+                    </h:outputText>
                 </h:column>
 
                 <h:column>
@@ -105,7 +108,9 @@
 
                 <h:column>
                     <f:facet name="header"/>
-                    <h:form><h:commandLink value="print confirmation" action="#{reservationBean.printPaymentConfirmation(item.id)}"/></h:form>
+                    <h:form>
+                        <h:commandLink value="print confirmation" action="#{reservationBean.printPaymentConfirmation(item.id)}"/>
+                    </h:form>
                 </h:column>
 
             </h:dataTable>

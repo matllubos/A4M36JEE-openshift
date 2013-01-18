@@ -17,12 +17,15 @@ import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import java.util.TimeZone;
 
 /** @author Karel Cemus */
 @Setter
 @SessionScoped
 @Named( "reservationBean" )
 public class ReservationBean extends BeanBase implements Serializable {
+
+    private static final TimeZone TIMEZONE = TimeZone.getDefault();
 
     @Inject
     @Setter( AccessLevel.NONE )
@@ -43,6 +46,10 @@ public class ReservationBean extends BeanBase implements Serializable {
     private String password;
 
     private List<Payment> payments;
+
+    public static TimeZone getTimezone() {
+        return TIMEZONE;
+    }
 
     public String cancel() {
 
@@ -121,6 +128,7 @@ public class ReservationBean extends BeanBase implements Serializable {
 
     public String logout() {
         reservation = null;
+        payments = null;
         password = null;
         flight = null;
         id = 0;
