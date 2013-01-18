@@ -16,12 +16,12 @@ public class UsersServiceTest extends ArquillianTest {
 
     @BeforeGroups( groups = "user-admin" )
     public void loginFlightManager() throws Exception {
-        login("peter", "peter");
+        login("karel", "cemus");
     }
 
     @BeforeGroups( groups = "user-flight-manager" )
     public void loginAdmin() throws Exception {
-        login("marcus", "marcus");
+        login("lubos", "matl");
     }
 
 
