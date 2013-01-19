@@ -178,20 +178,6 @@ public class FlightServiceTest extends UsersServiceTest {
     }
 
     @Test( dependsOnMethods = "testCreateAdmin", groups = { "user-admin" } )
-    public void testUpdateAdmin() throws InterruptedException {
-        testUpdate();
-    }
-
-    @Test( groups = "user-flight-manager" )
-    public void testUpdateFlightManager() throws InterruptedException {
-        testUpdate();
-    }
-
-    @Test( groups = "user-unlogged", expectedExceptions = javax.ejb.EJBAccessException.class )
-    public void testUpdateAllUsers() throws InterruptedException {
-        testUpdate();
-    }
-
     public void testUpdate() {
 
         // create test instance
@@ -220,12 +206,12 @@ public class FlightServiceTest extends UsersServiceTest {
 
     @Test( groups = "user-flight-manager", expectedExceptions = javax.ejb.EJBException.class )
     public void testDeleteFlightManager() throws InterruptedException {
-        testDelete();
+        service.delete( "1" );
     }
 
     @Test( groups = "user-unlogged", expectedExceptions = javax.ejb.EJBAccessException.class )
     public void testDeleteAllUsers() throws InterruptedException {
-        testDelete();
+        service.delete( "1" );
     }
 
     public void testDelete() throws InterruptedException {
