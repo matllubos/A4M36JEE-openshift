@@ -28,13 +28,23 @@
     </context-param>
 
     <context-param>
+        <param-name>org.richfaces.enableControlSkinning</param-name>
+        <param-value>false</param-value>
+    </context-param>
+
+    <context-param>
         <param-name>org.richfaces.skin</param-name>
         <param-value>classic</param-value>
     </context-param>
 
     <context-param>
-        <param-name>org.richfaces.enableControlSkinning</param-name>
+        <param-name>org.richfaces.responsiveDesign</param-name>
         <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.richfaces.clientSideStyle</param-name>
+        <param-value>false</param-value>
     </context-param>
 
     <!-- Welcome page -->
@@ -76,6 +86,11 @@
         <exception-type>javax.faces.application.ViewExpiredException</exception-type>
         <location>/flights.xhtml</location>
     </error-page>
+
+    <mime-mapping>
+        <extension>less</extension>
+        <mime-type>text/css</mime-type>
+    </mime-mapping>
 
     <!--<servlet-mapping>-->
     <!--<servlet-name>CXFServlet</servlet-name>-->

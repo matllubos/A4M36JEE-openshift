@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title"><ui:insert name="title"/></ui:define>
+
+    <ui:define name="layout">
+
+        <div class="container-fluid">
+
+            <div class="row-fluid">
+
+                <div class="span9">
+
+                    <!-- content itself -->
+                    <ui:insert name="content"/>
+
+                    <!-- status messages -->
+                    <h:messages globalOnly="true" styleClass="messages" errorClass="alert alert-error" infoClass="alert alert-success"/>
+
+                </div>
+                <!--/span-->
+
+                <div class="span3">
+
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list">
+                            <li class="nav-header">Actions</li>
+                            <ui:insert name="actions"/>
+                        </ul>
+                    </div>
+                    <!--/.well -->
+
+                </div>
+                <!--/span-->
+
+            </div>
+
+        </div>
+
+    </ui:define>
+
+</ui:composition>
+</html>
