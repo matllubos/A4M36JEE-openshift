@@ -1,37 +1,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:rich="http://richfaces.org/rich"
+      xmlns:h="http://java.sun.com/jsf/html"
         >
 
-<ui:composition template="/WEB-INF/templates/template.xhtml">,
+<ui:composition template="/WEB-INF/templates/main.xhtml">,
 
-    <ui:define name="title">Login</ui:define>
+    <ui:define name="title">Hello, please log in</ui:define>
 
     <ui:define name="content">
-        <h2>Hello, please log in:</h2>
-        <form method="post" action="j_security_check">
-            <table columns="2" role="presentation">
-                <tr>
-                    <td><h:outputLabel for="j_username"
-                                       value="Please type your user name:"/></td>
-                    <td><h:inputText id="j_username" autocomplete="off"
-                                     size="20" /></td>
-                </tr>
-                <tr>
-                    <td><h:outputLabel for="j_password"
-                                       value="Please type your password:"/></td>
-                    <td><h:inputSecret id="j_password" autocomplete="off"
-                                       size="20"/></td>
-                </tr>
-            </table>
-            <p>
-                <h:commandButton type="submit" value="Submit"/>
-                &nbsp;
-                <h:commandButton type="reset" value="Reset"/>
-            </p>
-        </form>
 
+        <form method="post" action="j_security_check">
+
+            <h:panelGrid columns="3" columnClasses="left,right,messages error control-group" styleClass="edit">
+
+                <h:outputLabel for="j_username" value="Please type your user name:"/>
+                <h:inputText id="j_username" autocomplete="off" size="20"/>
+                <h:message for="j_username" styleClass="help-inline"/>
+
+                <h:outputLabel for="j_password" value="Please type your password:"/>
+                <h:inputSecret id="j_password" autocomplete="off" size="20"/>
+                <h:message for="j_password" styleClass="help-inline"/>
+
+                <h:outputText/>
+                <h:panelGroup layout="block">
+                    <h:commandButton type="submit" value="LogIn" styleClass="btn btn-primary"/>
+                    <h:commandButton type="reset" value="Reset" styleClass="btn btn-reverse"/>
+                </h:panelGroup>
+                <h:outputText/>
+
+            </h:panelGrid>
+
+        </form>
 
     </ui:define>
 
