@@ -43,6 +43,7 @@ public class Destination implements Serializable {
     private long id;
 
     /** destination code */
+    @NotBlank
     @Length( min = 3, max = 3 )
     private String code;
 
