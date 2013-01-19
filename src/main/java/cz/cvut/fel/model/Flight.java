@@ -87,6 +87,7 @@ public class Flight implements Serializable {
     private Time arrival;
 
     /** flight price per seat */
+    @Min( 0 )
     @Column( nullable = false )
     private int cost;
 

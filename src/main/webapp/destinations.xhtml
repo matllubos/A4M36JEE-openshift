@@ -4,13 +4,17 @@
       xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
         >
 
-<ui:composition template="/WEB-INF/templates/template.xhtml">,
+<ui:composition template="/WEB-INF/templates/fluid.xhtml">,
 
     <ui:define name="title">Destinations overview</ui:define>
 
+    <ui:define name="actions">
+        <li><h:link outcome="destination" value="new destination"/></li>
+    </ui:define>
+
     <ui:define name="content">
 
-        <h:dataTable value="#{destinations.destinations}" var="item" styleClass="bordered centered-table">
+        <h:dataTable value="#{destinations.destinations}" var="item" styleClass="table table-striped table-hover" style="width:600px; margin: auto;">
 
             <h:column>
                 <f:facet name="header"><h:outputText value="Code"/></f:facet>
@@ -23,20 +27,20 @@
             </h:column>
 
             <h:column>
-                <h:link outcome="destination" value="edit">
+                <h:link outcome="destination" styleClass="btn btn-info" title="edit destination">
                     <f:param name="code" value="#{item.code}"/>
+                    <i class="icon-pencil"></i>
                 </h:link>
             </h:column>
 
             <h:column>
                 <h:form>
-                    <h:commandLink action="#{destinations.remove(item.id)}" value="remove"/>
+                    <h:commandLink action="#{destinations.remove(item.id)}" styleClass="btn btn-danger"
+                                   title="remove destination">
+                        <i class="icon-trash"></i>
+                    </h:commandLink>
                 </h:form>
             </h:column>
-
-            <f:facet name="footer">
-                <h:link outcome="destination" value="new destination" style="text-align: left;" />
-            </f:facet>
 
         </h:dataTable>
 

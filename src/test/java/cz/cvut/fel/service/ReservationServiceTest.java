@@ -16,7 +16,7 @@ import static org.testng.Assert.*;
 /** @author Karel Cemus */
 @Slf4j
 @Test( groups = "services" )
-public class ReservationTest extends ArquillianTest {
+public class ReservationServiceTest extends ArquillianTest {
 
     private static final String PASSWORD = "heslo12345";
 
@@ -38,7 +38,7 @@ public class ReservationTest extends ArquillianTest {
         assertEquals( reservation.getCost(), 5000 * 5 );
         assertEquals( reservation.getPassword(), security.hash( reservation.getId(), PASSWORD ) );
         assertTrue( reservation.getId() != 0 );
-        log.trace( "Created reservation with id '{}'.", reservation.getId() );
+        ReservationServiceTest.log.trace( "Created reservation with id '{}'.", reservation.getId() );
 
         // set up of another tests
         reservationId = reservation.getId();

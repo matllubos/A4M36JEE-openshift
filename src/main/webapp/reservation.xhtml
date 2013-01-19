@@ -3,7 +3,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
         >
 
-<ui:composition template="WEB-INF/templates/template.xhtml">,
+<ui:composition template="WEB-INF/templates/fluid.xhtml">,
 
     <ui:define name="title">
 
@@ -12,25 +12,61 @@
 
     </ui:define>
 
+    <ui:define name="actions">
+
+        <h:panelGroup rendered="#{reservationBean.reservation != null}">
+
+            <li><h:commandLink value="Print confirmation" action="#{reservationBean.printConfirmation}"/></li>
+
+
+            <h:panelGroup rendered="#{!reservationBean.reservation.cancelled and reservationBean.reservation.fullyPaid}">
+                <li>
+                    <h:commandLink value="Print E-Ticket" action="#{reservationBean.printETicket}"/>
+                </li>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{!reservationBean.reservation.cancelled and !reservationBean.reservation.fullyPaid}">
+                <li>
+                    <h:link value="Pay using VISA card" outcome="pay-visa"/>
+                </li>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{reservationBean.reservation.cancelled and reservationBean.reservation.paid > 0}">
+                <li>
+                    <h:link value="Send money back" outcome="pay-back"/></li>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{!reservationBean.reservation.cancelled}">
+                <li>
+                    <h:commandLink value="Cancel reservation" action="#{reservationBean.cancel}">
+                        <f:ajax execute="@form" render="@all"/>
+                    </h:commandLink>
+                </li>
+            </h:panelGroup>
+
+        </h:panelGroup>
+
+    </ui:define>
+
 
     <ui:define name="content">
 
         <h:form rendered="#{reservationBean.reservation == null}">
 
-            <h:panelGrid columns="3" columnClasses="right,left,messages" styleClass="edit">
+            <h:panelGrid columns="3" columnClasses="left,right,messages error control-group" styleClass="edit">
 
                 <h:outputLabel for="identifier" value="Reservation number"/>
                 <h:inputText id="identifier" value="#{reservationBean.id}" converterMessage="Invalid number.">
                     <f:convertNumber/>
                 </h:inputText>
-                <h:message for="identifier"/>
+                <h:message for="identifier" styleClass="help-inline"/>
 
                 <h:outputLabel for="password" value="Access password"/>
                 <h:inputSecret id="password" value="#{reservationBean.password}"/>
-                <h:message for="password"/>
+                <h:message for="password" styleClass="help-inline"/>
 
                 <h:outputText/>
-                <h:commandButton action="#{reservationBean.logIn}" value="LogIn">
+                <h:commandButton action="#{reservationBean.logIn}" value="LogIn" styleClass="btn btn-primary">
                     <f:ajax execute="@form" render="@all"/>
                 </h:commandButton>
                 <h:outputText/>
@@ -41,7 +77,7 @@
 
         <h:panelGroup rendered="#{reservationBean.reservation != null}">
 
-            <h:panelGrid columns="2" columnClasses="right,left" styleClass="bordered">
+            <h:panelGrid columns="2" columnClasses="left,right" styleClass="table table-striped table-hover" style="width: 500px">
 
                 <h:outputLabel for="reservation-number" value="Reservation number"/>
                 <h:outputText id="reservation-number" value="#{reservationBean.reservation.id}"/>
@@ -84,7 +120,7 @@
             </h:panelGrid>
 
 
-            <h:dataTable value="#{reservationBean.payments}" var="item" styleClass="bordered centered-table"
+            <h:dataTable value="#{reservationBean.payments}" var="item" styleClass="table table-striped table-hover"
                          rendered="#{not reservationBean.payments.isEmpty()}">
 
                 <f:facet name="header">Payments</f:facet>
@@ -109,36 +145,12 @@
                 <h:column>
                     <f:facet name="header"/>
                     <h:form>
-                        <h:commandLink value="print confirmation" action="#{reservationBean.printPaymentConfirmation(item.id)}"/>
+                        <h:commandLink value="print confirmation" action="#{reservationBean.printPaymentConfirmation(item.id)}"
+                                       styleClass="btn btn-info btn-small"/>
                     </h:form>
                 </h:column>
 
             </h:dataTable>
-
-
-            <h:form styleClass="block-links">
-
-                <h:panelGrid columns="1">
-
-                    <h:commandLink value="Print confirmation" action="#{reservationBean.printConfirmation}"/>
-
-                    <h:commandLink value="Print E-Ticket" action="#{reservationBean.printETicket}"
-                                   rendered="#{!reservationBean.reservation.cancelled and reservationBean.reservation.fullyPaid}"/>
-
-                    <h:link value="Pay using VISA card" outcome="pay-visa"
-                            rendered="#{!reservationBean.reservation.cancelled and !reservationBean.reservation.fullyPaid}"/>
-
-                    <h:link value="Send money back" outcome="pay-back"
-                            rendered="#{reservationBean.reservation.cancelled and reservationBean.reservation.paid > 0}"/>
-
-                    <h:commandLink value="Cancel reservation" action="#{reservationBean.cancel}"
-                                   rendered="#{!reservationBean.reservation.cancelled}">
-                        <f:ajax execute="@form" render="@all"/>
-                    </h:commandLink>
-
-                </h:panelGrid>
-
-            </h:form>
 
         </h:panelGroup>
 

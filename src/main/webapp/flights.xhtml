@@ -4,14 +4,15 @@
       xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
       xmlns:rich="http://richfaces.org/rich">
 
-<ui:composition template="/WEB-INF/templates/template.xhtml">,
+<ui:composition template="/WEB-INF/templates/main.xhtml">
 
     <ui:define name="title">Flights overview</ui:define>
 
     <ui:define name="metadata">
         <f:metadata>
 
-            <f:viewParam name="date-from" value="#{overviewConfiguration.dateFrom}" converterMessage="Invalid 'date-from' format.">
+            <f:viewParam name="date-from" value="#{overviewConfiguration.dateFrom}"
+                         converterMessage="Invalid 'date-from' format.">
                 <f:convertDateTime pattern="dd.MM.yyyy" timeZone="#{overviewConfiguration.getTimezone()}"/>
             </f:viewParam>
 
@@ -27,23 +28,23 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:form>
-
-            <h:panelGrid columns="5">
+        <h:form styleClass="form-inline">
+            <h:panelGroup>
 
                 <rich:graphValidator value="#{overviewConfiguration}">
 
                     <h:panelGroup>
                         <h:outputLabel for="dateFrom" value="Date from:"/>
                         <rich:calendar id="dateFrom" datePattern="dd.MM.yyyy" value="#{overviewConfiguration.dateFrom}"
-                                       validatorMessage="Invalid value 'date-from'" inputSize="7em" showFooter="false"
+                                       validatorMessage="Invalid value 'date-from'" inputStyle="width:80px" showFooter="false"
                                        timeZone="#{overviewConfiguration.getTimezone()}"/>
                     </h:panelGroup>
 
                     <h:panelGroup>
                         <h:outputLabel for="dateTo" value="Date do:"/>
-                        <rich:calendar id="dateTo" value="#{overviewConfiguration.dateTo}" datePattern="dd.MM.yyyy" styleClass="calendar"
-                                       validatorMessage="Invalid value 'date-to'" inputSize="7em" showFooter="false"
+                        <rich:calendar id="dateTo" value="#{overviewConfiguration.dateTo}" datePattern="dd.MM.yyyy"
+                                       styleClass="calendar"
+                                       validatorMessage="Invalid value 'date-to'" inputStyle="width:80px" showFooter="false"
                                        timeZone="#{overviewConfiguration.getTimezone()}"/>
                     </h:panelGroup>
 
@@ -67,12 +68,16 @@
 
                 </rich:graphValidator>
 
-                <h:commandButton value="Filter" action="flights?faces-redirect=true&amp;includeViewParams=true"/>
+                <h:commandLink action="flights?faces-redirect=true&amp;includeViewParams=true" styleClass="btn btn-primary"
+                               style="width: 50px;">
+                    <i class="icon-search"></i> Filter
+                </h:commandLink>
 
-            </h:panelGrid>
+            </h:panelGroup>
         </h:form>
 
-        <h:dataTable value="#{flights.flights}" var="item" styleClass="bordered centered-table">
+        <h:dataTable value="#{flights.flights}" var="item" styleClass="table table-hover table-striped"
+                     columnClasses=",,,,,,,,centered">
 
             <h:column>
                 <f:facet name="header"><h:outputText value="Flight number"/></f:facet>
@@ -81,12 +86,16 @@
 
             <h:column>
                 <f:facet name="header"><h:outputText value="Departure at"/></f:facet>
-                <h:outputText value="#{item.departure.actual}"><f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}"/></h:outputText>
+                <h:outputText value="#{item.departure.actual}">
+                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}"/>
+                </h:outputText>
             </h:column>
 
             <h:column>
                 <f:facet name="header"><h:outputText value="Arrival at"/></f:facet>
-                <h:outputText value="#{item.arrival.actual}"><f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}"/></h:outputText>
+                <h:outputText value="#{item.arrival.actual}">
+                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}"/>
+                </h:outputText>
             </h:column>
 
             <h:column>
@@ -115,26 +124,32 @@
             </h:column>
 
             <h:column>
-                <h:link outcome="book-it" value="book this" rendered="#{item.bookable}" includeViewParams="true">
+                <h:link outcome="book-it" value="book this" rendered="#{item.bookable}" includeViewParams="true"
+                        style="width: 85px;" styleClass="btn btn-success btn-small">
                     <f:param name="flight" value="#{item.number}"/>
                 </h:link>
-                <h:outputText value="not available" rendered="#{!item.bookable}"/>
+                <h:outputText value="not available" rendered="#{!item.bookable}" styleClass="btn btn-inverse btn-small"
+                              style="width: 85px;"/>
             </h:column>
 
-            <h:column>
-                <h:link outcome="flight?faces-redirect=true&amp;includeViewParams=true" value="edit">
+            <h:column rendered="#{true}"><!-- todo security -->
+                <h:link outcome="flight?faces-redirect=true&amp;includeViewParams=true" styleClass="btn btn-danger btn-small"
+                        title="edit flight">
                     <f:param name="number" value="#{item.number}"/>
+                    <i class="icon-pencil"></i>
                 </h:link>
             </h:column>
 
-            <h:column>
+            <h:column rendered="#{true}"><!-- todo security -->
                 <h:form>
-                    <h:commandLink action="#{flights.remove(item.number)}" value="remove"/>
+                    <h:commandLink action="#{flights.remove(item.number)}" styleClass="btn btn-danger btn-small" title="remove flight">
+                        <i class="icon-trash"></i>
+                    </h:commandLink>
                 </h:form>
             </h:column>
 
             <f:facet name="footer">
-                <h:link outcome="flight" value="new flight"/>
+                <h:link outcome="flight" value="new flight" styleClass="btn btn-primary btn-small" style="width: 75px"/>
             </f:facet>
 
         </h:dataTable>

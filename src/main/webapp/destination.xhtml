@@ -4,7 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:rich="http://richfaces.org/rich"
         >
 
-<ui:composition template="/WEB-INF/templates/template.xhtml">,
+<ui:composition template="/WEB-INF/templates/main.xhtml">,
 
     <ui:define name="title">Destination details</ui:define>
 
@@ -21,24 +21,29 @@
 
         <h:form>
 
-            <h:panelGrid columns="3" columnClasses="right,left,messages" styleClass="edit">
+            <h:panelGrid columns="3" columnClasses="left,right,messages error control-group" styleClass="edit">
 
                 <h:outputLabel for="code" value="Code"/>
+
                 <h:inputText id="code" value="#{destination.destination.code}">
                     <rich:validator/>
                 </h:inputText>
-                <h:message for="code"/>
+                <h:message for="code" styleClass="help-inline"/>
 
                 <h:outputLabel for="name" value="Name"/>
                 <h:inputText id="name" value="#{destination.destination.name}">
                     <rich:validator/>
                 </h:inputText>
-                <h:message for="name"/>
+                <h:message for="name" styleClass="help-inline"/>
 
-                <h:commandButton value="Save" action="#{destination.save}">
-                    <f:ajax execute="@form" render="@all"/>
-                </h:commandButton>
-                <h:commandButton value="Cancel" action="destinations?faces-redirect=true" immediate="true"/>
+                <h:outputText/>
+                <h:panelGroup layout="block">
+                    <h:commandButton value="Save" action="#{destination.save}" styleClass="btn btn-primary">
+                        <f:ajax execute="@form" render="@all"/>
+                    </h:commandButton>
+                    <h:commandButton value="Cancel" action="destinations?faces-redirect=true" immediate="true"
+                                     styleClass="btn btn-inverse"/>
+                </h:panelGroup>
                 <h:outputText/>
             </h:panelGrid>
 

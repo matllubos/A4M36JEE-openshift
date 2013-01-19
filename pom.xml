@@ -123,6 +123,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.richfaces.sandbox.ui.bootstrap</groupId>
+            <artifactId>bootstrap-ui</artifactId>
+            <version>4.3.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.jboss.seam.faces</groupId>
             <artifactId>seam-faces</artifactId>
             <version>3.0.2.Final</version>
@@ -150,6 +156,7 @@
             <groupId>org.jboss.as</groupId>
             <artifactId>jboss-as-security</artifactId>
             <version>7.1.1.Final</version>
+            <scope>provided</scope>
         </dependency>
 
 
@@ -385,7 +392,7 @@
             <dependency>
                 <groupId>org.richfaces</groupId>
                 <artifactId>richfaces-bom</artifactId>
-                <version>4.2.2.Final</version>
+                <version>4.3.0.20120802-M1</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -395,6 +402,7 @@
     </dependencyManagement>
 
     <repositories>
+
         <repository>
             <id>jboss-public-repository</id>
             <name>JBoss Repository</name>
@@ -405,6 +413,22 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Maven Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+
     </repositories>
 
 </project>

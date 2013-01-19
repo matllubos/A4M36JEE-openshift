@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title"><ui:insert name="title"/></ui:define>
+
+    <ui:define name="layout">
+
+        <!-- status messages -->
+        <h:messages globalOnly="true" styleClass="messages" errorClass="alert alert-error" infoClass="alert alert-success"/>
+
+        <!-- content itself -->
+        <ui:insert name="content"/>
+
+    </ui:define>
+
+</ui:composition>
+</html>

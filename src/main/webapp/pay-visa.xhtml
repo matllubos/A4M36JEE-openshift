@@ -3,7 +3,7 @@
       xmlns:f="http://java.sun.com/jsf/core" xmlns:rich="http://richfaces.org/rich"
         >
 
-<ui:composition template="WEB-INF/templates/template.xhtml">,
+<ui:composition template="WEB-INF/templates/main.xhtml">,
 
     <ui:define name="title">Payment for reservation #{paymentBean.reservation.id}</ui:define>
 
@@ -11,40 +11,42 @@
 
         <h:form>
 
-            <h:panelGrid columns="3" columnClasses="right,left,messages" styleClass="edit">
+            <h:panelGrid columns="3" columnClasses="left,right,messages error control-group" styleClass="edit">
 
                 <h:outputLabel value="Credit card number" for="creditCard"/>
                 <h:inputText id="creditCard" value="#{paymentBean.creditCardNumber}"
                              converterMessage="Invalid card number">
-                    <f:convertNumber integerOnly="true" maxFractionDigits="0" minIntegerDigits="16" maxIntegerDigits="16"
-                                     groupingUsed="false"/>
+                    <f:convertNumber integerOnly="true" maxFractionDigits="0" groupingUsed="false"/>
                 </h:inputText>
-                <h:message for="creditCard"/>
+                <h:message for="creditCard" styleClass="help-inline"/>
 
                 <h:outputLabel value="Credit card owner" for="cardName"/>
                 <h:inputText id="cardName" value="#{paymentBean.creditCardName}"/>
-                <h:message for="cardName"/>
+                <h:message for="cardName" styleClass="help-inline"/>
 
                 <h:outputLabel value="Card valid until" for="validUntil"/>
                 <rich:calendar id="validUntil" value="#{paymentBean.validUntil}" datePattern="dd.MM.yyyy"
                                styleClass="calendar"
                                inputSize="7em" showFooter="false" timeZone="#{paymentBean.getTimezone()}"/>
-                <h:message for="validUntil"/>
+                <h:message for="validUntil" styleClass="help-inline"/>
 
                 <h:outputLabel value="Verification cod (last 3 number of card number)" for="verificationCode"/>
 
                 <h:inputText id="verificationCode" value="#{paymentBean.verificationCode}" converterMessage="Invalid code.">
                     <f:convertNumber groupingUsed="false"/>
                 </h:inputText>
-                <h:message for="verificationCode"/>
+                <h:message for="verificationCodeValidator" styleClass="help-inline"/>
 
-                <h:commandButton action="#{paymentBean.pay}" value="make transaction"/>
-                <h:commandButton action="reservation" value="cancel"/>
+                <h:outputText/>
+                <h:panelGroup layout="block">
+                    <h:commandButton action="#{paymentBean.pay}" value="make transaction" styleClass="btn btn-primary"/>
+                    <h:commandButton action="reservation" value="cancel" styleClass="btn btn-inverse"/>
+                </h:panelGroup>
                 <span/>
 
             </h:panelGrid>
 
-            <rich:graphValidator value="#{paymentBean}" />
+            <rich:graphValidator value="#{paymentBean}" id="verificationCodeValidator"/>
 
         </h:form>
 

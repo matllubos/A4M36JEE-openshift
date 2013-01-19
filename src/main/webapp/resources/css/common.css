@@ -1,123 +1,189 @@
-input.rf-cal-inp, input[type='submit'], select, textarea, input[type="text"], input[type="password"] {
-    font-size: 80%;
-}
-
-label {
-    margin-left: 3em;
-    display: inline-block;
-}
-
-a:visited, a:link, a:active {
-    color: blue;
-    text-decoration: none;
-    font-size: 90%;
-    margin: 0.5em;
-    vertical-align: middle;
-}
-
-form {
-    margin: 0;
-}
-
-a:hover {
-    color: red;
-}
-
-.centered-table td, .centered-table th {
-    padding: 0.2em 1em;
-    text-align: center;
-}
-
-table.centered-table {
-    margin: 2em 0;
-}
-
-.bordered, .bordered td, .bordered th {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
 body {
-    margin: 1em 3em;
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
 }
 
-th {
-    background-color: #ee5;
+ul.messages {
+    list-style-type: none;
+    margin: 30px auto;
 }
 
-td.title {
-    text-align: left;
-    font-weight: bold;
-    background-color: #ee5;
+td.messages {
+    padding-left: 30px;
 }
 
-input, select {
-    display: inline-block;
-    margin: 0.2em 1em;
+td > form {
+    display: inline;
 }
 
-.block-links a {
-    display: block;
+form select {
+    width: 170px;
 }
 
-#navigation a {
-    display: inline-block;
-    /*width: 10em;*/
+.form-inline label {
+    margin-right: 10px;
+}
+
+.form-inline * + label, .form-inline * + .btn {
+    margin-left: 15px;
+}
+
+body .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #D9EDF7;
+}
+
+.table .centered {
     text-align: center;
-    margin: 0 2em;
-    font-size: 1em;
-    text-transform: uppercase;
+}
+
+.table tfoot td {
+    text-align: right;
+}
+
+form input + input {
+    float: right;
 }
 
 .left {
-    text-align: left;
-    padding-left: 0.5em;
+    padding-right: 20px;
 }
 
-.right, .left {
-    padding: 0.1em 0.5em;
+.edit {
+    margin-left: 30px;
 }
 
-.right {
-    text-align: right;
-    padding-right: 0.5em;
+table.edit input, table.edit select, table.edit .uneditable-input {
+    margin-bottom: 0;
 }
 
-.right label {
-    color: #555;
-    font-size: 90%;
-}
-.right label:after {
-    content: ':'
+table.edit td {
+    padding-bottom: 9px;
 }
 
-table.edit tr:last-child td input {
-    margin-top: 20px;
+table.table td, table.table th {
+    vertical-align: middle;
 }
 
-.messages {
-    padding-left: 2em;
-    color: red;
-    font-size: 85%;
-    padding-top: 0.2em;
-}
-
-.bordered .right {
-    background-color: #ee5;
+.table label, form label {
     font-weight: bold;
 }
 
-.right input, .left input, .left select {
-    margin: 0;
-    display: inline-block;
-    width: 100%;
-}
+/*input.rf-cal-inp, input[type='submit'], select, textarea, input[type="text"], input[type="password"] {*/
+/*font-size: 80%;*/
+/*}*/
 
-input[type='submit'] {
-    display: inline-block;
-    width: inherit;
-}
+/*label {*/
+/*margin-left: 3em;*/
+/*display: inline-block;*/
+/*}*/
 
-.centered-table tfoot td {
-    text-align: right;
-}
+/*a:visited, a:link, a:active {*/
+/*color: blue;*/
+/*text-decoration: none;*/
+/*font-size: 90%;*/
+/*margin: 0.5em;*/
+/*vertical-align: middle;*/
+/*}*/
+
+/*form {*/
+/*margin: 0;*/
+/*}*/
+
+/*a:hover {*/
+/*color: red;*/
+/*}*/
+
+/*.centered-table td, .centered-table th {*/
+/*padding: 0.2em 1em;*/
+/*text-align: center;*/
+/*}*/
+
+/*table.centered-table {*/
+/*margin: 2em 0;*/
+/*}*/
+
+/*.bordered, .bordered td, .bordered th {*/
+/*border: 1px solid black;*/
+/*border-collapse: collapse;*/
+/*}*/
+
+/*body {*/
+/*margin: 1em 3em;*/
+/*}*/
+
+/*th {*/
+/*background-color: #ee5;*/
+/*}*/
+
+/*td.title {*/
+/*text-align: left;*/
+/*font-weight: bold;*/
+/*background-color: #ee5;*/
+/*}*/
+
+/*input, select {*/
+/*display: inline-block;*/
+/*margin: 0.2em 1em;*/
+/*}*/
+
+/*.block-links a {*/
+/*display: block;*/
+/*}*/
+
+/*#navigation a {*/
+/*display: inline-block;*/
+/*width: 10em;*/
+/*text-align: center;*/
+/*margin: 0 2em;*/
+/*font-size: 1em;*/
+/*text-transform: uppercase;*/
+/*}*/
+
+/*.left {*/
+/*text-align: left;*/
+/*padding-left: 0.5em;*/
+/*}*/
+
+/*.right, .left {*/
+/*padding: 0.1em 0.5em;*/
+/*}*/
+
+/*.right {*/
+/*text-align: right;*/
+/*padding-right: 0.5em;*/
+/*}*/
+
+/*.right label {*/
+/*color: #555;*/
+/*font-size: 90%;*/
+/*}*/
+/*.right label:after {*/
+/*content: ':'*/
+/*}*/
+
+/*table.edit tr:last-child td input {*/
+/*margin-top: 20px;*/
+/*}*/
+
+/*.messages {*/
+/*padding-left: 2em;*/
+/*color: red;*/
+/*font-size: 85%;*/
+/*padding-top: 0.2em;*/
+/*}*/
+
+/*.bordered .right {*/
+/*background-color: #ee5;*/
+/*font-weight: bold;*/
+/*}*/
+
+/*.right input, .left input, .left select {*/
+/*margin: 0;*/
+/*display: inline-block;*/
+/*width: 100%;*/
+/*}*/
+
+/*input[type='submit'] {*/
+/*display: inline-block;*/
+/*width: inherit;*/
+/*}*/
+
