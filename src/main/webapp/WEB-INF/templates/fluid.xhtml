@@ -8,6 +8,9 @@
 
     <ui:define name="layout">
 
+        <!-- status messages -->
+        <h:messages globalOnly="true" styleClass="messages" errorClass="alert alert-error" infoClass="alert alert-success"/>
+
         <div class="container-fluid">
 
             <div class="row-fluid">
@@ -17,21 +20,22 @@
                     <!-- content itself -->
                     <ui:insert name="content"/>
 
-                    <!-- status messages -->
-                    <h:messages globalOnly="true" styleClass="messages" errorClass="alert alert-error" infoClass="alert alert-success"/>
-
                 </div>
                 <!--/span-->
 
                 <div class="span3">
 
-                    <div class="well sidebar-nav">
-                        <ul class="nav nav-list">
-                            <li class="nav-header">Actions</li>
-                            <ui:insert name="actions"/>
-                        </ul>
-                    </div>
-                    <!--/.well -->
+                    <h:form>
+
+                        <div class="well sidebar-nav">
+                            <ul class="nav nav-list">
+                                <li class="nav-header">Actions</li>
+                                <ui:insert name="actions"/>
+                            </ul>
+                        </div>
+                        <!--/.well -->
+
+                    </h:form>
 
                 </div>
                 <!--/span-->

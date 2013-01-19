@@ -4,7 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:rich="http://richfaces.org/rich"
         >
 
-<ui:composition template="/WEB-INF/templates/template.xhtml">,
+<ui:composition template="/WEB-INF/templates/main.xhtml">,
 
     <ui:define name="title">Book it</ui:define>
 
@@ -34,51 +34,73 @@
 
     <ui:define name="content">
 
+        <h:messages for="global" styleClass="messages" errorClass="alert alert-error" infoClass="alert alert-success"/>
+
         <h:form>
 
-            <rich:graphValidator value="#{bookBean}">
+            <rich:graphValidator value="#{bookBean}" id="global">
 
-                <h:panelGrid columns="2" columnClasses="right,left" rendered="#{bookBean.flight != null}" styleClass="edit">
+                <h:panelGrid columns="3" rendered="#{bookBean.flight != null}"
+                             columnClasses="left,right,messages error control-group" styleClass="edit">
 
                     <h:outputLabel for="number" value="Flight number"/>
-                    <h:outputText id="number" value="#{bookBean.flight.number}"/>
+                    <h:outputText id="number" value="#{bookBean.flight.number}" styleClass="uneditable-input input-large"/>
+                    <h:outputText/>
 
 
                     <h:outputLabel for="departure" value="Departure scheduled on"/>
-                    <h:outputText id="departure" value="#{bookBean.flight.departure.scheduled}">
+                    <h:outputText id="departure" value="#{bookBean.flight.departure.scheduled}"
+                                  styleClass="uneditable-input input-large">
                         <f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}"/>
                     </h:outputText>
+                    <h:outputText/>
 
                     <h:outputLabel for="arrival" value="Arrival scheduled on"/>
-                    <h:outputText id="arrival" value="#{bookBean.flight.arrival.scheduled}">
+                    <h:outputText id="arrival" value="#{bookBean.flight.arrival.scheduled}"
+                                  styleClass="uneditable-input input-large">
                         <f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="#{overviewConfiguration.getTimezone()}"/>
                     </h:outputText>
+                    <h:outputText/>
 
                     <h:outputLabel for="from" value="Departure from"/>
-                    <h:outputText id="from" value="#{bookBean.flight.from.name}"/>
+                    <h:outputText id="from" value="#{bookBean.flight.from.name}" styleClass="uneditable-input input-large"/>
+                    <h:outputText/>
 
                     <h:outputLabel for="to" value="Arrival to"/>
-                    <h:outputText id="to" value="#{bookBean.flight.to.name}"/>
+                    <h:outputText id="to" value="#{bookBean.flight.to.name}" styleClass="uneditable-input input-large"/>
+                    <h:outputText/>
 
                     <h:outputLabel for="price" value="Price per seat"/>
-                    <h:outputText id="price" value="#{bookBean.flight.cost}"/>
+                    <h:outputText id="price" value="#{bookBean.flight.cost}" styleClass="uneditable-input input-large"/>
+                    <h:outputText/>
 
                     <h:outputLabel for="capacity-left" value="Free capacity"/>
-                    <h:outputText id="capacity-left" value="#{bookBean.flight.capacityLeft}"/>
+                    <h:outputText id="capacity-left" value="#{bookBean.flight.capacityLeft}"
+                                  styleClass="uneditable-input input-large"/>
+                    <h:outputText/>
 
                     <h:outputLabel for="seats" value="Number of seats"/>
                     <h:inputText id="seats" value="#{bookBean.seats}"/>
+                    <h:message for="seats" styleClass="help-inline"/>
 
                     <h:outputLabel for="password" value="Access password"/>
                     <h:inputSecret id="password" value="#{bookBean.password}"/>
+                    <h:message for="password" styleClass="help-inline"/>
 
                     <h:outputLabel for="confirmation" value="Password confirmation"/>
                     <h:inputSecret id="confirmation" value="#{bookBean.confirmation}"/>
+                    <h:outputText/>
 
-                    <h:commandButton value="Save" action="#{bookBean.book}">
-                        <f:ajax execute="@form" render="@all"/>
-                    </h:commandButton>
-                    <h:commandButton value="Cancel" action="flights?faces-redirect=true&amp;includeViewParams=true" immediate="true"/>
+
+                    <h:outputText/>
+                    <h:panelGroup layout="block">
+                        <h:commandButton value="Save" action="#{bookBean.book}" styleClass="btn btn-primary">
+                            <f:ajax execute="@form" render="@all"/>
+                        </h:commandButton>
+                        <h:commandButton value="Cancel" action="flights?faces-redirect=true&amp;includeViewParams=true"
+                                         styleClass="btn btn-inverse" immediate="true"/>
+                    </h:panelGroup>
+                    <h:outputText/>
 
                 </h:panelGrid>
 

@@ -4,135 +4,186 @@ body {
 
 ul.messages {
     list-style-type: none;
+    margin: 30px auto;
+}
+
+td.messages {
+    padding-left: 30px;
 }
 
 td > form {
     display: inline;
 }
 
+form select {
+    width: 170px;
+}
 
+.form-inline label {
+    margin-right: 10px;
+}
 
+.form-inline * + label, .form-inline * + .btn {
+    margin-left: 15px;
+}
+
+body .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #D9EDF7;
+}
+
+.table .centered {
+    text-align: center;
+}
+
+.table tfoot td {
+    text-align: right;
+}
+
+form input + input {
+    float: right;
+}
+
+.left {
+    padding-right: 20px;
+}
+
+.edit {
+    margin-left: 30px;
+}
+
+table.edit input, table.edit select, table.edit .uneditable-input {
+    margin-bottom: 0;
+}
+
+table.edit td {
+    padding-bottom: 9px;
+}
+
+table.table td, table.table th {
+    vertical-align: middle;
+}
+
+.table label, form label {
+    font-weight: bold;
+}
 
 /*input.rf-cal-inp, input[type='submit'], select, textarea, input[type="text"], input[type="password"] {*/
-    /*font-size: 80%;*/
+/*font-size: 80%;*/
 /*}*/
 
 /*label {*/
-    /*margin-left: 3em;*/
-    /*display: inline-block;*/
+/*margin-left: 3em;*/
+/*display: inline-block;*/
 /*}*/
 
 /*a:visited, a:link, a:active {*/
-    /*color: blue;*/
-    /*text-decoration: none;*/
-    /*font-size: 90%;*/
-    /*margin: 0.5em;*/
-    /*vertical-align: middle;*/
+/*color: blue;*/
+/*text-decoration: none;*/
+/*font-size: 90%;*/
+/*margin: 0.5em;*/
+/*vertical-align: middle;*/
 /*}*/
 
 /*form {*/
-    /*margin: 0;*/
+/*margin: 0;*/
 /*}*/
 
 /*a:hover {*/
-    /*color: red;*/
+/*color: red;*/
 /*}*/
 
 /*.centered-table td, .centered-table th {*/
-    /*padding: 0.2em 1em;*/
-    /*text-align: center;*/
+/*padding: 0.2em 1em;*/
+/*text-align: center;*/
 /*}*/
 
 /*table.centered-table {*/
-    /*margin: 2em 0;*/
+/*margin: 2em 0;*/
 /*}*/
 
 /*.bordered, .bordered td, .bordered th {*/
-    /*border: 1px solid black;*/
-    /*border-collapse: collapse;*/
+/*border: 1px solid black;*/
+/*border-collapse: collapse;*/
 /*}*/
 
 /*body {*/
-    /*margin: 1em 3em;*/
+/*margin: 1em 3em;*/
 /*}*/
 
 /*th {*/
-    /*background-color: #ee5;*/
+/*background-color: #ee5;*/
 /*}*/
 
 /*td.title {*/
-    /*text-align: left;*/
-    /*font-weight: bold;*/
-    /*background-color: #ee5;*/
+/*text-align: left;*/
+/*font-weight: bold;*/
+/*background-color: #ee5;*/
 /*}*/
 
 /*input, select {*/
-    /*display: inline-block;*/
-    /*margin: 0.2em 1em;*/
+/*display: inline-block;*/
+/*margin: 0.2em 1em;*/
 /*}*/
 
 /*.block-links a {*/
-    /*display: block;*/
+/*display: block;*/
 /*}*/
 
 /*#navigation a {*/
-    /*display: inline-block;*/
-    /*width: 10em;*/
-    /*text-align: center;*/
-    /*margin: 0 2em;*/
-    /*font-size: 1em;*/
-    /*text-transform: uppercase;*/
+/*display: inline-block;*/
+/*width: 10em;*/
+/*text-align: center;*/
+/*margin: 0 2em;*/
+/*font-size: 1em;*/
+/*text-transform: uppercase;*/
 /*}*/
 
 /*.left {*/
-    /*text-align: left;*/
-    /*padding-left: 0.5em;*/
+/*text-align: left;*/
+/*padding-left: 0.5em;*/
 /*}*/
 
 /*.right, .left {*/
-    /*padding: 0.1em 0.5em;*/
+/*padding: 0.1em 0.5em;*/
 /*}*/
 
 /*.right {*/
-    /*text-align: right;*/
-    /*padding-right: 0.5em;*/
+/*text-align: right;*/
+/*padding-right: 0.5em;*/
 /*}*/
 
 /*.right label {*/
-    /*color: #555;*/
-    /*font-size: 90%;*/
+/*color: #555;*/
+/*font-size: 90%;*/
 /*}*/
 /*.right label:after {*/
-    /*content: ':'*/
+/*content: ':'*/
 /*}*/
 
 /*table.edit tr:last-child td input {*/
-    /*margin-top: 20px;*/
+/*margin-top: 20px;*/
 /*}*/
 
 /*.messages {*/
-    /*padding-left: 2em;*/
-    /*color: red;*/
-    /*font-size: 85%;*/
-    /*padding-top: 0.2em;*/
+/*padding-left: 2em;*/
+/*color: red;*/
+/*font-size: 85%;*/
+/*padding-top: 0.2em;*/
 /*}*/
 
 /*.bordered .right {*/
-    /*background-color: #ee5;*/
-    /*font-weight: bold;*/
+/*background-color: #ee5;*/
+/*font-weight: bold;*/
 /*}*/
 
 /*.right input, .left input, .left select {*/
-    /*margin: 0;*/
-    /*display: inline-block;*/
-    /*width: 100%;*/
+/*margin: 0;*/
+/*display: inline-block;*/
+/*width: 100%;*/
 /*}*/
 
 /*input[type='submit'] {*/
-    /*display: inline-block;*/
-    /*width: inherit;*/
+/*display: inline-block;*/
+/*width: inherit;*/
 /*}*/
 
-/*.centered-table tfoot td {*/
-    /*text-align: right;*/
-/*}*/
