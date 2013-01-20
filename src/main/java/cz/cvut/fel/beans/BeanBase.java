@@ -2,6 +2,7 @@ package cz.cvut.fel.beans;
 
 import lombok.EqualsAndHashCode;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -84,5 +85,12 @@ public class BeanBase implements Serializable {
 
         // Important! Else JSF will attempt to render the response which obviously will fail since it's already written with a file and closed.
         facesContext.responseComplete();
+    }
+
+    @PostConstruct
+    public void init() {
+
+        // init session, solution for uninitialized context exception, this is a bit hack, multiple rich:calendar caused an issue
+        FacesContext.getCurrentInstance().getExternalContext().getSession( true );
     }
 }

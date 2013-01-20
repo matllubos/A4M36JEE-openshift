@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/BookingServer">
-  <Resource auth="Container" driverClassName="org.apache.derby.jdbc.ClientDriver" maxActive="3" maxIdle="1" maxWait="-1" name="jdbc/FlightSystem" type="javax.sql.DataSource" url="jdbc:derby://localhost:1527/FlightSystem" username="APP" password="APP"/>
-</Context>
