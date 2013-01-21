@@ -26,7 +26,7 @@
                 <li><h:link value="Flights" outcome="flights"/></li>
                 <li><h:link value="Reservation" outcome="reservation"/></li>
                 <li><h:link value="Login" outcome="login"/></li>
-                <li><h:link value="Logout" outcome="logout"/></li>
+                <li><h:link value="Logout" outcome="logout" rendered="#{not empty request.remoteUser}"/></li>
             </ul>
         <!--</h:form>-->
         <!--/.nav-collapse -->

@@ -127,4 +127,29 @@
             <role-name>*</role-name>
         </auth-constraint>
     </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>destination</web-resource-name>
+            <description/>
+            <url-pattern>/destination.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>flight</web-resource-name>
+            <description/>
+            <url-pattern>/flight.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>admin</role-name>
+            <role-name>flight-manager</role-name>
+        </auth-constraint>
+    </security-constraint>
 </web-app>

@@ -132,7 +132,7 @@
                               style="width: 85px;"/>
             </h:column>
 
-            <h:column rendered="#{true}"><!-- todo security -->
+            <h:column rendered="#{request.isUserInRole('admin') or request.isUserInRole('flight-manager')}"><!-- todo security -->
                 <h:link outcome="flight?faces-redirect=true&amp;includeViewParams=true" styleClass="btn btn-danger btn-small"
                         title="edit flight">
                     <f:param name="number" value="#{item.number}"/>
@@ -140,7 +140,7 @@
                 </h:link>
             </h:column>
 
-            <h:column rendered="#{true}"><!-- todo security -->
+            <h:column rendered="#{request.isUserInRole('admin') or request.isUserInRole('flight-manager')}"><!-- todo security -->
                 <h:form>
                     <h:commandLink action="#{flights.remove(item.number)}" styleClass="btn btn-danger btn-small" title="remove flight">
                         <i class="icon-trash"></i>
@@ -149,9 +149,8 @@
             </h:column>
 
             <f:facet name="footer">
-                <h:link outcome="flight" value="new flight" styleClass="btn btn-primary btn-small" style="width: 75px"/>
-            </f:facet>
-
+                <h:link outcome="flight" value="new flight" styleClass="btn btn-primary btn-small" style="width: 75px" rendered="#{request.isUserInRole('admin') or request.isUserInRole('flight-manager')}"/>
+             </f:facet>
         </h:dataTable>
 
     </ui:define>
