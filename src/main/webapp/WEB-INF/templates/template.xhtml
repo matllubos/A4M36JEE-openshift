@@ -22,9 +22,13 @@
         <h:link value="Flight System" outcome="home" styleClass="brand"/>
         <!--<h:form styleClass="navbar-form">-->
             <ul class="nav">
+            <h:panelGroup rendered="#{not empty request.remoteUser}">
                 <li><h:link value="Destinations" outcome="destinations"/></li>
-                <li><h:link value="Flights" outcome="flights"/></li>
-                <li><h:link value="Reservation" outcome="reservation"/></li>
+            </h:panelGroup>
+
+            <li><h:link value="Flights" outcome="flights"/></li>
+
+            <li><h:link value="Reservation" outcome="reservation"/></li>
                 <li><h:link value="Login" outcome="login"/></li>
                 <li><h:link value="Logout" outcome="logout" rendered="#{not empty request.remoteUser}"/></li>
             </ul>

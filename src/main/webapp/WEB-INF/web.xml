@@ -103,6 +103,7 @@
         <web-resource-collection>
             <web-resource-name>login</web-resource-name>
             <description/>
+            <url-pattern>/login.jsf</url-pattern>
             <url-pattern>/login.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
@@ -115,7 +116,10 @@
         <web-resource-collection>
             <web-resource-name>destination</web-resource-name>
             <description/>
+            <url-pattern>/destination.jsf</url-pattern>
             <url-pattern>/destination.xhtml</url-pattern>
+            <url-pattern>/destinations.jsf</url-pattern>
+            <url-pattern>/destinations.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
@@ -127,6 +131,7 @@
         <web-resource-collection>
             <web-resource-name>flight</web-resource-name>
             <description/>
+            <url-pattern>/flight.jsf</url-pattern>
             <url-pattern>/flight.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
