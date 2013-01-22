@@ -30,7 +30,7 @@
 
         </f:facet>
 
-        <h:link value="Destinations" outcome="destinations" rendered="#{not empty request.remoteUser}"/>
+        <h:link value="Destinations" outcome="destinations" rendered="#{request.isUserInRole('admin')}"/>
 
         <h:link value="Flights" outcome="flights"/>
 
