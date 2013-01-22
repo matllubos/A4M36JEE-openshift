@@ -42,10 +42,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.richfaces.ui:richfaces-components-ui:4.2.2.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.richfaces.ui:richfaces-components-api:4.2.2.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.richfaces.core:richfaces-core-api:4.2.2.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.richfaces.core:richfaces-core-impl:4.2.2.Final" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.enterprise:cdi-api:1.0-SP4" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.1_spec:1.0.1.Final" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.inject:javax.inject:1" level="project" />
