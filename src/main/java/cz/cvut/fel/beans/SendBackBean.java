@@ -39,7 +39,7 @@ public class SendBackBean extends BeanBase implements Serializable {
     }
 
 
-    @Min( value = 1000000L, message = "Invalid account number, range must be 6-10 digits." )
+    @Min( value = 100000L, message = "Invalid account number, range must be 6-10 digits." )
     @Max( value = 9999999999L, message = "Invalid account number, range must be 6-10 digits." )
     public long getAccount() {
         return account;
