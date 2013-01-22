@@ -20,8 +20,7 @@
 
     <b:navbar fixed="top" inverse="true">
         <h:link value="Flight System" outcome="home" styleClass="brand"/>
-        <!--<h:form styleClass="navbar-form">-->
-            <ul class="nav">
+        <ul class="nav">
             <h:panelGroup rendered="#{not empty request.remoteUser}">
                 <li><h:link value="Destinations" outcome="destinations"/></li>
             </h:panelGroup>
@@ -29,10 +28,16 @@
             <li><h:link value="Flights" outcome="flights"/></li>
 
             <li><h:link value="Reservation" outcome="reservation"/></li>
+
+            <h:panelGroup rendered="#{empty request.remoteUser}">
                 <li><h:link value="Login" outcome="login"/></li>
-                <li><h:link value="Logout" outcome="logout" rendered="#{not empty request.remoteUser}"/></li>
-            </ul>
-        <!--</h:form>-->
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{not empty request.remoteUser or not empty reservationBean.reservation}">
+                <li><h:link value="Logout" outcome="logout"/></li>
+            </h:panelGroup>
+
+        </ul>
         <!--/.nav-collapse -->
     </b:navbar>
 
