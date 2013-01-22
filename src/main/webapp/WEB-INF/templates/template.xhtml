@@ -23,6 +23,10 @@
         <f:facet name="brand">
             <h:link value="Flight System" outcome="home" styleClass="brand"/>
 
+            <p class="navbar-text pull-right">
+                <h:outputText value="Not logged in" rendered="#{empty request.remoteUser}" />
+                <h:outputText value="Logged in as #{request.remoteUser}" rendered="#{not empty request.remoteUser}" />
+            </p>
 
         </f:facet>
 
