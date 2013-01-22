@@ -4,7 +4,7 @@ import cz.cvut.fel.exception.NoSuchFlightException;
 import cz.cvut.fel.model.Flight;
 import cz.cvut.fel.model.FlightStatus;
 import cz.cvut.fel.model.Time;
-import lombok.extern.slf4j.Slf4j;
+import cz.cvut.fel.util.AuthorizedTest;
 import org.jboss.security.client.SecurityClient;
 import org.jboss.security.client.SecurityClientFactory;
 import org.testng.annotations.AfterGroups;
@@ -23,8 +23,8 @@ import static java.lang.Thread.sleep;
 import static org.testng.Assert.*;
 
 /** @author Karel Cemus */
-@Slf4j
-public class FlightServiceTest extends UsersServiceTest {
+@Test( groups = "services" )
+public class FlightServiceTest extends AuthorizedTest {
 
     private static final String FLIGHT_NUMBER = "F111111";
 
@@ -152,6 +152,7 @@ public class FlightServiceTest extends UsersServiceTest {
         testCreate();
     }
 
+    @Test( enabled = false )
     public void testCreate() {
         Flight flight = createFlight();
 
@@ -216,6 +217,7 @@ public class FlightServiceTest extends UsersServiceTest {
         service.delete( "1" );
     }
 
+    @Test( enabled = false )
     public void testDelete() throws InterruptedException {
 
         // create test instance

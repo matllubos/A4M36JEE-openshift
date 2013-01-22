@@ -3,6 +3,7 @@ package cz.cvut.fel.service;
 
 import cz.cvut.fel.exception.NoSuchDestinationException;
 import cz.cvut.fel.model.Destination;
+import cz.cvut.fel.util.AuthorizedTest;
 import lombok.extern.slf4j.Slf4j;
 import org.jboss.security.client.SecurityClient;
 import org.jboss.security.client.SecurityClientFactory;
@@ -22,7 +23,8 @@ import static org.testng.Assert.*;
 
 /** @author Karel Cemus */
 @Slf4j
-public class DestinationServiceTest extends UsersServiceTest {
+@Test( groups = "services" )
+public class DestinationServiceTest extends AuthorizedTest {
 
     @Inject
     private DestinationService service;
@@ -103,6 +105,7 @@ public class DestinationServiceTest extends UsersServiceTest {
         testCreate();
     }
 
+    @Test( enabled = false )
     public void testCreate() {
         // perform test
         Destination destination = service.save( createDestination() );
@@ -171,6 +174,7 @@ public class DestinationServiceTest extends UsersServiceTest {
         service.delete( 1L );
     }
 
+    @Test( enabled = false )
     public void testDelete() throws InterruptedException {
 
         // create test instance

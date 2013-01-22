@@ -1,15 +1,11 @@
-package cz.cvut.fel.service;
+package cz.cvut.fel.util;
 
-import cz.cvut.fel.util.ArquillianTest;
 import org.jboss.security.client.SecurityClient;
 import org.jboss.security.client.SecurityClientFactory;
 import org.testng.annotations.BeforeGroups;
 
-/**
- * Created with IntelliJ IDEA. User: lubos Date: 18.01.13 Time: 22:11 To change this template use File | Settings | File
- * Templates.
- */
-public class UsersServiceTest extends ArquillianTest {
+/** @author Lubos Matl */
+public class AuthorizedTest extends ArquillianTest {
 
     @BeforeGroups( groups = "user-admin" )
     public void loginFlightManager() throws Exception {
