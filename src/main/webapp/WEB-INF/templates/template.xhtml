@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:b="http://richfaces.org/sandbox/bootstrap">
+      xmlns:b="http://richfaces.org/sandbox/bootstrap" xmlns:f="http://java.sun.com/jsf/core">
 
 <!-- metaparameters like view params -->
 <ui:insert name="metadata"/>
@@ -19,26 +19,24 @@
 <h:body>
 
     <b:navbar fixed="top" inverse="true">
-        <h:link value="Flight System" outcome="home" styleClass="brand"/>
-        <ul class="nav">
-            <h:panelGroup rendered="#{not empty request.remoteUser}">
-                <li><h:link value="Destinations" outcome="destinations"/></li>
-            </h:panelGroup>
 
-            <li><h:link value="Flights" outcome="flights"/></li>
+        <f:facet name="brand">
+            <h:link value="Flight System" outcome="home" styleClass="brand"/>
 
-            <li><h:link value="Reservation" outcome="reservation"/></li>
 
-            <h:panelGroup rendered="#{empty request.remoteUser}">
-                <li><h:link value="Login" outcome="login"/></li>
-            </h:panelGroup>
+        </f:facet>
 
-            <h:panelGroup rendered="#{not empty request.remoteUser or not empty reservationBean.reservation}">
-                <li><h:link value="Logout" outcome="logout"/></li>
-            </h:panelGroup>
+        <h:link value="Destinations" outcome="destinations" rendered="#{not empty request.remoteUser}"/>
 
-        </ul>
-        <!--/.nav-collapse -->
+        <h:link value="Flights" outcome="flights"/>
+
+        <h:link value="Reservation" outcome="reservation"/>
+
+        <h:link value="Login" outcome="login" rendered="#{empty request.remoteUser}"/>
+
+        <h:link value="Logout" outcome="logout"
+                rendered="#{not empty request.remoteUser or not empty reservationBean.reservation}"/>
+
     </b:navbar>
 
     <div class="container">
