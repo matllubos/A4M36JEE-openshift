@@ -4,11 +4,13 @@ import cz.cvut.fel.exception.NoSuchFlightException;
 import cz.cvut.fel.model.Flight;
 import cz.cvut.fel.model.FlightStatus;
 import cz.cvut.fel.model.Time;
-import cz.cvut.fel.util.ArquillianTest;
 import lombok.extern.slf4j.Slf4j;
 import org.jboss.security.client.SecurityClient;
 import org.jboss.security.client.SecurityClientFactory;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterGroups;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
@@ -32,7 +34,7 @@ public class FlightServiceTest extends UsersServiceTest {
     @Inject
     private DestinationService destinationService;
 
-    @AfterGroups( groups = { "user-flight-manager", "user-admin" })
+    @AfterGroups( groups = { "user-flight-manager", "user-admin" } )
     public void logout() throws Exception {
         final SecurityClient securityClient = SecurityClientFactory.getSecurityClient();
         securityClient.logout();
@@ -199,7 +201,7 @@ public class FlightServiceTest extends UsersServiceTest {
         assertEquals( flight.getStatus(), FlightStatus.LANDED );
     }
 
-    @Test( dependsOnMethods = "testCreateAdmin", groups =  "user-admin", expectedExceptions = javax.ejb.EJBException.class )
+    @Test( dependsOnMethods = "testCreateAdmin", groups = "user-admin", expectedExceptions = javax.ejb.EJBException.class )
     public void testDeleteAdmin() throws InterruptedException {
         testDelete();
     }
@@ -247,10 +249,10 @@ public class FlightServiceTest extends UsersServiceTest {
 
     @DataProvider
     public Object[][] usersProvider() {
-                return new Object[][]{
-                        new Object[]{ "peter", "peter" },
-                        new Object[]{ "marcus", "marcus" },
-                };
+        return new Object[][]{
+                new Object[]{ "peter", "peter" },
+                new Object[]{ "marcus", "marcus" },
+        };
     }
 
     private Flight createFlight() {

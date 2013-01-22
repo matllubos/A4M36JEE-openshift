@@ -11,7 +11,7 @@ import java.util.Map;
 public class ArquillianDataProvider {
 
     /** static counter of call to always provide proper test case */
-    private static Map<String, Integer> calls = new HashMap<String, Integer>();
+    private static final Map<String, Integer> calls = new HashMap<String, Integer>();
 
     private ArquillianDataProvider() {
         // only static calls

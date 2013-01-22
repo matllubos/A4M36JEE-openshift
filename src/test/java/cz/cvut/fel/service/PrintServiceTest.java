@@ -76,7 +76,7 @@ public class PrintServiceTest extends ArquillianTest {
     }
 
     @Test
-    public void printReservationConfirmation() throws IOException {
+    public void printReservationConfirmation() {
 
         Reservation reservation = new Reservation();
         reservation.setId( 123456 );
@@ -109,7 +109,7 @@ public class PrintServiceTest extends ArquillianTest {
     }
 
     @Test
-    public void printCancelConfirmation() throws IOException {
+    public void printCancelConfirmation() {
 
         Reservation reservation = new Reservation();
         reservation.setId( 123456 );

@@ -3,18 +3,17 @@ package cz.cvut.fel.service;
 
 import cz.cvut.fel.exception.NoSuchDestinationException;
 import cz.cvut.fel.model.Destination;
-import cz.cvut.fel.util.ArquillianTest;
 import lombok.extern.slf4j.Slf4j;
 import org.jboss.security.client.SecurityClient;
 import org.jboss.security.client.SecurityClientFactory;
-import org.testng.ITestContext;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterGroups;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
-import javax.security.auth.login.LoginException;
 import javax.validation.ConstraintViolationException;
-
 import java.util.*;
 
 import static cz.cvut.fel.util.ArquillianDataProvider.provide;
@@ -37,6 +36,7 @@ public class DestinationServiceTest extends UsersServiceTest {
         }
 
     }
+
     @AfterGroups( groups = { "user-flight-manager", "user-admin" } )
     public void logout() throws Exception {
         final SecurityClient securityClient = SecurityClientFactory.getSecurityClient();

@@ -17,8 +17,8 @@ import java.util.Date;
 /** @author Karel Cemus */
 @Slf4j
 @Stateless
-@DeclareRoles({"admin", "flight-manager"})
-@SecurityDomain("FlightSystem-policy")
+@DeclareRoles( { "admin", "flight-manager" } )
+@SecurityDomain( "FlightSystem-policy" )
 public class FlightServiceImpl implements FlightService {
 
     @PersistenceContext
@@ -69,7 +69,7 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    @RolesAllowed({"admin", "flight-manager"})
+    @RolesAllowed( { "admin", "flight-manager" } )
     public Flight save( @Valid final Flight flight ) {
 
         // verify and validate entity
@@ -80,7 +80,7 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    @RolesAllowed({"admin", "flight-manager"})
+    @RolesAllowed( { "admin", "flight-manager" } )
     public void delete( final String number ) throws NoSuchFlightException {
 
         if ( number == null || number.isEmpty() ) throw new IllegalArgumentException( "Illegal flight number." );

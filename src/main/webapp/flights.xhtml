@@ -70,7 +70,7 @@
 
                 <h:commandLink action="flights?includeViewParams=true" styleClass="btn btn-primary"
                                style="width: 50px;">
-                    <i class="icon-search"></i> Filter
+                    <i class="icon-search"/> Filter
                 </h:commandLink>
 
             </h:panelGroup>
@@ -136,7 +136,7 @@
                 <h:link outcome="flight" styleClass="btn btn-danger btn-small"
                         title="edit flight" includeViewParams="true">
                     <f:param name="number" value="#{item.number}"/>
-                    <i class="icon-pencil"></i>
+                    <i class="icon-pencil"/>
                 </h:link>
             </h:column>
 
@@ -144,7 +144,7 @@
                 <h:form>
                     <h:commandLink action="#{flights.remove(item.number)}" styleClass="btn btn-danger btn-small"
                                    title="remove flight">
-                        <i class="icon-trash"></i>
+                        <i class="icon-trash"/>
                     </h:commandLink>
                 </h:form>
             </h:column>

@@ -31,7 +31,7 @@ public class PaymentServiceTest extends ArquillianTest {
     private long reservationId;
 
     @BeforeMethod
-    public void setUpMethod() throws Exception {
+    public void setUpMethod() {
         if ( isInContainer() ) {
             // data initialization
             Reservation reservation = reservationService.create( "F987545", PASSWORD, 5 );
@@ -42,7 +42,7 @@ public class PaymentServiceTest extends ArquillianTest {
     }
 
     @AfterMethod
-    public void tearDown() throws Exception {
+    public void tearDown() {
         if ( isInContainer() ) {
             reservationService.cancel( reservationId, PASSWORD );
         }

@@ -26,7 +26,7 @@ import java.util.Map;
  * contain a single <code>phase-listener</code> block containing the fully-qualified classname of this file.
  *
  * @author Jesse Wilson jesse[AT]odel.on.ca
- * @secondaryAuthor Lincoln Baxter III lincoln[AT]ocpsoft.com
+ * @author Lincoln Baxter III lincoln[AT]ocpsoft.com
  */
 public class MultiPageMessagesSupport implements PhaseListener {
 

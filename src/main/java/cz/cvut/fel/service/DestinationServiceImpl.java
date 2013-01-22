@@ -16,8 +16,8 @@ import java.util.Collection;
 /** @author Karel Cemus */
 @Slf4j
 @Stateless
-@DeclareRoles({"admin"})
-@SecurityDomain("FlightSystem-policy")
+@DeclareRoles( { "admin" } )
+@SecurityDomain( "FlightSystem-policy" )
 public class DestinationServiceImpl implements DestinationService {
 
     @PersistenceContext
@@ -46,7 +46,7 @@ public class DestinationServiceImpl implements DestinationService {
     }
 
     @Override
-    @RolesAllowed({"admin"})
+    @RolesAllowed( { "admin" } )
     public Destination save( @Valid final Destination destination ) {
 
         // verify and validate entity
@@ -57,7 +57,7 @@ public class DestinationServiceImpl implements DestinationService {
     }
 
     @Override
-    @RolesAllowed({"admin"})
+    @RolesAllowed( { "admin" } )
     public void delete( final long id ) throws NoSuchDestinationException {
 
         if ( id <= 0 ) throw new IllegalArgumentException( "Illegal identifier. Value must be greater than 0." );

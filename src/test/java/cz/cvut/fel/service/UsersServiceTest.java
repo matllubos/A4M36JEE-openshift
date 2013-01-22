@@ -6,28 +6,25 @@ import org.jboss.security.client.SecurityClientFactory;
 import org.testng.annotations.BeforeGroups;
 
 /**
- * Created with IntelliJ IDEA.
- * User: lubos
- * Date: 18.01.13
- * Time: 22:11
- * To change this template use File | Settings | File Templates.
+ * Created with IntelliJ IDEA. User: lubos Date: 18.01.13 Time: 22:11 To change this template use File | Settings | File
+ * Templates.
  */
 public class UsersServiceTest extends ArquillianTest {
 
     @BeforeGroups( groups = "user-admin" )
     public void loginFlightManager() throws Exception {
-        login("karel", "cemus");
+        login( "karel", "cemus" );
     }
 
     @BeforeGroups( groups = "user-flight-manager" )
     public void loginAdmin() throws Exception {
-        login("lubos", "matl");
+        login( "lubos", "matl" );
     }
 
 
-    private void login(String username, String password) throws Exception {
+    private void login( String username, String password ) throws Exception {
         final SecurityClient securityClient = SecurityClientFactory.getSecurityClient();
-        securityClient.setSimple(username, password);
+        securityClient.setSimple( username, password );
         securityClient.login();
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<datasources>
+<datasources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.jboss.org/ironjacamar/schema"
+             xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://www.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
 
     <datasource jndi-name="java:/jdbc/FlightSystem" enabled="true" use-java-context="true" pool-name="jdbc/FlightSystemPool">
         <connection-url>jdbc:postgresql://gaim.xen.prgmr.com/jee_db</connection-url>

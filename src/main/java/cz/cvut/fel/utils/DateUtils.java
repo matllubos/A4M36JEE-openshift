@@ -44,6 +44,7 @@ public class DateUtils {
 
     /** creates instance of {@link Date} with given parameters */
     public static Date date( final int day, final int month, final int year, final int hour, final int minutes ) {
+        //noinspection MagicConstant
         CALENDAR.set( year, month - 1, day, hour, minutes, 0 );
         CALENDAR.set( Calendar.MILLISECOND, 0 );
 

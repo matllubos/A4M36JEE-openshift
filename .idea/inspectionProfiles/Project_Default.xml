@@ -12,9 +12,12 @@
     <inspection_tool class="groupsTestNG" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="groups">
         <value>
-          <list size="2">
+          <list size="5">
             <item index="0" class="java.lang.String" itemvalue="services" />
             <item index="1" class="java.lang.String" itemvalue="initialization" />
+            <item index="2" class="java.lang.String" itemvalue="user-admin" />
+            <item index="3" class="java.lang.String" itemvalue="user-flight-manager" />
+            <item index="4" class="java.lang.String" itemvalue="user-unlogged" />
           </list>
         </value>
       </option>
