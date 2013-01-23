@@ -248,15 +248,6 @@ public class FlightServiceTest extends AuthorizedTest {
         assertEquals( codes, modelSet );
     }
 
-
-    @DataProvider
-    public Object[][] usersProvider() {
-        return new Object[][]{
-                new Object[]{ "peter", "peter" },
-                new Object[]{ "marcus", "marcus" },
-        };
-    }
-
     private Flight createFlight() {
         Flight flight = new Flight();
         flight.setNumber( FLIGHT_NUMBER );
