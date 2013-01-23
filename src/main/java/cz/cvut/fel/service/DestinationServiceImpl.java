@@ -11,7 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
-import java.util.Collection;
+import java.util.List;
 
 /** @author Karel Cemus */
 @Slf4j
@@ -39,7 +39,7 @@ public class DestinationServiceImpl implements DestinationService {
     }
 
     @Override
-    public Collection<Destination> findAllDestinations() {
+    public List<Destination> findAllDestinations() {
 
         // return all currently active entities
         return em.createNamedQuery( "Destination.findAllValid", Destination.class ).getResultList();

@@ -3,7 +3,7 @@ package cz.cvut.fel.service;
 import cz.cvut.fel.exception.NoSuchDestinationException;
 import cz.cvut.fel.model.Destination;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Defines all available operation over destinations.
@@ -16,7 +16,7 @@ public interface DestinationService {
     Destination findByCode( String code ) throws NoSuchDestinationException;
 
     /** Returns all active destination where the company flies to. */
-    Collection<Destination> findAllDestinations();
+    List<Destination> findAllDestinations();
 
     /** saves given destination whether it is new or modified only */
     Destination save( Destination destination );

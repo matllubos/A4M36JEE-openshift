@@ -11,8 +11,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /** @author Karel Cemus */
 @Slf4j
@@ -41,7 +41,7 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public Collection<Flight> findFlightsFrom( Date intervalFrom, Date intervalTo, String codeFrom ) {
+    public List<Flight> findFlightsFrom( Date intervalFrom, Date intervalTo, String codeFrom ) {
         return em.createNamedQuery( "Flight.findByFrom", Flight.class ).
                 setParameter( "intervalFrom", intervalFrom ).
                 setParameter( "intervalTo", intervalTo ).
@@ -50,7 +50,7 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public Collection<Flight> findFlightsTo( Date intervalFrom, Date intervalTo, String codeTo ) {
+    public List<Flight> findFlightsTo( Date intervalFrom, Date intervalTo, String codeTo ) {
         return em.createNamedQuery( "Flight.findByTo", Flight.class ).
                 setParameter( "intervalFrom", intervalFrom ).
                 setParameter( "intervalTo", intervalTo ).
@@ -59,7 +59,7 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public Collection<Flight> findFlights( Date intervalFrom, Date intervalTo, String codeFrom, String codeTo ) {
+    public List<Flight> findFlights( Date intervalFrom, Date intervalTo, String codeFrom, String codeTo ) {
         return em.createNamedQuery( "Flight.findByFromTo", Flight.class ).
                 setParameter( "intervalFrom", intervalFrom ).
                 setParameter( "intervalTo", intervalTo ).
