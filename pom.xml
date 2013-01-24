@@ -166,6 +166,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.jboss.ejb3</groupId>
+            <artifactId>jboss-ejb3-ext-api</artifactId>
+            <version>2.0.0</version>
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
 
@@ -253,13 +259,6 @@
                     <scope>test</scope>
                 </dependency>
 
-                <dependency>
-                    <groupId>org.jboss.ejb3</groupId>
-                    <artifactId>jboss-ejb3-ext-api</artifactId>
-                    <version>2.0.0</version>
-                    <scope>provided</scope>
-                </dependency>
-
             </dependencies>
 
             <dependencyManagement>
@@ -275,7 +274,31 @@
                 </dependencies>
 
             </dependencyManagement>
-
+            <build>
+                <plugins>
+                      <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>2.3.2</version>
+                        <configuration>
+                            <source>1.6</source>
+                            <target>1.6</target>
+                            <compilerArguments>
+                                <endorseddirs>${endorsed.dir}</endorseddirs>
+                            </compilerArguments>
+                            <skip>false</skip>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>testCompile</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+             </build>
         </profile>
 
         <profile>
@@ -353,6 +376,7 @@
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
+                    <skip>true</skip>
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
@@ -428,7 +452,6 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
-
         </dependencies>
 
     </dependencyManagement>
