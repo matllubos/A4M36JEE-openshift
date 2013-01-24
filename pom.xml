@@ -305,9 +305,7 @@
 
                 </plugins>
             </build>
-
         </profile>
-
 
         <profile>
             <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
@@ -322,13 +320,20 @@
                         <version>2.1.1</version>
                         <configuration>
                             <outputDirectory>deployments</outputDirectory>
-                            <warName>ROOT</warName>
+                            <warName>FlightSystem</warName>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
+            <distributionManagement>
+                <repository>
+                    <id>FakeRepository</id>
+                    <name>Fake Repository</name>
+                    <url>file://${project.build.directory}</url>
+                    <layout>default</layout>
+                </repository>
+            </distributionManagement>
         </profile>
-
     </profiles>
 
     <build>
