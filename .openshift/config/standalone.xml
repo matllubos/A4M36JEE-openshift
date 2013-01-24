@@ -132,7 +132,7 @@
                     <driver name="postgresql" module="org.postgresql.jdbc">
                         <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
                     </driver>
-		    <driver name="postgresql-driver" module="org.postgresql">
+		            <driver name="postgresql-driver" module="org.postgresql">
                         <driver-class>org.postgresql.Driver</driver-class>
                     </driver>
                 </drivers>
